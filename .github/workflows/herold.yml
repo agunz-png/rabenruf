@@ -1,8 +1,16 @@
-name: Herold Test
+name: Rabenruf Herold
 
 on:
 
   workflow_dispatch:
+
+  schedule:
+
+    - cron: "15 4 * * *"
+
+permissions:
+
+  contents: write
 
 jobs:
 
@@ -16,10 +24,46 @@ jobs:
 
         uses: actions/checkout@v4
 
-      - name: Herold starten
+      - name: Herold vorbereiten
 
         run: |
 
-          echo "Der Rabenruf-Herold läuft!"
+          echo "🐦‍⬛ Der Rabenruf-Herold erwacht."
 
-          echo "Die automatische Suche ist bereit."
+          echo "Suche nach neuen Mittelalter-Veranstaltungen in Europa."
+
+          echo "Zeitpunkt: $(date -u)"
+
+      - name: Funddatei prüfen
+
+        run: |
+
+          if [ ! -f herold-funde.json ]; then
+
+            echo "[]" > herold-funde.json
+
+          fi
+
+          echo "herold-funde.json ist bereit."
+
+      - name: Änderungen speichern
+
+        run: |
+
+          git config user.name "Rabenruf Herold"
+
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add herold-funde.json
+
+          if git diff --cached --quiet; then
+
+            echo "Keine neuen Funde."
+
+          else
+
+            git commit -m "🐦‍⬛ Herold: neue Funde"
+
+            git push
+
+          fi
