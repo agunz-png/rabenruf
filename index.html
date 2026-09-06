@@ -14,189 +14,731 @@
 
 <link rel="stylesheet"
 
-href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
 <style>
 
-*{box-sizing:border-box}
+*{
+
+  box-sizing:border-box;
+
+}
 
 :root{
 
- --bg:#0c0b09;--panel:#1c1813;--panel2:#261d16;
+  --bg:#0c0b09;
 
- --gold:#d5ad62;--text:#f3eadc;--muted:#b9aa96;
+  --panel:#1c1813;
 
- --red:#9e4031;--line:#413326
+  --panel2:#281f18;
+
+  --gold:#d6ad62;
+
+  --gold2:#f0d18c;
+
+  --text:#f5ecdf;
+
+  --muted:#b9aa96;
+
+  --red:#963e30;
+
+  --line:#49372a;
+
+  --green:#536c49;
+
+}
+
+html,body{
+
+  margin:0;
+
+  padding:0;
+
+  background:var(--bg);
+
+  color:var(--text);
+
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 
 }
 
 body{
 
- margin:0;background:var(--bg);color:var(--text);
+  min-height:100vh;
 
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+
+button,input,select{
+
+  font:inherit;
 
 }
 
 .app{
 
- max-width:520px;margin:auto;min-height:100vh;
+  max-width:520px;
 
- background:linear-gradient(#17130e,#0c0b09);
+  margin:auto;
 
- padding-bottom:92px
+  min-height:100vh;
+
+  background:
+
+    radial-gradient(circle at top,#2b1b10 0,#17120e 25%,#0c0b09 65%);
+
+  padding-bottom:95px;
 
 }
 
 header{
 
- padding:18px 17px 10px;position:sticky;top:0;
+  padding:18px 17px 12px;
 
- background:#15110df2;backdrop-filter:blur(12px);z-index:900
+  position:sticky;
+
+  top:0;
+
+  background:#15110df2;
+
+  backdrop-filter:blur(12px);
+
+  -webkit-backdrop-filter:blur(12px);
+
+  z-index:900;
+
+  border-bottom:1px solid #211a15;
 
 }
 
 .logo{
 
- font:700 27px Georgia,serif;color:var(--gold)
+  font:700 29px Georgia,serif;
+
+  color:var(--gold);
+
+  letter-spacing:.3px;
 
 }
 
-.sub{font-size:12px;color:var(--muted)}
+.subtitle{
+
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+}
 
 .search{
 
- margin-top:13px;background:var(--panel2);
+  margin-top:14px;
 
- border:1px solid var(--line);border-radius:14px;
+  background:var(--panel2);
 
- padding:11px 13px;display:flex;gap:8px
+  border:1px solid var(--line);
+
+  border-radius:15px;
+
+  padding:12px 13px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
 
 }
 
 .search input{
 
- width:100%;border:0;outline:0;background:transparent;
+  width:100%;
 
- color:white;font-size:15px
+  border:0;
+
+  outline:0;
+
+  background:transparent;
+
+  color:white;
+
+  font-size:16px;
 
 }
 
-main{padding:8px 16px}
+.search input::placeholder{
 
-.hidden{display:none}
+  color:#a99e92;
+
+}
+
+main{
+
+  padding:10px 16px 15px;
+
+}
+
+.hidden{
+
+  display:none !important;
+
+}
 
 .hero{
 
- padding:19px;border:1px solid #60452c;border-radius:20px;
+  padding:19px;
 
- background:linear-gradient(135deg,#4a2b1b,#17120e);
+  border:1px solid #63472d;
 
- margin:8px 0 18px
+  border-radius:20px;
+
+  background:
+
+    linear-gradient(135deg,#4a2a19,#251812 55%,#16110d);
+
+  margin:8px 0 18px;
+
+  box-shadow:0 8px 25px #0005;
 
 }
 
-h1,h2,h3{font-family:Georgia,serif}
+.heroSmall{
 
-h1{font-size:29px;margin:6px 0}
+  font-size:11px;
 
-h2{margin:19px 0 10px}
+  letter-spacing:2px;
 
-.gold{color:var(--gold)}
+  color:var(--gold2);
 
-.muted{color:var(--muted)}
+  font-weight:800;
+
+}
+
+h1,h2,h3{
+
+  font-family:Georgia,serif;
+
+}
+
+h1{
+
+  font-size:29px;
+
+  line-height:1.05;
+
+  margin:8px 0 10px;
+
+}
+
+h2{
+
+  margin:20px 0 10px;
+
+  font-size:25px;
+
+}
+
+h3{
+
+  margin-top:4px;
+
+}
+
+.gold{
+
+  color:var(--gold);
+
+}
+
+.muted{
+
+  color:var(--muted);
+
+  line-height:1.5;
+
+}
 
 .btn{
 
- width:100%;border:1px solid var(--line);border-radius:12px;
+  width:100%;
 
- padding:13px;margin-top:9px;background:#2b2119;
+  border:1px solid var(--line);
 
- color:white;font-weight:700;font-size:14px
+  border-radius:13px;
+
+  padding:13px 12px;
+
+  margin-top:9px;
+
+  background:#2b2119;
+
+  color:white;
+
+  font-weight:700;
+
+  font-size:14px;
 
 }
 
-.primary{background:var(--red)}
+.btn:active{
+
+  transform:scale(.98);
+
+}
+
+.primary{
+
+  background:var(--red);
+
+  border-color:#b05945;
+
+}
+
+.green{
+
+  background:var(--green);
+
+}
 
 .chips{
 
- display:flex;gap:8px;overflow:auto;padding:2px 0 6px
+  display:flex;
+
+  gap:8px;
+
+  overflow-x:auto;
+
+  scrollbar-width:none;
+
+  padding:3px 0 8px;
+
+}
+
+.chips::-webkit-scrollbar{
+
+  display:none;
 
 }
 
 .chip{
 
- flex:none;padding:9px 12px;border-radius:30px;
+  flex:none;
 
- border:1px solid var(--line);background:#211b16;
+  padding:9px 13px;
 
- font-size:13px
+  border-radius:30px;
+
+  border:1px solid var(--line);
+
+  background:#211b16;
+
+  color:var(--text);
+
+  font-size:13px;
+
+  white-space:nowrap;
+
+}
+
+.chip.active{
+
+  background:var(--gold);
+
+  color:#21160e;
+
+  border-color:var(--gold);
+
+  font-weight:800;
+
+}
+
+.filterBox{
+
+  display:flex;
+
+  gap:9px;
+
+  margin:8px 0 13px;
+
+}
+
+.filterBox select{
+
+  flex:1;
+
+  min-width:0;
+
+  background:var(--panel2);
+
+  color:white;
+
+  border:1px solid var(--line);
+
+  border-radius:12px;
+
+  padding:11px 9px;
+
+}
+
+.sectionTitle{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+}
+
+.count{
+
+  font-size:12px;
+
+  color:var(--gold);
+
+  background:#2d221a;
+
+  padding:6px 9px;
+
+  border-radius:20px;
 
 }
 
 .card{
 
- background:var(--panel);border:1px solid var(--line);
+  background:linear-gradient(145deg,#211b16,#191510);
 
- border-radius:16px;padding:14px;margin:10px 0
+  border:1px solid var(--line);
+
+  border-radius:17px;
+
+  padding:15px;
+
+  margin:11px 0;
+
+  box-shadow:0 7px 18px #0003;
 
 }
 
-.cardTitle{font-weight:800;font-size:16px}
+.card:active{
 
-.meta{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5}
+  transform:scale(.99);
+
+}
+
+.cardTitle{
+
+  font-weight:800;
+
+  font-size:17px;
+
+  padding-right:36px;
+
+  line-height:1.25;
+
+}
+
+.meta{
+
+  font-size:13px;
+
+  color:var(--muted);
+
+  margin-top:7px;
+
+  line-height:1.55;
+
+}
+
+.badges{
+
+  margin-top:8px;
+
+}
 
 .badge{
 
- display:inline-block;padding:4px 8px;border-radius:20px;
+  display:inline-block;
 
- background:#32251c;color:var(--gold);font-size:11px;margin-top:7px
+  padding:5px 8px;
+
+  border-radius:20px;
+
+  background:#33261d;
+
+  color:var(--gold);
+
+  font-size:11px;
+
+  margin-right:4px;
+
+}
+
+.status{
+
+  display:inline-block;
+
+  padding:5px 8px;
+
+  border-radius:20px;
+
+  font-size:11px;
+
+  background:#33442f;
+
+  color:#d5edcb;
+
+}
+
+.heart{
+
+  float:right;
+
+  border:0;
+
+  background:none;
+
+  color:white;
+
+  font-size:25px;
+
+  padding:0 0 5px 10px;
+
+}
+
+.distance{
+
+  display:block;
+
+  margin-top:8px;
+
+  color:#d3c38d;
+
+  font-size:12px;
 
 }
 
 #map{
 
- height:55vh;min-height:390px;border-radius:18px;
+  height:57vh;
 
- border:1px solid var(--line);overflow:hidden
+  min-height:390px;
 
-}
+  border-radius:18px;
 
-.mapTools{display:flex;gap:8px;margin-bottom:10px}
+  border:1px solid var(--line);
 
-.mapTools button{margin:0}
+  overflow:hidden;
 
-.back{color:var(--gold);padding:7px 0}
-
-.heart{
-
- float:right;font-size:25px;background:none;border:0;color:white
+  background:#171717;
 
 }
 
-.empty{text-align:center;color:var(--muted);padding:40px 15px}
+.mapTools{
+
+  display:flex;
+
+  gap:8px;
+
+  margin-bottom:10px;
+
+}
+
+.mapTools .btn{
+
+  margin:0;
+
+}
+
+.back{
+
+  display:inline-block;
+
+  color:var(--gold);
+
+  padding:10px 0;
+
+  font-weight:700;
+
+}
+
+.detailPlace{
+
+  font-size:14px;
+
+  line-height:1.6;
+
+}
+
+.infoLine{
+
+  padding:10px 0;
+
+  border-bottom:1px solid #382b21;
+
+}
+
+.infoLine:last-child{
+
+  border-bottom:0;
+
+}
+
+.empty{
+
+  text-align:center;
+
+  color:var(--muted);
+
+  padding:45px 15px;
+
+  line-height:1.6;
+
+}
+
+.notice{
+
+  background:#201b16;
+
+  color:var(--muted);
+
+  border-left:3px solid var(--gold);
+
+  padding:11px 12px;
+
+  border-radius:8px;
+
+  font-size:12px;
+
+  margin:12px 0;
+
+  line-height:1.5;
+
+}
+
+.calendarMonth{
+
+  color:var(--gold);
+
+  font:bold 20px Georgia,serif;
+
+  margin:20px 0 7px;
+
+}
 
 .bottom{
 
- position:fixed;bottom:0;left:0;right:0;max-width:520px;
+  position:fixed;
 
- margin:auto;display:flex;justify-content:space-around;
+  bottom:0;
 
- background:#15110df5;border-top:1px solid var(--line);
+  left:0;
 
- padding:9px 2px calc(9px + env(safe-area-inset-bottom));
+  right:0;
 
- z-index:1000
+  max-width:520px;
+
+  margin:auto;
+
+  display:flex;
+
+  justify-content:space-around;
+
+  background:#15110df5;
+
+  backdrop-filter:blur(12px);
+
+  -webkit-backdrop-filter:blur(12px);
+
+  border-top:1px solid var(--line);
+
+  padding:9px 2px calc(9px + env(safe-area-inset-bottom));
+
+  z-index:1000;
 
 }
 
-.nav{text-align:center;color:var(--muted);font-size:11px}
+.nav{
 
-.nav b{font-size:21px;display:block}
+  width:25%;
 
-.leaflet-popup-content-wrapper,.leaflet-popup-tip{
+  text-align:center;
 
- background:#201a15;color:#eee
+  color:var(--muted);
+
+  font-size:11px;
+
+}
+
+.nav b{
+
+  font-size:21px;
+
+  display:block;
+
+  margin-bottom:2px;
+
+}
+
+.nav.active{
+
+  color:var(--gold);
+
+}
+
+.leaflet-popup-content-wrapper,
+
+.leaflet-popup-tip{
+
+  background:#201a15;
+
+  color:#eee;
+
+}
+
+.popupButton{
+
+  background:#963e30;
+
+  color:white;
+
+  border:0;
+
+  padding:7px 10px;
+
+  border-radius:7px;
+
+  margin-top:8px;
+
+  font-weight:700;
+
+}
+
+.countryFlag{
+
+  font-size:18px;
+
+}
+
+.sourceNote{
+
+  font-size:11px;
+
+  color:#8f8376;
+
+  margin-top:10px;
+
+}
+
+@media (min-width:700px){
+
+  .app{
+
+    box-shadow:0 0 50px #000;
+
+  }
 
 }
 
@@ -210,115 +752,291 @@ h2{margin:19px 0 10px}
 
 <header>
 
- <div class="logo">🐦‍⬛ Rabenruf</div>
+  <div class="logo">🐦‍⬛ Rabenruf</div>
 
- <div class="sub">Mittelalterfeste • Lager • Reenactment in Europa</div>
+  <div class="subtitle">
 
- <div class="search">
+    Mittelalterfeste • Lager • Reenactment in Europa
 
-  🔎
+  </div>
 
-  <input id="searchInput"
+  <div class="search">
 
-   placeholder="Fest, Ort oder Land suchen..."
+    🔎
 
-   oninput="doSearch()">
+    <input
 
- </div>
+      id="searchInput"
+
+      placeholder="Fest, Ort oder Land suchen..."
+
+      autocomplete="off"
+
+      oninput="applyFilters()">
+
+  </div>
 
 </header>
 
 <main id="home">
 
- <div class="hero">
+  <div class="hero">
 
-  <div class="sub">DER HEROLD RUFT</div>
+    <div class="heroSmall">
 
-  <h1>Entdecke das <span class="gold">Mittelalter</span></h1>
+      DER HEROLD RUFT
 
-  <p class="muted">
+    </div>
 
-   Finde Märkte, MPS, Wikingerlager und Reenactment
+    <h1>
 
-   in ganz Europa.
+      Dein Weg ins
 
-  </p>
+      <span class="gold">Mittelalter</span>
 
-  <button class="btn primary" onclick="showMap()">🗺️ Europa-Karte öffnen</button>
+    </h1>
 
-  <button class="btn" onclick="findMe()">📍 Veranstaltungen in meiner Nähe</button>
+    <p class="muted">
 
- </div>
+      Märkte, MPS, Heerlager und Reenactment.
 
- <div class="chips">
+      Finde Termine, Route und Veranstalter direkt in Rabenruf.
 
-  <div class="chip" onclick="filterType('Alle')">🔥 Alle</div>
+    </p>
 
-  <div class="chip" onclick="filterType('MPS')">⚔️ MPS</div>
+    <button class="btn primary" onclick="showMap()">
 
-  <div class="chip" onclick="filterType('Markt')">🏰 Märkte</div>
+      🗺️ Europa-Karte öffnen
 
-  <div class="chip" onclick="filterType('Lager')">🏕️ Lager</div>
+    </button>
 
-  <div class="chip" onclick="filterType('Reenactment')">🛡️ Reenactment</div>
+    <button class="btn" onclick="findMe()">
 
- </div>
+      📍 Veranstaltungen in meiner Nähe
 
- <h2>Demnächst</h2>
+    </button>
 
- <div id="eventList"></div>
+  </div>
+
+  <div class="chips">
+
+    <button
+
+      id="chipAlle"
+
+      class="chip active"
+
+      onclick="setType('Alle')">
+
+      🔥 Alle
+
+    </button>
+
+    <button
+
+      id="chipMPS"
+
+      class="chip"
+
+      onclick="setType('MPS')">
+
+      ⚔️ MPS
+
+    </button>
+
+    <button
+
+      id="chipMarkt"
+
+      class="chip"
+
+      onclick="setType('Markt')">
+
+      🏰 Märkte
+
+    </button>
+
+    <button
+
+      id="chipLager"
+
+      class="chip"
+
+      onclick="setType('Lager')">
+
+      🏕️ Lager
+
+    </button>
+
+    <button
+
+      id="chipReenactment"
+
+      class="chip"
+
+      onclick="setType('Reenactment')">
+
+      🛡️ Reenactment
+
+    </button>
+
+  </div>
+
+  <div class="filterBox">
+
+    <select id="countryFilter" onchange="applyFilters()">
+
+      <option value="Alle">🌍 Alle Länder</option>
+
+      <option value="Schweiz">🇨🇭 Schweiz</option>
+
+      <option value="Deutschland">🇩🇪 Deutschland</option>
+
+      <option value="Österreich">🇦🇹 Österreich</option>
+
+    </select>
+
+    <select id="timeFilter" onchange="applyFilters()">
+
+      <option value="Alle">📅 Alle Termine</option>
+
+      <option value="September">September</option>
+
+      <option value="Oktober">Oktober</option>
+
+      <option value="November">November</option>
+
+    </select>
+
+  </div>
+
+  <div class="sectionTitle">
+
+    <h2>Demnächst</h2>
+
+    <span id="eventCount" class="count"></span>
+
+  </div>
+
+  <div id="eventList"></div>
 
 </main>
 
 <main id="mapPage" class="hidden">
 
- <h2>🗺️ Europa-Karte</h2>
+  <h2>🗺️ Europa-Karte</h2>
 
- <div class="mapTools">
+  <div class="mapTools">
 
-  <button class="btn" onclick="findMe()">📍 Mein Standort</button>
+    <button class="btn" onclick="findMe()">
 
-  <button class="btn" onclick="resetMap()">🌍 Europa</button>
+      📍 Mein Standort
 
- </div>
+    </button>
 
- <div id="map"></div>
+    <button class="btn" onclick="resetMap()">
+
+      🌍 Europa
+
+    </button>
+
+  </div>
+
+  <div id="map"></div>
+
+  <div class="notice">
+
+    Tippe auf einen Marker, um die Veranstaltung zu öffnen.
+
+  </div>
 
 </main>
 
 <main id="calendar" class="hidden">
 
- <h2>📅 Kalender</h2>
+  <h2>📅 Kalender 2026</h2>
 
- <div id="calendarList"></div>
+  <div id="calendarList"></div>
 
 </main>
 
 <main id="favorites" class="hidden">
 
- <h2>❤️ Meine Favoriten</h2>
+  <h2>❤️ Meine Favoriten</h2>
 
- <div id="favoriteList"></div>
+  <div id="favoriteList"></div>
 
 </main>
 
 <main id="detail" class="hidden">
 
- <div class="back" onclick="goBack()">‹ Zurück</div>
+  <div class="back" onclick="goBack()">
 
- <div id="detailContent"></div>
+    ‹ Zurück
+
+  </div>
+
+  <div id="detailContent"></div>
 
 </main>
 
 <nav class="bottom">
 
- <div class="nav" onclick="show('home')"><b>🏰</b>Start</div>
+  <div
 
- <div class="nav" onclick="showMap()"><b>🗺️</b>Karte</div>
+    id="navHome"
 
- <div class="nav" onclick="show('calendar')"><b>📅</b>Kalender</div>
+    class="nav active"
 
- <div class="nav" onclick="showFavorites()"><b>❤️</b>Favoriten</div>
+    onclick="show('home')">
+
+    <b>🏰</b>
+
+    Start
+
+  </div>
+
+  <div
+
+    id="navMap"
+
+    class="nav"
+
+    onclick="showMap()">
+
+    <b>🗺️</b>
+
+    Karte
+
+  </div>
+
+  <div
+
+    id="navCalendar"
+
+    class="nav"
+
+    onclick="show('calendar')">
+
+    <b>📅</b>
+
+    Kalender
+
+  </div>
+
+  <div
+
+    id="navFavorites"
+
+    class="nav"
+
+    onclick="showFavorites()">
+
+    <b>❤️</b>
+
+    Favoriten
+
+  </div>
 
 </nav>
 
@@ -328,470 +1046,1766 @@ h2{margin:19px 0 10px}
 
 <script>
 
-const events=[
+/* =========================================
+
+   RABENRUF – VERANSTALTUNGSDATEN
+
+   ========================================= */
+
+const events = [
 
 {
 
- id:1,
+  id:"lenzburg2026",
 
- name:"MPS Luhmühlen",
+  name:"Mittelaltermarkt Schloss Lenzburg",
 
- type:"MPS",
+  type:"Markt",
 
- date:"04.–06. September 2026",
+  tags:["Markt","Handwerk","Musik"],
 
- country:"Deutschland",
+  start:"2026-09-11",
 
- city:"Luhmühlen",
+  end:"2026-09-13",
 
- lat:53.20,lng:10.22,
+  date:"11.–13. September 2026",
 
- website:"https://www.spectaculum.de",
+  country:"Schweiz",
 
- info:"Mittelalterlich Phantasie Spectaculum."
+  flag:"🇨🇭",
+
+  city:"Lenzburg",
+
+  venue:"Schloss Lenzburg",
+
+  address:"Schloss, 5600 Lenzburg",
+
+  lat:47.3871,
+
+  lng:8.1854,
+
+  website:"https://www.museumaargau.ch/schloss-lenzburg/event/mittelaltermarkt",
+
+  organizer:"Museum Aargau",
+
+  info:"Historische Marktstände, Handwerk, Falknerei, Musik, Schwertkampf und mittelalterliche Speisen auf Schloss Lenzburg.",
+
+  hours:"Fr 10–17 Uhr • Sa 10–20 Uhr • So 10–17 Uhr"
 
 },
 
 {
 
- id:2,
+  id:"estavayer2026",
 
- name:"MPS Borken",
+  name:"Mittelalterfest Estavayer-le-Lac",
 
- type:"MPS",
+  type:"Reenactment",
 
- date:"26.–27. September 2026",
+  tags:["Markt","Reenactment","Kampf","Musik"],
 
- country:"Deutschland",
+  start:"2026-09-18",
 
- city:"Borken",
+  end:"2026-09-20",
 
- lat:51.84,lng:6.86,
+  date:"18.–20. September 2026",
 
- website:"https://www.spectaculum.de",
+  country:"Schweiz",
 
- info:"Retro MPS in Borken."
+  flag:"🇨🇭",
 
-},
+  city:"Estavayer-le-Lac",
 
-{
+  venue:"Château de Chenaux / Altstadt",
 
- id:3,
+  address:"1470 Estavayer-le-Lac",
 
- name:"Mittelaltermarkt Lenzburg",
+  lat:46.8490,
 
- type:"Markt",
+  lng:6.8466,
 
- date:"11.–13. September 2026",
+  website:"https://fribourg.ch/de/estavayer-payerne/veranstaltungen/mittelalterfest/",
 
- country:"Schweiz",
+  organizer:"Estavayer",
 
- city:"Lenzburg",
+  info:"Mittelaltermarkt, Kampfvorführungen, Handwerk, Tänze, Kanonenschüsse und Musik rund um das Château de Chenaux.",
 
- lat:47.39,lng:8.18,
-
- website:"https://www.myswitzerland.com",
-
- info:"Mittelalterliches Markttreiben in Lenzburg."
+  hours:"Fr ab 18 Uhr • Wochenende Tagesprogramm"
 
 },
 
 {
 
- id:4,
+  id:"zug2026",
 
- name:"Mittelalterfest Eggenburg",
+  name:"Mittelalterfest Zug",
 
- type:"Markt",
+  type:"Lager",
 
- date:"12.–13. September 2026",
+  tags:["Lager","Handwerk","Markt"],
 
- country:"Österreich",
+  start:"2026-09-19",
 
- city:"Eggenburg",
+  end:"2026-09-20",
 
- lat:48.64,lng:15.82,
+  date:"19.–20. September 2026",
 
- website:"https://www.mittelalter.co.at",
+  country:"Schweiz",
 
- info:"Großes Mittelalterfest in Eggenburg."
+  flag:"🇨🇭",
 
-},
+  city:"Zug",
 
-{
+  venue:"Museum Burg Zug",
 
- id:5,
+  address:"Kirchenstrasse 11, 6300 Zug",
 
- name:"Mittelaltermarkt Zug",
+  lat:47.1647,
 
- type:"Markt",
+  lng:8.5163,
 
- date:"19.–20. September 2026",
+  website:"https://www.burgzug.ch/page/de/veranstaltungen/kalender",
 
- country:"Schweiz",
+  organizer:"Museum Burg Zug",
 
- city:"Zug",
+  info:"Historisches Handwerk und Heerlager im Burghof mit Marktständen, Lagerleben, Gauklern und Musik.",
 
- lat:47.17,lng:8.52,
-
- website:"https://www.myswitzerland.com",
-
- info:"Mittelaltermarkt mit Marktständen und Spektakel."
+  hours:"Sa 10–19 Uhr • So 10–17 Uhr"
 
 },
 
 {
 
- id:6,
+  id:"luhmuehlen2026",
 
- name:"Médiévales Estavayer",
+  name:"MPS Luhmühlen",
 
- type:"Reenactment",
+  type:"MPS",
 
- date:"18.–20. September 2026",
+  tags:["MPS","Markt","Musik"],
 
- country:"Schweiz",
+  start:"2026-09-04",
 
- city:"Estavayer-le-Lac",
+  end:"2026-09-06",
 
- lat:46.85,lng:6.85,
+  date:"04.–06. September 2026",
 
- website:"https://www.myswitzerland.com",
+  country:"Deutschland",
 
- info:"Mittelalterliches Fest in historischer Umgebung."
+  flag:"🇩🇪",
+
+  city:"Luhmühlen",
+
+  venue:"Turniergelände Luhmühlen",
+
+  address:"Westergellerser Heide 1, 21394 Westergellersen",
+
+  lat:53.1938,
+
+  lng:10.1309,
+
+  website:"https://www.spectaculum.de/termine/luhmuehlen/",
+
+  organizer:"Mittelalterlich Phantasie Spectaculum",
+
+  info:"Großes Mittelalterlich Phantasie Spectaculum mit Markt, Musik, Shows und Lagerleben.",
+
+  hours:"Veranstaltungszeiten siehe MPS-Webseite"
+
+},
+
+{
+
+  id:"borken2026",
+
+  name:"Retro-MPS Borken",
+
+  type:"MPS",
+
+  tags:["MPS","Markt","Musik"],
+
+  start:"2026-09-26",
+
+  end:"2026-09-27",
+
+  date:"26.–27. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Borken",
+
+  venue:"Borken",
+
+  address:"Borken, Nordrhein-Westfalen",
+
+  lat:51.8438,
+
+  lng:6.8577,
+
+  website:"https://www.spectaculum.de/termine/borken/",
+
+  organizer:"Mittelalterlich Phantasie Spectaculum",
+
+  info:"Retro-MPS mit mittelalterlichem Markt, Musik und Spectaculum-Atmosphäre.",
+
+  hours:"Sa 11–23 Uhr • So 11–18 Uhr"
+
+},
+
+{
+
+  id:"eggenburg2026",
+
+  name:"Mittelalterfest Eggenburg",
+
+  type:"Markt",
+
+  tags:["Markt","Ritter","Gaukler","Handwerk"],
+
+  start:"2026-09-12",
+
+  end:"2026-09-13",
+
+  date:"12.–13. September 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Eggenburg",
+
+  venue:"Historische Altstadt Eggenburg",
+
+  address:"Eggenburg, Niederösterreich",
+
+  lat:48.6428,
+
+  lng:15.8159,
+
+  website:"https://www.eggenburg.gv.at/tourismus",
+
+  organizer:"Tourismus-Information Eggenburg",
+
+  info:"Eine der großen Mittelalterveranstaltungen Österreichs mit Händlern, Handwerk, Gauklern, Rittern und Akrobatik innerhalb der historischen Stadtmauern.",
+
+  hours:"Sa 10–22 Uhr • So 9–18 Uhr"
 
 }
 
 ];
 
-let currentFilter="Alle";
+/* =========================================
 
-let lastPage="home";
+   APP-ZUSTAND
 
-let map;
+   ========================================= */
 
-let markers=[];
+let currentType = "Alle";
 
-let userMarker=null;
+let lastPage = "home";
 
-function show(id){
+let map = null;
 
- document.querySelectorAll("main").forEach(x=>x.classList.add("hidden"));
+let mapMarkers = [];
 
- document.getElementById(id).classList.remove("hidden");
+let userMarker = null;
 
- if(id!=="detail") lastPage=id;
+let userLocation = null;
 
- window.scrollTo(0,0);
+/* =========================================
 
-}
+   HILFSFUNKTIONEN
 
-function eventCard(e){
+   ========================================= */
 
- return `
+function byId(id){
 
- <div class="card" onclick="openEvent(${e.id})">
-
-  <button class="heart"
-
-   onclick="event.stopPropagation();toggleFavorite(${e.id})">
-
-   ${isFavorite(e.id)?"❤️":"🤍"}
-
-  </button>
-
-  <div class="cardTitle">${icon(e.type)} ${e.name}</div>
-
-  <div class="meta">
-
-   📅 ${e.date}<br>
-
-   📍 ${e.city}, ${e.country}
-
-  </div>
-
-  <span class="badge">${e.type}</span>
-
- </div>`;
+  return document.getElementById(id);
 
 }
 
 function icon(type){
 
- if(type==="MPS")return "⚔️";
+  if(type === "MPS"){
 
- if(type==="Lager")return "🏕️";
-
- if(type==="Reenactment")return "🛡️";
-
- return "🏰";
-
-}
-
-function renderEvents(list=events){
-
- eventList.innerHTML=list.map(eventCard).join("") ||
-
- '<div class="empty">Keine Veranstaltungen gefunden.</div>';
-
- calendarList.innerHTML=[...events]
-
- .sort((a,b)=>a.id-b.id)
-
- .map(eventCard).join("");
-
-}
-
-function filterType(type){
-
- currentFilter=type;
-
- const list=type==="Alle"?events:events.filter(e=>e.type===type);
-
- renderEvents(list);
-
-}
-
-function doSearch(){
-
- const q=searchInput.value.trim().toLowerCase();
-
- show("home");
-
- let list=events.filter(e=>
-
-  (e.name+" "+e.city+" "+e.country+" "+e.type)
-
-  .toLowerCase().includes(q)
-
- );
-
- if(currentFilter!=="Alle"){
-
-  list=list.filter(e=>e.type===currentFilter);
-
- }
-
- eventList.innerHTML=list.map(eventCard).join("") ||
-
- '<div class="empty">Der Herold fand leider nichts.</div>';
-
-}
-
-function openEvent(id){
-
- const e=events.find(x=>x.id===id);
-
- detailContent.innerHTML=`
-
- <div class="hero">
-
-  <div class="sub">${e.type.toUpperCase()}</div>
-
-  <h1>${icon(e.type)} ${e.name}</h1>
-
-  <p class="muted">
-
-   📅 ${e.date}<br>
-
-   📍 ${e.city}, ${e.country}
-
-  </p>
-
- </div>
-
- <div class="card">
-
-  <h3>Über die Veranstaltung</h3>
-
-  <p class="muted">${e.info}</p>
-
-  <button class="btn primary"
-
-   onclick="route(${e.lat},${e.lng})">
-
-   🧭 Route mit Google Maps
-
-  </button>
-
-  <button class="btn"
-
-   onclick="window.open('${e.website}','_blank')">
-
-   🌐 Veranstalter / Website
-
-  </button>
-
-  <button class="btn"
-
-   onclick="toggleFavorite(${e.id});openEvent(${e.id})">
-
-   ${isFavorite(e.id)?"❤️ Favorit entfernen":"🤍 Als Favorit speichern"}
-
-  </button>
-
- </div>`;
-
- show("detail");
-
-}
-
-function goBack(){show(lastPage)}
-
-function route(lat,lng){
-
- window.open(
-
-  `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`,
-
-  "_blank"
-
- );
-
-}
-
-function favorites(){
-
- return JSON.parse(localStorage.getItem("rabenrufFav")||"[]");
-
-}
-
-function isFavorite(id){return favorites().includes(id)}
-
-function toggleFavorite(id){
-
- let f=favorites();
-
- if(f.includes(id)) f=f.filter(x=>x!==id);
-
- else f.push(id);
-
- localStorage.setItem("rabenrufFav",JSON.stringify(f));
-
- renderEvents();
-
-}
-
-function showFavorites(){
-
- show("favorites");
-
- const f=favorites();
-
- const list=events.filter(e=>f.includes(e.id));
-
- favoriteList.innerHTML=list.length?
-
-  list.map(eventCard).join(""):
-
-  '<div class="empty">Noch keine Favoriten gespeichert ❤️</div>';
-
-}
-
-function initMap(){
-
- if(map)return;
-
- map=L.map("map").setView([50.5,10.5],5);
-
- L.tileLayer(
-
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-
-  {
-
-   maxZoom:19,
-
-   attribution:"© OpenStreetMap"
+    return "⚔️";
 
   }
 
- ).addTo(map);
+  if(type === "Lager"){
 
- events.forEach(e=>{
+    return "🏕️";
 
-  const m=L.marker([e.lat,e.lng]).addTo(map);
+  }
 
-  m.bindPopup(
+  if(type === "Reenactment"){
 
-   `<b>${icon(e.type)} ${e.name}</b><br>
+    return "🛡️";
 
-    ${e.date}<br>${e.city}, ${e.country}<br><br>
+  }
 
-    <button onclick="openEvent(${e.id})">Details öffnen</button>`
+  return "🏰";
+
+}
+
+function escapeHTML(text){
+
+  return String(text)
+
+    .replaceAll("&","&amp;")
+
+    .replaceAll("<","&lt;")
+
+    .replaceAll(">","&gt;")
+
+    .replaceAll('"',"&quot;")
+
+    .replaceAll("'","&#039;");
+
+}
+
+function dateObject(dateString){
+
+  return new Date(
+
+    dateString + "T12:00:00"
 
   );
 
-  markers.push(m);
+}
 
- });
+function eventStatus(event){
+
+  const today = new Date();
+
+  today.setHours(0,0,0,0);
+
+  const start = dateObject(event.start);
+
+  const end = dateObject(event.end);
+
+  if(today >= start && today <= end){
+
+    return "🔥 Heute";
+
+  }
+
+  if(today > end){
+
+    return "Vergangen";
+
+  }
+
+  const diff =
+
+    Math.ceil(
+
+      (start - today) /
+
+      (1000 * 60 * 60 * 24)
+
+    );
+
+  if(diff === 1){
+
+    return "Morgen";
+
+  }
+
+  if(diff <= 7){
+
+    return "In " + diff + " Tagen";
+
+  }
+
+  return "Demnächst";
+
+}
+
+function monthName(dateString){
+
+  const d = dateObject(dateString);
+
+  return d.toLocaleDateString(
+
+    "de-CH",
+
+    {
+
+      month:"long",
+
+      year:"numeric"
+
+    }
+
+  );
+
+}
+
+/* =========================================
+
+   SEITENWECHSEL
+
+   ========================================= */
+
+function show(id){
+
+  document
+
+    .querySelectorAll("main")
+
+    .forEach(
+
+      page => page.classList.add("hidden")
+
+    );
+
+  byId(id).classList.remove("hidden");
+
+  if(id !== "detail"){
+
+    lastPage = id;
+
+  }
+
+  setActiveNav(id);
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"instant"
+
+  });
+
+}
+
+function setActiveNav(page){
+
+  document
+
+    .querySelectorAll(".nav")
+
+    .forEach(
+
+      nav => nav.classList.remove("active")
+
+    );
+
+  if(page === "home"){
+
+    byId("navHome").classList.add("active");
+
+  }
+
+  if(page === "mapPage"){
+
+    byId("navMap").classList.add("active");
+
+  }
+
+  if(page === "calendar"){
+
+    byId("navCalendar").classList.add("active");
+
+  }
+
+  if(page === "favorites"){
+
+    byId("navFavorites").classList.add("active");
+
+  }
+
+}
+
+function goBack(){
+
+  show(lastPage);
+
+}
+
+/* =========================================
+
+   FAVORITEN
+
+   ========================================= */
+
+function getFavorites(){
+
+  try{
+
+    return JSON.parse(
+
+      localStorage.getItem("rabenrufFavorites")
+
+      || "[]"
+
+    );
+
+  }
+
+  catch{
+
+    return [];
+
+  }
+
+}
+
+function isFavorite(id){
+
+  return getFavorites().includes(id);
+
+}
+
+function toggleFavorite(id){
+
+  let favorites = getFavorites();
+
+  if(favorites.includes(id)){
+
+    favorites =
+
+      favorites.filter(
+
+        item => item !== id
+
+      );
+
+  }
+
+  else{
+
+    favorites.push(id);
+
+  }
+
+  localStorage.setItem(
+
+    "rabenrufFavorites",
+
+    JSON.stringify(favorites)
+
+  );
+
+  applyFilters();
+
+}
+
+/* =========================================
+
+   ENTFERNUNG
+
+   ========================================= */
+
+function distanceKm(
+
+  lat1,
+
+  lon1,
+
+  lat2,
+
+  lon2
+
+){
+
+  const earth = 6371;
+
+  const dLat =
+
+    (lat2-lat1) *
+
+    Math.PI/180;
+
+  const dLon =
+
+    (lon2-lon1) *
+
+    Math.PI/180;
+
+  const a =
+
+    Math.sin(dLat/2) *
+
+    Math.sin(dLat/2)
+
+    +
+
+    Math.cos(
+
+      lat1*Math.PI/180
+
+    )
+
+    *
+
+    Math.cos(
+
+      lat2*Math.PI/180
+
+    )
+
+    *
+
+    Math.sin(dLon/2)
+
+    *
+
+    Math.sin(dLon/2);
+
+  const c =
+
+    2 *
+
+    Math.atan2(
+
+      Math.sqrt(a),
+
+      Math.sqrt(1-a)
+
+    );
+
+  return earth*c;
+
+}
+
+/* =========================================
+
+   VERANSTALTUNGSKARTE
+
+   ========================================= */
+
+function eventCard(event){
+
+  let distanceHTML = "";
+
+  if(userLocation){
+
+    const distance =
+
+      distanceKm(
+
+        userLocation.lat,
+
+        userLocation.lng,
+
+        event.lat,
+
+        event.lng
+
+      );
+
+    distanceHTML =
+
+      `<span class="distance">
+
+        📍 ca. ${Math.round(distance)} km von dir
+
+      </span>`;
+
+  }
+
+  const tagHTML =
+
+    event.tags
+
+      .slice(0,3)
+
+      .map(
+
+        tag =>
+
+        `<span class="badge">
+
+          ${escapeHTML(tag)}
+
+        </span>`
+
+      )
+
+      .join("");
+
+  return `
+
+  <div
+
+    class="card"
+
+    onclick="openEvent('${event.id}')">
+
+    <button
+
+      class="heart"
+
+      aria-label="Favorit"
+
+      onclick="
+
+        event.stopPropagation();
+
+        toggleFavorite('${event.id}');
+
+      ">
+
+      ${isFavorite(event.id) ? "❤️" : "🤍"}
+
+    </button>
+
+    <div class="cardTitle">
+
+      ${icon(event.type)}
+
+      ${escapeHTML(event.name)}
+
+    </div>
+
+    <div class="meta">
+
+      📅 ${escapeHTML(event.date)}
+
+      <br>
+
+      <span class="countryFlag">
+
+        ${event.flag}
+
+      </span>
+
+      ${escapeHTML(event.city)},
+
+      ${escapeHTML(event.country)}
+
+    </div>
+
+    <div class="badges">
+
+      <span class="status">
+
+        ${eventStatus(event)}
+
+      </span>
+
+      ${tagHTML}
+
+    </div>
+
+    ${distanceHTML}
+
+  </div>
+
+  `;
+
+}
+
+/* =========================================
+
+   FILTER & SUCHE
+
+   ========================================= */
+
+function setType(type){
+
+  currentType = type;
+
+  document
+
+    .querySelectorAll(".chip")
+
+    .forEach(
+
+      chip =>
+
+      chip.classList.remove("active")
+
+    );
+
+  if(type === "Alle"){
+
+    byId("chipAlle").classList.add("active");
+
+  }
+
+  if(type === "MPS"){
+
+    byId("chipMPS").classList.add("active");
+
+  }
+
+  if(type === "Markt"){
+
+    byId("chipMarkt").classList.add("active");
+
+  }
+
+  if(type === "Lager"){
+
+    byId("chipLager").classList.add("active");
+
+  }
+
+  if(type === "Reenactment"){
+
+    byId("chipReenactment").classList.add("active");
+
+  }
+
+  applyFilters();
+
+}
+
+function applyFilters(){
+
+  const query =
+
+    byId("searchInput")
+
+      .value
+
+      .trim()
+
+      .toLowerCase();
+
+  const country =
+
+    byId("countryFilter").value;
+
+  const time =
+
+    byId("timeFilter").value;
+
+  let list =
+
+    [...events];
+
+  if(currentType !== "Alle"){
+
+    list =
+
+      list.filter(
+
+        event =>
+
+        event.type === currentType
+
+        ||
+
+        event.tags.includes(currentType)
+
+      );
+
+  }
+
+  if(country !== "Alle"){
+
+    list =
+
+      list.filter(
+
+        event =>
+
+        event.country === country
+
+      );
+
+  }
+
+  if(time !== "Alle"){
+
+    list =
+
+      list.filter(
+
+        event =>
+
+        monthName(event.start)
+
+          .toLowerCase()
+
+          .includes(
+
+            time.toLowerCase()
+
+          )
+
+      );
+
+  }
+
+  if(query){
+
+    list =
+
+      list.filter(event => {
+
+        const text =
+
+          [
+
+            event.name,
+
+            event.city,
+
+            event.country,
+
+            event.type,
+
+            event.organizer,
+
+            event.venue,
+
+            ...event.tags
+
+          ]
+
+          .join(" ")
+
+          .toLowerCase();
+
+        return text.includes(query);
+
+      });
+
+  }
+
+  list.sort(
+
+    (a,b) =>
+
+    dateObject(a.start)
+
+    -
+
+    dateObject(b.start)
+
+  );
+
+  renderEventList(list);
+
+}
+
+/* =========================================
+
+   STARTSEITE
+
+   ========================================= */
+
+function renderEventList(list){
+
+  const container =
+
+    byId("eventList");
+
+  byId("eventCount").textContent =
+
+    list.length +
+
+    (list.length === 1
+
+      ? " Termin"
+
+      : " Termine"
+
+    );
+
+  if(!list.length){
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        🐦‍⬛
+
+        <br><br>
+
+        Der Herold hat mit diesen
+
+        Filtern keine Veranstaltung gefunden.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  container.innerHTML =
+
+    list
+
+      .map(eventCard)
+
+      .join("");
+
+}
+
+/* =========================================
+
+   DETAILSEITE
+
+   ========================================= */
+
+function openEvent(id){
+
+  const event =
+
+    events.find(
+
+      item => item.id === id
+
+    );
+
+  if(!event){
+
+    return;
+
+  }
+
+  const favoriteText =
+
+    isFavorite(id)
+
+    ? "❤️ Favorit entfernen"
+
+    : "🤍 Als Favorit speichern";
+
+  byId("detailContent").innerHTML = `
+
+    <div class="hero">
+
+      <div class="heroSmall">
+
+        ${escapeHTML(event.type)}
+
+      </div>
+
+      <h1>
+
+        ${icon(event.type)}
+
+        ${escapeHTML(event.name)}
+
+      </h1>
+
+      <p class="muted">
+
+        📅 ${escapeHTML(event.date)}
+
+        <br>
+
+        ${event.flag}
+
+        ${escapeHTML(event.city)},
+
+        ${escapeHTML(event.country)}
+
+      </p>
+
+      <span class="status">
+
+        ${eventStatus(event)}
+
+      </span>
+
+    </div>
+
+    <div class="card">
+
+      <h3>
+
+        ⚔️ Veranstaltung
+
+      </h3>
+
+      <p class="muted">
+
+        ${escapeHTML(event.info)}
+
+      </p>
+
+    </div>
+
+    <div class="card detailPlace">
+
+      <div class="infoLine">
+
+        <strong>📍 Ort</strong>
+
+        <br>
+
+        ${escapeHTML(event.venue)}
+
+        <br>
+
+        <span class="muted">
+
+          ${escapeHTML(event.address)}
+
+        </span>
+
+      </div>
+
+      <div class="infoLine">
+
+        <strong>🕰️ Zeiten</strong>
+
+        <br>
+
+        <span class="muted">
+
+          ${escapeHTML(event.hours)}
+
+        </span>
+
+      </div>
+
+      <div class="infoLine">
+
+        <strong>👑 Veranstalter</strong>
+
+        <br>
+
+        <span class="muted">
+
+          ${escapeHTML(event.organizer)}
+
+        </span>
+
+      </div>
+
+    </div>
+
+    <button
+
+      class="btn primary"
+
+      onclick="
+
+        openRoute(
+
+          ${event.lat},
+
+          ${event.lng}
+
+        )
+
+      ">
+
+      🧭 Route mit Google Maps
+
+    </button>
+
+    <button
+
+      class="btn green"
+
+      onclick="
+
+        window.open(
+
+          '${event.website}',
+
+          '_blank'
+
+        )
+
+      ">
+
+      🌐 Veranstaltungsseite öffnen
+
+    </button>
+
+    <button
+
+      class="btn"
+
+      onclick="
+
+        toggleFavorite('${event.id}');
+
+        openEvent('${event.id}');
+
+      ">
+
+      ${favoriteText}
+
+    </button>
+
+    <div class="sourceNote">
+
+      Veranstaltungsdaten wurden aus
+
+      öffentlich verfügbaren Veranstaltungs-
+
+      und Tourismusseiten übernommen.
+
+      Vor der Anreise bitte Zeiten beim
+
+      Veranstalter kontrollieren.
+
+    </div>
+
+  `;
+
+  show("detail");
+
+}
+
+/* =========================================
+
+   GOOGLE MAPS ROUTE
+
+   ========================================= */
+
+function openRoute(
+
+  lat,
+
+  lng
+
+){
+
+  const url =
+
+    "https://www.google.com/maps/dir/?api=1"
+
+    +
+
+    "&destination="
+
+    +
+
+    lat
+
+    +
+
+    ","
+
+    +
+
+    lng;
+
+  window.open(
+
+    url,
+
+    "_blank"
+
+  );
+
+}
+
+/* =========================================
+
+   KARTE
+
+   ========================================= */
+
+function initMap(){
+
+  if(map){
+
+    return;
+
+  }
+
+  map =
+
+    L.map(
+
+      "map",
+
+      {
+
+        zoomControl:true
+
+      }
+
+    )
+
+    .setView(
+
+      [49.8,9.5],
+
+      5
+
+    );
+
+  L.tileLayer(
+
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+    {
+
+      maxZoom:19,
+
+      attribution:
+
+        "&copy; OpenStreetMap"
+
+    }
+
+  )
+
+  .addTo(map);
+
+  renderMapMarkers();
+
+}
+
+function renderMapMarkers(){
+
+  if(!map){
+
+    return;
+
+  }
+
+  mapMarkers.forEach(
+
+    marker =>
+
+    map.removeLayer(marker)
+
+  );
+
+  mapMarkers = [];
+
+  events.forEach(event => {
+
+    const marker =
+
+      L.marker(
+
+        [
+
+          event.lat,
+
+          event.lng
+
+        ]
+
+      )
+
+      .addTo(map);
+
+    marker.bindPopup(`
+
+      <div style="
+
+        min-width:180px;
+
+        line-height:1.4;
+
+      ">
+
+        <strong>
+
+          ${icon(event.type)}
+
+          ${escapeHTML(event.name)}
+
+        </strong>
+
+        <br>
+
+        ${escapeHTML(event.date)}
+
+        <br>
+
+        ${event.flag}
+
+        ${escapeHTML(event.city)}
+
+        <br>
+
+        <button
+
+          class="popupButton"
+
+          onclick="
+
+            openEvent('${event.id}')
+
+          ">
+
+          Details öffnen
+
+        </button>
+
+      </div>
+
+    `);
+
+    mapMarkers.push(marker);
+
+  });
 
 }
 
 function showMap(){
 
- show("mapPage");
+  show("mapPage");
 
- setTimeout(()=>{
+  setTimeout(
 
-  initMap();
+    () => {
 
-  map.invalidateSize();
+      initMap();
 
- },100);
+      map.invalidateSize();
+
+    },
+
+    120
+
+  );
 
 }
 
 function resetMap(){
 
- map.setView([50.5,10.5],5);
+  if(!map){
+
+    return;
+
+  }
+
+  map.setView(
+
+    [49.8,9.5],
+
+    5
+
+  );
 
 }
+
+/* =========================================
+
+   STANDORT
+
+   ========================================= */
 
 function findMe(){
 
- showMap();
+  showMap();
 
- if(!navigator.geolocation){
+  if(
 
-  alert("Standort wird von diesem Gerät nicht unterstützt.");
+    !navigator.geolocation
 
-  return;
+  ){
 
- }
+    alert(
 
- navigator.geolocation.getCurrentPosition(pos=>{
+      "Dein Gerät unterstützt die Standortfunktion leider nicht."
 
-  const lat=pos.coords.latitude;
+    );
 
-  const lng=pos.coords.longitude;
+    return;
 
-  if(userMarker)map.removeLayer(userMarker);
+  }
 
-  userMarker=L.marker([lat,lng])
+  navigator.geolocation
 
-   .addTo(map)
+  .getCurrentPosition(
 
-   .bindPopup("📍 Du bist hier")
+    position => {
 
-   .openPopup();
+      userLocation = {
 
-  map.setView([lat,lng],8);
+        lat:
 
- },
+          position.coords.latitude,
 
- ()=>{
+        lng:
 
-  alert("Standort konnte nicht ermittelt werden. Bitte Standortzugriff erlauben.");
+          position.coords.longitude
 
- });
+      };
+
+      if(userMarker){
+
+        map.removeLayer(
+
+          userMarker
+
+        );
+
+      }
+
+      userMarker =
+
+        L.circleMarker(
+
+          [
+
+            userLocation.lat,
+
+            userLocation.lng
+
+          ],
+
+          {
+
+            radius:9,
+
+            weight:3,
+
+            color:"#ffffff",
+
+            fillColor:"#357bd8",
+
+            fillOpacity:1
+
+          }
+
+        )
+
+        .addTo(map)
+
+        .bindPopup(
+
+          "📍 Dein Standort"
+
+        );
+
+      map.setView(
+
+        [
+
+          userLocation.lat,
+
+          userLocation.lng
+
+        ],
+
+        8
+
+      );
+
+      userMarker.openPopup();
+
+      applyFilters();
+
+    },
+
+    error => {
+
+      let message =
+
+        "Standort konnte nicht ermittelt werden.";
+
+      if(
+
+        error.code === 1
+
+      ){
+
+        message =
+
+          "Bitte erlaube Rabenruf den Zugriff auf deinen Standort.";
+
+      }
+
+      alert(message);
+
+    },
+
+    {
+
+      enableHighAccuracy:true,
+
+      timeout:10000,
+
+      maximumAge:60000
+
+    }
+
+  );
 
 }
 
-renderEvents();
+/* =========================================
+
+   KALENDER
+
+   ========================================= */
+
+function renderCalendar(){
+
+  const sorted =
+
+    [...events]
+
+      .sort(
+
+        (a,b) =>
+
+        dateObject(a.start)
+
+        -
+
+        dateObject(b.start)
+
+      );
+
+  const groups = {};
+
+  sorted.forEach(event => {
+
+    const month =
+
+      monthName(
+
+        event.start
+
+      );
+
+    if(!groups[month]){
+
+      groups[month] = [];
+
+    }
+
+    groups[month].push(event);
+
+  });
+
+  let html = "";
+
+  Object
+
+  .entries(groups)
+
+  .forEach(
+
+    ([month,list]) => {
+
+      html += `
+
+        <div class="calendarMonth">
+
+          ${escapeHTML(month)}
+
+        </div>
+
+      `;
+
+      html +=
+
+        list
+
+          .map(eventCard)
+
+          .join("");
+
+    }
+
+  );
+
+  byId("calendarList")
+
+  .innerHTML = html;
+
+}
+
+/* =========================================
+
+   FAVORITEN-SEITE
+
+   ========================================= */
+
+function showFavorites(){
+
+  show("favorites");
+
+  const ids =
+
+    getFavorites();
+
+  const list =
+
+    events
+
+      .filter(
+
+        event =>
+
+        ids.includes(event.id)
+
+      )
+
+      .sort(
+
+        (a,b) =>
+
+        dateObject(a.start)
+
+        -
+
+        dateObject(b.start)
+
+      );
+
+  if(!list.length){
+
+    byId("favoriteList")
+
+    .innerHTML = `
+
+      <div class="empty">
+
+        ❤️
+
+        <br><br>
+
+        Noch keine Favoriten.
+
+        <br><br>
+
+        Tippe bei einer Veranstaltung
+
+        auf das Herz.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  byId("favoriteList")
+
+  .innerHTML =
+
+    list
+
+      .map(eventCard)
+
+      .join("");
+
+}
+
+/* =========================================
+
+   START DER APP
+
+   ========================================= */
+
+applyFilters();
+
+renderCalendar();
 
 </script>
 
 </body>
 
 </html>
+
+  
