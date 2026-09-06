@@ -1,0 +1,25 @@
+name: Herold Test
+
+on:
+
+  workflow_dispatch:
+
+jobs:
+
+  herold:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Repository laden
+
+        uses: actions/checkout@v4
+
+      - name: Herold starten
+
+        run: |
+
+          echo "Der Rabenruf-Herold läuft!"
+
+          echo "Die automatische Suche ist bereit."
