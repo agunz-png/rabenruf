@@ -78,13 +78,19 @@ jobs:
 
           pattern = re.compile(
 
-              r'(\d{2}\.\d{2}\.(?:\s*[–-]\s*\d{2}\.\d{2}\.)?\s*2026),\s*([^\n]+)'
+         r'(\d{2}\.\d{2}\.(?:\s*[–-]\s*\d{2}\.\d{2}\.)?\s*2026)\s*,?\s*'
 
-          )
+         r'([^\n]+)\n'
+
+         r'([^\n]*\d{5}[^\n]*)',
+
+         re.MULTILINE
+
+         )
 
           funde = []
 
-          for datum, rest in pattern.findall(text):
+          for datum, rest, ortzeile in pattern.findall
 
               rest = re.sub(r'\s+', ' ', rest).strip()
 
@@ -94,14 +100,14 @@ jobs:
 
               teile = [x.strip() for x in rest.split(",") if x.strip()]
 
-              name = teile[0] if teile else rest
+              name = teile[0] if teile else ort_match = re.search(r'\b\d{5}\s+(.+)', ortzeile)
 
-              ort_match = re.search(r'\b\d{5}\s+([A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß .\-/]+)', rest)
+              ort_match = re.search(r'\b\d{5}\s+(.+)', ortzeile)
 
               city = ort_match.group(1).split(",")[0].strip() if ort_match else ""
 
               city = re.sub(r'\s+', ' ', city)
-
+              
               funde.append({
 
                   "id": "de-" + str(len(funde) + 1),
