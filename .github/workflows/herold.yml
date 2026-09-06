@@ -96,7 +96,11 @@ jobs:
 
               name = teile[0] if teile else rest
 
-              city = teile[-2] if len(teile) >= 2 else ""
+              ort_match = re.search(r'\b\d{5}\s+([A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß .\-/]+)', rest)
+
+              city = ort_match.group(1).split(",")[0].strip() if ort_match else ""
+
+              city = re.sub(r'\s+', ' ', city)
 
               funde.append({
 
