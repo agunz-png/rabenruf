@@ -985,7 +985,33 @@ h3{
   <div id="detailContent"></div>
 
 </main>
+  
+<main id="herold" class="hidden">
 
+  <h2>🐦‍⬛ Der Herold</h2>
+
+  <p>
+
+    Der Herold sucht nach neuen Mittelalterfesten,
+
+    Lagern und Reenactment-Veranstaltungen.
+
+  </p>
+
+  <div id="heroldList">
+
+    <div class="card">
+
+      <b>🐦‍⬛ Noch keine neuen Meldungen</b>
+
+      <p>Hier erscheinen später neu gefundene Veranstaltungen.</p>
+
+    </div>
+
+  </div>
+
+</main>
+  
 <nav class="bottom">
 
   <div
@@ -1043,7 +1069,21 @@ h3{
     Favoriten
 
   </div>
+  
+<div
 
+  id="navHerold"
+
+  class="nav"
+
+  onclick="showHerold()">
+
+  <b>🐦‍⬛</b>
+
+  Herold
+
+</div>
+  
 </nav>
 
 </div>
@@ -6091,7 +6131,10 @@ function showFavorites(){
       .join("");
 
 }
+function showHerold(){
 
+  show("herold");
+}
 /* =========================================
 
    START DER APP
