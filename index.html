@@ -998,17 +998,7 @@ h3{
 
   </p>
 
-  <div id="heroldList">
-
-    <div class="card">
-
-      <b>🐦‍⬛ Noch keine neuen Meldungen</b>
-
-      <p>Hier erscheinen später neu gefundene Veranstaltungen.</p>
-
-    </div>
-
-  </div>
+<div id="heroldList"></div>
 
 </main>
   
@@ -6131,10 +6121,106 @@ function showFavorites(){
       .join("");
 
 }
+let heroldFunde = [
+
+  {
+
+    id: "test-herold-1",
+
+    name: "Testfund des Herolds",
+
+    date: "Termin wird geprüft",
+
+    city: "Beispielort",
+
+    country: "Schweiz",
+
+    source: "Testquelle"
+
+  }
+
+];
+
 function showHerold(){
 
   show("herold");
+
+  renderHerold();
+
 }
+
+function renderHerold(){
+
+  const box = byId("heroldList");
+
+  if(heroldFunde.length === 0){
+
+    box.innerHTML = `
+
+      <div class="card">
+
+        <b>🐦‍⬛ Keine neuen Meldungen</b>
+
+        <p>Der Herold hat momentan keine neuen Veranstaltungen zu prüfen.</p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  box.innerHTML = heroldFunde.map((fund, index) => `
+
+    <div class="card">
+
+      <h3>🐦‍⬛ ${fund.name}</h3>
+
+      <p>📅 ${fund.date}</p>
+
+      <p>📍 ${fund.city}, ${fund.country}</p>
+
+      <p>🔎 Quelle: ${fund.source}</p>
+
+      <button onclick="heroldUebernehmen(${index})">
+
+        ✅ Übernehmen
+
+      </button>
+
+      <button onclick="heroldVerwerfen(${index})">
+
+        ❌ Verwerfen
+
+      </button>
+
+    </div>
+
+  `).join("");
+
+}
+
+function heroldUebernehmen(index){
+
+  alert(
+
+    "🐦‍⬛ Übernahme vorbereitet: " +
+
+    heroldFunde[index].name
+
+  );
+
+}
+
+function heroldVerwerfen(index){
+
+  heroldFunde.splice(index, 1);
+
+  renderHerold();
+
+}
+
 /* =========================================
 
    START DER APP
