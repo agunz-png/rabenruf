@@ -5228,19 +5228,55 @@ function applyFilters(){
 
   }
 
+  if(userLocation){
+
+  list.sort((a,b) =>
+
+    distanceKm(
+
+      userLocation.lat,
+
+      userLocation.lng,
+
+      a.lat,
+
+      a.lng
+
+    )
+
+    -
+
+    distanceKm(
+
+      userLocation.lat,
+
+      userLocation.lng,
+
+      b.lat,
+
+      b.lng
+
+    )
+
+  );
+
+}else{
+
   list.sort(
 
     (a,b) =>
 
-    dateObject(a.start)
+      dateObject(a.start)
 
-    -
+      -
 
-    dateObject(b.start)
+      dateObject(b.start)
 
   );
 
-  renderEventList(list);
+}
+
+renderEventList(list);
 
 }
 
