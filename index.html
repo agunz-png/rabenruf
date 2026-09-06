@@ -1,157 +1,797 @@
 <!doctype html>
+
 <html lang="de">
+
 <head>
+
 <meta charset="utf-8">
+
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta name="theme-color" content="#15110d">
+
 <title>Rabenruf</title>
+
+<link rel="stylesheet"
+
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
 <style>
+
 *{box-sizing:border-box}
-body{margin:0;background:#0b0a09;color:#f2eadb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-.app{max-width:520px;margin:auto;min-height:100vh;background:linear-gradient(#17130f,#0f0d0b);padding-bottom:90px}
-header{padding:20px 18px 12px}
-.logo{font-family:Georgia,serif;font-size:27px;color:#d4ad5b;font-weight:bold}
-.sub{font-size:12px;color:#b9ad98}
-.search{margin-top:15px;background:#272018;border:1px solid #3a3026;border-radius:14px;padding:13px}
-main{padding:5px 16px}
-.hero{background:linear-gradient(135deg,#44291b,#17120e);border:1px solid #5b432a;border-radius:20px;padding:20px;margin:10px 0 20px}
-h1,h2,h3{font-family:Georgia,serif}
-h1{margin:5px 0;font-size:29px}
-.gold{color:#d4ad5b}
-.hero p,.card p{color:#b9ad98}
-.btn{width:100%;padding:13px;border-radius:12px;border:1px solid #49392b;background:#2a211a;color:white;margin-top:10px;font-weight:bold}
-.primary{background:#8d3d2f}
-.chips{display:flex;gap:8px;overflow:auto}
-.chip{white-space:nowrap;border:1px solid #3a3026;background:#211b16;padding:10px 13px;border-radius:30px;font-size:13px}
-.card{background:#1d1915;border:1px solid #3a3026;border-radius:16px;padding:15px;margin:11px 0}
-.event{font-size:17px;font-weight:bold}
-.small{color:#b9ad98;font-size:13px;margin-top:5px}
-.map{height:360px;border-radius:18px;border:1px solid #3a3026;background:linear-gradient(145deg,#26362d,#121b16);position:relative;margin-top:15px}
-.pin{position:absolute;font-size:30px}
-.p1{left:30%;top:25%}.p2{left:50%;top:45%}.p3{left:68%;top:30%}.p4{left:43%;top:65%}
+
+:root{
+
+ --bg:#0c0b09;--panel:#1c1813;--panel2:#261d16;
+
+ --gold:#d5ad62;--text:#f3eadc;--muted:#b9aa96;
+
+ --red:#9e4031;--line:#413326
+
+}
+
+body{
+
+ margin:0;background:var(--bg);color:var(--text);
+
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+
+}
+
+.app{
+
+ max-width:520px;margin:auto;min-height:100vh;
+
+ background:linear-gradient(#17130e,#0c0b09);
+
+ padding-bottom:92px
+
+}
+
+header{
+
+ padding:18px 17px 10px;position:sticky;top:0;
+
+ background:#15110df2;backdrop-filter:blur(12px);z-index:900
+
+}
+
+.logo{
+
+ font:700 27px Georgia,serif;color:var(--gold)
+
+}
+
+.sub{font-size:12px;color:var(--muted)}
+
+.search{
+
+ margin-top:13px;background:var(--panel2);
+
+ border:1px solid var(--line);border-radius:14px;
+
+ padding:11px 13px;display:flex;gap:8px
+
+}
+
+.search input{
+
+ width:100%;border:0;outline:0;background:transparent;
+
+ color:white;font-size:15px
+
+}
+
+main{padding:8px 16px}
+
 .hidden{display:none}
-.bottom{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;background:#17130f;border-top:1px solid #3a3026;display:flex;justify-content:space-around;padding:10px 3px calc(10px + env(safe-area-inset-bottom))}
-.nav{text-align:center;color:#b9ad98;font-size:11px}.nav b{display:block;font-size:21px}
-.back{color:#d4ad5b;margin:12px 0}
+
+.hero{
+
+ padding:19px;border:1px solid #60452c;border-radius:20px;
+
+ background:linear-gradient(135deg,#4a2b1b,#17120e);
+
+ margin:8px 0 18px
+
+}
+
+h1,h2,h3{font-family:Georgia,serif}
+
+h1{font-size:29px;margin:6px 0}
+
+h2{margin:19px 0 10px}
+
+.gold{color:var(--gold)}
+
+.muted{color:var(--muted)}
+
+.btn{
+
+ width:100%;border:1px solid var(--line);border-radius:12px;
+
+ padding:13px;margin-top:9px;background:#2b2119;
+
+ color:white;font-weight:700;font-size:14px
+
+}
+
+.primary{background:var(--red)}
+
+.chips{
+
+ display:flex;gap:8px;overflow:auto;padding:2px 0 6px
+
+}
+
+.chip{
+
+ flex:none;padding:9px 12px;border-radius:30px;
+
+ border:1px solid var(--line);background:#211b16;
+
+ font-size:13px
+
+}
+
+.card{
+
+ background:var(--panel);border:1px solid var(--line);
+
+ border-radius:16px;padding:14px;margin:10px 0
+
+}
+
+.cardTitle{font-weight:800;font-size:16px}
+
+.meta{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5}
+
+.badge{
+
+ display:inline-block;padding:4px 8px;border-radius:20px;
+
+ background:#32251c;color:var(--gold);font-size:11px;margin-top:7px
+
+}
+
+#map{
+
+ height:55vh;min-height:390px;border-radius:18px;
+
+ border:1px solid var(--line);overflow:hidden
+
+}
+
+.mapTools{display:flex;gap:8px;margin-bottom:10px}
+
+.mapTools button{margin:0}
+
+.back{color:var(--gold);padding:7px 0}
+
+.heart{
+
+ float:right;font-size:25px;background:none;border:0;color:white
+
+}
+
+.empty{text-align:center;color:var(--muted);padding:40px 15px}
+
+.bottom{
+
+ position:fixed;bottom:0;left:0;right:0;max-width:520px;
+
+ margin:auto;display:flex;justify-content:space-around;
+
+ background:#15110df5;border-top:1px solid var(--line);
+
+ padding:9px 2px calc(9px + env(safe-area-inset-bottom));
+
+ z-index:1000
+
+}
+
+.nav{text-align:center;color:var(--muted);font-size:11px}
+
+.nav b{font-size:21px;display:block}
+
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{
+
+ background:#201a15;color:#eee
+
+}
+
 </style>
+
 </head>
+
 <body>
+
 <div class="app">
 
 <header>
-<div class="logo">🐦‍⬛ Rabenruf</div>
-<div class="sub">Mittelalterfeste • Lager • Reenactment in Europa</div>
-<div class="search">🔎 Suche nach Fest, Ort oder Land</div>
+
+ <div class="logo">🐦‍⬛ Rabenruf</div>
+
+ <div class="sub">Mittelalterfeste • Lager • Reenactment in Europa</div>
+
+ <div class="search">
+
+  🔎
+
+  <input id="searchInput"
+
+   placeholder="Fest, Ort oder Land suchen..."
+
+   oninput="doSearch()">
+
+ </div>
+
 </header>
 
 <main id="home">
-<div class="hero">
-<div class="sub">EUROPAWEIT ENTDECKEN</div>
-<h1>Wo ruft der <span class="gold">Herold</span>?</h1>
-<p>Finde Mittelalterfeste, MPS, Lager und Reenactments in deiner Nähe.</p>
-<button class="btn primary" onclick="show('map')">🗺️ Karte öffnen</button>
-</div>
 
-<div class="chips">
-<div class="chip">⚔️ MPS</div>
-<div class="chip">🏰 Märkte</div>
-<div class="chip">🏕️ Lager</div>
-<div class="chip">🛡️ Reenactment</div>
-</div>
+ <div class="hero">
 
-<h2>Dieses Wochenende</h2>
+  <div class="sub">DER HEROLD RUFT</div>
 
-<div class="card" onclick="detail('Mittelaltermarkt Burgdorf','Burgdorf, Schweiz')">
-<div class="event">🏰 Mittelaltermarkt Burgdorf</div>
-<div class="small">🇨🇭 Burgdorf • 12.–13. September</div>
-</div>
+  <h1>Entdecke das <span class="gold">Mittelalter</span></h1>
 
-<div class="card" onclick="detail('MPS Bückeburg','Bückeburg, Deutschland')">
-<div class="event">⚔️ MPS Bückeburg</div>
-<div class="small">🇩🇪 Bückeburg • September 2026</div>
-</div>
+  <p class="muted">
 
-<div class="card" onclick="detail('Wikingerlager Ringsted','Ringsted, Dänemark')">
-<div class="event">🏕️ Wikingerlager Ringsted</div>
-<div class="small">🇩🇰 Ringsted • September 2026</div>
-</div>
+   Finde Märkte, MPS, Wikingerlager und Reenactment
+
+   in ganz Europa.
+
+  </p>
+
+  <button class="btn primary" onclick="showMap()">🗺️ Europa-Karte öffnen</button>
+
+  <button class="btn" onclick="findMe()">📍 Veranstaltungen in meiner Nähe</button>
+
+ </div>
+
+ <div class="chips">
+
+  <div class="chip" onclick="filterType('Alle')">🔥 Alle</div>
+
+  <div class="chip" onclick="filterType('MPS')">⚔️ MPS</div>
+
+  <div class="chip" onclick="filterType('Markt')">🏰 Märkte</div>
+
+  <div class="chip" onclick="filterType('Lager')">🏕️ Lager</div>
+
+  <div class="chip" onclick="filterType('Reenactment')">🛡️ Reenactment</div>
+
+ </div>
+
+ <h2>Demnächst</h2>
+
+ <div id="eventList"></div>
+
 </main>
 
-<main id="map" class="hidden">
-<h2>🗺️ Europa</h2>
-<div class="small">Tippe auf eine Markierung.</div>
-<div class="map">
-<div class="pin p1" onclick="detail('MPS Bückeburg','Deutschland')">⚔️</div>
-<div class="pin p2" onclick="detail('Mittelaltermarkt Burgdorf','Schweiz')">🏰</div>
-<div class="pin p3" onclick="detail('Wikingerlager Ringsted','Dänemark')">🏕️</div>
-<div class="pin p4" onclick="detail('Ritterfest','Österreich')">🛡️</div>
-</div>
+<main id="mapPage" class="hidden">
+
+ <h2>🗺️ Europa-Karte</h2>
+
+ <div class="mapTools">
+
+  <button class="btn" onclick="findMe()">📍 Mein Standort</button>
+
+  <button class="btn" onclick="resetMap()">🌍 Europa</button>
+
+ </div>
+
+ <div id="map"></div>
+
 </main>
 
 <main id="calendar" class="hidden">
-<h2>📅 Kalender</h2>
-<div class="card"><b>12. September</b><p>Mittelaltermarkt Burgdorf</p></div>
-<div class="card"><b>13. September</b><p>Wikingerlager Ringsted</p></div>
-<div class="card"><b>19. September</b><p>Ritterfest Österreich</p></div>
+
+ <h2>📅 Kalender</h2>
+
+ <div id="calendarList"></div>
+
 </main>
 
 <main id="favorites" class="hidden">
-<h2>❤️ Favoriten</h2>
-<div class="card"><p>Hier erscheinen später deine gespeicherten Veranstaltungen.</p></div>
+
+ <h2>❤️ Meine Favoriten</h2>
+
+ <div id="favoriteList"></div>
+
 </main>
 
 <main id="detail" class="hidden">
-<div class="back" onclick="show('home')">‹ Zurück</div>
-<div class="hero">
-<div class="sub">VERANSTALTUNG</div>
-<h1 id="eventName"></h1>
-<p id="eventPlace"></p>
-</div>
 
-<div class="card">
-<h3>⚔️ Informationen</h3>
-<p>📅 September 2026<br>
-🏕️ Lager & Camping<br>
-🍺 Gastronomie<br>
-🎵 Musik & Programm</p>
+ <div class="back" onclick="goBack()">‹ Zurück</div>
 
-<button class="btn primary" onclick="route()">🧭 Route mit Google Maps</button>
-<button class="btn" onclick="alert('Hier wird später die offizielle Veranstalter-Website geöffnet.')">🌐 Veranstalter-Website</button>
-<button class="btn" onclick="alert('Zu deinen Favoriten hinzugefügt ❤️')">❤️ Favorisieren</button>
-</div>
+ <div id="detailContent"></div>
+
 </main>
 
 <nav class="bottom">
-<div class="nav" onclick="show('home')"><b>🏰</b>Start</div>
-<div class="nav" onclick="show('map')"><b>🗺️</b>Karte</div>
-<div class="nav" onclick="show('calendar')"><b>📅</b>Kalender</div>
-<div class="nav" onclick="show('favorites')"><b>❤️</b>Favoriten</div>
+
+ <div class="nav" onclick="show('home')"><b>🏰</b>Start</div>
+
+ <div class="nav" onclick="showMap()"><b>🗺️</b>Karte</div>
+
+ <div class="nav" onclick="show('calendar')"><b>📅</b>Kalender</div>
+
+ <div class="nav" onclick="showFavorites()"><b>❤️</b>Favoriten</div>
+
 </nav>
 
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <script>
-let currentPlace="";
 
-function show(page){
+const events=[
+
+{
+
+ id:1,
+
+ name:"MPS Luhmühlen",
+
+ type:"MPS",
+
+ date:"04.–06. September 2026",
+
+ country:"Deutschland",
+
+ city:"Luhmühlen",
+
+ lat:53.20,lng:10.22,
+
+ website:"https://www.spectaculum.de",
+
+ info:"Mittelalterlich Phantasie Spectaculum."
+
+},
+
+{
+
+ id:2,
+
+ name:"MPS Borken",
+
+ type:"MPS",
+
+ date:"26.–27. September 2026",
+
+ country:"Deutschland",
+
+ city:"Borken",
+
+ lat:51.84,lng:6.86,
+
+ website:"https://www.spectaculum.de",
+
+ info:"Retro MPS in Borken."
+
+},
+
+{
+
+ id:3,
+
+ name:"Mittelaltermarkt Lenzburg",
+
+ type:"Markt",
+
+ date:"11.–13. September 2026",
+
+ country:"Schweiz",
+
+ city:"Lenzburg",
+
+ lat:47.39,lng:8.18,
+
+ website:"https://www.myswitzerland.com",
+
+ info:"Mittelalterliches Markttreiben in Lenzburg."
+
+},
+
+{
+
+ id:4,
+
+ name:"Mittelalterfest Eggenburg",
+
+ type:"Markt",
+
+ date:"12.–13. September 2026",
+
+ country:"Österreich",
+
+ city:"Eggenburg",
+
+ lat:48.64,lng:15.82,
+
+ website:"https://www.mittelalter.co.at",
+
+ info:"Großes Mittelalterfest in Eggenburg."
+
+},
+
+{
+
+ id:5,
+
+ name:"Mittelaltermarkt Zug",
+
+ type:"Markt",
+
+ date:"19.–20. September 2026",
+
+ country:"Schweiz",
+
+ city:"Zug",
+
+ lat:47.17,lng:8.52,
+
+ website:"https://www.myswitzerland.com",
+
+ info:"Mittelaltermarkt mit Marktständen und Spektakel."
+
+},
+
+{
+
+ id:6,
+
+ name:"Médiévales Estavayer",
+
+ type:"Reenactment",
+
+ date:"18.–20. September 2026",
+
+ country:"Schweiz",
+
+ city:"Estavayer-le-Lac",
+
+ lat:46.85,lng:6.85,
+
+ website:"https://www.myswitzerland.com",
+
+ info:"Mittelalterliches Fest in historischer Umgebung."
+
+}
+
+];
+
+let currentFilter="Alle";
+
+let lastPage="home";
+
+let map;
+
+let markers=[];
+
+let userMarker=null;
+
+function show(id){
+
  document.querySelectorAll("main").forEach(x=>x.classList.add("hidden"));
- document.getElementById(page).classList.remove("hidden");
+
+ document.getElementById(id).classList.remove("hidden");
+
+ if(id!=="detail") lastPage=id;
+
  window.scrollTo(0,0);
+
 }
 
-function detail(name,place){
- currentPlace=place;
- document.getElementById("eventName").innerText=name;
- document.getElementById("eventPlace").innerText="📍 "+place;
- show("detail");
+function eventCard(e){
+
+ return `
+
+ <div class="card" onclick="openEvent(${e.id})">
+
+  <button class="heart"
+
+   onclick="event.stopPropagation();toggleFavorite(${e.id})">
+
+   ${isFavorite(e.id)?"❤️":"🤍"}
+
+  </button>
+
+  <div class="cardTitle">${icon(e.type)} ${e.name}</div>
+
+  <div class="meta">
+
+   📅 ${e.date}<br>
+
+   📍 ${e.city}, ${e.country}
+
+  </div>
+
+  <span class="badge">${e.type}</span>
+
+ </div>`;
+
 }
 
-function route(){
- window.open(
- "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(currentPlace),
- "_blank"
+function icon(type){
+
+ if(type==="MPS")return "⚔️";
+
+ if(type==="Lager")return "🏕️";
+
+ if(type==="Reenactment")return "🛡️";
+
+ return "🏰";
+
+}
+
+function renderEvents(list=events){
+
+ eventList.innerHTML=list.map(eventCard).join("") ||
+
+ '<div class="empty">Keine Veranstaltungen gefunden.</div>';
+
+ calendarList.innerHTML=[...events]
+
+ .sort((a,b)=>a.id-b.id)
+
+ .map(eventCard).join("");
+
+}
+
+function filterType(type){
+
+ currentFilter=type;
+
+ const list=type==="Alle"?events:events.filter(e=>e.type===type);
+
+ renderEvents(list);
+
+}
+
+function doSearch(){
+
+ const q=searchInput.value.trim().toLowerCase();
+
+ show("home");
+
+ let list=events.filter(e=>
+
+  (e.name+" "+e.city+" "+e.country+" "+e.type)
+
+  .toLowerCase().includes(q)
+
  );
+
+ if(currentFilter!=="Alle"){
+
+  list=list.filter(e=>e.type===currentFilter);
+
+ }
+
+ eventList.innerHTML=list.map(eventCard).join("") ||
+
+ '<div class="empty">Der Herold fand leider nichts.</div>';
+
 }
+
+function openEvent(id){
+
+ const e=events.find(x=>x.id===id);
+
+ detailContent.innerHTML=`
+
+ <div class="hero">
+
+  <div class="sub">${e.type.toUpperCase()}</div>
+
+  <h1>${icon(e.type)} ${e.name}</h1>
+
+  <p class="muted">
+
+   📅 ${e.date}<br>
+
+   📍 ${e.city}, ${e.country}
+
+  </p>
+
+ </div>
+
+ <div class="card">
+
+  <h3>Über die Veranstaltung</h3>
+
+  <p class="muted">${e.info}</p>
+
+  <button class="btn primary"
+
+   onclick="route(${e.lat},${e.lng})">
+
+   🧭 Route mit Google Maps
+
+  </button>
+
+  <button class="btn"
+
+   onclick="window.open('${e.website}','_blank')">
+
+   🌐 Veranstalter / Website
+
+  </button>
+
+  <button class="btn"
+
+   onclick="toggleFavorite(${e.id});openEvent(${e.id})">
+
+   ${isFavorite(e.id)?"❤️ Favorit entfernen":"🤍 Als Favorit speichern"}
+
+  </button>
+
+ </div>`;
+
+ show("detail");
+
+}
+
+function goBack(){show(lastPage)}
+
+function route(lat,lng){
+
+ window.open(
+
+  `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`,
+
+  "_blank"
+
+ );
+
+}
+
+function favorites(){
+
+ return JSON.parse(localStorage.getItem("rabenrufFav")||"[]");
+
+}
+
+function isFavorite(id){return favorites().includes(id)}
+
+function toggleFavorite(id){
+
+ let f=favorites();
+
+ if(f.includes(id)) f=f.filter(x=>x!==id);
+
+ else f.push(id);
+
+ localStorage.setItem("rabenrufFav",JSON.stringify(f));
+
+ renderEvents();
+
+}
+
+function showFavorites(){
+
+ show("favorites");
+
+ const f=favorites();
+
+ const list=events.filter(e=>f.includes(e.id));
+
+ favoriteList.innerHTML=list.length?
+
+  list.map(eventCard).join(""):
+
+  '<div class="empty">Noch keine Favoriten gespeichert ❤️</div>';
+
+}
+
+function initMap(){
+
+ if(map)return;
+
+ map=L.map("map").setView([50.5,10.5],5);
+
+ L.tileLayer(
+
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+  {
+
+   maxZoom:19,
+
+   attribution:"© OpenStreetMap"
+
+  }
+
+ ).addTo(map);
+
+ events.forEach(e=>{
+
+  const m=L.marker([e.lat,e.lng]).addTo(map);
+
+  m.bindPopup(
+
+   `<b>${icon(e.type)} ${e.name}</b><br>
+
+    ${e.date}<br>${e.city}, ${e.country}<br><br>
+
+    <button onclick="openEvent(${e.id})">Details öffnen</button>`
+
+  );
+
+  markers.push(m);
+
+ });
+
+}
+
+function showMap(){
+
+ show("mapPage");
+
+ setTimeout(()=>{
+
+  initMap();
+
+  map.invalidateSize();
+
+ },100);
+
+}
+
+function resetMap(){
+
+ map.setView([50.5,10.5],5);
+
+}
+
+function findMe(){
+
+ showMap();
+
+ if(!navigator.geolocation){
+
+  alert("Standort wird von diesem Gerät nicht unterstützt.");
+
+  return;
+
+ }
+
+ navigator.geolocation.getCurrentPosition(pos=>{
+
+  const lat=pos.coords.latitude;
+
+  const lng=pos.coords.longitude;
+
+  if(userMarker)map.removeLayer(userMarker);
+
+  userMarker=L.marker([lat,lng])
+
+   .addTo(map)
+
+   .bindPopup("📍 Du bist hier")
+
+   .openPopup();
+
+  map.setView([lat,lng],8);
+
+ },
+
+ ()=>{
+
+  alert("Standort konnte nicht ermittelt werden. Bitte Standortzugriff erlauben.");
+
+ });
+
+}
+
+renderEvents();
+
 </script>
 
 </body>
+
 </html>
