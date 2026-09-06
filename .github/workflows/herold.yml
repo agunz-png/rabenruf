@@ -76,17 +76,17 @@ jobs:
 
           text = soup.get_text("\n", strip=True)
 
-     pattern = re.compile(
+          pattern = re.compile(
 
-         r'(\d{2}\.\d{2}\.(?:\s*[–-]\s*\d{2}\.\d{2}\.)?\s*2026)\s*,?\s*'
+            r'(\d{2}\.\d{2}\.(?:\s*[–-]\s*\d{2}\.\d{2}\.)?\s*2026)\s*,?\s*'
 
-         r'([^\n]+)\n'
+            r'([^\n]+)\n'
 
-         r'([^\n]*\d{5}[^\n]*)',
+            r'([^\n]*\d{5}[^\n]*)',
 
-         re.MULTILINE
+            re.MULTILINE
         
-     )
+          )
  
           funde = []
 
