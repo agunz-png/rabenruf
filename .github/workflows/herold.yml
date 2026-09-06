@@ -33,7 +33,80 @@ jobs:
           echo "Suche nach neuen Mittelalter-Veranstaltungen in Europa."
 
           echo "Zeitpunkt: $(date -u)"
+          
+- name: Deutschland prüfen
 
+        run: |
+
+          python3 - <<'PY'
+
+          import json
+
+          import re
+
+          import urllib.request
+
+          url = "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/"
+
+          req = urllib.request.Request(
+
+              url,
+
+              headers={"User-Agent": "Rabenruf-Herold/1.0"}
+
+          )
+
+          html = urllib.request.urlopen(req, timeout=30).read().decode(
+
+              "utf-8",
+
+              errors="ignore"
+
+          )
+
+          muster = re.compile(
+
+              r'(\d{1,2}\.\d{1,2}\.(?:\s*[-–]\s*\d{1,2}\.\d{1,2}\.)?\s*2026).*?'
+
+              r'([A-ZÄÖÜ][^<]{5,100})',
+
+              re.S
+
+          )
+
+          funde = []
+
+          for datum, name in muster.findall(html):
+
+              name = re.sub(r'\s+', ' ', name).strip()
+
+              if len(name) < 5:
+
+                  continue
+
+              funde.append({
+
+                  "id": "de-" + str(len(funde) + 1),
+
+                  "name": name[:100],
+
+                  "date": datum.strip(),
+
+                  "city": "",
+
+                  "country": "Deutschland",
+
+                  "source": url
+
+              })
+
+          with open("herold-funde.json", "w", encoding="utf-8") as f:
+
+              json.dump(funde[:20], f, ensure_ascii=False, indent=2)
+
+          print("Gefundene Kandidaten:", len(funde))
+
+          PY
       - name: Funddatei prüfen
 
         run: |
