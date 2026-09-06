@@ -90,7 +90,7 @@ jobs:
  
           funde = []
 
-          for datum, rest, ortzeile in pattern.findall
+          for datum, rest, ortzeile in pattern.findall(text):
 
               rest = re.sub(r'\s+', ' ', rest).strip()
 
