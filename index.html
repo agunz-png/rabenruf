@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rabenruf</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b0a09;color:#f2eadb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.app{max-width:520px;margin:auto;min-height:100vh;background:linear-gradient(#17130f,#0f0d0b);padding-bottom:90px}
+header{padding:20px 18px 12px}
+.logo{font-family:Georgia,serif;font-size:27px;color:#d4ad5b;font-weight:bold}
+.sub{font-size:12px;color:#b9ad98}
+.search{margin-top:15px;background:#272018;border:1px solid #3a3026;border-radius:14px;padding:13px}
+main{padding:5px 16px}
+.hero{background:linear-gradient(135deg,#44291b,#17120e);border:1px solid #5b432a;border-radius:20px;padding:20px;margin:10px 0 20px}
+h1,h2,h3{font-family:Georgia,serif}
+h1{margin:5px 0;font-size:29px}
+.gold{color:#d4ad5b}
+.hero p,.card p{color:#b9ad98}
+.btn{width:100%;padding:13px;border-radius:12px;border:1px solid #49392b;background:#2a211a;color:white;margin-top:10px;font-weight:bold}
+.primary{background:#8d3d2f}
+.chips{display:flex;gap:8px;overflow:auto}
+.chip{white-space:nowrap;border:1px solid #3a3026;background:#211b16;padding:10px 13px;border-radius:30px;font-size:13px}
+.card{background:#1d1915;border:1px solid #3a3026;border-radius:16px;padding:15px;margin:11px 0}
+.event{font-size:17px;font-weight:bold}
+.small{color:#b9ad98;font-size:13px;margin-top:5px}
+.map{height:360px;border-radius:18px;border:1px solid #3a3026;background:linear-gradient(145deg,#26362d,#121b16);position:relative;margin-top:15px}
+.pin{position:absolute;font-size:30px}
+.p1{left:30%;top:25%}.p2{left:50%;top:45%}.p3{left:68%;top:30%}.p4{left:43%;top:65%}
+.hidden{display:none}
+.bottom{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;background:#17130f;border-top:1px solid #3a3026;display:flex;justify-content:space-around;padding:10px 3px calc(10px + env(safe-area-inset-bottom))}
+.nav{text-align:center;color:#b9ad98;font-size:11px}.nav b{display:block;font-size:21px}
+.back{color:#d4ad5b;margin:12px 0}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header>
+<div class="logo">🐦‍⬛ Rabenruf</div>
+<div class="sub">Mittelalterfeste • Lager • Reenactment in Europa</div>
+<div class="search">🔎 Suche nach Fest, Ort oder Land</div>
+</header>
+
+<main id="home">
+<div class="hero">
+<div class="sub">EUROPAWEIT ENTDECKEN</div>
+<h1>Wo ruft der <span class="gold">Herold</span>?</h1>
+<p>Finde Mittelalterfeste, MPS, Lager und Reenactments in deiner Nähe.</p>
+<button class="btn primary" onclick="show('map')">🗺️ Karte öffnen</button>
+</div>
+
+<div class="chips">
+<div class="chip">⚔️ MPS</div>
+<div class="chip">🏰 Märkte</div>
+<div class="chip">🏕️ Lager</div>
+<div class="chip">🛡️ Reenactment</div>
+</div>
+
+<h2>Dieses Wochenende</h2>
+
+<div class="card" onclick="detail('Mittelaltermarkt Burgdorf','Burgdorf, Schweiz')">
+<div class="event">🏰 Mittelaltermarkt Burgdorf</div>
+<div class="small">🇨🇭 Burgdorf • 12.–13. September</div>
+</div>
+
+<div class="card" onclick="detail('MPS Bückeburg','Bückeburg, Deutschland')">
+<div class="event">⚔️ MPS Bückeburg</div>
+<div class="small">🇩🇪 Bückeburg • September 2026</div>
+</div>
+
+<div class="card" onclick="detail('Wikingerlager Ringsted','Ringsted, Dänemark')">
+<div class="event">🏕️ Wikingerlager Ringsted</div>
+<div class="small">🇩🇰 Ringsted • September 2026</div>
+</div>
+</main>
+
+<main id="map" class="hidden">
+<h2>🗺️ Europa</h2>
+<div class="small">Tippe auf eine Markierung.</div>
+<div class="map">
+<div class="pin p1" onclick="detail('MPS Bückeburg','Deutschland')">⚔️</div>
+<div class="pin p2" onclick="detail('Mittelaltermarkt Burgdorf','Schweiz')">🏰</div>
+<div class="pin p3" onclick="detail('Wikingerlager Ringsted','Dänemark')">🏕️</div>
+<div class="pin p4" onclick="detail('Ritterfest','Österreich')">🛡️</div>
+</div>
+</main>
+
+<main id="calendar" class="hidden">
+<h2>📅 Kalender</h2>
+<div class="card"><b>12. September</b><p>Mittelaltermarkt Burgdorf</p></div>
+<div class="card"><b>13. September</b><p>Wikingerlager Ringsted</p></div>
+<div class="card"><b>19. September</b><p>Ritterfest Österreich</p></div>
+</main>
+
+<main id="favorites" class="hidden">
+<h2>❤️ Favoriten</h2>
+<div class="card"><p>Hier erscheinen später deine gespeicherten Veranstaltungen.</p></div>
+</main>
+
+<main id="detail" class="hidden">
+<div class="back" onclick="show('home')">‹ Zurück</div>
+<div class="hero">
+<div class="sub">VERANSTALTUNG</div>
+<h1 id="eventName"></h1>
+<p id="eventPlace"></p>
+</div>
+
+<div class="card">
+<h3>⚔️ Informationen</h3>
+<p>📅 September 2026<br>
+🏕️ Lager & Camping<br>
+🍺 Gastronomie<br>
+🎵 Musik & Programm</p>
+
+<button class="btn primary" onclick="route()">🧭 Route mit Google Maps</button>
+<button class="btn" onclick="alert('Hier wird später die offizielle Veranstalter-Website geöffnet.')">🌐 Veranstalter-Website</button>
+<button class="btn" onclick="alert('Zu deinen Favoriten hinzugefügt ❤️')">❤️ Favorisieren</button>
+</div>
+</main>
+
+<nav class="bottom">
+<div class="nav" onclick="show('home')"><b>🏰</b>Start</div>
+<div class="nav" onclick="show('map')"><b>🗺️</b>Karte</div>
+<div class="nav" onclick="show('calendar')"><b>📅</b>Kalender</div>
+<div class="nav" onclick="show('favorites')"><b>❤️</b>Favoriten</div>
+</nav>
+
+</div>
+
+<script>
+let currentPlace="";
+
+function show(page){
+ document.querySelectorAll("main").forEach(x=>x.classList.add("hidden"));
+ document.getElementById(page).classList.remove("hidden");
+ window.scrollTo(0,0);
+}
+
+function detail(name,place){
+ currentPlace=place;
+ document.getElementById("eventName").innerText=name;
+ document.getElementById("eventPlace").innerText="📍 "+place;
+ show("detail");
+}
+
+function route(){
+ window.open(
+ "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(currentPlace),
+ "_blank"
+ );
+}
+</script>
+
+</body>
+</html>
