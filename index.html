@@ -6121,25 +6121,27 @@ function showFavorites(){
       .join("");
 
 }
-let heroldFunde = [
+let heroldFunde = [];
 
-  {
+async function ladeHeroldFunde(){
 
-    id: "test-herold-1",
+  try{
 
-    name: "Testfund des Herolds",
+    const antwort = await fetch("herold-funde.json?zeit=" + Date.now());
 
-    date: "Termin wird geprüft",
+    if(!antwort.ok) throw new Error("Datei konnte nicht geladen werden");
 
-    city: "Beispielort",
+    heroldFunde = await antwort.json();
 
-    country: "Schweiz",
+    renderHerold();
 
-    source: "Testquelle"
+  }catch(fehler){
+
+    console.error("Herold-Funde konnten nicht geladen werden:", fehler);
 
   }
 
-];
+}
 
 function showHerold(){
 
@@ -6270,6 +6272,8 @@ applyFilters();
 
 renderCalendar();
 
+ladeHeroldFunde();
+  
 </script>
 
 </body>
