@@ -76,7 +76,7 @@ jobs:
 
           text = soup.get_text("\n", strip=True)
 
-          pattern = re.compile(
+     pattern = re.compile(
 
          r'(\d{2}\.\d{2}\.(?:\s*[–-]\s*\d{2}\.\d{2}\.)?\s*2026)\s*,?\s*'
 
@@ -85,9 +85,9 @@ jobs:
          r'([^\n]*\d{5}[^\n]*)',
 
          re.MULTILINE
-
-         )
-
+        
+     )
+ 
           funde = []
 
           for datum, rest, ortzeile in pattern.findall
@@ -100,7 +100,7 @@ jobs:
 
               teile = [x.strip() for x in rest.split(",") if x.strip()]
 
-              name = teile[0] if teile else ort_match = re.search(r'\b\d{5}\s+(.+)', ortzeile)
+              name = teile[0] if teile else rest
 
               ort_match = re.search(r'\b\d{5}\s+(.+)', ortzeile)
 
