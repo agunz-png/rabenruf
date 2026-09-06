@@ -6203,16 +6203,55 @@ function renderHerold(){
 
 function heroldUebernehmen(index){
 
-  alert(
+  const fund = heroldFunde[index];
 
-    "🐦‍⬛ Übernahme vorbereitet: " +
+  const datensatz = `{
 
-    heroldFunde[index].name
+  id: "${fund.id}",
+
+  name: "${fund.name}",
+
+  type: "Markt",
+
+  tags: ["Mittelalter"],
+
+  start: "",
+
+  end: "",
+
+  date: "${fund.date}",
+
+  country: "${fund.country}",
+
+  city: "${fund.city}",
+
+  venue: "",
+
+  address: "",
+
+  lat: 0,
+
+  lng: 0,
+
+  website: "",
+
+  organizer: "",
+
+  info: "Gefunden durch den Herold",
+
+  hours: ""
+
+}`;
+
+  prompt(
+
+    "🐦‍⬛ Datensatz prüfen und kopieren:",
+
+    datensatz
 
   );
 
 }
-
 function heroldVerwerfen(index){
 
   heroldFunde.splice(index, 1);
