@@ -368,7 +368,7 @@ jobs:
           soup = BeautifulSoup(html, "html.parser")
 
           text = soup.get_text("\n", strip=True)
-
+          print("SAEBELRASSLER TEXT:", text[:5000])
           muster = re.compile(
 
               r'(\d{1,2}\.(?:\s*[-+]\s*\d{1,2}\.)?\d{2}\.\d{4})'
