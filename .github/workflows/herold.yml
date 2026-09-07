@@ -211,13 +211,11 @@ jobs:
 
                   text = detail.get_text("\n", strip=True)
 
-                  titel = detail.find("h1")
+                  slug = href.rstrip("/").split("/")[-1]
 
-                  if not titel:
+                  name = slug.replace("-", " ").title()
 
-                      titel = detail.find("h2")
-
-                  name = titel.get_text(" ", strip=True) if titel else ""
+                  name = re.sub(r"\bV\b$", "V", name)
 
                   land_match = re.search(
 
