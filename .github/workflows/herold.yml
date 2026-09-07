@@ -149,65 +149,183 @@ jobs:
 
           import json
 
+          import re
+
           import urllib.request
+
+          from datetime import datetime
 
           from bs4 import BeautifulSoup
 
-          url = "https://www.buhurtinternational.com/tournaments"
+          basis = "https://www.buhurtinternational.com"
 
-          req = urllib.request.Request(
+          url = basis + "/tournaments"
 
-              url,
+          def laden(url):
 
-              headers={"User-Agent": "Mozilla/5.0 Rabenruf-Herold"}
+              req = urllib.request.Request(
 
-          )
+                  url,
 
-          with urllib.request.urlopen(req, timeout=30) as response:
+                  headers={"User-Agent": "Mozilla/5.0 Rabenruf-Herold"}
 
-              html = response.read().decode("utf-8", errors="ignore")
+              )
+
+              with urllib.request.urlopen(req, timeout=30) as response:
+
+                  return response.read().decode("utf-8", errors="ignore")
+
+          html = laden(url)
 
           soup = BeautifulSoup(html, "html.parser")
 
-          with open("herold-funde.json", "r", encoding="utf-8") as f:
-
-              funde = json.load(f)
+          links = []
 
           for link in soup.find_all("a", href=True):
 
               href = link.get("href", "")
 
-              name = link.get_text(" ", strip=True)
-
-              if "/tournament/" not in href or not name:
+              if "/tournament/" not in href:
 
                   continue
 
               if href.startswith("/"):
 
-                  href = "https://www.buhurtinternational.com" + href
+                  href = basis + href
 
-              if any(f.get("source") == href for f in funde):
+              if href not in links:
 
-                  continue
+                  links.append(href)
 
-              funde.append({
+          with open("herold-funde.json", "r", encoding="utf-8") as f:
 
-                  "id": "buhurt-" + str(len(funde) + 1),
+              funde = json.load(f)
 
-                  "name": name[:120],
+          for href in links:
 
-                  "date": "",
+              try:
 
-                  "city": "",
+                  detail_html = laden(href)
 
-                  "country": "",
+                  detail = BeautifulSoup(detail_html, "html.parser")
 
-                  "type": "Buhurt",
+                  text = detail.get_text("\n", strip=True)
 
-                  "source": href
+                  titel = detail.find("h1")
 
-              })
+                  if not titel:
+
+                      titel = detail.find("h2")
+
+                  name = titel.get_text(" ", strip=True) if titel else ""
+
+                  land_match = re.search(
+
+                      r'Country\s*\n+\s*([^\n]+)',
+
+                      text,
+
+                      re.IGNORECASE
+
+                  )
+
+                  start_match = re.search(
+
+                      r'start date:\s*\n+\s*([^\n]+)',
+
+                      text,
+
+                      re.IGNORECASE
+
+                  )
+
+                  end_match = re.search(
+
+                      r'end date:\s*\n+\s*([^\n]+)',
+
+                      text,
+
+                      re.IGNORECASE
+
+                  )
+
+                  country = land_match.group(1).strip() if land_match else ""
+
+                  start_raw = start_match.group(1).strip() if start_match else ""
+
+                  end_raw = end_match.group(1).strip() if end_match else ""
+
+                  start = ""
+
+                  end = ""
+
+                  if start_raw:
+
+                      try:
+
+                          start = datetime.strptime(
+
+                              start_raw,
+
+                              "%B %d, %Y"
+
+                          ).strftime("%Y-%m-%d")
+
+                      except:
+
+                          pass
+
+                  if end_raw:
+
+                      try:
+
+                          end = datetime.strptime(
+
+                              end_raw,
+
+                              "%B %d, %Y"
+
+                          ).strftime("%Y-%m-%d")
+
+                      except:
+
+                          pass
+
+                  if not name or not start:
+
+                      continue
+
+                  if any(f.get("source") == href for f in funde):
+
+                      continue
+
+                  funde.append({
+
+                      "id": "buhurt-" + str(len(funde) + 1),
+
+                      "name": name[:120],
+
+                      "date": start_raw if start_raw == end_raw else start_raw + " – " + end_raw,
+
+                      "start": start,
+
+                      "end": end,
+
+                      "city": "",
+
+                      "country": country,
+
+                      "type": "Buhurt",
+
+                      "source": href
+
+                  })
+
+                  print("Buhurt gefunden:", name, country, start)
+
+              except Exception as e:
+
+                  print("Buhurt-Seite übersprungen:", href, e)
 
           with open("herold-funde.json", "w", encoding="utf-8") as f:
 
