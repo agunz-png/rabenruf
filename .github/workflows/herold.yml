@@ -363,7 +363,7 @@ jobs:
 
            )
 
-           html = urllib.request.urlopen(req).read()
+          html = urllib.request.urlopen(req).read()
 
            soup = BeautifulSoup(html, "html.parser")
 
