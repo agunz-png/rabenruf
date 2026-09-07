@@ -4589,7 +4589,11 @@ const events = [
 }
 
 ];
+const gespeicherteHeroldEvents =
 
+  JSON.parse(localStorage.getItem("rabenrufHeroldEvents") || "[]");
+
+events.push(...gespeicherteHeroldEvents);
 /* =========================================
 
    APP-ZUSTAND
