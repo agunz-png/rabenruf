@@ -355,9 +355,17 @@ jobs:
 
               funde = json.load(f)
 
-          html = urllib.request.urlopen(url).read()
+          req = urllib.request.Request(
 
-          soup = BeautifulSoup(html, "html.parser")
+              url,
+
+              headers={"User-Agent": "Mozilla/5.0"}
+
+           )
+
+           html = urllib.request.urlopen(req).read()
+
+           soup = BeautifulSoup(html, "html.parser")
 
           text = soup.get_text("\n", strip=True)
 
