@@ -6245,13 +6245,17 @@ function heroldUebernehmen(index){
 
 }`;
 
-  prompt(
+events.push(neuesEvent);
 
-    "🐦‍⬛ Datensatz prüfen und kopieren:",
+localStorage.setItem("rabenrufHeroldEvents", JSON.stringify(events));
 
-    datensatz
+heroldFunde.splice(index, 1);
 
-  );
+renderHerold();
+
+applyFilters();
+
+alert("⚔️ Veranstaltung wurde in Rabenruf übernommen!");
 
 }
 function heroldVerwerfen(index){
