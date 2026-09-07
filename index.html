@@ -6237,39 +6237,75 @@ function heroldUebernehmen(index){
 
   const fund = heroldFunde[index];
 
-  const jahrTreffer = fund.date.match(/(20\d{2})/);
-
-const jahr = jahrTreffer ? jahrTreffer[1] : "2026";
-
-const datumTreffer = fund.date.match(
-
-  /(\d{1,2})\.(\d{1,2})\.(?:\s*[–-]\s*(\d{1,2})\.(\d{1,2})\.)?/
-
-);
+  const datumText = String(fund.date || "");
 
 let start = "";
 
 let end = "";
 
-if (datumTreffer) {
+const isoTreffer = datumText.match(
 
-  const tag1 = datumTreffer[1].padStart(2, "0");
+  /(\d{4})-(\d{2})-(\d{2})(?:.*?(\d{4})-(\d{2})-(\d{2}))?/
 
-  const monat1 = datumTreffer[2].padStart(2, "0");
+);
 
-  start = `${jahr}-${monat1}-${tag1}`;
+if (isoTreffer) {
 
-  if (datumTreffer[3] && datumTreffer[4]) {
+  start = `${isoTreffer[1]}-${isoTreffer[2]}-${isoTreffer[3]}`;
 
-    const tag2 = datumTreffer[3].padStart(2, "0");
+  if (isoTreffer[4]) {
 
-    const monat2 = datumTreffer[4].padStart(2, "0");
-
-    end = `${jahr}-${monat2}-${tag2}`;
+    end = `${isoTreffer[4]}-${isoTreffer[5]}-${isoTreffer[6]}`;
 
   } else {
 
     end = start;
+
+  }
+
+} else {
+
+  const jahrTreffer = datumText.match(/(20\d{2})/);
+
+  const jahr = jahrTreffer ? jahrTreffer[1] : "2026";
+
+  const datumTreffer = datumText.match(
+
+    /(\d{1,2})\.(?:\s*[-+]\s*(\d{1,2})\.)?(\d{2})\.(20\d{2})/
+
+  );
+
+  if (datumTreffer) {
+
+    const tag1 = datumTreffer[1].padStart(2, "0");
+
+    const monat = datumTreffer[3].padStart(2, "0");
+
+    start = `${jahr}-${monat}-${tag1}`;
+
+    if (datumTreffer[2]) {
+
+      const tag2 = datumTreffer[2].padStart(2, "0");
+
+      end = `${jahr}-${monat}-${tag2}`;
+
+    } else {
+
+      end = start;
+
+    }
+
+  } else {
+
+    const englischTreffer = Date.parse(datumText);
+
+    if (!Number.isNaN(englischTreffer)) {
+
+      start = new Date(englischTreffer).toISOString().slice(0, 10);
+
+      end = start;
+
+    }
 
   }
 
@@ -6281,9 +6317,13 @@ const neuesEvent = {
 
   name: fund.name,
 
-  type: "Markt",
+  type: fund.type || "Markt",
 
-  tags: ["Mittelalter", "Herold"],
+tags: fund.type === "Buhurt"
+
+  ? ["Buhurt", "Herold"]
+
+  : ["Mittelalter", "Herold"],
 
   start: start,
 
