@@ -371,15 +371,17 @@ jobs:
           print("SAEBELRASSLER TEXT:", text[:5000])
           muster = re.compile(
 
-              r'(\d{1,2}\.(?:\s*[-+]\s*\d{1,2}\.)?\d{2}\.\d{4})'
+              r'(\d{1,2}\.\s*(?:[-+]\s*\d{1,2}\.)?\d{2}\.\d{4})'
 
-              r'\s*\|\s*[^\|]+\|\s*([^\n]+)',
+              r'\s*\n+\s*([^\n]+)'
+
+              r'\s*\n+\s*([^\n]+)',
 
               re.IGNORECASE
 
           )
 
-          for datum, name in muster.findall(text):
+          for datum, zeit, name in muster.findall(text):
 
               if "buhurt" not in name.lower():
 
