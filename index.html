@@ -6207,25 +6207,71 @@ function heroldUebernehmen(index){
 
   const fund = heroldFunde[index];
 
-  const datensatz = `{
+  const jahrTreffer = fund.date.match(/(20\d{2})/);
 
-  id: "${fund.id}",
+const jahr = jahrTreffer ? jahrTreffer[1] : "2026";
 
-  name: "${fund.name}",
+const datumTreffer = fund.date.match(
+
+  /(\d{1,2})\.(\d{1,2})\.(?:\s*[–-]\s*(\d{1,2})\.(\d{1,2})\.)?/
+
+);
+
+let start = "";
+
+let end = "";
+
+if (datumTreffer) {
+
+  const tag1 = datumTreffer[1].padStart(2, "0");
+
+  const monat1 = datumTreffer[2].padStart(2, "0");
+
+  start = `${jahr}-${monat1}-${tag1}`;
+
+  if (datumTreffer[3] && datumTreffer[4]) {
+
+    const tag2 = datumTreffer[3].padStart(2, "0");
+
+    const monat2 = datumTreffer[4].padStart(2, "0");
+
+    end = `${jahr}-${monat2}-${tag2}`;
+
+  } else {
+
+    end = start;
+
+  }
+
+}
+
+const neuesEvent = {
+
+  id: `herold-${fund.id}`,
+
+  name: fund.name,
 
   type: "Markt",
 
-  tags: ["Mittelalter"],
+  tags: ["Mittelalter", "Herold"],
 
-  start: "",
+  start: start,
 
-  end: "",
+  end: end,
 
-  date: "${fund.date}",
+  date: fund.date,
 
-  country: "${fund.country}",
+  country: fund.country,
 
-  city: "${fund.city}",
+  flag:
+
+    fund.country === "Deutschland" ? "🇩🇪" :
+
+    fund.country === "Schweiz" ? "🇨🇭" :
+
+    fund.country === "Österreich" ? "🇦🇹" : "🏰",
+
+  city: fund.city,
 
   venue: "",
 
@@ -6235,7 +6281,7 @@ function heroldUebernehmen(index){
 
   lng: 0,
 
-  website: "",
+  website: fund.source || "",
 
   organizer: "",
 
@@ -6243,8 +6289,7 @@ function heroldUebernehmen(index){
 
   hours: ""
 
-}`;
-
+};
 events.push(neuesEvent);
 
 localStorage.setItem("rabenrufHeroldEvents", JSON.stringify(events));
