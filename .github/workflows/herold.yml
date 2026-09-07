@@ -369,11 +369,11 @@ jobs:
 
           text = soup.get_text("\n", strip=True)
 
-          muster = re.compile(
+                    muster = re.compile(
 
-              r'(\d{1,2}\.\s*[A-Za-zÄÖÜäöü]+(?:\s*-\s*\d{1,2}\.\s*[A-Za-zÄÖÜäöü]+)?\s*2026)'
+              r'(\d{1,2}\.(?:\s*[-+]\s*\d{1,2}\.)?\d{2}\.\d{4})'
 
-              r'\s*\n+\s*([^\n]+)',
+              r'\s*\|\s*[^\|]+\|\s*([^\n]+)',
 
               re.IGNORECASE
 
