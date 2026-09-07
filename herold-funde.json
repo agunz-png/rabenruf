@@ -398,5 +398,59 @@
     "city": "Schmelz",
     "country": "Deutschland",
     "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/"
+  },
+  {
+    "id": "buhurt-51",
+    "name": "Button",
+    "date": "",
+    "city": "",
+    "country": "",
+    "type": "Buhurt",
+    "source": "https://www.buhurtinternational.com/tournament/king-kazimierz-cup-v"
+  },
+  {
+    "id": "buhurt-52",
+    "name": "Button",
+    "date": "",
+    "city": "",
+    "country": "",
+    "type": "Buhurt",
+    "source": "https://www.buhurtinternational.com/tournament/desafio-belmonte-2026"
+  },
+  {
+    "id": "buhurt-53",
+    "name": "Button",
+    "date": "",
+    "city": "",
+    "country": "",
+    "type": "Buhurt",
+    "source": "https://www.buhurtinternational.com/tournament/knight-of-jerusalem-2026"
+  },
+  {
+    "id": "buhurt-54",
+    "name": "Button",
+    "date": "",
+    "city": "",
+    "country": "",
+    "type": "Buhurt",
+    "source": "https://www.buhurtinternational.com/tournament/california-classic"
+  },
+  {
+    "id": "buhurt-55",
+    "name": "Button",
+    "date": "",
+    "city": "",
+    "country": "",
+    "type": "Buhurt",
+    "source": "https://www.buhurtinternational.com/tournament/duels-at-the-upstate-renfair---pt-duex"
+  },
+  {
+    "id": "buhurt-56",
+    "name": "Button",
+    "date": "",
+    "city": "",
+    "country": "",
+    "type": "Buhurt",
+    "source": "https://www.buhurtinternational.com/tournament/tavola-rotonda-2026"
   }
 ]
