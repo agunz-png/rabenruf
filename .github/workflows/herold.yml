@@ -365,7 +365,7 @@ jobs:
 
           html = urllib.request.urlopen(req).read()
 
-           soup = BeautifulSoup(html, "html.parser")
+          soup = BeautifulSoup(html, "html.parser")
 
           text = soup.get_text("\n", strip=True)
 
