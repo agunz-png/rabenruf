@@ -6154,7 +6154,7 @@ function showHerold(){
   renderHerold();
 
 }
-
+let heroldFilter = "alle";
 function renderHerold(){
 
   const box = byId("heroldList");
@@ -6177,7 +6177,33 @@ function renderHerold(){
 
   }
 
-  box.innerHTML = heroldFunde.map((fund, index) => `
+  const sichtbareFunde = heroldFunde
+
+  .map((fund, index) => ({ fund, index }))
+
+  .filter(({ fund }) =>
+
+    heroldFilter === "alle" ||
+
+    (heroldFilter === "maerkte" && fund.type !== "Buhurt") ||
+
+    (heroldFilter === "buhurt" && fund.type === "Buhurt")
+
+  );
+box.innerHTML = `
+
+  <div style="display:flex; gap:8px; margin-bottom:16px;">
+
+    <button onclick="heroldFilter='alle'; renderHerold()">Alle</button>
+
+    <button onclick="heroldFilter='maerkte'; renderHerold()">🏰 Märkte</button>
+
+    <button onclick="heroldFilter='buhurt'; renderHerold()">⚔️ Buhurt</button>
+
+  </div>
+
+` +
+ sichtbareFunde.map(({ fund, index }) => `in
 
     <div class="card">
 
