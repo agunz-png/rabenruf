@@ -372,33 +372,70 @@ jobs:
 
           print("Mirimor wurde geladen.")
 
-          for tag in soup.find_all(["article", "main", "section"]):
+            treffer = soup.find(string=re.compile("Mittelaltermarkt Kiesen", re.I))
 
-                 inhalt = tag.get_text(" ", strip=True)
+            if treffer:
 
-                 if any(monat in inhalt.lower() for monat in ["september", "oktober", "november", "dezember"]):
+             print("KIESEN GEFUNDEN:", treffer.strip())
 
-                     print("KALENDER-BEREICH:", tag.name, tag.get("class"), inhalt[:1000])
+             element = treffer.parent
 
-          for link in soup.find_all("a", href=True):
+             for ebene in range(5):
 
-           titel = link.get_text(" ", strip=True)
+               print(
 
-           href = link["href"]
+            "KIESEN HTML:",
 
-           if "kalender" in titel.lower() or "kalender" in href.lower():
+            element.name,
 
-            print("KALENDER-LINK:", titel, "->", href)
+            element.get("class"),
 
-          with open("mirimor-debug.txt", "w", encoding="utf-8") as f:
+            element.get_text(" ", strip=True)[:1500]
 
-              f.write(text)
+        )
 
-          print("Funde vor Mirimor-Suche:", len(funde))
+          element = element.parent
 
-          PY
-      
-      - name: Funddatei prüfen
+for tag in soup.find_all(["article", "main", "section"]):
+
+      inhalt = tag.get_text(" ", strip=True)
+
+      if any(monat in inhalt.lower() for monat in [
+
+        "september", "oktober", "november", "dezember"
+
+    ]):
+
+          print(
+
+            "KALENDER-BEREICH:",
+
+            tag.name,
+
+            tag.get("class"),
+
+            inhalt[:3000]
+
+        )
+
+for link in soup.find_all("a", href=True):
+
+      titel = link.get_text(" ", strip=True)
+
+      href = link["href"]
+
+      if "kalender" in titel.lower() or "kalender" in href.lower():
+
+          print("KALENDER-LINK:", titel, "->", href)
+
+with open("mirimor-debug.txt", "w", encoding="utf-8") as f:
+
+    f.write(text)
+
+print("Funde vor Mirimor-Suche:", len(funde))
+
+PY
+- name: Funddatei prüfen
 
         run: |
 
