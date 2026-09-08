@@ -372,7 +372,7 @@ jobs:
 
           print("Mirimor wurde geladen.")
 
-          print(text[:3000])
+          print(text[:15000])
 
           with open("mirimor-debug.txt", "w", encoding="utf-8") as f:
 
