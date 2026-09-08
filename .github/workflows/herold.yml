@@ -372,7 +372,7 @@ jobs:
 
           print("Mirimor wurde geladen.")
 
-                 for tag in soup.find_all(["article", "main", "section"]):
+          for tag in soup.find_all(["article", "main", "section"]):
 
                  inhalt = tag.get_text(" ", strip=True)
 
