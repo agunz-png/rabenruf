@@ -404,7 +404,7 @@ for tag in soup.find_all(["article", "main", "section"]):
 
         "september", "oktober", "november", "dezember"
 
-    ]):
+      ]):
 
           print(
 
@@ -416,7 +416,7 @@ for tag in soup.find_all(["article", "main", "section"]):
 
             inhalt[:3000]
 
-        )
+          )
 
 for link in soup.find_all("a", href=True):
 
