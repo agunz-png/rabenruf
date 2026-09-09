@@ -403,7 +403,7 @@ with open("mirimor-debug.txt", "w", encoding="utf-8") as f:
 
  print("Funde vor Mirimor-Suche:", len(funde))
 
-PY
+          PY
 - name: Funddatei prüfen
 
         run: |
