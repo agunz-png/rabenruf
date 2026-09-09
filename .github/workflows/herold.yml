@@ -401,7 +401,7 @@ with open("mirimor-debug.txt", "w", encoding="utf-8") as f:
 
     f.write(text)
 
-print("Funde vor Mirimor-Suche:", len(funde))
+ print("Funde vor Mirimor-Suche:", len(funde))
 
 PY
 - name: Funddatei prüfen
