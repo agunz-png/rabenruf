@@ -332,8 +332,7 @@ jobs:
           print("Funde nach Buhurt-Suche:", len(funde))
 
           PY
-
-- name: Funddatei prüfen
+      - name: Funddatei prüfen
 
         run: |
 
