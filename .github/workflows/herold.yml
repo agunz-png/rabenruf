@@ -400,11 +400,7 @@ for tag in soup.find_all(["article", "main", "section"]):
 
       inhalt = tag.get_text(" ", strip=True)
 
-      if any(monat in inhalt.lower() for monat in [
-
-        "september", "oktober", "november", "dezember"
-
-      ]):
+      if any(monat in inhalt.lower() for monat in ["september", "oktober", "november", "dezember"]):
 
           print(
 
