@@ -396,15 +396,6 @@ jobs:
 
           element = element.parent
 
-for link in soup.find_all("a", href=True):
-
-      titel = link.get_text(" ", strip=True)
-
-      href = link["href"]
-
-      if "kalender" in titel.lower() or "kalender" in href.lower():
-
-          print("KALENDER-LINK:", titel, "->", href)
 
 with open("mirimor-debug.txt", "w", encoding="utf-8") as f:
 
