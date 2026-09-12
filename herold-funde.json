@@ -401,6 +401,17 @@
   },
   {
     "id": "buhurt-51",
+    "name": "King Kazimierz Cup V",
+    "date": "September 12, 2026",
+    "start": "2026-09-12",
+    "end": "2026-09-12",
+    "city": "",
+    "country": "Poland",
+    "type": "Buhurt",
+    "source": "https://www.buhurtinternational.com/tournament/king-kazimierz-cup-v"
+  },
+  {
+    "id": "buhurt-52",
     "name": "Desafio Belmonte 2026",
     "date": "September 19, 2026 – September 20, 2026",
     "start": "2026-09-19",
@@ -411,7 +422,7 @@
     "source": "https://www.buhurtinternational.com/tournament/desafio-belmonte-2026"
   },
   {
-    "id": "buhurt-52",
+    "id": "buhurt-53",
     "name": "Knight Of Jerusalem 2026",
     "date": "September 12, 2026",
     "start": "2026-09-12",
@@ -422,7 +433,7 @@
     "source": "https://www.buhurtinternational.com/tournament/knight-of-jerusalem-2026"
   },
   {
-    "id": "buhurt-53",
+    "id": "buhurt-54",
     "name": "California Classic",
     "date": "September 19, 2026",
     "start": "2026-09-19",
@@ -433,7 +444,7 @@
     "source": "https://www.buhurtinternational.com/tournament/california-classic"
   },
   {
-    "id": "buhurt-54",
+    "id": "buhurt-55",
     "name": "Duels At The Upstate Renfair   Pt Duex",
     "date": "September 19, 2026 – September 20, 2026",
     "start": "2026-09-19",
@@ -444,7 +455,7 @@
     "source": "https://www.buhurtinternational.com/tournament/duels-at-the-upstate-renfair---pt-duex"
   },
   {
-    "id": "buhurt-55",
+    "id": "buhurt-56",
     "name": "Tavola Rotonda 2026",
     "date": "September 26, 2026 – September 27, 2026",
     "start": "2026-09-26",
