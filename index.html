@@ -5997,13 +5997,9 @@ function renderCalendar(){
 
   sorted.forEach(event => {
 
-    const month =
+    if (!event.start) return;
 
-      monthName(
-
-        event.start
-
-      );
+const month = monthName(event.start);
 
     if(!groups[month]){
 
