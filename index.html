@@ -4731,6 +4731,8 @@ function monthName(dateString){
 
   const d = dateObject(dateString);
 
+  if (Number.isNaN(d.getTime())) return "";
+  
   return d.toLocaleDateString(
 
     "de-CH",
