@@ -6211,7 +6211,7 @@ box.innerHTML = `
 
       <p>📅 ${fund.date}</p>
 
-      <p>📍 ${fund.city}, ${fund.country}</p>
+    <p>📍 ${fund.city ? fund.city + ", " : ""}${fund.country}</p>
 
       <p>🔎 Quelle: ${fund.source}</p>
 
