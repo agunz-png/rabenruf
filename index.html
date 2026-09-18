@@ -6302,15 +6302,23 @@ if (isoTreffer) {
 
   } else {
 
-    const englischTreffer = Date.parse(datumText);
+    const teile = datumText.split(/\s+[–—-]\s+/);
 
-    if (!Number.isNaN(englischTreffer)) {
+const startTreffer = Date.parse(teile[0]);
 
-      start = new Date(englischTreffer).toISOString().slice(0, 10);
+if (!Number.isNaN(startTreffer)) {
+  start = new Date(startTreffer).toISOString().slice(0, 10);
 
-      end = start;
+  if (teile.length > 1) {
+    const endTreffer = Date.parse(teile[1]);
 
-    }
+    end = !Number.isNaN(endTreffer)
+      ? new Date(endTreffer).toISOString().slice(0, 10)
+      : start;
+  } else {
+    end = start;
+  }
+}
 
   }
 
