@@ -4590,10 +4590,15 @@ const events = [
 
 ];
 const gespeicherteHeroldEvents =
-
-  JSON.parse(localStorage.getItem("rabenrufHeroldEvents") || "[]");
+  JSON.parse(localStorage.getItem("rabenrufHeroldEvents") || "[]")
+    .filter(event => String(event.id || "").startsWith("herold-"));
 
 events.push(...gespeicherteHeroldEvents);
+
+localStorage.setItem(
+  "rabenrufHeroldEvents",
+  JSON.stringify(gespeicherteHeroldEvents)
+);
 /* =========================================
 
    APP-ZUSTAND
@@ -6362,7 +6367,14 @@ tags: fund.type === "Buhurt"
 };
 events.push(neuesEvent);
 
-localStorage.setItem("rabenrufHeroldEvents", JSON.stringify(events));
+localStorage.setItem(
+  "rabenrufHeroldEvents",
+  JSON.stringify(
+    events.filter(event =>
+      String(event.id || "").startsWith("herold-")
+    )
+  )
+);
 
 heroldFunde.splice(index, 1);
 
