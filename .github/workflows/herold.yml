@@ -298,7 +298,7 @@ jobs:
                       continue
 
 
-           city = ""
+          city = ""
 
             city_match = re.search(
                 r'(?:City|Location|Place|Venue|Address)\s*:?\s*\n?\s*([^\n]+)',
