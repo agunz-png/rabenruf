@@ -401,39 +401,6 @@
   },
   {
     "id": "buhurt-51",
-    "name": "Duels At The Upstate Renfair   Pt Duex",
-    "date": "September 19, 2026 – September 20, 2026",
-    "start": "2026-09-19",
-    "end": "2026-09-20",
-    "city": "",
-    "country": "United States",
-    "type": "Buhurt",
-    "source": "https://www.buhurtinternational.com/tournament/duels-at-the-upstate-renfair---pt-duex"
-  },
-  {
-    "id": "buhurt-52",
-    "name": "California Classic",
-    "date": "September 19, 2026",
-    "start": "2026-09-19",
-    "end": "2026-09-19",
-    "city": "",
-    "country": "United States",
-    "type": "Buhurt",
-    "source": "https://www.buhurtinternational.com/tournament/california-classic"
-  },
-  {
-    "id": "buhurt-53",
-    "name": "Desafio Belmonte 2026",
-    "date": "September 19, 2026 – September 20, 2026",
-    "start": "2026-09-19",
-    "end": "2026-09-20",
-    "city": "",
-    "country": "Spain",
-    "type": "Buhurt",
-    "source": "https://www.buhurtinternational.com/tournament/desafio-belmonte-2026"
-  },
-  {
-    "id": "buhurt-54",
     "name": "Tavola Rotonda 2026",
     "date": "September 26, 2026 – September 27, 2026",
     "start": "2026-09-26",
@@ -444,18 +411,18 @@
     "source": "https://www.buhurtinternational.com/tournament/tavola-rotonda-2026"
   },
   {
-    "id": "buhurt-55",
-    "name": "Torneio De Combates Medievais Virada Esportiva 2026",
-    "date": "September 19, 2026 – September 20, 2026",
-    "start": "2026-09-19",
-    "end": "2026-09-20",
+    "id": "buhurt-52",
+    "name": "Trail Of Gladios",
+    "date": "October 3, 2026",
+    "start": "2026-10-03",
+    "end": "2026-10-03",
     "city": "",
-    "country": "Brazil",
+    "country": "United States",
     "type": "Buhurt",
-    "source": "https://www.buhurtinternational.com/tournament/torneio-de-combates-medievais-virada-esportiva-2026"
+    "source": "https://www.buhurtinternational.com/tournament/trail-of-gladios"
   },
   {
-    "id": "buhurt-56",
+    "id": "buhurt-53",
     "name": "1. Eisencup 2026",
     "date": "September 26, 2026 – September 27, 2026",
     "start": "2026-09-26",
@@ -464,5 +431,38 @@
     "country": "Austria",
     "type": "Buhurt",
     "source": "https://www.buhurtinternational.com/tournament/1.-eisencup-2026"
+  },
+  {
+    "id": "buhurt-54",
+    "name": "Heritage Shield 2026",
+    "date": "October 3, 2026",
+    "start": "2026-10-03",
+    "end": "2026-10-03",
+    "city": "",
+    "country": "United Kingdom",
+    "type": "Buhurt",
+    "source": "https://www.buhurtinternational.com/tournament/heritage-shield-2026"
+  },
+  {
+    "id": "buhurt-55",
+    "name": "Amcf National Selections 2026",
+    "date": "October 2, 2026 – October 5, 2026",
+    "start": "2026-10-02",
+    "end": "2026-10-05",
+    "city": "",
+    "country": "Australia",
+    "type": "Buhurt",
+    "source": "https://www.buhurtinternational.com/tournament/amcf-national-selections-2026"
+  },
+  {
+    "id": "buhurt-56",
+    "name": "War In The West 2026",
+    "date": "October 4, 2026",
+    "start": "2026-10-04",
+    "end": "2026-10-04",
+    "city": "",
+    "country": "United States",
+    "type": "Buhurt",
+    "source": "https://www.buhurtinternational.com/tournament/war-in-the-west-2026"
   }
 ]
