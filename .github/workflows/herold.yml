@@ -297,6 +297,17 @@ jobs:
 
                       continue
 
+                      city = ""
+
+            city_match = re.search(
+                r'(?:City|Location|Place|Venue)\s*[:\-]\s*([^\n]+)',
+                text,
+                re.IGNORECASE
+            )
+
+            if city_match:
+                city = city_match.group(1).strip()
+
                   funde.append({
 
                       "id": "buhurt-" + str(len(funde) + 1),
@@ -309,7 +320,7 @@ jobs:
 
                       "end": end,
 
-                      "city": "",
+                      "city": city,
 
                       "country": country,
 
