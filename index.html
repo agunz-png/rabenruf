@@ -5185,6 +5185,18 @@ function applyFilters(){
 
     [...events];
 
+  // Vergangene Veranstaltungen ausblenden
+const heute = new Date();
+heute.setHours(0, 0, 0, 0);
+
+list = list.filter(event => {
+  const datum = event.end || event.start;
+  if (!datum) return true;
+
+  const endDatum = new Date(datum + "T23:59:59");
+  return endDatum >= heute;
+});
+
   if(currentType !== "Alle"){
 
     list =
