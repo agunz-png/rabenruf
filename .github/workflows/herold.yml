@@ -297,8 +297,7 @@ jobs:
 
                       continue
 
-
-          city = ""
+            city = ""
 
             city_match = re.search(
                 r'(?:City|Location|Place|Venue|Address)\s*:?\s*\n?\s*([^\n]+)',
@@ -307,7 +306,8 @@ jobs:
             )
 
             if city_match:
-                city = city_match.group(1).strip() 
+                city = city_match.group(1).strip()
+          
 
                   funde.append({
 
