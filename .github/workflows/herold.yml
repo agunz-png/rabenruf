@@ -240,7 +240,7 @@ jobs:
 
           print("Mittelalterkalender neue Funde:", len(neue_funde))
           print("Herold-Funde insgesamt:", len(funde))
-          PY 
+       PY 
       
       - name: Funddatei prüfen
 
