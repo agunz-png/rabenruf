@@ -2,6 +2,7 @@ import hashlib
 import json
 import re
 import urllib.request
+from difflib import SequenceMatcher
 from datetime import date, datetime
 
 from bs4 import BeautifulSoup
@@ -91,7 +92,7 @@ except (FileNotFoundError, json.JSONDecodeError):
 
 # Bereits fest in der App vorhandene Veranstaltungen laden
 app_events = set()
-
+app_events_details = []
 try:
     with open("index.html", "r", encoding="utf-8") as f:
         index_text = f.read()
@@ -109,18 +110,50 @@ try:
                     start_match.group(1)
                 )
             )
+            app_events_details.append({
+                "name": name_match.group(1),
+                "city": city_match.group(1),
+                "start": start_match.group(1)
+})
 
 except FileNotFoundError:
     pass
 
 # Bereits vorhandene App-Veranstaltungen aus den Herold-Funden entfernen
+def fund_ist_in_app(fund):
+    name = str(fund.get("name", ""))
+    city = str(fund.get("city", ""))
+    start = vorhandenes_startdatum(fund)
+
+    key = schluessel(name, city, start)
+
+    if key in app_events:
+        return True
+
+    return any(
+        event["start"] == start
+        and (
+            (
+                event["city"].strip().lower() == city.strip().lower()
+                and SequenceMatcher(
+                    None,
+                    event["name"].strip().lower(),
+                    name.strip().lower()
+                ).ratio() >= 0.60
+            )
+            or SequenceMatcher(
+                None,
+                event["name"].strip().lower(),
+                name.strip().lower()
+            ).ratio() >= 0.90
+        )
+        for event in app_events_details
+    )
+
+
 funde = [
     fund for fund in funde
-    if schluessel(
-        str(fund.get("name", "")),
-        str(fund.get("city", "")),
-        vorhandenes_startdatum(fund)
-    ) not in app_events
+    if not fund_ist_in_app(fund)
 ]
 vorhanden = set()
 
@@ -203,7 +236,30 @@ for heading in soup.find_all("h2"):
 
         if key in vorhanden or key in app_events:
             continue
+        # Ähnliche bereits vorhandene App-Veranstaltung erkennen
+    
+        aehnlich_in_app = any(
+            event["start"] == start
+            and (
+                (
+                    event["city"].strip().lower() == city.strip().lower()
+                    and SequenceMatcher(
+                        None,
+                        event["name"].strip().lower(),
+                        name.strip().lower()
+                    ).ratio() >= 0.60
+                )
+                or SequenceMatcher(
+                    None,
+                    event["name"].strip().lower(),
+                    name.strip().lower()
+                ).ratio() >= 0.90
+            )
+            for event in app_events_details
+        )
 
+        if aehnlich_in_app:
+            continue
         raw_id = (
             f"{country}|{name}|{city}|{start}"
         ).encode("utf-8")
