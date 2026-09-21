@@ -142,7 +142,9 @@ jobs:
 
           PY
           
-        
+      - name: Mittelalterkalender Europa prüfen
+        run: |
+          python3 herold_europa.py
       
       - name: Funddatei prüfen
 
