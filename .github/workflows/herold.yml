@@ -160,28 +160,7 @@ jobs:
 
       - name: Vergangene Herold-Funde entfernen
         run: |
-          python3 - <<'PY'
-          import json
-          from datetime import date
-
-          with open("herold-funde.json", "r", encoding="utf-8") as f:
-              funde = json.load(f)
-
-          heute = date.today().isoformat()
-          vorher = len(funde)
-
-          funde = [
-              fund for fund in funde
-              if (fund.get("end") or fund.get("start") or "9999-12-31") >= heute
-          ]
-
-          with open("herold-funde.json", "w", encoding="utf-8") as f:
-              json.dump(funde, f, ensure_ascii=False, indent=2)
-
-          print("Vergangene Funde entfernt:", vorher - len(funde))
-          print("Verbleibende Funde:", len(funde))
-       PY
-          
+          python3 -c 'import json; from datetime import date; p="herold-funde.json"; f=json.load(open(p,encoding="utf-8")); h=date.today().isoformat(); n=len(f); f=[x for x in f if (x.get("end") or x.get("start") or "9999-12-31") >= h]; json.dump(f,open(p,"w",encoding="utf-8"),ensure_ascii=False,indent=2); print("Vergangene Funde entfernt:",n-len(f)); print("Verbleibende Funde:",len(f))' 
       - name: Änderungen speichern
 
         run: |
