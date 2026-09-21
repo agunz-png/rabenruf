@@ -201,7 +201,7 @@ for heading in soup.find_all("h2"):
             start
         )
 
-        if key in vorhanden:
+        if key in vorhanden or key in app_events:
             continue
 
         raw_id = (
