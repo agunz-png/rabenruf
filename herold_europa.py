@@ -89,7 +89,39 @@ try:
 except (FileNotFoundError, json.JSONDecodeError):
     funde = []
 
+# Bereits fest in der App vorhandene Veranstaltungen laden
+app_events = set()
 
+try:
+    with open("index.html", "r", encoding="utf-8") as f:
+        index_text = f.read()
+
+    for block in re.findall(r"\{.*?\}", index_text, re.S):
+        name_match = re.search(r'name:\s*["\']([^"\']+)["\']', block)
+        start_match = re.search(r'start:\s*["\'](\d{4}-\d{2}-\d{2})["\']', block)
+        city_match = re.search(r'city:\s*["\']([^"\']*)["\']', block)
+
+        if name_match and start_match and city_match:
+            app_events.add(
+                schluessel(
+                    name_match.group(1),
+                    city_match.group(1),
+                    start_match.group(1)
+                )
+            )
+
+except FileNotFoundError:
+    pass
+
+# Bereits vorhandene App-Veranstaltungen aus den Herold-Funden entfernen
+funde = [
+    fund for fund in funde
+    if schluessel(
+        str(fund.get("name", "")),
+        str(fund.get("city", "")),
+        vorhandenes_startdatum(fund)
+    ) not in app_events
+]
 vorhanden = set()
 
 for fund in funde:
