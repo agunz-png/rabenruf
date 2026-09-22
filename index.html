@@ -6463,7 +6463,22 @@ applyFilters();
   
 renderCalendar();
   
-alert("⚔️ Veranstaltung wurde in Rabenruf übernommen!");
+const heroldId = String(fund.id || "");
+
+navigator.clipboard.writeText(heroldId).catch(() => {
+  prompt("Kopiere diese Herold-ID:", heroldId);
+});
+
+alert(
+  "⚔️ Veranstaltung wurde übernommen!\n\n" +
+  "Die Herold-ID wurde kopiert.\n" +
+  "Jetzt öffnet sich die dauerhafte GitHub-Freigabe."
+);
+
+window.open(
+  "https://github.com/agunz-png/rabenruf/actions/workflows/approve-event.yml",
+  "_blank"
+);
 
 }
 function heroldVerwerfen(index){
