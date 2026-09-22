@@ -6204,7 +6204,28 @@ async function ladeHeroldFunde(){
     if(!antwort.ok) throw new Error("Datei konnte nicht geladen werden");
 
     heroldFunde = await antwort.json();
+let verworfeneIds = [];
 
+try{
+  const verworfenAntwort =
+    await fetch("events-rejected.json?zeit=" + Date.now());
+
+  if(verworfenAntwort.ok){
+    verworfeneIds = await verworfenAntwort.json();
+  }
+}catch(fehler){
+  console.warn("Verworfene Herold-Funde konnten nicht geladen werden:", fehler);
+}
+
+const verworfenSet = new Set(
+  Array.isArray(verworfeneIds)
+    ? verworfeneIds.map(String)
+    : []
+);
+
+heroldFunde = heroldFunde.filter(
+  fund => !verworfenSet.has(String(fund.id || ""))
+);
     renderHerold();
 
   }catch(fehler){
