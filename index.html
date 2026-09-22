@@ -6515,10 +6515,8 @@ function heroldVerwerfen(index){
   heroldFunde.splice(index, 1);
   renderHerold();
 
-  window.open(
-    "https://github.com/agunz-png/rabenruf/actions/workflows/reject-event.yml",
-    "_blank"
-  );
+  window.location.href =
+  "https://github.com/agunz-png/rabenruf/actions/workflows/reject-event.yml";
 
 }
 
