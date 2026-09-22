@@ -6499,9 +6499,26 @@ window.open(
 }
 function heroldVerwerfen(index){
 
-  heroldFunde.splice(index, 1);
+  const fund = heroldFunde[index];
+  const heroldId = String(fund?.id || "");
 
+  if(!heroldId){
+    alert("Keine Herold-ID gefunden.");
+    return;
+  }
+
+  prompt(
+    "🐦‍⬛ Kopiere diese Herold-ID mit Strg+C und klicke danach auf OK:",
+    heroldId
+  );
+
+  heroldFunde.splice(index, 1);
   renderHerold();
+
+  window.open(
+    "https://github.com/agunz-png/rabenruf/actions/workflows/reject-event.yml",
+    "_blank"
+  );
 
 }
 
