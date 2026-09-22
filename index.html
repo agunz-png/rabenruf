@@ -6465,14 +6465,9 @@ renderCalendar();
   
 const heroldId = String(fund.id || "");
 
-navigator.clipboard.writeText(heroldId).catch(() => {
-  prompt("Kopiere diese Herold-ID:", heroldId);
-});
-
-alert(
-  "⚔️ Veranstaltung wurde übernommen!\n\n" +
-  "Die Herold-ID wurde kopiert.\n" +
-  "Jetzt öffnet sich die dauerhafte GitHub-Freigabe."
+prompt(
+  "🐦‍⬛ Kopiere diese Herold-ID mit Strg+C und klicke danach auf OK:",
+  heroldId
 );
 
 window.open(
