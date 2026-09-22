@@ -4599,6 +4599,59 @@ localStorage.setItem(
   "rabenrufHeroldEvents",
   JSON.stringify(gespeicherteHeroldEvents)
 );
+async function ladeFreigegebeneEvents(){
+
+  try{
+
+    const antwort = await fetch(
+      "events-approved.json?zeit=" + Date.now()
+    );
+
+    if(!antwort.ok){
+      throw new Error("Freigegebene Veranstaltungen konnten nicht geladen werden");
+    }
+
+    const freigegebeneEvents = await antwort.json();
+
+    if(!Array.isArray(freigegebeneEvents)){
+      return;
+    }
+
+    const vorhandeneIds =
+      new Set(
+        events.map(event =>
+          String(event.id || "")
+        )
+      );
+
+    for(const event of freigegebeneEvents){
+
+      const id = String(event.id || "");
+
+      if(id && vorhandeneIds.has(id)){
+        continue;
+      }
+
+      events.push(event);
+
+      if(id){
+        vorhandeneIds.add(id);
+      }
+    }
+
+    applyFilters();
+    renderCalendar();
+
+  }catch(fehler){
+
+    console.error(
+      "Freigegebene Veranstaltungen konnten nicht geladen werden:",
+      fehler
+    );
+
+  }
+
+}  
 /* =========================================
 
    APP-ZUSTAND
@@ -6432,6 +6485,8 @@ applyFilters();
 renderCalendar();
   
 ladeHeroldFunde();
+
+ladeFreigegebeneEvents();
   
 </script>
 
