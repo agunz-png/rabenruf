@@ -1,0 +1,100 @@
+name: Herold Veranstaltung freigeben
+
+on:
+  workflow_dispatch:
+    inputs:
+      event_id:
+        description: "ID des Herold-Fundes"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository laden
+        uses: actions/checkout@v4
+
+      - name: Veranstaltung freigeben
+        env:
+          EVENT_ID: ${{ inputs.event_id }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+
+          event_id = os.environ["EVENT_ID"].strip()
+
+          with open("herold-funde.json", "r", encoding="utf-8") as f:
+              funde = json.load(f)
+
+          try:
+              with open("events-approved.json", "r", encoding="utf-8") as f:
+                  approved = json.load(f)
+          except (FileNotFoundError, json.JSONDecodeError):
+              approved = []
+
+          fund = next(
+              (fund for fund in funde if str(fund.get("id", "")) == event_id),
+              None
+          )
+
+          if fund is None:
+              raise SystemExit("Herold-Fund nicht gefunden: " + event_id)
+
+          approved_id = "herold-" + event_id
+
+          if any(str(event.get("id", "")) == approved_id for event in approved):
+              print("Veranstaltung ist bereits freigegeben.")
+              raise SystemExit(0)
+
+          event = {
+              "id": approved_id,
+              "name": fund.get("name", ""),
+              "type": fund.get("type", "Markt"),
+              "tags": ["Mittelalter", "Herold"],
+              "start": fund.get("start", ""),
+              "end": fund.get("end") or fund.get("start", ""),
+              "date": fund.get("date", ""),
+              "country": fund.get("country", ""),
+              "flag": {
+                  "Schweiz": "🇨🇭",
+                  "Deutschland": "🇩🇪",
+                  "Österreich": "🇦🇹"
+              }.get(fund.get("country", ""), "🏰"),
+              "city": fund.get("city", ""),
+              "venue": "",
+              "address": "",
+              "lat": 0,
+              "lng": 0,
+              "website": fund.get("source", ""),
+              "organizer": "",
+              "info": "Gefunden und bestätigt durch den Herold",
+              "hours": ""
+          }
+
+          approved.append(event)
+
+          with open("events-approved.json", "w", encoding="utf-8") as f:
+              json.dump(approved, f, ensure_ascii=False, indent=2)
+
+          print("Freigegeben:", event["name"])
+          PY
+
+      - name: Änderung speichern
+        run: |
+          git config user.name "Rabenruf Herold"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add events-approved.json
+
+          if git diff --cached --quiet; then
+            echo "Keine Änderung nötig."
+          else
+            git commit -m "🐦‍⬛ Herold: Veranstaltung freigegeben"
+            git push
+          fi
