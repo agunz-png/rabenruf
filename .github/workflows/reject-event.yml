@@ -1,0 +1,62 @@
+name: Herold Veranstaltung verwerfen
+
+on:
+  workflow_dispatch:
+    inputs:
+      event_id:
+        description: "ID des Herold-Fundes"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  reject:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository laden
+        uses: actions/checkout@v4
+
+      - name: Veranstaltung dauerhaft verwerfen
+        env:
+          EVENT_ID: ${{ inputs.event_id }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+
+          event_id = os.environ["EVENT_ID"].strip()
+
+          try:
+              with open("events-rejected.json", "r", encoding="utf-8") as f:
+                  rejected = json.load(f)
+          except (FileNotFoundError, json.JSONDecodeError):
+              rejected = []
+
+          if event_id in rejected:
+              print("Veranstaltung ist bereits verworfen.")
+              raise SystemExit(0)
+
+          rejected.append(event_id)
+
+          with open("events-rejected.json", "w", encoding="utf-8") as f:
+              json.dump(rejected, f, ensure_ascii=False, indent=2)
+
+          print("Dauerhaft verworfen:", event_id)
+          PY
+
+      - name: Änderung speichern
+        run: |
+          git config user.name "Rabenruf Herold"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add events-rejected.json
+
+          if git diff --cached --quiet; then
+            echo "Keine Änderung nötig."
+          else
+            git commit -m "🐦‍⬛ Herold: Veranstaltung verworfen"
+            git push
+          fi
