@@ -5694,10 +5694,10 @@ function openEvent(id){
     </button>
 
     ${organizerUrl
-      ? `<a class="btn green" href="${escapeHTML(organizerUrl)}" target="_blank" rel="noopener noreferrer">🌐 Veranstalterseite öffnen</a>`
+      ? `<a class="btn green" href="${escapeHTML(organizerUrl)}">🌐 Veranstalterseite öffnen</a>`
       : `<div class="notice">Für diesen Termin ist noch keine offizielle Veranstalterseite hinterlegt.</div>`}
     ${sourceUrl
-      ? `<a class="btn" href="${escapeHTML(sourceUrl)}" target="_blank" rel="noopener noreferrer">🔎 Fundquelle öffnen</a>`
+      ? `<a class="btn" href="${escapeHTML(sourceUrl)}">🔎 Fundquelle öffnen</a>`
       : ""}
 
     <button
