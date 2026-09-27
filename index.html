@@ -4641,6 +4641,7 @@ async function ladeFreigegebeneEvents(){
 
     applyFilters();
     renderCalendar();
+    renderMapMarkers();
 
   }catch(fehler){
 
@@ -5214,6 +5215,21 @@ function setType(type){
 
 }
 
+function eventIsCurrent(event){
+  const dateString = event.end || event.start;
+  if(!dateString) return false;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const endDate = new Date(dateString + "T23:59:59");
+  return !Number.isNaN(endDate.getTime()) && endDate >= today;
+}
+
+function getCurrentEvents(){
+  return events.filter(eventIsCurrent);
+}
+
 function applyFilters(){
 
   const query =
@@ -5234,21 +5250,7 @@ function applyFilters(){
 
     byId("timeFilter").value;
 
-  let list =
-
-    [...events];
-
-  // Vergangene Veranstaltungen ausblenden
-const heute = new Date();
-heute.setHours(0, 0, 0, 0);
-
-list = list.filter(event => {
-  const datum = event.end || event.start;
-  if (!datum) return true;
-
-  const endDatum = new Date(datum + "T23:59:59");
-  return endDatum >= heute;
-});
+  let list = getCurrentEvents();
 
   if(currentType !== "Alle"){
 
@@ -5788,9 +5790,9 @@ function renderMapMarkers(){
 
         [
 
-          event.lat,
+          lat,
 
-          event.lng
+          lng
 
         ]
 
@@ -5833,6 +5835,25 @@ function renderMapMarkers(){
           class="popupButton"
 
           onclick="
+
+            openEvent('${event.id}')
+
+          ">
+
+          Details öffnen
+
+        </button>
+
+      </div>
+
+    `);
+
+    mapMarkers.push(marker);
+
+  });
+
+}
+   onclick="
 
             openEvent('${event.id}')
 
@@ -6046,7 +6067,7 @@ function renderCalendar(){
 
   const sorted =
 
-    [...events]
+    [...getCurrentEvents()]
 
       .sort(
 
@@ -6223,8 +6244,29 @@ const verworfenSet = new Set(
     : []
 );
 
-heroldFunde = heroldFunde.filter(
-  fund => !verworfenSet.has(String(fund.id || ""))
+let bestaetigteIds = new Set();
+
+try{
+  const bestaetigtAntwort =
+    await fetch("events-approved.json?zeit=" + Date.now());
+
+  if(bestaetigtAntwort.ok){
+    const bestaetigteEvents = await bestaetigtAntwort.json();
+    if(Array.isArray(bestaetigteEvents)){
+      bestaetigteIds = new Set(
+        bestaetigteEvents.map(event =>
+          String(event.id || "").replace(/^herold-/, "")
+        )
+      );
+    }
+  }
+}catch(fehler){
+  console.warn("Bestätigte Veranstaltungen konnten nicht geladen werden:", fehler);
+}
+
+heroldFunde = heroldFunde.filter(fund =>
+  !verworfenSet.has(String(fund.id || "")) &&
+  !bestaetigteIds.has(String(fund.id || ""))
 );
     renderHerold();
 
@@ -6529,10 +6571,15 @@ function heroldVerwerfen(index){
 applyFilters();
 
 renderCalendar();
-  
+
 ladeHeroldFunde();
 
 ladeFreigegebeneEvents();
+
+setInterval(() => {
+  ladeFreigegebeneEvents();
+  ladeHeroldFunde();
+}, 15 * 60 * 1000);
   
 </script>
 
