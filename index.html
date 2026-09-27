@@ -6433,7 +6433,7 @@ async function starteHeroldAktion(index, aktion){
     zeigeHeroldAnmeldung("Bitte zuerst anmelden.");
     return;
   }
-  const knopf=event?.currentTarget;
+  const knopf=document.activeElement;
   if(knopf) knopf.disabled=true;
   const {data,error}=await heroldSupabase.functions.invoke("herold-decision",{
     body:{action:aktion,event_id:eventId}
