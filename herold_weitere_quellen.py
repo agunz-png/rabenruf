@@ -163,20 +163,18 @@ def vehi_date(text):
 
 def country_from_vehi(text, postal):
     t = norm(text)
-    if re.search(r"\b(?:suisse|switzerland|schweiz|swiss)\b", t) or re.search(r"\b\d{4}\s+[\wÀ-ÿ]", text):
-        return "Schweiz"
+    # Region names/codes outrank postal length: some Italian postcodes lose
+    # their leading zero in third-party calendars (e.g. 6024 Gubbio).
     if any(region in t for region in ITALIAN_REGIONS) or re.search(
         r"\b(?:umb|tos|sic|fri|ven|pie|cam|pug|lom|laz|sar|mar|lig|cal|abr|emi|mol|bas|val)(?:\.|\b)", t
-    ):
+    ) or "italia" in t or "italy" in t or "italien" in t:
         return "Italien"
     if any(region in t for region in FRENCH_REGIONS) or re.search(
         r"\b(?:bret|norm|occ|als|bre|idf|naq|pdl|ara|ges|hdf|cor)(?:\.|\b)", t
-    ):
+    ) or "france" in t or "frankreich" in t:
         return "Frankreich"
-    if "france" in t or "frankreich" in t:
-        return "Frankreich"
-    if "italia" in t or "italy" in t or "italien" in t:
-        return "Italien"
+    if re.search(r"\b(?:suisse|switzerland|schweiz|swiss)\b", t) or re.search(r"\b\d{4}\s+[\wÀ-ÿ]", text):
+        return "Schweiz"
     if re.search(r"\bfr\b", t) and postal and len(postal) == 5:
         return "Frankreich"
     return ""
@@ -269,9 +267,9 @@ def mirimor_date(text, year, month):
         d1 = int(m.group(1))
         d2 = int(m.group(2) or m.group(1))
         m1 = int(m.group(3) or month)
-        d3 = int(m.group(5) or d2)
-        m2 = int(m.group(6) or m1)
-        yr = int(m.group(7) or year)
+        d3 = int(m.group(4) or d2)
+        m2 = int(m.group(5) or m1)
+        yr = int(m.group(6) or year)
         try:
             return date(yr, m1, d1).isoformat(), date(yr, m2, d3).isoformat()
         except ValueError:
