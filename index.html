@@ -5782,7 +5782,14 @@ function renderMapMarkers(){
 
   mapMarkers = [];
 
-  events.forEach(event => {
+  getCurrentEvents().forEach(event => {
+
+    const lat = Number(event.lat);
+    const lng = Number(event.lng);
+
+    if(!Number.isFinite(lat) || !Number.isFinite(lng) || (lat === 0 && lng === 0)){
+      return;
+    }
 
     const marker =
 
