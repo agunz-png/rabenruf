@@ -167,7 +167,11 @@ def country_from_vehi(text, postal):
     # their leading zero in third-party calendars (e.g. 6024 Gubbio).
     if any(region in t for region in ITALIAN_REGIONS) or re.search(
         r"\b(?:umb|tos|sic|fri|ven|pie|cam|pug|lom|laz|sar|mar|lig|cal|abr|emi|mol|bas|val)(?:\.|\b)", t
-    ) or "italia" in t or "italy" in t or "italien" in t:
+    ) or any(city in t for city in (
+        "foligno", "gubbio", "altamura", "cividale del friuli", "venezia",
+        "firenze", "siena", "bologna", "milano", "bergamo", "napoli",
+        "lecce", "torino", "verona", "civita di bagnoregio",
+    )) or "italia" in t or "italy" in t or "italien" in t:
         return "Italien"
     if any(region in t for region in FRENCH_REGIONS) or re.search(
         r"\b(?:bret|norm|occ|als|bre|idf|naq|pdl|ara|ges|hdf|cor)(?:\.|\b)", t
