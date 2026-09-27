@@ -373,11 +373,12 @@ def scrape_mirimor():
             city = plain(re.sub(r"^[,\s]+|[,\s]+$", "", city))
             city = city.split(",")[-1].strip() if "," in city else city
         else:
-            city = next((p for p in parts if norm(p) in {norm(x) for x in (
+            places = (
                 "Grandson", "Buttes", "Neuchâtel", "Genève", "Lausanne", "Montreux",
                 "Vevey", "Nyon", "Sion", "Martigny", "Fribourg", "Bulle",
                 "Saint-Ursanne", "Le Landeron", "Biel/Nidau", "Yverdon",
-            )}), "")
+            )
+            city = next((place for place in places if norm(place) in norm(block)), "")
         if not title or not city:
             continue
         item = event_record(title, city, "Schweiz", start, end, MIRIMOR_URL)
