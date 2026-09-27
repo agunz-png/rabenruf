@@ -1031,6 +1031,8 @@ h3{
 
   </div>
 
+<div class="notice">Nach einem Klick öffnet sich eine vorbefüllte GitHub-Bestätigung. Tippe dort auf „Issue erstellen“; Rabenruf führt die Aktion anschliessend automatisch aus.</div>
+
 <div id="heroldList"></div>
 
 </main>
@@ -6344,202 +6346,40 @@ box.innerHTML = `
 
 }
 
-function heroldUebernehmen(index){
+function starteHeroldAktion(index, aktion){
 
   const fund = heroldFunde[index];
+  const eventId = String(fund?.id || "").trim();
 
-  const datumText = String(fund.date || "");
-
-let start = "";
-
-let end = "";
-
-const isoTreffer = datumText.match(
-
-  /(\d{4})-(\d{2})-(\d{2})(?:.*?(\d{4})-(\d{2})-(\d{2}))?/
-
-);
-
-if (isoTreffer) {
-
-  start = `${isoTreffer[1]}-${isoTreffer[2]}-${isoTreffer[3]}`;
-
-  if (isoTreffer[4]) {
-
-    end = `${isoTreffer[4]}-${isoTreffer[5]}-${isoTreffer[6]}`;
-
-  } else {
-
-    end = start;
-
-  }
-
-} else {
-
-  const jahrTreffer = datumText.match(/(20\d{2})/);
-
-  const jahr = jahrTreffer ? jahrTreffer[1] : "2026";
-
-  const datumTreffer = datumText.match(
-
-    /(\d{1,2})\.(?:\s*[-+]\s*(\d{1,2})\.)?(\d{2})\.(20\d{2})/
-
-  );
-
-  if (datumTreffer) {
-
-    const tag1 = datumTreffer[1].padStart(2, "0");
-
-    const monat = datumTreffer[3].padStart(2, "0");
-
-    start = `${jahr}-${monat}-${tag1}`;
-
-    if (datumTreffer[2]) {
-
-      const tag2 = datumTreffer[2].padStart(2, "0");
-
-      end = `${jahr}-${monat}-${tag2}`;
-
-    } else {
-
-      end = start;
-
-    }
-
-  } else {
-
-    const teile = datumText.split(/\s+[–—-]\s+/);
-
-const startTreffer = Date.parse(teile[0]);
-
-if (!Number.isNaN(startTreffer)) {
-  start = new Date(startTreffer).toISOString().slice(0, 10);
-
-  if (teile.length > 1) {
-    const endTreffer = Date.parse(teile[1]);
-
-    end = !Number.isNaN(endTreffer)
-      ? new Date(endTreffer).toISOString().slice(0, 10)
-      : start;
-  } else {
-    end = start;
-  }
-}
-
-  }
-
-}
-
-const neuesEvent = {
-
-  id: `herold-${fund.id}`,
-
-  name: fund.name,
-
-  type: fund.type || "Markt",
-
-tags: fund.type === "Buhurt"
-
-  ? ["Buhurt", "Herold"]
-
-  : ["Mittelalter", "Herold"],
-
-  start: start,
-
-  end: end,
-
-  date: fund.date,
-
-  country: fund.country,
-
-  flag:
-  fund.country === "Deutschland" ? "🇩🇪" :
-  fund.country === "Germany" ? "🇩🇪" :
-  fund.country === "Schweiz" ? "🇨🇭" :
-  fund.country === "Switzerland" ? "🇨🇭" :
-  fund.country === "Österreich" ? "🇦🇹" :
-  fund.country === "Austria" ? "🇦🇹" :
-  fund.country === "Italy" ? "🇮🇹" :
-  fund.country === "France" ? "🇫🇷" :
-  fund.country === "Spain" ? "🇪🇸" :
-  fund.country === "Poland" ? "🇵🇱" :
-  fund.country === "Hungary" ? "🇭🇺" :
-  fund.country === "United Kingdom" ? "🇬🇧" :
-  fund.country === "United States" ? "🇺🇸" :
-  "🏰",
-
-  city: fund.city,
-
-  venue: "",
-
-  address: "",
-
-  lat: 0,
-
-  lng: 0,
-
-  website: fund.source || "",
-
-  organizer: "",
-
-  info: "Gefunden durch den Herold",
-
-  hours: ""
-
-};
-events.push(neuesEvent);
-
-localStorage.setItem(
-  "rabenrufHeroldEvents",
-  JSON.stringify(
-    events.filter(event =>
-      String(event.id || "").startsWith("herold-")
-    )
-  )
-);
-
-heroldFunde.splice(index, 1);
-
-renderHerold();
-
-applyFilters();
-  
-renderCalendar();
-  
-const heroldId = String(fund.id || "");
-
-prompt(
-  "🐦‍⬛ Kopiere diese Herold-ID mit Strg+C und klicke danach auf OK:",
-  heroldId
-);
-
-window.open(
-  "https://github.com/agunz-png/rabenruf/actions/workflows/approve-event.yml",
-  "_blank"
-);
-
-}
-function heroldVerwerfen(index){
-
-  const fund = heroldFunde[index];
-  const heroldId = String(fund?.id || "");
-
-  if(!heroldId){
-    alert("Keine Herold-ID gefunden.");
+  if(!fund || !/^[A-Za-z0-9_-]{1,120}$/.test(eventId)){
+    alert("Diese Herold-Meldung hat keine gültige ID.");
     return;
   }
 
-  prompt(
-    "🐦‍⬛ Kopiere diese Herold-ID mit Strg+C und klicke danach auf OK:",
-    heroldId
+  const aktionText = aktion === "approve" ? "freigeben" : "verwerfen";
+  const titel = `Rabenruf ${aktionText}: ${fund.name || eventId}`;
+  const inhalt = [
+    `RABENRUF_HEROLD_ACTION=${aktion}`,
+    `RABENRUF_EVENT_ID=${eventId}`,
+    "",
+    "Von Rabenruf automatisch erzeugte Herold-Anfrage."
+  ].join("\n");
+
+  const adresse = new URL(
+    "https://github.com/agunz-png/rabenruf/issues/new"
   );
+  adresse.searchParams.set("title", titel);
+  adresse.searchParams.set("body", inhalt);
 
-  heroldFunde.splice(index, 1);
-  renderHerold();
+  window.open(adresse.toString(), "_blank", "noopener,noreferrer");
+}
 
-  window.location.href =
-  "https://github.com/agunz-png/rabenruf/actions/workflows/reject-event.yml";
+function heroldUebernehmen(index){
+  starteHeroldAktion(index, "approve");
+}
 
+function heroldVerwerfen(index){
+  starteHeroldAktion(index, "reject");
 }
 
 /* =========================================
@@ -6560,6 +6400,11 @@ setInterval(() => {
   ladeFreigegebeneEvents();
   ladeHeroldFunde();
 }, 5 * 60 * 1000);
+
+window.addEventListener('focus', () => {
+  ladeFreigegebeneEvents();
+  ladeHeroldFunde();
+});
   
 </script>
 
