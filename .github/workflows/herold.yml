@@ -150,6 +150,10 @@ jobs:
         run: |
           python3 herold_weitere_quellen.py
 
+      - name: Buhurt-Turniere Europa prüfen
+        run: |
+          python3 herold_buhurt.py
+
       - name: Funddatei prüfen
 
         run: |
