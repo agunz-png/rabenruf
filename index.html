@@ -5338,6 +5338,17 @@ function applyFilters(){
 
   let list = getCurrentEvents();
 
+  const heute = new Date();
+  heute.setHours(0, 0, 0, 0);
+  const grenze = new Date(heute);
+  grenze.setDate(grenze.getDate() + 30);
+  grenze.setHours(23, 59, 59, 999);
+
+  list = list.filter(event => {
+    const beginn = dateObject(event.start);
+    return !Number.isNaN(beginn.getTime()) && beginn <= grenze;
+  });
+
   if(currentType !== "Alle"){
 
     list =
