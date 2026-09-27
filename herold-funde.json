@@ -712,18 +712,6 @@
     "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-enter-2026/"
   },
   {
-    "id": "eu-source-42208c695317bac8",
-    "name": "Kalender der Spektakel, Märkte und Sonstigem im Mittelalter Schweiz",
-    "type": "Markt",
-    "date": "2026-10-11 bis 2026-10-11",
-    "start": "2026-10-11",
-    "end": "2026-10-11",
-    "country": "Schweiz",
-    "city": "Saint Ursanne",
-    "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
-  },
-  {
     "id": "eu-source-6ce31234b3e64534",
     "name": "Tournoi de Béhourd Le Landeron",
     "type": "Markt",
