@@ -7,12 +7,19 @@ on:
         description: "ID des Herold-Fundes"
         required: true
         type: string
+  issues:
+    types: [opened]
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   approve:
+    if: >-
+      github.event_name != 'issues' ||
+      (github.event.issue.user.login == 'agunz-png' &&
+      startsWith(github.event.issue.title, 'Rabenruf freigeben:'))
     runs-on: ubuntu-latest
 
     steps:
@@ -22,6 +29,8 @@ jobs:
       - name: Veranstaltung freigeben
         env:
           EVENT_ID: ${{ inputs.event_id }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
           python3 - <<'PY'
           import json
@@ -32,7 +41,20 @@ jobs:
           import urllib.request
           from datetime import date
 
-          event_id = os.environ["EVENT_ID"].strip()
+          if os.environ.get("EVENT_NAME") == "issues":
+              fields = dict(
+                  line.split("=", 1)
+                  for line in os.environ.get("ISSUE_BODY", "").splitlines()
+                  if "=" in line
+              )
+              if fields.get("RABENRUF_HEROLD_ACTION") != "approve":
+                  raise SystemExit("Ungültige Herold-Aktion.")
+              event_id = fields.get("RABENRUF_EVENT_ID", "").strip()
+          else:
+              event_id = os.environ["EVENT_ID"].strip()
+
+          if not re.fullmatch(r"[A-Za-z0-9_-]{1,120}", event_id):
+              raise SystemExit("Ungültige Herold-ID.")
 
           with open("herold-funde.json", "r", encoding="utf-8") as f:
               funde = json.load(f)
@@ -221,3 +243,10 @@ jobs:
             git commit -m "🐦‍⬛ Herold: Veranstaltung freigegeben"
             git push
           fi
+
+      - name: GitHub-Anfrage abschliessen
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: gh issue close "$ISSUE_NUMBER" --repo agunz-png/rabenruf --reason completed
