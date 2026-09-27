@@ -590,5 +590,47 @@
     "city": "Biel/Nidau",
     "postcode": "",
     "source": "https://www.mirimor.ch/kalender/"
+  },
+  {
+    "id": "bi-buhurt-645b1fa1a6cd845e",
+    "name": "Heritage Shield 2026",
+    "type": "Buhurt",
+    "date": "2026-10-03",
+    "start": "2026-10-03",
+    "end": "2026-10-03",
+    "country": "Vereinigtes Königreich",
+    "city": "Hatsford Farm",
+    "postcode": "",
+    "lat": 0.0,
+    "lng": 0.0,
+    "source": "https://www.buhurtinternational.com/tournament/heritage-shield-2026"
+  },
+  {
+    "id": "bi-buhurt-ee43ca8dd83c1892",
+    "name": "V. Veszprém Medieval Day 2026",
+    "type": "Buhurt",
+    "date": "2026-10-10",
+    "start": "2026-10-10",
+    "end": "2026-10-10",
+    "country": "Ungarn",
+    "city": "Veszprém",
+    "postcode": "",
+    "lat": 0.0,
+    "lng": 0.0,
+    "source": "https://www.buhurtinternational.com/tournament/v.-veszpr%C3%A9m-medieval-day"
+  },
+  {
+    "id": "bi-buhurt-89f60acaf094684f",
+    "name": "Alpine Warrior 2027",
+    "type": "Buhurt",
+    "date": "2027-05-01",
+    "start": "2027-05-01",
+    "end": "2027-05-01",
+    "country": "Österreich",
+    "city": "Tarrenz",
+    "postcode": "6464",
+    "lat": 47.2580585,
+    "lng": 10.7745265,
+    "source": "https://www.buhurtinternational.com/tournament/alpine-warrior-2027"
   }
 ]
