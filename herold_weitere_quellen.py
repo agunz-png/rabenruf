@@ -232,7 +232,7 @@ def scrape_vehi():
             if not start or (end or start) < date.today().isoformat():
                 continue
             city = plain(city_line.split(",")[0]).strip(" ,–-")
-            country = country_from_vehi(name + " " + city_line, "")
+            country = country_from_vehi(city_line, "")
             if not country or not city:
                 continue
             source = card.get("href") or url
@@ -437,6 +437,7 @@ def main():
             item.get("source") == MIRIMOR_URL
             and re.search(r"(?i)\b(?:kalender|termine|veranstaltungen)\b", item.get("name", ""))
         )
+        and not str(item.get("source", "")).startswith(VEHI_BASE)
     ]
 
     new_events = []
