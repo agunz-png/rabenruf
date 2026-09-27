@@ -5773,17 +5773,12 @@ function renderMapMarkers(){
   }
 
   mapMarkers.forEach(
-
-    marker =>
-
-    map.removeLayer(marker)
-
+    marker => map.removeLayer(marker)
   );
 
   mapMarkers = [];
 
   getCurrentEvents().forEach(event => {
-
     const lat = Number(event.lat);
     const lng = Number(event.lng);
 
@@ -5791,93 +5786,24 @@ function renderMapMarkers(){
       return;
     }
 
-    const marker =
-
-      L.marker(
-
-        [
-
-          lat,
-
-          lng
-
-        ]
-
-      )
-
-      .addTo(map);
+    const marker = L.marker([lat, lng]).addTo(map);
 
     marker.bindPopup(`
-
-      <div style="
-
-        min-width:180px;
-
-        line-height:1.4;
-
-      ">
-
-        <strong>
-
-          ${icon(event.type)}
-
-          ${escapeHTML(event.name)}
-
-        </strong>
-
+      <div style="min-width:180px;line-height:1.4">
+        <strong>${icon(event.type)} ${escapeHTML(event.name)}</strong>
         <br>
-
         ${escapeHTML(event.date)}
-
         <br>
-
-        ${event.flag}
-
-        ${escapeHTML(event.city)}
-
+        ${event.flag} ${escapeHTML(event.city)}
         <br>
-
-        <button
-
-          class="popupButton"
-
-          onclick="
-
-            openEvent('${event.id}')
-
-          ">
-
+        <button class="popupButton" onclick="openEvent('${event.id}')">
           Details öffnen
-
         </button>
-
       </div>
-
     `);
 
     mapMarkers.push(marker);
-
   });
-
-}
-   onclick="
-
-            openEvent('${event.id}')
-
-          ">
-
-          Details öffnen
-
-        </button>
-
-      </div>
-
-    `);
-
-    mapMarkers.push(marker);
-
-  });
-
 }
 
 function showMap(){
