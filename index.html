@@ -1107,7 +1107,7 @@ h3{
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
@@ -4630,19 +4630,54 @@ localStorage.setItem(
 );
 const RABENRUF_SUPABASE_URL = "https://xsrcdvtavnftwkndcfsr.supabase.co";
 const RABENRUF_SUPABASE_KEY = "sb_publishable_YeEqizrxcYL2mRZQai9HUw__Z8GlkPD";
-const heroldSupabase = window.supabase?.createClient(
-  RABENRUF_SUPABASE_URL,
-  RABENRUF_SUPABASE_KEY
-);
 let heroldSession = null;
 
+async function heroldApi(pfad, optionen = {}){
+  const headers = {
+    "apikey": RABENRUF_SUPABASE_KEY,
+    "Authorization": "Bearer " + (optionen.token || RABENRUF_SUPABASE_KEY)
+  };
+  if(optionen.body !== undefined) headers["Content-Type"] = "application/json";
+  const antwort = await fetch(RABENRUF_SUPABASE_URL + "/" + pfad, {
+    method: optionen.method || "GET",
+    headers,
+    body: optionen.body === undefined ? undefined : JSON.stringify(optionen.body)
+  });
+  const text = await antwort.text();
+  let daten = null;
+  try{ daten = text ? JSON.parse(text) : null; }catch(_fehler){}
+  if(!antwort.ok){
+    const meldung = daten?.msg || daten?.message || daten?.error_description || daten?.error;
+    throw new Error(meldung || "Supabase antwortet mit Fehler " + antwort.status + ".");
+  }
+  return daten;
+}
+
+function heroldSessionSpeichern(daten){
+  if(!daten?.access_token || !daten?.user) return null;
+  heroldSession = {
+    access_token: daten.access_token,
+    refresh_token: daten.refresh_token,
+    token_type: daten.token_type || "bearer",
+    user: daten.user,
+    expires_at: Math.floor(Date.now()/1000) + Number(daten.expires_in || 3600)
+  };
+  return heroldSession;
+}
+
+async function heroldSessionErneuern(){
+  if(!heroldSession?.refresh_token) throw new Error("Bitte melde dich erneut an.");
+  if(Number(heroldSession.expires_at || 0) > Math.floor(Date.now()/1000) + 60) return;
+  const erneuert = await heroldApi("auth/v1/token?grant_type=refresh_token", {
+    method:"POST",
+    body:{refresh_token:heroldSession.refresh_token}
+  });
+  if(!heroldSessionSpeichern(erneuert)) throw new Error("Bitte melde dich erneut an.");
+}
+
 async function ladeHeroldEntscheide(){
-  if(!heroldSupabase) return [];
-  const { data, error } = await heroldSupabase
-    .from("herold_decisions")
-    .select("event_id,status,event");
-  if(error) throw error;
-  return Array.isArray(data) ? data : [];
+  const daten = await heroldApi("rest/v1/herold_decisions?select=event_id,status,event");
+  return Array.isArray(daten) ? daten : [];
 }
 
 async function ladeFreigegebeneEvents(){
@@ -6272,25 +6307,59 @@ function heroldLoginWerte(){
 }
 
 async function heroldAnmelden(){
-  if(!heroldSupabase){ heroldAuthMeldung("Die Anmeldung ist gerade nicht verfügbar."); return; }
   const {email,password}=heroldLoginWerte();
-  const {error}=await heroldSupabase.auth.signInWithPassword({email,password});
-  heroldAuthMeldung(error ? "Anmeldung fehlgeschlagen. Prüfe E-Mail und Passwort." : "Angemeldet.");
+  try{
+    const daten=await heroldApi("auth/v1/token?grant_type=password",{
+      method:"POST",
+      body:{email,password}
+    });
+    if(!heroldSessionSpeichern(daten)) throw new Error("Anmeldung unvollständig.");
+    aktualisiereHeroldAnmeldung(heroldSession);
+    if(heroldSession.user?.email_confirmed_at) ladeHeroldFunde();
+  }catch(fehler){
+    heroldAuthMeldung(fehler.message || "Anmeldung fehlgeschlagen. Prüfe E-Mail und Passwort.");
+  }
 }
 
 async function heroldKontoErstellen(){
-  if(!heroldSupabase){ heroldAuthMeldung("Die Anmeldung ist gerade nicht verfügbar."); return; }
   const {email,password}=heroldLoginWerte();
-  if(email.toLowerCase()!=="agunz@bluewin.ch"){ heroldAuthMeldung("Für den Herold ist nur das freigeschaltete Konto zugelassen."); return; }
-  if(password.length<8){ heroldAuthMeldung("Das Passwort muss mindestens 8 Zeichen haben."); return; }
-  const {data,error}=await heroldSupabase.auth.signUp({email,password});
-  if(error){ heroldAuthMeldung(error.message); return; }
-  if(data.session) heroldAuthMeldung("Konto erstellt und angemeldet.");
-  else heroldAuthMeldung("Konto erstellt. Bestätige die E-Mail und melde dich danach hier an.");
+  if(email.toLowerCase()!=="agunz@bluewin.ch"){
+    heroldAuthMeldung("Für den Herold ist nur die freigeschaltete E-Mail-Adresse zugelassen.");
+    return;
+  }
+  if(password.length<8){
+    heroldAuthMeldung("Das Passwort muss mindestens 8 Zeichen haben.");
+    return;
+  }
+  try{
+    const daten=await heroldApi("auth/v1/signup",{
+      method:"POST",
+      body:{email,password}
+    });
+    if(daten?.access_token){
+      heroldSessionSpeichern(daten);
+      aktualisiereHeroldAnmeldung(heroldSession);
+      if(heroldSession.user?.email_confirmed_at) ladeHeroldFunde();
+    }else{
+      heroldAuthMeldung("Konto angelegt. Bestätige zuerst die E-Mail und melde dich danach hier an.");
+    }
+  }catch(fehler){
+    const meldung=String(fehler.message || "");
+    if(/already registered|already exists/i.test(meldung)){
+      heroldAuthMeldung("Für diese E-Mail gibt es bereits ein Konto. Melde dich bitte an.");
+    }else{
+      heroldAuthMeldung(meldung || "Konto konnte nicht erstellt werden.");
+    }
+  }
 }
 
 async function heroldAbmelden(){
-  if(heroldSupabase) await heroldSupabase.auth.signOut();
+  const token=heroldSession?.access_token;
+  try{
+    if(token) await heroldApi("auth/v1/logout",{method:"POST",token});
+  }catch(_fehler){}
+  heroldSession=null;
+  aktualisiereHeroldAnmeldung(null);
 }
 
 function aktualisiereHeroldAnmeldung(session){
@@ -6323,23 +6392,12 @@ function aktualisiereHeroldAnmeldung(session){
 }
 
 async function initialisiereHeroldAnmeldung(){
-  if(!heroldSupabase){
-    zeigeHeroldAnmeldung("Anmeldung konnte nicht geladen werden. Bitte Seite neu laden.");
-    return;
-  }
-  const {data:{session}}=await heroldSupabase.auth.getSession();
-  aktualisiereHeroldAnmeldung(session);
-  heroldSupabase.auth.onAuthStateChange((_event, neueSession)=>{
-    aktualisiereHeroldAnmeldung(neueSession);
-    if(neueSession) ladeHeroldFunde();
-  });
+  aktualisiereHeroldAnmeldung(null);
 }
 
 function showHerold(){
   show("herold");
-  if(!heroldSupabase){
-    zeigeHeroldAnmeldung("Anmeldung konnte nicht geladen werden. Bitte Seite neu laden.");
-  }else if(heroldSession){
+  if(heroldSession?.user?.email_confirmed_at){
     ladeHeroldFunde();
   }else{
     zeigeHeroldAnmeldung();
@@ -6398,13 +6456,13 @@ box.innerHTML = `
 
     <div class="card">
 
-      <h3>🐦‍⬛ ${fund.name}</h3>
+      <h3>🐦‍⬛ ${escapeHTML(fund.name)}</h3>
 
-      <p>📅 ${fund.date}</p>
+      <p>📅 ${escapeHTML(fund.date)}</p>
 
-    <p>📍 ${fund.city ? fund.city + ", " : ""}${fund.country}</p>
+    <p>📍 ${escapeHTML((fund.city ? fund.city + ", " : "") + (fund.country || ""))}</p>
 
-      <p>🔎 Quelle: ${fund.source}</p>
+      <p>🔎 Quelle: ${escapeHTML(fund.source)}</p>
 
       <button onclick="heroldUebernehmen(${index})">
 
@@ -6431,23 +6489,25 @@ async function starteHeroldAktion(index, aktion){
     alert("Diese Herold-Meldung hat keine gültige ID.");
     return;
   }
-  if(!heroldSupabase || !heroldSession){
+  if(!heroldSession){
     zeigeHeroldAnmeldung("Bitte zuerst anmelden.");
     return;
   }
   const knopf=document.activeElement;
   if(knopf) knopf.disabled=true;
-  const {data,error}=await heroldSupabase.functions.invoke("herold-decision",{
-    body:{action:aktion,event_id:eventId}
-  });
-  if(error || !data?.ok){
+  try{
+    await heroldSessionErneuern();
+    const data=await heroldApi("functions/v1/herold-decision",{
+      method:"POST",
+      token:heroldSession.access_token,
+      body:{action:aktion,event_id:eventId}
+    });
+    if(!data?.ok) throw new Error(data?.error || "Die Herold-Aktion ist fehlgeschlagen.");
+    await ladeHeroldFunde();
+    if(aktion==="approve") await ladeFreigegebeneEvents();
+  }catch(fehler){
     if(knopf) knopf.disabled=false;
-    alert(data?.error || error?.message || "Die Herold-Aktion ist fehlgeschlagen.");
-    return;
-  }
-  await ladeHeroldFunde();
-  if(aktion==="approve"){
-    await ladeFreigegebeneEvents();
+    alert(fehler.message || "Die Herold-Aktion ist fehlgeschlagen.");
   }
 }
 
