@@ -4617,25 +4617,27 @@ async function ladeFreigegebeneEvents(){
       return;
     }
 
-    const vorhandeneIds =
-      new Set(
-        events.map(event =>
-          String(event.id || "")
-        )
-      );
+    const eventIndexNachId = new Map(
+      events.map((event, index) => [
+        String(event.id || ""),
+        index
+      ])
+    );
 
     for(const event of freigegebeneEvents){
 
       const id = String(event.id || "");
+      if(!id) continue;
 
-      if(id && vorhandeneIds.has(id)){
-        continue;
-      }
-
-      events.push(event);
-
-      if(id){
-        vorhandeneIds.add(id);
+      if(eventIndexNachId.has(id)){
+        const index = eventIndexNachId.get(id);
+        events[index] = {
+          ...events[index],
+          ...event
+        };
+      }else{
+        events.push(event);
+        eventIndexNachId.set(id, events.length - 1);
       }
     }
 
