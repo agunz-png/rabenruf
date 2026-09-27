@@ -206,6 +206,13 @@ def scrape_vehi():
             postal_match = re.search(r"\b(\d{4,5})\s+([^,]+)", remainder)
             postal = postal_match.group(1) if postal_match else ""
             city = postal_match.group(2).strip() if postal_match else ""
+            if city:
+                city = re.split(
+                    r"\\s+(?:marché|fête|festival|tournoi|spectacle|mittelalter|medieval)\\b",
+                    city,
+                    maxsplit=1,
+                    flags=re.I,
+                )[0].strip(" ,–-")
             if not city:
                 # Some French/Italian entries have no postal code in the list.
                 tail = re.split(r"\s+(?:Marché|Fête|Festival|Tournoi|Spectacle)\b", remainder)
