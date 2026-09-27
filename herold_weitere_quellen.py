@@ -164,7 +164,7 @@ def vehi_date(text):
 def country_from_vehi(text, postal):
     t = norm(text)
     if any(region in t for region in ITALIAN_REGIONS) or re.search(
-        r"\\b(?:umb|tos|sic|fri|ven|pie|cam|pug|lom|laz|sar|mar|lig|cal|abr|emi|mol|bas|val)(?:\\.|\\b)", t
+        r"\b(?:umb|tos|sic|fri|ven|pie|cam|pug|lom|laz|sar|mar|lig|cal|abr|emi|mol|bas|val)(?:\.|\b)", t
     ) or any(city in t for city in (
         "foligno", "gubbio", "altamura", "cividale del friuli", "venezia",
         "firenze", "siena", "bologna", "milano", "bergamo", "napoli",
@@ -175,7 +175,7 @@ def country_from_vehi(text, postal):
     )) or "italia" in t or "italy" in t or "italien" in t:
         return "Italien"
     if any(region in t for region in FRENCH_REGIONS) or re.search(
-        r"\\b(?:bret|norm|occ|als|bre|idf|naq|pdl|ara|ges|hdf|cor)(?:\\.|\\b)", t
+        r"\b(?:bret|norm|occ|als|bre|idf|naq|pdl|ara|ges|hdf|cor)(?:\.|\b)", t
     ) or "france" in t or "frankreich" in t:
         return "Frankreich"
     french_places = (
@@ -195,10 +195,10 @@ def country_from_vehi(text, postal):
         "aargau", "bern", "berne", "st. gallen", "basel", "lucerne", "luzern",
     )
     if any(norm(place) in t for place in swiss_places) or re.search(
-        r"\\b(?:suisse|switzerland|schweiz|swiss)\\b", t
-    ) or re.search(r"\\b\\d{4}\\s+[\\wÀ-ÿ]", text):
+        r"\b(?:suisse|switzerland|schweiz|swiss)\b", t
+    ) or re.search(r"\b\d{4}\\s+[\\wÀ-ÿ]", text):
         return "Schweiz"
-    if re.search(r"\\bfr\\b", t) and postal and len(postal) == 5:
+    if re.search(r"\bfr\b", t) and postal and len(postal) == 5:
         return "Frankreich"
     return ""
 
@@ -227,7 +227,7 @@ def scrape_vehi():
             if not name or len(meta) < 2:
                 continue
             city_line = meta[0]
-            date_text = next((value for value in meta[1:] if re.search(r"20\\d{2}", value)), "")
+            date_text = next((value for value in meta[1:] if re.search(r"20\d{2}", value)), "")
             start, end = vehi_date(date_text)
             if not start or (end or start) < date.today().isoformat():
                 continue
@@ -383,7 +383,9 @@ def scrape_mirimor():
                 "Saint-Ursanne", "Le Landeron", "Biel/Nidau", "Yverdon",
             )
             city = next((place for place in places if norm(place) in norm(block)), "")
-        if not title or not city:
+        if not title or not city or re.search(
+            r"(?i)\\b(?:kalender|termine|veranstaltungen)\\b", title
+        ):
             continue
         item = event_record(title, city, "Schweiz", start, end, MIRIMOR_URL)
         if item and (item["end"] or item["start"]) >= date.today().isoformat():
