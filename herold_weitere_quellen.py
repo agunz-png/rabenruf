@@ -414,21 +414,26 @@ def already_present(candidate, existing):
     return False
 
 
-try:
-    with open("herold-funde.json", "r", encoding="utf-8") as handle:
-        existing = json.load(handle)
-except (FileNotFoundError, json.JSONDecodeError):
-    existing = []
+def main():
+    try:
+        with open("herold-funde.json", "r", encoding="utf-8") as handle:
+            existing = json.load(handle)
+    except (FileNotFoundError, json.JSONDecodeError):
+        existing = []
 
-new_events = []
-for candidate in scrape_vehi() + scrape_mirimor():
-    if (candidate.get("end") or candidate.get("start") or "9999-12-31") < date.today().isoformat():
-        continue
-    if not already_present(candidate, existing + new_events):
-        new_events.append(candidate)
+    new_events = []
+    for candidate in scrape_vehi() + scrape_mirimor():
+        if (candidate.get("end") or candidate.get("start") or "9999-12-31") < date.today().isoformat():
+            continue
+        if not already_present(candidate, existing + new_events):
+            new_events.append(candidate)
 
-existing.extend(new_events)
-with open("herold-funde.json", "w", encoding="utf-8") as handle:
-    json.dump(existing, handle, ensure_ascii=False, indent=2)
+    existing.extend(new_events)
+    with open("herold-funde.json", "w", encoding="utf-8") as handle:
+        json.dump(existing, handle, ensure_ascii=False, indent=2)
 
-print("Neue Funde aus Vehi Mercatus und Mirimor:", len(new_events))
+    print("Neue Funde aus Vehi Mercatus und Mirimor:", len(new_events))
+
+
+if __name__ == "__main__":
+    main()
