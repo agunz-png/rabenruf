@@ -7,12 +7,9 @@ on:
         description: "ID des Herold-Fundes"
         required: true
         type: string
-  issues:
-    types: [opened]
 
 permissions:
   contents: write
-  issues: write
 
 jobs:
   approve:
