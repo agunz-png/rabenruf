@@ -544,6 +544,18 @@
     "source": "https://vehi-mercatus.fr/calendrier-des-marches/ribeauville-marche-noel-medieval-2026/"
   },
   {
+    "id": "eu-source-d23363e2a21e77da",
+    "name": "Marché médiéval d'Enter",
+    "type": "Markt",
+    "date": "2027-06-19 bis 2027-06-20",
+    "start": "2027-06-19",
+    "end": "2027-06-20",
+    "country": "Schweiz",
+    "city": "Derendingen",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-enter-2026/"
+  },
+  {
     "id": "eu-source-6ce31234b3e64534",
     "name": "Tournoi de Béhourd Le Landeron",
     "type": "Markt",
