@@ -6249,7 +6249,6 @@ function zeigeHeroldAnmeldung(nachricht = ""){
         style="display:block;width:100%;margin:6px 0 12px;padding:12px;">
       <button onclick="heroldAnmelden()">Anmelden</button>
       <button onclick="heroldKontoErstellen()">Konto erstellen</button>
-      <button onclick="heroldPasswortZuruecksetzen()">Passwort zurücksetzen</button>
       <p id="heroldAuthStatus" role="status">${heroldHtmlEsc(nachricht)}</p>
     </div>`;
 }
@@ -6288,14 +6287,6 @@ async function heroldKontoErstellen(){
   if(error){ heroldAuthMeldung(error.message); return; }
   if(data.session) heroldAuthMeldung("Konto erstellt und angemeldet.");
   else heroldAuthMeldung("Konto erstellt. Bestätige die E-Mail und melde dich danach hier an.");
-}
-
-async function heroldPasswortZuruecksetzen(){
-  if(!heroldSupabase){ heroldAuthMeldung("Die Anmeldung ist gerade nicht verfügbar."); return; }
-  const email=document.getElementById("heroldEmail")?.value.trim() || "";
-  if(!email){ heroldAuthMeldung("Gib zuerst deine E-Mail-Adresse ein."); return; }
-  const {error}=await heroldSupabase.auth.resetPasswordForEmail(email);
-  heroldAuthMeldung(error ? error.message : "Falls ein Konto besteht, wurde eine E-Mail zum Zurücksetzen gesendet.");
 }
 
 async function heroldAbmelden(){
