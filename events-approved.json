@@ -44,5 +44,28 @@
     "organizer": "",
     "info": "Gefunden und bestätigt durch den Herold",
     "hours": ""
+  },
+  {
+    "id": "herold-eu-source-ebf200ba963d27ba",
+    "name": "Marché de Noël Médiéval de Ribeauvillé",
+    "type": "Markt",
+    "tags": [
+      "Mittelalter",
+      "Herold"
+    ],
+    "start": "2026-12-05",
+    "end": "2026-12-13",
+    "date": "2026-12-05 bis 2026-12-13",
+    "country": "Frankreich",
+    "flag": "🇫🇷",
+    "city": "Ribeauvillé",
+    "venue": "",
+    "address": "Ribeauvillé, Frankreich",
+    "lat": 48.1924602,
+    "lng": 7.3248871,
+    "website": "https://vehi-mercatus.fr/calendrier-des-marches/ribeauville-marche-noel-medieval-2026/",
+    "organizer": "",
+    "info": "Gefunden und bestätigt durch den Herold",
+    "hours": ""
   }
 ]
