@@ -21,5 +21,28 @@
     "organizer": "",
     "info": "Gefunden und bestätigt durch den Herold",
     "hours": ""
+  },
+  {
+    "id": "herold-eu-source-6ce31234b3e64534",
+    "name": "Tournoi de Béhourd Le Landeron",
+    "type": "Markt",
+    "tags": [
+      "Mittelalter",
+      "Herold"
+    ],
+    "start": "2026-10-10",
+    "end": "2026-10-11",
+    "date": "2026-10-10 bis 2026-10-11",
+    "country": "Schweiz",
+    "flag": "🇨🇭",
+    "city": "Le Landeron",
+    "venue": "",
+    "address": "Le Landeron, Schweiz",
+    "lat": 47.0554312,
+    "lng": 7.0702155,
+    "website": "https://www.mirimor.ch/kalender/",
+    "organizer": "",
+    "info": "Gefunden und bestätigt durch den Herold",
+    "hours": ""
   }
 ]
