@@ -6346,8 +6346,8 @@ async function heroldKontoErstellen(){
     }
   }catch(fehler){
     const meldung=String(fehler.message || "");
-    if(/already registered|already exists/i.test(meldung)){
-      heroldAuthMeldung("Für diese E-Mail gibt es bereits ein Konto. Melde dich bitte an.");
+    if(/already registered|already exists|users_email_partial_key/i.test(meldung)){
+      heroldAuthMeldung("Für diese E-Mail gibt es bereits ein Konto. Tippe auf „Anmelden“ und verwende dein bestehendes Passwort.");
     }else{
       heroldAuthMeldung(meldung || "Konto konnte nicht erstellt werden.");
     }
