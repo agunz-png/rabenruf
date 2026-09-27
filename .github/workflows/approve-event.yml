@@ -26,6 +26,11 @@ jobs:
           python3 - <<'PY'
           import json
           import os
+          import re
+          import time
+          import urllib.parse
+          import urllib.request
+          from datetime import date
 
           event_id = os.environ["EVENT_ID"].strip()
 
@@ -52,25 +57,122 @@ jobs:
               print("Veranstaltung ist bereits freigegeben.")
               raise SystemExit(0)
 
+          def iso_date(year, month, day):
+              try:
+                  return date(int(year), int(month), int(day)).isoformat()
+              except ValueError:
+                  return ""
+
+          start = str(fund.get("start", "")).strip()
+          end = str(fund.get("end", "")).strip()
+          if not re.fullmatch(r"20\d{2}-\d{2}-\d{2}", start):
+              start = ""
+          if not re.fullmatch(r"20\d{2}-\d{2}-\d{2}", end):
+              end = ""
+
+          date_text = str(fund.get("date", "")).strip()
+          iso_dates = re.findall(r"20\d{2}-\d{2}-\d{2}", date_text)
+          if not start and iso_dates:
+              start = iso_dates[0]
+          if not end and iso_dates:
+              end = iso_dates[-1]
+
+          if not start:
+              numeric = re.search(
+                  r"(?<!\d)(\d{1,2})\.(\d{1,2})\.\s*"
+                  r"(?:[–—-]\s*(\d{1,2})\.(\d{1,2})\.\s*)?"
+                  r"(20\d{2})",
+                  date_text
+              )
+              if numeric:
+                  day1, month1, day2, month2, year = numeric.groups()
+                  start = iso_date(year, month1, day1)
+                  if day2 and month2:
+                      end = iso_date(year, month2, day2)
+
+          if not start:
+              months = {
+                  "januar": 1, "februar": 2, "märz": 3, "maerz": 3,
+                  "april": 4, "mai": 5, "juni": 6, "juli": 7,
+                  "august": 8, "september": 9, "oktober": 10,
+                  "november": 11, "dezember": 12
+              }
+              named = re.search(
+                  r"(\d{1,2})\.?\s*(?:[–—-]\s*(\d{1,2})\.?\s*)?"
+                  r"(januar|februar|märz|maerz|april|mai|juni|juli|"
+                  r"august|september|oktober|november|dezember)\s+(20\d{2})",
+                  date_text,
+                  re.IGNORECASE
+              )
+              if named:
+                  day1, day2, month_name, year = named.groups()
+                  month = months[month_name.lower()]
+                  start = iso_date(year, month, day1)
+                  if day2:
+                      end = iso_date(year, month, day2)
+
+          if not start:
+              raise SystemExit(
+                  "Datum nicht erkannt; Veranstaltung wurde nicht freigegeben: "
+                  + date_text
+              )
+          if not end:
+              end = start
+          if end < start:
+              raise SystemExit("Enddatum liegt vor dem Startdatum.")
+
+          city = str(fund.get("city", "")).strip()
+          country = str(fund.get("country", "")).strip()
+          if not city or not country:
+              raise SystemExit("Ort oder Land fehlt; Veranstaltung wurde nicht freigegeben.")
+
+          query = urllib.parse.urlencode({
+              "city": city,
+              "country": country,
+              "format": "jsonv2",
+              "limit": 1
+          })
+          request = urllib.request.Request(
+              "https://nominatim.openstreetmap.org/search?" + query,
+              headers={"User-Agent": "Rabenruf/1.0 (https://github.com/agunz-png/rabenruf)"}
+          )
+          time.sleep(1.1)
+          with urllib.request.urlopen(request, timeout=20) as response:
+              locations = json.load(response)
+
+          if not locations:
+              raise SystemExit("Für den Ort wurden keine Kartenkoordinaten gefunden: " + city)
+
+          lat = float(locations[0]["lat"])
+          lng = float(locations[0]["lon"])
+
           event = {
               "id": approved_id,
               "name": fund.get("name", ""),
               "type": fund.get("type", "Markt"),
               "tags": ["Mittelalter", "Herold"],
-              "start": fund.get("start", ""),
-              "end": fund.get("end") or fund.get("start", ""),
-              "date": fund.get("date", ""),
-              "country": fund.get("country", ""),
+              "start": start,
+              "end": end,
+              "date": date_text or (start if start == end else start + " bis " + end),
+              "country": country,
               "flag": {
                   "Schweiz": "🇨🇭",
                   "Deutschland": "🇩🇪",
-                  "Österreich": "🇦🇹"
-              }.get(fund.get("country", ""), "🏰"),
-              "city": fund.get("city", ""),
+                  "Österreich": "🇦🇹",
+                  "Belgien": "🇧🇪",
+                  "Dänemark": "🇩🇰",
+                  "Frankreich": "🇫🇷",
+                  "Italien": "🇮🇹",
+                  "Luxemburg": "🇱🇺",
+                  "Niederlande": "🇳🇱",
+                  "Polen": "🇵🇱",
+                  "Schweden": "🇸🇪"
+              }.get(country, "🏰"),
+              "city": city,
               "venue": "",
-              "address": "",
-              "lat": 0,
-              "lng": 0,
+              "address": city + ", " + country,
+              "lat": lat,
+              "lng": lng,
               "website": fund.get("source", ""),
               "organizer": "",
               "info": "Gefunden und bestätigt durch den Herold",
@@ -82,7 +184,8 @@ jobs:
           with open("events-approved.json", "w", encoding="utf-8") as f:
               json.dump(approved, f, ensure_ascii=False, indent=2)
 
-          print("Freigegeben:", event["name"])
+          print("Freigegeben:", event["name"], "(", start, "bis", end, ")")
+          print("Kartenkoordinaten:", lat, lng)
           PY
 
       - name: Änderung speichern
