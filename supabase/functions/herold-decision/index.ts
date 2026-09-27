@@ -183,8 +183,9 @@ Deno.serve(async (req: Request) => {
         address: city + ", " + country,
         lat: coordinates.lat,
         lng: coordinates.lng,
-        website: String(fund.source || ""),
-        organizer: "",
+        website: String(fund.website || fund.organizer_url || fund.organizerUrl || "").trim(),
+        source: String(fund.source || "").trim(),
+        organizer: String(fund.organizer || "").trim(),
         info: "Gefunden und bestätigt durch den Herold",
         hours: "",
       };
