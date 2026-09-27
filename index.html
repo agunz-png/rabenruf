@@ -286,6 +286,12 @@ h3{
 
 }
 
+.btnLink{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+}
+
 .primary{
 
   background:var(--red);
@@ -5694,10 +5700,10 @@ function openEvent(id){
     </button>
 
     ${organizerUrl
-      ? `<a class="btn green" href="${escapeHTML(organizerUrl)}">🌐 Veranstalterseite öffnen</a>`
+      ? `<a class="btn green btnLink" href="${escapeHTML(organizerUrl)}">🌐 Veranstalterseite öffnen</a>`
       : `<div class="notice">Für diesen Termin ist noch keine offizielle Veranstalterseite hinterlegt.</div>`}
     ${sourceUrl
-      ? `<a class="btn" href="${escapeHTML(sourceUrl)}">🔎 Fundquelle öffnen</a>`
+      ? `<a class="btn btnLink" href="${escapeHTML(sourceUrl)}">🔎 Fundquelle öffnen</a>`
       : ""}
 
     <button
