@@ -384,7 +384,7 @@ def scrape_mirimor():
             )
             city = next((place for place in places if norm(place) in norm(block)), "")
         if not title or not city or re.search(
-            r"(?i)\\b(?:kalender|termine|veranstaltungen)\\b", title
+            r"(?i)\b(?:kalender|termine|veranstaltungen)\b", title
         ):
             continue
         item = event_record(title, city, "Schweiz", start, end, MIRIMOR_URL)
