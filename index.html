@@ -831,7 +831,7 @@ h3{
 
   </div>
 
-  <div class="chips">
+  <div class="chips" id="homeTypeFilters">
 
     <button
 
@@ -985,8 +985,38 @@ h3{
 
 <main id="calendar" class="hidden">
 
-  <h2>📅 Kalender 2026</h2>
+  <h2>📅 Kalender</h2>
 
+  <div class="search">
+    🔎
+    <input
+      id="calendarSearchInput"
+      placeholder="Fest, Ort oder Land suchen..."
+      autocomplete="off"
+      oninput="applyCalendarFilters()">
+  </div>
+
+  <div class="chips" id="calendarTypeFilters">
+    <button class="chip active" data-type="Alle" onclick="setCalendarType('Alle')">🔥 Alle</button>
+    <button class="chip" data-type="MPS" onclick="setCalendarType('MPS')">⚔️ MPS</button>
+    <button class="chip" data-type="Markt" onclick="setCalendarType('Markt')">🏰 Märkte</button>
+    <button class="chip" data-type="Lager" onclick="setCalendarType('Lager')">🏕️ Lager</button>
+    <button class="chip" data-type="Reenactment" onclick="setCalendarType('Reenactment')">🛡️ Reenactment</button>
+    <button class="chip" data-type="Buhurt" onclick="setCalendarType('Buhurt')">⚔️ Buhurt</button>
+  </div>
+
+  <div class="filterBox">
+    <select id="calendarCountryFilter" onchange="applyCalendarFilters()">
+      <option value="Alle">🌍 Alle Länder</option>
+    </select>
+    <select id="calendarMonthFilter" onchange="applyCalendarFilters()">
+      <option value="Alle">📅 Alle Monate</option>
+    </select>
+  </div>
+
+  <div class="sectionTitle">
+    <span id="calendarEventCount" class="count"></span>
+  </div>
   <div id="calendarList"></div>
 
 </main>
@@ -5251,7 +5281,7 @@ function setType(type){
 
   document
 
-    .querySelectorAll(".chip")
+    .querySelectorAll("#homeTypeFilters .chip")
 
     .forEach(
 
@@ -6087,78 +6117,100 @@ function findMe(){
 
    ========================================= */
 
-function renderCalendar(){
+let calendarType = "Alle";
 
-  const sorted =
-
-    [...getCurrentEvents()]
-
-      .sort(
-
-        (a,b) =>
-
-        dateObject(a.start)
-
-        -
-
-        dateObject(b.start)
-
-      );
-
-  const groups = {};
-
-  sorted.forEach(event => {
-
-    if (!event.start) return;
-
-const month = monthName(event.start);
-
-    if(!groups[month]){
-
-      groups[month] = [];
-
-    }
-
-    groups[month].push(event);
-
+function setCalendarType(type){
+  calendarType = type;
+  document.querySelectorAll("#calendarTypeFilters .chip").forEach(button => {
+    button.classList.toggle("active", button.dataset.type === type);
   });
+  applyCalendarFilters();
+}
 
-  let html = "";
+function renderCalendar(){
+  applyCalendarFilters();
+}
 
-  Object
-
-  .entries(groups)
-
-  .forEach(
-
-    ([month,list]) => {
-
-      html += `
-
-        <div class="calendarMonth">
-
-          ${escapeHTML(month)}
-
-        </div>
-
-      `;
-
-      html +=
-
-        list
-
-          .map(eventCard)
-
-          .join("");
-
-    }
-
+function applyCalendarFilters(){
+  const search = (byId("calendarSearchInput")?.value || "").trim().toLocaleLowerCase("de-CH");
+  const countrySelect = byId("calendarCountryFilter");
+  const monthSelect = byId("calendarMonthFilter");
+  let allEvents = getCurrentEvents().filter(event =>
+    event.start && !Number.isNaN(dateObject(event.start).getTime())
   );
 
-  byId("calendarList")
+  const selectedCountry = countrySelect.value || "Alle";
+  const selectedMonth = monthSelect.value || "Alle";
+  const countries = [...new Set(allEvents.map(event => event.country).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, "de-CH"));
+  countrySelect.innerHTML = '<option value="Alle">🌍 Alle Länder</option>' +
+    countries.map(country =>
+      '<option value="' + escapeHTML(country) + '">' + escapeHTML(country) + '</option>'
+    ).join("");
+  countrySelect.value = countries.includes(selectedCountry) ? selectedCountry : "Alle";
 
-  .innerHTML = html;
+  const months = [...new Set(allEvents.map(event => event.start.slice(0, 7)))].sort();
+  monthSelect.innerHTML = '<option value="Alle">📅 Alle Monate</option>' +
+    months.map(month =>
+      '<option value="' + escapeHTML(month) + '">' +
+      escapeHTML(monthName(month + "-01")) +
+      '</option>'
+    ).join("");
+  monthSelect.value = months.includes(selectedMonth) ? selectedMonth : "Alle";
 
+  if(calendarType !== "Alle"){
+    allEvents = allEvents.filter(event =>
+      event.type === calendarType ||
+      (Array.isArray(event.tags) && event.tags.includes(calendarType))
+    );
+  }
+
+  if(countrySelect.value !== "Alle"){
+    allEvents = allEvents.filter(event => event.country === countrySelect.value);
+  }
+
+  if(monthSelect.value !== "Alle"){
+    allEvents = allEvents.filter(event => event.start.slice(0, 7) === monthSelect.value);
+  }
+
+  if(search){
+    allEvents = allEvents.filter(event => {
+      const tags = Array.isArray(event.tags) ? event.tags : [];
+      const text = [
+        event.name,
+        event.city,
+        event.country,
+        event.type,
+        event.organizer,
+        event.venue,
+        ...tags
+      ].join(" ").toLocaleLowerCase("de-CH");
+      return text.includes(search);
+    });
+  }
+
+  allEvents.sort((a, b) => dateObject(a.start) - dateObject(b.start));
+  const count = allEvents.length;
+  byId("calendarEventCount").textContent =
+    count + (count === 1 ? " Termin" : " Termine");
+
+  if(!count){
+    byId("calendarList").innerHTML =
+      '<div class="empty">Mit diesen Filtern wurde kein Termin gefunden.</div>';
+    return;
+  }
+
+  const groups = {};
+  allEvents.forEach(event => {
+    const month = monthName(event.start);
+    if(!groups[month]) groups[month] = [];
+    groups[month].push(event);
+  });
+
+  byId("calendarList").innerHTML = Object.entries(groups).map(([month, list]) =>
+    '<div class="calendarMonth">' + escapeHTML(month) + '</div>' +
+    list.map(eventCard).join("")
+  ).join("");
 }
 
 /* =========================================
