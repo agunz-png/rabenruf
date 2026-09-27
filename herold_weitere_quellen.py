@@ -129,11 +129,24 @@ def jsonld_events(soup, source):
 
 
 def vehi_date(text):
-    # Typical listing format: 11.–13.09.2026, 02.–04.10.2026 or 10.10.2026.
+    # Formats include 11.–13.09.2026 and 30.07.–01.08.2027.
+    cross_month = re.search(
+        r"(?P<d1>\d{1,2})\.(?P<m1>\d{1,2})\.\s*[–—-]\s*"
+        r"(?P<d2>\d{1,2})\.(?P<m2>\d{1,2})\.(?P<y>20\d{2})",
+        text,
+    )
+    if cross_month:
+        try:
+            year = int(cross_month.group("y"))
+            return (
+                date(year, int(cross_month.group("m1")), int(cross_month.group("d1"))).isoformat(),
+                date(year, int(cross_month.group("m2")), int(cross_month.group("d2"))).isoformat(),
+            )
+        except ValueError:
+            return "", ""
     m = re.search(
         r"(?P<d1>\d{1,2})\.?\s*(?:[–—-]\s*(?P<d2>\d{1,2})\.)?"
-        r"(?P<m1>\d{1,2})\.(?:(?P<m2>\d{1,2})\.)?"
-        r"(?P<y>20\d{2})",
+        r"(?P<m1>\d{1,2})\.(?:(?P<m2>\d{1,2})\.)?(?P<y>20\d{2})",
         text,
     )
     if not m:
@@ -144,36 +157,29 @@ def vehi_date(text):
     month2 = int(m.group("m2") or month1)
     year = int(m.group("y"))
     try:
-        start = date(year, month1, d1).isoformat()
-        end = date(year, month2, d2).isoformat()
-        return start, end
+        return date(year, month1, d1).isoformat(), date(year, month2, d2).isoformat()
     except ValueError:
         return "", ""
 
-
 def country_from_vehi(text, postal):
     t = norm(text)
-    # Vehi's listing provides country/region names for many entries. Only
-    # classify the three requested markets; ambiguous locations are skipped.
     if re.search(r"\b(?:suisse|switzerland|schweiz|swiss)\b", t) or re.search(r"\b\d{4}\s+[\wÀ-ÿ]", text):
         return "Schweiz"
     if any(region in t for region in ITALIAN_REGIONS) or re.search(
-        r"\b(?:umb|tos|sic|fri|ven|pie|cam|pug|lom|laz|sar|mar|lig|cal|abr|emi|mol|bas|val)\.?\b", t
+        r"\b(?:umb|tos|sic|fri|ven|pie|cam|pug|lom|laz|sar|mar|lig|cal|abr|emi|mol|bas|val)(?:\.|\b)", t
     ):
         return "Italien"
     if any(region in t for region in FRENCH_REGIONS) or re.search(
-        r"\b(?:bret|norm|occ|als|bre|idf|naq|pdl|ara|ges|hdf|cor)\.?\b", t
+        r"\b(?:bret|norm|occ|als|bre|idf|naq|pdl|ara|ges|hdf|cor)(?:\.|\b)", t
     ):
         return "Frankreich"
     if "france" in t or "frankreich" in t:
         return "Frankreich"
     if "italia" in t or "italy" in t or "italien" in t:
         return "Italien"
-    # Address labels such as "FR" occur on some event pages.
     if re.search(r"\bfr\b", t) and postal and len(postal) == 5:
         return "Frankreich"
     return ""
-
 
 def scrape_vehi():
     results = []
@@ -208,7 +214,7 @@ def scrape_vehi():
             city = postal_match.group(2).strip() if postal_match else ""
             if city:
                 city = re.split(
-                    r"\\s+(?:marché|fête|festival|tournoi|spectacle|mittelalter|medieval)\\b",
+                    r"\s+(?:marché|fête|festival|tournoi|spectacle|mittelalter|medieval)\b",
                     city,
                     maxsplit=1,
                     flags=re.I,
