@@ -5560,6 +5560,13 @@ function openEvent(id){
 
     : "🤍 Als Favorit speichern";
 
+  const linkUrl = value => {
+    const url = String(value || "").trim();
+    return /^https?:\/\//i.test(url) ? url : "";
+  };
+  const organizerUrl = linkUrl(event.website);
+  const sourceUrl = linkUrl(event.source);
+
   byId("detailContent").innerHTML = `
 
     <div class="hero">
@@ -5658,7 +5665,7 @@ function openEvent(id){
 
         <span class="muted">
 
-          ${escapeHTML(event.organizer)}
+          ${escapeHTML(event.organizer || "Noch nicht ermittelt")}
 
         </span>
 
@@ -5686,25 +5693,12 @@ function openEvent(id){
 
     </button>
 
-    <button
-
-      class="btn green"
-
-      onclick="
-
-        window.open(
-
-          '${event.website}',
-
-          '_blank'
-
-        )
-
-      ">
-
-      🌐 Veranstaltungsseite öffnen
-
-    </button>
+    ${organizerUrl
+      ? `<a class="btn green" href="${escapeHTML(organizerUrl)}" target="_blank" rel="noopener noreferrer">🌐 Veranstalterseite öffnen</a>`
+      : `<div class="notice">Für diesen Termin ist noch keine offizielle Veranstalterseite hinterlegt.</div>`}
+    ${sourceUrl
+      ? `<a class="btn" href="${escapeHTML(sourceUrl)}" target="_blank" rel="noopener noreferrer">🔎 Fundquelle öffnen</a>`
+      : ""}
 
     <button
 
