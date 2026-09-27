@@ -163,23 +163,42 @@ def vehi_date(text):
 
 def country_from_vehi(text, postal):
     t = norm(text)
-    # Region names/codes outrank postal length: some Italian postcodes lose
-    # their leading zero in third-party calendars (e.g. 6024 Gubbio).
     if any(region in t for region in ITALIAN_REGIONS) or re.search(
-        r"\b(?:umb|tos|sic|fri|ven|pie|cam|pug|lom|laz|sar|mar|lig|cal|abr|emi|mol|bas|val)(?:\.|\b)", t
+        r"\\b(?:umb|tos|sic|fri|ven|pie|cam|pug|lom|laz|sar|mar|lig|cal|abr|emi|mol|bas|val)(?:\\.|\\b)", t
     ) or any(city in t for city in (
         "foligno", "gubbio", "altamura", "cividale del friuli", "venezia",
         "firenze", "siena", "bologna", "milano", "bergamo", "napoli",
-        "lecce", "torino", "verona", "civita di bagnoregio",
+        "lecce", "torino", "verona", "civita di bagnoregio", "assisi",
+        "asti", "arezzo", "montecchio", "marostica", "volterra", "lavagna",
+        "pisa", "roma", "rome", "ferrara", "mondaino", "servigliano",
+        "schluderns", "piazza armerina",
     )) or "italia" in t or "italy" in t or "italien" in t:
         return "Italien"
     if any(region in t for region in FRENCH_REGIONS) or re.search(
-        r"\b(?:bret|norm|occ|als|bre|idf|naq|pdl|ara|ges|hdf|cor)(?:\.|\b)", t
+        r"\\b(?:bret|norm|occ|als|bre|idf|naq|pdl|ara|ges|hdf|cor)(?:\\.|\\b)", t
     ) or "france" in t or "frankreich" in t:
         return "Frankreich"
-    if re.search(r"\b(?:suisse|switzerland|schweiz|swiss)\b", t) or re.search(r"\b\d{4}\s+[\wÀ-ÿ]", text):
+    french_places = (
+        "ribeauvillé", "ribeauville", "rouen", "courson-monteloup",
+        "saint-maximin-la-sainte-baume", "orange", "biot", "falaise",
+        "montfort-sur-risle", "le puy-en-velay", "locronan", "semur-en-auxois",
+        "aigues-mortes", "coucy-le-château",
+    )
+    if any(norm(place) in t for place in french_places):
+        return "Frankreich"
+    swiss_places = (
+        "lenzburg", "winterthur", "bubikon", "zug", "zürich", "zurich",
+        "schaffhausen", "bremgarten", "grandson", "kiesen", "uster",
+        "lausanne", "genève", "geneve", "saint-ursanne", "st-ursanne",
+        "le landeron", "biel/nidau", "nidau", "yverdon", "montreux",
+        "fribourg", "bulle", "neuchâtel", "neuchatel", "sion", "martigny",
+        "aargau", "bern", "berne", "st. gallen", "basel", "lucerne", "luzern",
+    )
+    if any(norm(place) in t for place in swiss_places) or re.search(
+        r"\\b(?:suisse|switzerland|schweiz|swiss)\\b", t
+    ) or re.search(r"\\b\\d{4}\\s+[\\wÀ-ÿ]", text):
         return "Schweiz"
-    if re.search(r"\bfr\b", t) and postal and len(postal) == 5:
+    if re.search(r"\\bfr\\b", t) and postal and len(postal) == 5:
         return "Frankreich"
     return ""
 
@@ -196,45 +215,30 @@ def scrape_vehi():
             continue
 
         year_results = jsonld_events(soup, url)
-        for link in soup.find_all("a", href=True):
-            label = plain(link.get_text(" ", strip=True))
-            if not label:
+        # Listings are .mk-event-card articles, with title, locality and date
+        # in separate elements (the event cards are not reliably plain links).
+        for card in soup.select(".mk-event-card"):
+            title_node = card.select_one(".mk-event-card-name")
+            if not title_node:
                 continue
-            start, end = vehi_date(label)
+            name = plain(title_node.get_text(" ", strip=True))
+            meta = [plain(node.get_text(" ", strip=True))
+                    for node in card.select(".mk-event-card-meta-item")]
+            if not name or len(meta) < 2:
+                continue
+            city_line = meta[0]
+            date_text = next((value for value in meta[1:] if re.search(r"20\\d{2}", value)), "")
+            start, end = vehi_date(date_text)
             if not start or (end or start) < date.today().isoformat():
                 continue
-            # Ignore navigation links and require a plausible event date/name.
-            date_match = re.search(
-                r"\d{1,2}\.?\s*(?:[–—-]\s*\d{1,2}\.)?\d{1,2}\.(?:\d{1,2}\.)?20\d{2}",
-                label,
-            )
-            if not date_match:
-                continue
-            remainder = plain(label[date_match.end():])
-            postal_match = re.search(r"\b(\d{4,5})\s+([^,]+)", remainder)
-            postal = postal_match.group(1) if postal_match else ""
-            city = postal_match.group(2).strip() if postal_match else ""
-            if city:
-                city = re.split(
-                    r"\s+(?:marché|fête|festival|tournoi|spectacle|mittelalter|medieval)\b",
-                    city,
-                    maxsplit=1,
-                    flags=re.I,
-                )[0].strip(" ,–-")
-            if not city:
-                # Some French/Italian entries have no postal code in the list.
-                tail = re.split(r"\s+(?:Marché|Fête|Festival|Tournoi|Spectacle)\b", remainder)
-                city = tail[-1].strip(" ,") if len(tail) > 1 else ""
-            country = country_from_vehi(remainder, postal)
+            city = plain(city_line.split(",")[0]).strip(" ,–-")
+            country = country_from_vehi(name + " " + city_line, "")
             if not country or not city:
                 continue
-            name = remainder[:postal_match.start()].strip(" ,–-") if postal_match else remainder
-            if not name or len(name) < 4:
-                continue
-            source = link["href"]
+            source = card.get("href") or url
             if source.startswith("/"):
                 source = "https://vehi-mercatus.fr" + source
-            item = event_record(name, city, country, start, end, source, postal)
+            item = event_record(name, city, country, start, end, source)
             if item:
                 year_results.append(item)
 
