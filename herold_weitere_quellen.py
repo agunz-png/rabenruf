@@ -188,7 +188,7 @@ def country_from_vehi(text, postal):
         return "Frankreich"
     swiss_places = (
         "lenzburg", "winterthur", "bubikon", "zug", "zürich", "zurich",
-        "schaffhausen", "bremgarten", "grandson", "kiesen", "uster",
+        "schaffhausen", "bremgarten", "grandson", "kiesen", "uster", "derendingen",
         "lausanne", "genève", "geneve", "saint-ursanne", "st-ursanne",
         "le landeron", "biel/nidau", "nidau", "yverdon", "montreux",
         "fribourg", "bulle", "neuchâtel", "neuchatel", "sion", "martigny",
