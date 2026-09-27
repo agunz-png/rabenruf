@@ -146,6 +146,10 @@ jobs:
         run: |
           python3 herold_europa.py
       
+      - name: Weitere Europa-Quellen prüfen
+        run: |
+          python3 herold_weitere_quellen.py
+
       - name: Funddatei prüfen
 
         run: |
