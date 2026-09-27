@@ -1,0 +1,17 @@
+{
+  "name": "Rabenruf",
+  "short_name": "Rabenruf",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0c0b09",
+  "theme_color": "#15110d",
+  "icons": [
+    {
+      "src": "assets/rabenruf-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
