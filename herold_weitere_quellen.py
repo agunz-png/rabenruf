@@ -435,7 +435,7 @@ def main():
         item for item in existing
         if not (
             item.get("source") == MIRIMOR_URL
-            and re.search(r"(?i)\\b(?:kalender|termine|veranstaltungen)\\b", item.get("name", ""))
+            and re.search(r"(?i)\b(?:kalender|termine|veranstaltungen)\b", item.get("name", ""))
         )
     ]
 
