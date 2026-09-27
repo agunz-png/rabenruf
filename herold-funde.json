@@ -446,5 +446,53 @@
     "city": "Zürich",
     "postcode": "8005",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltermaerkte-europa.php"
+  },
+  {
+    "id": "eu-source-42208c695317bac8",
+    "name": "Kalender der Spektakel, Märkte und Sonstigem im Mittelalter Schweiz",
+    "type": "Markt",
+    "date": "2026-10-11 bis 2026-10-11",
+    "start": "2026-10-11",
+    "end": "2026-10-11",
+    "country": "Schweiz",
+    "city": "Saint Ursanne",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/"
+  },
+  {
+    "id": "eu-source-6ce31234b3e64534",
+    "name": "Tournoi de Béhourd Le Landeron",
+    "type": "Markt",
+    "date": "2026-10-10 bis 2026-10-11",
+    "start": "2026-10-10",
+    "end": "2026-10-11",
+    "country": "Schweiz",
+    "city": "Le Landeron",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/"
+  },
+  {
+    "id": "eu-source-3e086bc625849061",
+    "name": "Les Médiévales de St-Ursanne - 30 Jahre Jubiläum",
+    "type": "Markt",
+    "date": "2027-07-09 bis 2027-07-11",
+    "start": "2027-07-09",
+    "end": "2027-07-11",
+    "country": "Schweiz",
+    "city": "Saint Ursanne",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/"
+  },
+  {
+    "id": "eu-source-1fec229786a957ca",
+    "name": "Mittelalterspektakel Biel/Nidau",
+    "type": "Markt",
+    "date": "2027-09-17 bis 2027-09-19",
+    "start": "2027-09-17",
+    "end": "2027-09-19",
+    "country": "Schweiz",
+    "city": "Biel/Nidau",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/"
   }
 ]
