@@ -430,6 +430,15 @@ def main():
     except (FileNotFoundError, json.JSONDecodeError):
         existing = []
 
+    # Remove malformed page headings left by earlier Mirimor parser runs.
+    existing = [
+        item for item in existing
+        if not (
+            item.get("source") == MIRIMOR_URL
+            and re.search(r"(?i)\\b(?:kalender|termine|veranstaltungen)\\b", item.get("name", ""))
+        )
+    ]
+
     new_events = []
     for candidate in scrape_vehi() + scrape_mirimor():
         if (candidate.get("end") or candidate.get("start") or "9999-12-31") < date.today().isoformat():
