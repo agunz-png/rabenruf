@@ -887,6 +887,18 @@ h3{
 
     </button>
 
+    <button
+
+      id="chipBuhurt"
+
+      class="chip"
+
+      onclick="setType('Buhurt')">
+
+      ⚔️ Buhurt
+
+    </button>
+
   </div>
 
   <div class="filterBox">
@@ -1001,9 +1013,23 @@ h3{
 
     Der Herold sucht nach neuen Mittelalterfesten,
 
-    Lagern und Reenactment-Veranstaltungen.
+    Lagern, Reenactment-Veranstaltungen und Buhurt-Turnieren.
 
   </p>
+
+  <div class="card">
+
+    <h3>⚔️ Buhurt-Quellen</h3>
+
+    <p><a style="color:#f0d18c" href="https://www.buhurtinternational.com/tournaments" target="_blank" rel="noopener noreferrer">Buhurt International – offizieller Turnierkalender</a><br><span class="muted">Europaweite Hauptquelle für genehmigte Turniere.</span></p>
+
+    <p><a style="color:#f0d18c" href="https://linktr.ee/eisenliga" target="_blank" rel="noopener noreferrer">Eisenliga – deutsche Ergänzungsquelle</a><br><span class="muted">Linktree mit Website und Facebook.</span></p>
+
+    <p><a style="color:#f0d18c" href="https://linktr.ee/eiserne.loewen" target="_blank" rel="noopener noreferrer">Eiserne Löwen – Facebook und Instagram</a><br><span class="muted">Beispiel für Vereinsmeldungen aus der Buhurt-Szene.</span></p>
+
+    <div class="notice">Facebook- und Instagram-Meldungen dienen zum Entdecken neuer Termine. Der Herold übernimmt einen Termin erst nach Bestätigung durch Veranstalter oder Buhurt International. Beiträge, Bilder und längere Texte werden nicht automatisch kopiert.</div>
+
+  </div>
 
 <div id="heroldList"></div>
 
@@ -4694,6 +4720,12 @@ function byId(id){
 
 function icon(type){
 
+  if(type === "Buhurt"){
+
+    return "⚔️";
+
+  }
+
   if(type === "MPS"){
 
     return "⚔️";
@@ -5217,6 +5249,12 @@ function setType(type){
   if(type === "Reenactment"){
 
     byId("chipReenactment").classList.add("active");
+
+  }
+
+  if(type === "Buhurt"){
+
+    byId("chipBuhurt").classList.add("active");
 
   }
 
