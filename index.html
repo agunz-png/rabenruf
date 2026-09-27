@@ -1009,32 +1009,25 @@ h3{
 
   <h2>🐦‍⬛ Der Herold</h2>
 
-  <p>
+  <div id="heroldAuth"></div>
 
-    Der Herold sucht nach neuen Mittelalterfesten,
+  <div id="heroldContent" class="hidden">
+    <p>
+      Der Herold sucht nach neuen Mittelalterfesten,
+      Lagern, Reenactment-Veranstaltungen und Buhurt-Turnieren.
+    </p>
 
-    Lagern, Reenactment-Veranstaltungen und Buhurt-Turnieren.
+    <div class="card">
+      <h3>⚔️ Buhurt-Quellen</h3>
+      <p><a style="color:#f0d18c" href="https://www.buhurtinternational.com/tournaments" target="_blank" rel="noopener noreferrer">Buhurt International – offizieller Turnierkalender</a><br><span class="muted">Europaweite Hauptquelle für genehmigte Turniere.</span></p>
+      <p><a style="color:#f0d18c" href="https://linktr.ee/eisenliga" target="_blank" rel="noopener noreferrer">Eisenliga – deutsche Ergänzungsquelle</a><br><span class="muted">Linktree mit Website und Facebook.</span></p>
+      <p><a style="color:#f0d18c" href="https://linktr.ee/eiserne.loewen" target="_blank" rel="noopener noreferrer">Eiserne Löwen – Facebook und Instagram</a><br><span class="muted">Beispiel für Vereinsmeldungen aus der Buhurt-Szene.</span></p>
+      <div class="notice">Facebook- und Instagram-Meldungen dienen zum Entdecken neuer Termine. Der Herold übernimmt einen Termin erst nach Bestätigung durch Veranstalter oder Buhurt International. Beiträge, Bilder und längere Texte werden nicht automatisch kopiert.</div>
+    </div>
 
-  </p>
-
-  <div class="card">
-
-    <h3>⚔️ Buhurt-Quellen</h3>
-
-    <p><a style="color:#f0d18c" href="https://www.buhurtinternational.com/tournaments" target="_blank" rel="noopener noreferrer">Buhurt International – offizieller Turnierkalender</a><br><span class="muted">Europaweite Hauptquelle für genehmigte Turniere.</span></p>
-
-    <p><a style="color:#f0d18c" href="https://linktr.ee/eisenliga" target="_blank" rel="noopener noreferrer">Eisenliga – deutsche Ergänzungsquelle</a><br><span class="muted">Linktree mit Website und Facebook.</span></p>
-
-    <p><a style="color:#f0d18c" href="https://linktr.ee/eiserne.loewen" target="_blank" rel="noopener noreferrer">Eiserne Löwen – Facebook und Instagram</a><br><span class="muted">Beispiel für Vereinsmeldungen aus der Buhurt-Szene.</span></p>
-
-    <div class="notice">Facebook- und Instagram-Meldungen dienen zum Entdecken neuer Termine. Der Herold übernimmt einen Termin erst nach Bestätigung durch Veranstalter oder Buhurt International. Beiträge, Bilder und längere Texte werden nicht automatisch kopiert.</div>
-
+    <div id="heroldAccount"></div>
+    <div id="heroldList"></div>
   </div>
-
-<div class="notice">Nach einem Klick öffnet sich eine vorbefüllte GitHub-Bestätigung. Tippe dort auf „Issue erstellen“; Rabenruf führt die Aktion anschliessend automatisch aus.</div>
-
-<div id="heroldList"></div>
-
 </main>
   
 <nav class="bottom">
@@ -1114,6 +1107,7 @@ h3{
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
@@ -4634,62 +4628,64 @@ localStorage.setItem(
   "rabenrufHeroldEvents",
   JSON.stringify(gespeicherteHeroldEvents)
 );
+const RABENRUF_SUPABASE_URL = "https://xsrcdvtavnftwkndcfsr.supabase.co";
+const RABENRUF_SUPABASE_KEY = "sb_publishable_YeEqizrxcYL2mRZQai9HUw__Z8GlkPD";
+const heroldSupabase = window.supabase?.createClient(
+  RABENRUF_SUPABASE_URL,
+  RABENRUF_SUPABASE_KEY
+);
+let heroldSession = null;
+
+async function ladeHeroldEntscheide(){
+  if(!heroldSupabase) return [];
+  const { data, error } = await heroldSupabase
+    .from("herold_decisions")
+    .select("event_id,status,event");
+  if(error) throw error;
+  return Array.isArray(data) ? data : [];
+}
+
 async function ladeFreigegebeneEvents(){
-
   try{
-
-    const antwort = await fetch(
-      "events-approved.json?zeit=" + Date.now()
-    );
-
-    if(!antwort.ok){
-      throw new Error("Freigegebene Veranstaltungen konnten nicht geladen werden");
+    let freigegebeneEvents = [];
+    const antwort = await fetch("events-approved.json?zeit=" + Date.now());
+    if(antwort.ok){
+      const liste = await antwort.json();
+      if(Array.isArray(liste)) freigegebeneEvents = liste;
     }
 
-    const freigegebeneEvents = await antwort.json();
-
-    if(!Array.isArray(freigegebeneEvents)){
-      return;
+    try{
+      const entscheidungen = await ladeHeroldEntscheide();
+      const ausDatenbank = entscheidungen
+        .filter(e => e.status === "approved" && e.event)
+        .map(e => e.event);
+      freigegebeneEvents = [...freigegebeneEvents, ...ausDatenbank];
+    }catch(fehler){
+      console.warn("Herold-Entscheide konnten nicht geladen werden:", fehler);
     }
 
     const eventIndexNachId = new Map(
-      events.map((event, index) => [
-        String(event.id || ""),
-        index
-      ])
+      events.map((event, index) => [String(event.id || ""), index])
     );
-
     for(const event of freigegebeneEvents){
-
       const id = String(event.id || "");
       if(!id) continue;
-
       if(eventIndexNachId.has(id)){
         const index = eventIndexNachId.get(id);
-        events[index] = {
-          ...events[index],
-          ...event
-        };
+        events[index] = { ...events[index], ...event };
       }else{
         events.push(event);
         eventIndexNachId.set(id, events.length - 1);
       }
     }
-
     applyFilters();
     renderCalendar();
     renderMapMarkers();
-
   }catch(fehler){
-
-    console.error(
-      "Freigegebene Veranstaltungen konnten nicht geladen werden:",
-      fehler
-    );
-
+    console.error("Freigegebene Veranstaltungen konnten nicht geladen werden:", fehler);
   }
+}
 
-}  
 /* =========================================
 
    APP-ZUSTAND
@@ -6199,73 +6195,153 @@ function showFavorites(){
 let heroldFunde = [];
 
 async function ladeHeroldFunde(){
-
   try{
-
     const antwort = await fetch("herold-funde.json?zeit=" + Date.now());
+    if(!antwort.ok) throw new Error("Die Fundliste konnte nicht geladen werden.");
+    let funde = await antwort.json();
+    if(!Array.isArray(funde)) funde = [];
 
-    if(!antwort.ok) throw new Error("Datei konnte nicht geladen werden");
-
-    heroldFunde = await antwort.json();
-let verworfeneIds = [];
-
-try{
-  const verworfenAntwort =
-    await fetch("events-rejected.json?zeit=" + Date.now());
-
-  if(verworfenAntwort.ok){
-    verworfeneIds = await verworfenAntwort.json();
-  }
-}catch(fehler){
-  console.warn("Verworfene Herold-Funde konnten nicht geladen werden:", fehler);
-}
-
-const verworfenSet = new Set(
-  Array.isArray(verworfeneIds)
-    ? verworfeneIds.map(String)
-    : []
-);
-
-let bestaetigteIds = new Set();
-
-try{
-  const bestaetigtAntwort =
-    await fetch("events-approved.json?zeit=" + Date.now());
-
-  if(bestaetigtAntwort.ok){
-    const bestaetigteEvents = await bestaetigtAntwort.json();
-    if(Array.isArray(bestaetigteEvents)){
-      bestaetigteIds = new Set(
-        bestaetigteEvents.map(event =>
-          String(event.id || "").replace(/^herold-/, "")
-        )
-      );
+    let entschiedeneIds = new Set();
+    try{
+      const entscheidungen = await ladeHeroldEntscheide();
+      entschiedeneIds = new Set(entscheidungen.map(e => String(e.event_id || "")));
+    }catch(fehler){
+      console.warn("Herold-Entscheide konnten nicht geladen werden:", fehler);
+      const [verworfenAntwort, bestaetigtAntwort] = await Promise.all([
+        fetch("events-rejected.json?zeit=" + Date.now()),
+        fetch("events-approved.json?zeit=" + Date.now())
+      ]);
+      if(verworfenAntwort.ok){
+        const ids = await verworfenAntwort.json();
+        if(Array.isArray(ids)) ids.forEach(id => entschiedeneIds.add(String(id)));
+      }
+      if(bestaetigtAntwort.ok){
+        const events = await bestaetigtAntwort.json();
+        if(Array.isArray(events)){
+          events.forEach(event => entschiedeneIds.add(String(event.id || "").replace(/^herold-/,"")));
+        }
+      }
     }
+
+    heroldFunde = funde.filter(fund => !entschiedeneIds.has(String(fund.id || "")));
+    renderHerold();
+  }catch(fehler){
+    console.error("Herold-Funde konnten nicht geladen werden:", fehler);
+    const box = document.getElementById("heroldList");
+    if(box) box.innerHTML = '<div class="card">Die Meldungen konnten gerade nicht geladen werden.</div>';
   }
-}catch(fehler){
-  console.warn("Bestätigte Veranstaltungen konnten nicht geladen werden:", fehler);
 }
 
-heroldFunde = heroldFunde.filter(fund =>
-  !verworfenSet.has(String(fund.id || "")) &&
-  !bestaetigteIds.has(String(fund.id || ""))
-);
-    renderHerold();
+function zeigeHeroldAnmeldung(nachricht = ""){
+  const auth = document.getElementById("heroldAuth");
+  const inhalt = document.getElementById("heroldContent");
+  if(!auth || !inhalt) return;
+  inhalt.classList.add("hidden");
+  auth.innerHTML = `
+    <div class="card">
+      <h3>🔒 Herold-Anmeldung</h3>
+      <p>Der Herold ist passwortgeschützt. Melde dich mit deinem Konto an.</p>
+      <label for="heroldEmail">E-Mail</label>
+      <input id="heroldEmail" type="email" autocomplete="username" required
+        style="display:block;width:100%;margin:6px 0 12px;padding:12px;">
+      <label for="heroldPassword">Passwort</label>
+      <input id="heroldPassword" type="password" autocomplete="current-password" required
+        style="display:block;width:100%;margin:6px 0 12px;padding:12px;">
+      <button onclick="heroldAnmelden()">Anmelden</button>
+      <button onclick="heroldKontoErstellen()">Konto erstellen</button>
+      <button onclick="heroldPasswortZuruecksetzen()">Passwort zurücksetzen</button>
+      <p id="heroldAuthStatus" role="status">${heroldHtmlEsc(nachricht)}</p>
+    </div>`;
+}
 
-  }catch(fehler){
+function heroldHtmlEsc(value){
+  return String(value || "").replace(/[&<>"']/g, zeichen => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[zeichen]);
+}
 
-    console.error("Herold-Funde konnten nicht geladen werden:", fehler);
+function heroldAuthMeldung(text){
+  const feld = document.getElementById("heroldAuthStatus");
+  if(feld) feld.textContent = text;
+}
 
+function heroldLoginWerte(){
+  return {
+    email: document.getElementById("heroldEmail")?.value.trim() || "",
+    password: document.getElementById("heroldPassword")?.value || ""
+  };
+}
+
+async function heroldAnmelden(){
+  if(!heroldSupabase){ heroldAuthMeldung("Die Anmeldung ist gerade nicht verfügbar."); return; }
+  const {email,password}=heroldLoginWerte();
+  const {error}=await heroldSupabase.auth.signInWithPassword({email,password});
+  heroldAuthMeldung(error ? "Anmeldung fehlgeschlagen. Prüfe E-Mail und Passwort." : "Angemeldet.");
+}
+
+async function heroldKontoErstellen(){
+  if(!heroldSupabase){ heroldAuthMeldung("Die Anmeldung ist gerade nicht verfügbar."); return; }
+  const {email,password}=heroldLoginWerte();
+  if(password.length<8){ heroldAuthMeldung("Das Passwort muss mindestens 8 Zeichen haben."); return; }
+  const {data,error}=await heroldSupabase.auth.signUp({email,password});
+  if(error){ heroldAuthMeldung(error.message); return; }
+  if(data.session) heroldAuthMeldung("Konto erstellt und angemeldet.");
+  else heroldAuthMeldung("Konto erstellt. Bestätige die E-Mail und melde dich danach hier an.");
+}
+
+async function heroldPasswortZuruecksetzen(){
+  if(!heroldSupabase){ heroldAuthMeldung("Die Anmeldung ist gerade nicht verfügbar."); return; }
+  const email=document.getElementById("heroldEmail")?.value.trim() || "";
+  if(!email){ heroldAuthMeldung("Gib zuerst deine E-Mail-Adresse ein."); return; }
+  const {error}=await heroldSupabase.auth.resetPasswordForEmail(email);
+  heroldAuthMeldung(error ? error.message : "Falls ein Konto besteht, wurde eine E-Mail zum Zurücksetzen gesendet.");
+}
+
+async function heroldAbmelden(){
+  if(heroldSupabase) await heroldSupabase.auth.signOut();
+}
+
+function aktualisiereHeroldAnmeldung(session){
+  heroldSession=session;
+  const auth=document.getElementById("heroldAuth");
+  const inhalt=document.getElementById("heroldContent");
+  if(!auth || !inhalt) return;
+  if(!session){
+    zeigeHeroldAnmeldung();
+    return;
   }
+  auth.innerHTML="";
+  inhalt.classList.remove("hidden");
+  const account=document.getElementById("heroldAccount");
+  if(account){
+    account.innerHTML='<div style="text-align:right;margin:8px 0;"><span class="muted">Angemeldet: '
+      +heroldHtmlEsc(session.user?.email)
+      +' </span><button onclick="heroldAbmelden()">Abmelden</button></div>';
+  }
+}
 
+async function initialisiereHeroldAnmeldung(){
+  if(!heroldSupabase){
+    zeigeHeroldAnmeldung("Anmeldung konnte nicht geladen werden. Bitte Seite neu laden.");
+    return;
+  }
+  const {data:{session}}=await heroldSupabase.auth.getSession();
+  aktualisiereHeroldAnmeldung(session);
+  heroldSupabase.auth.onAuthStateChange((_event, neueSession)=>{
+    aktualisiereHeroldAnmeldung(neueSession);
+    if(neueSession) ladeHeroldFunde();
+  });
 }
 
 function showHerold(){
-
   show("herold");
-
-  renderHerold();
-
+  if(!heroldSupabase){
+    zeigeHeroldAnmeldung("Anmeldung konnte nicht geladen werden. Bitte Seite neu laden.");
+  }else if(heroldSession){
+    ladeHeroldFunde();
+  }else{
+    zeigeHeroldAnmeldung();
+  }
 }
 let heroldFilter = "alle";
 function renderHerold(){
@@ -6346,40 +6422,39 @@ box.innerHTML = `
 
 }
 
-function starteHeroldAktion(index, aktion){
-
-  const fund = heroldFunde[index];
-  const eventId = String(fund?.id || "").trim();
-
+async function starteHeroldAktion(index, aktion){
+  const fund=heroldFunde[index];
+  const eventId=String(fund?.id || "").trim();
   if(!fund || !/^[A-Za-z0-9_-]{1,120}$/.test(eventId)){
     alert("Diese Herold-Meldung hat keine gültige ID.");
     return;
   }
-
-  const aktionText = aktion === "approve" ? "freigeben" : "verwerfen";
-  const titel = `Rabenruf ${aktionText}: ${fund.name || eventId}`;
-  const inhalt = [
-    `RABENRUF_HEROLD_ACTION=${aktion}`,
-    `RABENRUF_EVENT_ID=${eventId}`,
-    "",
-    "Von Rabenruf automatisch erzeugte Herold-Anfrage."
-  ].join("\n");
-
-  const adresse = new URL(
-    "https://github.com/agunz-png/rabenruf/issues/new"
-  );
-  adresse.searchParams.set("title", titel);
-  adresse.searchParams.set("body", inhalt);
-
-  window.open(adresse.toString(), "_blank", "noopener,noreferrer");
+  if(!heroldSupabase || !heroldSession){
+    zeigeHeroldAnmeldung("Bitte zuerst anmelden.");
+    return;
+  }
+  const knopf=event?.currentTarget;
+  if(knopf) knopf.disabled=true;
+  const {data,error}=await heroldSupabase.functions.invoke("herold-decision",{
+    body:{action:aktion,event_id:eventId}
+  });
+  if(error || !data?.ok){
+    if(knopf) knopf.disabled=false;
+    alert(data?.error || error?.message || "Die Herold-Aktion ist fehlgeschlagen.");
+    return;
+  }
+  await ladeHeroldFunde();
+  if(aktion==="approve"){
+    await ladeFreigegebeneEvents();
+  }
 }
 
 function heroldUebernehmen(index){
-  starteHeroldAktion(index, "approve");
+  starteHeroldAktion(index,"approve");
 }
 
 function heroldVerwerfen(index){
-  starteHeroldAktion(index, "reject");
+  starteHeroldAktion(index,"reject");
 }
 
 /* =========================================
@@ -6392,9 +6467,11 @@ applyFilters();
 
 renderCalendar();
 
-ladeHeroldFunde();
+initialisiereHeroldAnmeldung();
 
 ladeFreigegebeneEvents();
+
+if(heroldSession) ladeHeroldFunde();
 
 setInterval(() => {
   ladeFreigegebeneEvents();
