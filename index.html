@@ -6282,6 +6282,7 @@ async function heroldAnmelden(){
 async function heroldKontoErstellen(){
   if(!heroldSupabase){ heroldAuthMeldung("Die Anmeldung ist gerade nicht verfügbar."); return; }
   const {email,password}=heroldLoginWerte();
+  if(email.toLowerCase()!=="agunz@bluewin.ch"){ heroldAuthMeldung("Für den Herold ist nur das freigeschaltete Konto zugelassen."); return; }
   if(password.length<8){ heroldAuthMeldung("Das Passwort muss mindestens 8 Zeichen haben."); return; }
   const {data,error}=await heroldSupabase.auth.signUp({email,password});
   if(error){ heroldAuthMeldung(error.message); return; }
@@ -6308,6 +6309,16 @@ function aktualisiereHeroldAnmeldung(session){
   if(!auth || !inhalt) return;
   if(!session){
     zeigeHeroldAnmeldung();
+    return;
+  }
+  const istHeroldAdmin =
+    session.user?.email?.toLowerCase()==="agunz@bluewin.ch" &&
+    Boolean(session.user?.email_confirmed_at);
+  if(!istHeroldAdmin){
+    inhalt.classList.add("hidden");
+    auth.innerHTML='<div class="card"><h3>🔒 Kein Herold-Zugang</h3><p>Dieses Konto ist nicht freigeschaltet. Melde dich mit dem bestätigten Herold-Konto an.</p><button onclick="heroldAbmelden()">Abmelden</button></div>';
+    const liste=document.getElementById("heroldList");
+    if(liste) liste.innerHTML="";
     return;
   }
   auth.innerHTML="";
