@@ -785,7 +785,7 @@ h3{
 
       autocomplete="off"
 
-      oninput="applyFilters()">
+      oninput="applyVisibleSearch()">
 
   </div>
 
@@ -993,7 +993,7 @@ h3{
       id="calendarSearchInput"
       placeholder="Fest, Ort oder Land suchen..."
       autocomplete="off"
-      oninput="applyCalendarFilters()">
+      oninput="syncCalendarSearch('calendarSearchInput')">
   </div>
 
   <div class="chips" id="calendarTypeFilters">
@@ -6116,6 +6116,21 @@ function findMe(){
    KALENDER
 
    ========================================= */
+
+function applyVisibleSearch(){
+  if(!byId("calendar").classList.contains("hidden")){
+    syncCalendarSearch("searchInput");
+    return;
+  }
+  applyFilters();
+}
+
+function syncCalendarSearch(sourceId){
+  const query = byId(sourceId)?.value || "";
+  byId("searchInput").value = query;
+  byId("calendarSearchInput").value = query;
+  applyCalendarFilters();
+}
 
 let calendarType = "Alle";
 
