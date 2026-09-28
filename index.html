@@ -921,12 +921,6 @@ textarea.contactField{min-height:150px;resize:vertical;}
 
       <option value="Alle">🌍 Alle Länder</option>
 
-      <option value="Schweiz">🇨🇭 Schweiz</option>
-
-      <option value="Deutschland">🇩🇪 Deutschland</option>
-
-      <option value="Österreich">🇦🇹 Österreich</option>
-
     </select>
     <button type="button" onclick="findMe(); applyFilters();">
 
@@ -5384,11 +5378,33 @@ function getCurrentEvents(){
   return events.filter(eventIsCurrent);
 }
 
+function aktualisiereLaenderFilter(){
+  const select = byId("countryFilter");
+  if(!select) return;
+
+  const ausgewaehlt = select.value || "Alle";
+  const laender = [...new Set(
+    getCurrentEvents()
+      .filter(event => event.start && !Number.isNaN(dateObject(event.start).getTime()))
+      .map(event => event.country)
+      .filter(Boolean)
+  )].sort((a, b) => a.localeCompare(b, "de-CH"));
+
+  select.innerHTML = '<option value="Alle">🌍 Alle Länder</option>' +
+    laender.map(land => {
+      const event = getCurrentEvents().find(e => e.country === land);
+      const flagge = event?.flag ? event.flag + " " : "";
+      return '<option value="' + escapeHTML(land) + '">' +
+        flagge + escapeHTML(land) + '</option>';
+    }).join("");
+
+  select.value = laender.includes(ausgewaehlt) ? ausgewaehlt : "Alle";
+}
+
 function applyFilters(){
+  aktualisiereLaenderFilter();
 
-  const country =
-
-    byId("countryFilter").value;
+  const country = byId("countryFilter").value;
 
   const time =
 
