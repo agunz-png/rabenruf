@@ -788,22 +788,6 @@ h3{
 
   </div>
 
-  <div class="search">
-
-    🔎
-
-    <input
-
-      id="searchInput"
-
-      placeholder="Fest, Ort oder Land suchen..."
-
-      autocomplete="off"
-
-      oninput="applyVisibleSearch()">
-
-  </div>
-
 </header>
 
 <main id="home">
@@ -1008,7 +992,7 @@ h3{
       id="calendarSearchInput"
       placeholder="Fest, Ort oder Land suchen..."
       autocomplete="off"
-      oninput="syncCalendarSearch('calendarSearchInput')">
+      oninput="applyCalendarFilters()">
   </div>
 
   <div class="chips" id="calendarTypeFilters">
@@ -5363,16 +5347,6 @@ function getCurrentEvents(){
 
 function applyFilters(){
 
-  const query =
-
-    byId("searchInput")
-
-      .value
-
-      .trim()
-
-      .toLowerCase();
-
   const country =
 
     byId("countryFilter").value;
@@ -5445,42 +5419,6 @@ function applyFilters(){
           )
 
       );
-
-  }
-
-  if(query){
-
-    list =
-
-      list.filter(event => {
-
-        const text =
-
-          [
-
-            event.name,
-
-            event.city,
-
-            event.country,
-
-            event.type,
-
-            event.organizer,
-
-            event.venue,
-
-            ...event.tags
-
-          ]
-
-          .join(" ")
-
-          .toLowerCase();
-
-        return text.includes(query);
-
-      });
 
   }
 
@@ -6141,21 +6079,6 @@ function findMe(){
    KALENDER
 
    ========================================= */
-
-function applyVisibleSearch(){
-  if(!byId("calendar").classList.contains("hidden")){
-    syncCalendarSearch("searchInput");
-    return;
-  }
-  applyFilters();
-}
-
-function syncCalendarSearch(sourceId){
-  const query = byId(sourceId)?.value || "";
-  byId("searchInput").value = query;
-  byId("calendarSearchInput").value = query;
-  applyCalendarFilters();
-}
 
 let calendarType = "Alle";
 
