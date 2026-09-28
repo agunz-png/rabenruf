@@ -5378,6 +5378,21 @@ function getCurrentEvents(){
   return events.filter(eventIsCurrent);
 }
 
+function flaggeFuerLand(land){
+  const flaggen = {
+    "Deutschland":"🇩🇪",
+    "Frankreich":"🇫🇷",
+    "Italien":"🇮🇹",
+    "Luxemburg":"🇱🇺",
+    "Niederlande":"🇳🇱",
+    "Österreich":"🇦🇹",
+    "Schweiz":"🇨🇭",
+    "Ungarn":"🇭🇺",
+    "Vereinigtes Königreich":"🇬🇧"
+  };
+  return flaggen[land] || "";
+}
+
 function aktualisiereLaenderFilter(veranstaltungen = getCurrentEvents()){
   const select = byId("countryFilter");
   if(!select) return;
@@ -5393,9 +5408,9 @@ function aktualisiereLaenderFilter(veranstaltungen = getCurrentEvents()){
   select.innerHTML = '<option value="Alle">🌍 Alle Länder</option>' +
     laender.map(land => {
       const event = veranstaltungen.find(e => e.country === land);
-      const flagge = event?.flag ? event.flag + " " : "";
+      const flagge = event?.flag || flaggeFuerLand(land);
       return '<option value="' + escapeHTML(land) + '">' +
-        flagge + escapeHTML(land) + '</option>';
+        (flagge ? flagge + " " : "") + escapeHTML(land) + '</option>';
     }).join("");
 
   select.value = laender.includes(ausgewaehlt) ? ausgewaehlt : "Alle";
@@ -6163,9 +6178,12 @@ function applyCalendarFilters(){
   const countries = [...new Set(allEvents.map(event => event.country).filter(Boolean))]
     .sort((a, b) => a.localeCompare(b, "de-CH"));
   countrySelect.innerHTML = '<option value="Alle">🌍 Alle Länder</option>' +
-    countries.map(country =>
-      '<option value="' + escapeHTML(country) + '">' + escapeHTML(country) + '</option>'
-    ).join("");
+    countries.map(country => {
+      const event = allEvents.find(e => e.country === country);
+      const flagge = event?.flag || flaggeFuerLand(country);
+      return '<option value="' + escapeHTML(country) + '">' +
+        (flagge ? flagge + " " : "") + escapeHTML(country) + '</option>';
+    }).join("");
   countrySelect.value = countries.includes(selectedCountry) ? selectedCountry : "Alle";
 
   const months = [...new Set(allEvents.map(event => event.start.slice(0, 7)))].sort();
