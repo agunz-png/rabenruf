@@ -5378,13 +5378,13 @@ function getCurrentEvents(){
   return events.filter(eventIsCurrent);
 }
 
-function aktualisiereLaenderFilter(){
+function aktualisiereLaenderFilter(veranstaltungen = getCurrentEvents()){
   const select = byId("countryFilter");
   if(!select) return;
 
   const ausgewaehlt = select.value || "Alle";
   const laender = [...new Set(
-    getCurrentEvents()
+    veranstaltungen
       .filter(event => event.start && !Number.isNaN(dateObject(event.start).getTime()))
       .map(event => event.country)
       .filter(Boolean)
@@ -5392,7 +5392,7 @@ function aktualisiereLaenderFilter(){
 
   select.innerHTML = '<option value="Alle">🌍 Alle Länder</option>' +
     laender.map(land => {
-      const event = getCurrentEvents().find(e => e.country === land);
+      const event = veranstaltungen.find(e => e.country === land);
       const flagge = event?.flag ? event.flag + " " : "";
       return '<option value="' + escapeHTML(land) + '">' +
         flagge + escapeHTML(land) + '</option>';
@@ -6156,6 +6156,7 @@ function applyCalendarFilters(){
   let allEvents = getCurrentEvents().filter(event =>
     event.start && !Number.isNaN(dateObject(event.start).getTime())
   );
+  aktualisiereLaenderFilter(allEvents);
 
   const selectedCountry = countrySelect.value || "Alle";
   const selectedMonth = monthSelect.value || "Alle";
