@@ -668,7 +668,7 @@ h3{
 
 .nav{
 
-  width:25%;
+  width:16.666%;
 
   text-align:center;
 
@@ -763,6 +763,15 @@ h3{
 
 }
 
+
+.contactField{
+  display:block;width:100%;margin:7px 0 13px;padding:12px;
+  background:#1c1813;color:var(--text);border:1px solid var(--line);border-radius:10px;
+}
+.contactField:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+textarea.contactField{min-height:150px;resize:vertical;}
+.contactStatus{min-height:24px;margin-top:10px;color:var(--gold2);}
+.honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
 </style>
 
 
@@ -1040,6 +1049,26 @@ h3{
 
 </main>
   
+<main id="contact" class="hidden">
+  <h2>✉️ Kontakt</h2>
+  <p class="muted">Schreib mir direkt eine Nachricht. Ich bekomme sie per E-Mail und kann dir antworten.</p>
+  <form id="contactForm" class="card" onsubmit="sendContactMessage(event)">
+    <label for="contactName">Dein Name</label>
+    <input class="contactField" id="contactName" name="name" type="text" maxlength="80" autocomplete="name" required>
+    <label for="contactEmail">Deine E-Mail-Adresse</label>
+    <input class="contactField" id="contactEmail" name="email" type="email" maxlength="254" autocomplete="email" required>
+    <label for="contactMessage">Deine Nachricht</label>
+    <textarea class="contactField" id="contactMessage" name="message" maxlength="4000" required></textarea>
+    <div class="honeypot" aria-hidden="true">
+      <label for="contactWebsite">Website</label>
+      <input id="contactWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+    </div>
+    <button id="contactSubmit" class="btn primary" type="submit">Nachricht senden</button>
+    <p id="contactStatus" class="contactStatus" role="status" aria-live="polite"></p>
+    <p class="sourceNote">Deine Angaben werden nur verwendet, um auf deine Nachricht zu antworten.</p>
+  </form>
+</main>
+
 <main id="herold" class="hidden">
 
   <h2>🐦‍⬛ Der Herold</h2>
@@ -1125,6 +1154,14 @@ h3{
   
 <div
 
+  id="navContact"
+  class="nav"
+  onclick="show('contact')">
+  <b>✉️</b>
+  Kontakt
+</div>
+
+<div
   id="navHerold"
 
   class="nav"
@@ -4981,9 +5018,11 @@ function setActiveNav(page){
   }
 
   if(page === "favorites"){
-
     byId("navFavorites").classList.add("active");
+  }
 
+  if(page === "contact"){
+    byId("navContact").classList.add("active");
   }
 
 }
@@ -6544,6 +6583,44 @@ function heroldUebernehmen(index){
 
 function heroldVerwerfen(index){
   starteHeroldAktion(index,"reject");
+}
+
+async function sendContactMessage(event){
+  event.preventDefault();
+  const form=byId("contactForm");
+  const status=byId("contactStatus");
+  const submit=byId("contactSubmit");
+  const data=new FormData(form);
+  const message={
+    name:String(data.get("name") || "").trim(),
+    email:String(data.get("email") || "").trim(),
+    message:String(data.get("message") || "").trim(),
+    website:String(data.get("website") || "")
+  };
+  status.textContent="";
+  submit.disabled=true;
+  submit.textContent="Wird gesendet …";
+  try{
+    const response=await fetch(RABENRUF_SUPABASE_URL + "/functions/v1/rabenruf-contact",{
+      method:"POST",
+      headers:{
+        "apikey":RABENRUF_SUPABASE_KEY,
+        "Authorization":"Bearer " + RABENRUF_SUPABASE_KEY,
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(message)
+    });
+    let result={};
+    try{ result=await response.json(); }catch(_error){}
+    if(!response.ok) throw new Error(result.error || "Die Nachricht konnte nicht gesendet werden.");
+    form.reset();
+    status.textContent="Danke! Deine Nachricht wurde gesendet.";
+  }catch(error){
+    status.textContent=error.message || "Das Senden hat nicht funktioniert. Bitte versuche es später erneut.";
+  }finally{
+    submit.disabled=false;
+    submit.textContent="Nachricht senden";
+  }
 }
 
 /* =========================================
