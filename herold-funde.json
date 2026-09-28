@@ -424,18 +424,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltermaerkte-europa.php"
   },
   {
-    "id": "mittelalterkalender-f61f527a441790a4",
-    "name": "Eisenfaust Eisenfest",
-    "type": "Markt",
-    "date": "2026-09-25 bis 2026-09-27",
-    "start": "2026-09-25",
-    "end": "2026-09-27",
-    "country": "Österreich",
-    "city": "Riedlingsdorf",
-    "postcode": "7422",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltermaerkte-europa.php"
-  },
-  {
     "id": "mittelalterkalender-9a520b9c75db9ad9",
     "name": "Halloween Fantasy- und Mittelalterspektakel",
     "type": "Markt",
@@ -446,30 +434,6 @@
     "city": "Zürich",
     "postcode": "8005",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltermaerkte-europa.php"
-  },
-  {
-    "id": "eu-source-be5fa405a1b86ae4",
-    "name": "Festival médiéval - Gubbio",
-    "type": "Markt",
-    "date": "2026-09-23 bis 2026-09-27",
-    "start": "2026-09-23",
-    "end": "2026-09-27",
-    "country": "Italien",
-    "city": "Gubbio",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/festival-del-medioevo-gubbio-2026/"
-  },
-  {
-    "id": "eu-source-7bf8b78406b34264",
-    "name": "Marché médiéval Ritterhaus Bubikon",
-    "type": "Markt",
-    "date": "2026-09-25 bis 2026-09-27",
-    "start": "2026-09-25",
-    "end": "2026-09-27",
-    "country": "Schweiz",
-    "city": "Bubikon",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-bubikon-2026/"
   },
   {
     "id": "eu-source-156d075da6e2c34a",
