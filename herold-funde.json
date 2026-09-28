@@ -565,8 +565,8 @@
     "country": "Vereinigtes Königreich",
     "city": "Hatsford Farm",
     "postcode": "",
-    "lat": 0.0,
-    "lng": 0.0,
+    "lat": 0,
+    "lng": 0,
     "source": "https://www.buhurtinternational.com/tournament/heritage-shield-2026"
   },
   {
@@ -579,8 +579,8 @@
     "country": "Ungarn",
     "city": "Veszprém",
     "postcode": "",
-    "lat": 0.0,
-    "lng": 0.0,
+    "lat": 0,
+    "lng": 0,
     "source": "https://www.buhurtinternational.com/tournament/v.-veszpr%C3%A9m-medieval-day"
   },
   {
@@ -596,5 +596,77 @@
     "lat": 47.2580585,
     "lng": 10.7745265,
     "source": "https://www.buhurtinternational.com/tournament/alpine-warrior-2027"
+  },
+  {
+    "id": "fr-fournols-2026",
+    "name": "Les Médiévales de Fournols",
+    "type": "Markt",
+    "date": "03.–04. Oktober 2026",
+    "start": "2026-10-03",
+    "end": "2026-10-04",
+    "country": "Frankreich",
+    "city": "Fournols",
+    "postcode": "63980",
+    "source": "https://www.ambertlivradoisforez.fr/agenda/les-medievales-de-fournols/"
+  },
+  {
+    "id": "fr-moutiers-en-retz-2026",
+    "name": "Fête médiévale et renaissance des Moutiers-en-Retz",
+    "type": "Markt",
+    "date": "03.–04. Oktober 2026",
+    "start": "2026-10-03",
+    "end": "2026-10-04",
+    "country": "Frankreich",
+    "city": "Les Moutiers-en-Retz",
+    "postcode": "44760",
+    "source": "https://www.mairie-lesmoutiersenretz.fr/agenda/fete-medievale-et-renaissance/"
+  },
+  {
+    "id": "fr-avully-2026",
+    "name": "Les Médiévales du Château d’Avully",
+    "type": "Markt",
+    "date": "03.–04. Oktober 2026",
+    "start": "2026-10-03",
+    "end": "2026-10-04",
+    "country": "Frankreich",
+    "city": "Brenthonne",
+    "postcode": "74890",
+    "source": "https://chateauavully.com/agenda/"
+  },
+  {
+    "id": "fr-avignon-rose-dor-2026",
+    "name": "Festival Médiéval de la Rose d’Or – 1326 Le complot de la louve",
+    "type": "Markt",
+    "date": "10.–11. Oktober 2026",
+    "start": "2026-10-10",
+    "end": "2026-10-11",
+    "country": "Frankreich",
+    "city": "Avignon",
+    "postcode": "84000",
+    "source": "https://avignon-tourisme.com/offres/festival-medieval-de-la-rose-dor-1326-le-complot-de-la-louve-avignon-fr-4143349/"
+  },
+  {
+    "id": "it-soncino-medieval-2026",
+    "name": "Rievocazione medievale di Soncino",
+    "type": "Markt",
+    "date": "04. Oktober 2026",
+    "start": "2026-10-04",
+    "end": "2026-10-04",
+    "country": "Italien",
+    "city": "Soncino",
+    "postcode": "26029",
+    "source": "https://www.comune.soncino.cr.it/it/eventi/684207"
+  },
+  {
+    "id": "it-ferrara-citta-magica-2026",
+    "name": "La Città Magica",
+    "type": "Markt",
+    "date": "09.–11. Oktober 2026",
+    "start": "2026-10-09",
+    "end": "2026-10-11",
+    "country": "Italien",
+    "city": "Ferrara",
+    "postcode": "44121",
+    "source": "https://www.rionesantospirito.it/portfolio-articoli/la-citta-magica/"
   }
 ]
