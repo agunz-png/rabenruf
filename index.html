@@ -297,7 +297,6 @@ h3{
   background:var(--red);
 
   border-color:#b05945;
-
 }
 
 .green{
@@ -597,7 +596,6 @@ h3{
   text-align:center;
 
   color:var(--muted);
-
   padding:45px 15px;
 
   line-height:1.6;
@@ -775,6 +773,10 @@ textarea.contactField{min-height:150px;resize:vertical;}
 .eventEditField:focus{outline:2px solid var(--gold);border-color:var(--gold);}
 .eventEditForm label{display:block;color:var(--muted);font-size:13px;}
 .eventEditForm textarea{min-height:95px;resize:vertical;}
+.eventFlyer{padding:10px;margin:8px 0 18px;border:1px solid #63472d;border-radius:16px;background:#17120e;text-align:center;}
+.eventFlyer img{display:block;width:100%;max-height:520px;object-fit:contain;border-radius:10px;}
+.eventFlyer a{display:block;color:inherit;}
+.eventFlyer figcaption{padding:8px 2px 0;color:var(--muted);font-size:13px;}
 .honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
 </style>
 
@@ -898,7 +900,6 @@ textarea.contactField{min-height:150px;resize:vertical;}
       id="chipReenactment"
 
       class="chip"
-
       onclick="setType('Reenactment')">
 
       🛡️ Reenactment
@@ -1198,7 +1199,6 @@ const events = [
 {
 
   id:"lenzburg2026",
-
   name:"Mittelaltermarkt Schloss Lenzburg",
 
   type:"Markt",
@@ -1498,7 +1498,6 @@ const events = [
   address:"Ritterhausstrasse 35, 8608 Bubikon",
 
   lat:47.2667,
-
   lng:8.8180,
 
   website:"https://www.turnei.ch/",
@@ -1797,7 +1796,6 @@ const events = [
   end:"2026-10-18",
 
   date:"17.–18. Oktober 2026",
-
   country:"Schweiz",
 
   flag:"🇨🇭",
@@ -2097,7 +2095,6 @@ const events = [
 {
 
   id:"aichach2026",
-
   name:"Historische Markttage Aichach",
 
   type:"Markt",
@@ -2397,7 +2394,6 @@ const events = [
   city:"Staufen im Breisgau",
 
   venue:"Altstadt",
-
   address:"79219 Staufen im Breisgau",
 
   lat:47.8804,
@@ -2697,7 +2693,6 @@ const events = [
 {
 
   id:"grafing2026",
-
   name:"Mittelaltermarkt Grafing",
 
   type:"Markt",
@@ -2997,7 +2992,6 @@ const events = [
   city:"Beeskow",
 
   venue:"Burg Beeskow",
-
   address:"15848 Beeskow",
 
   lat:52.1724,
@@ -3297,7 +3291,6 @@ const events = [
 {
 
   id:"bochumwinter2026",
-
   name:"Mittelalter auf dem Bochumer Weihnachtsmarkt",
 
   type:"Markt",
@@ -3597,7 +3590,6 @@ const events = [
   city:"Esslingen am Neckar",
 
   venue:"Altstadt",
-
   address:"73728 Esslingen am Neckar",
 
   lat:48.7421,
@@ -3897,7 +3889,6 @@ const events = [
 {
 
   id:"dresdenrauhnaechte2026",
-
   name:"Dresdner Rauhnächte",
 
   type:"Spezialevent",
@@ -4197,7 +4188,6 @@ const events = [
   city:"Rosenburg",
 
   venue:"Schloss Rosenburg",
-
   address:"3573 Rosenburg",
 
   lat:48.62823,
@@ -4497,7 +4487,6 @@ const events = [
 {
 
   id:"plankensteinAdvent1_2026",
-
   name:"Adventmarkt auf Burg Plankenstein",
 
   type:"Markt",
@@ -4797,8 +4786,7 @@ async function ladeFreigegebeneEvents(){
     renderCalendar();
     renderMapMarkers();
   }catch(fehler){
-    console.error("Freigegebene Veranstaltungen konnten nicht geladen werden:", fehler);
-  }
+    console.error("Freigegebene Veranstaltungen konnten nicht geladen werden:", fehler);  }
 }
 
 /* =========================================
@@ -5098,7 +5086,6 @@ function toggleFavorite(id){
   }
 
   localStorage.setItem(
-
     "rabenrufFavorites",
 
     JSON.stringify(favorites)
@@ -5397,8 +5384,7 @@ function flaggeFuerLand(land){
     "Deutschland":"🇩🇪",
     "Frankreich":"🇫🇷",
     "Italien":"🇮🇹",
-    "Luxemburg":"🇱🇺",
-    "Niederlande":"🇳🇱",
+    "Luxemburg":"🇱🇺",    "Niederlande":"🇳🇱",
     "Österreich":"🇦🇹",
     "Schweiz":"🇨🇭",
     "Ungarn":"🇭🇺",
@@ -5650,6 +5636,7 @@ function openEvent(id){
   };
   const organizerUrl = linkUrl(event.website);
   const sourceUrl = linkUrl(event.source);
+  const flyerUrl = linkUrl(event.flyer || event.flyerUrl || event.image || event.image_url || event.imageUrl || event.poster || event.bild);
   const updateId = String(event.id || "").replace(/[^A-Za-z0-9_-]/g, "");
 
   byId("detailContent").innerHTML = `
@@ -5692,12 +5679,13 @@ function openEvent(id){
 
     </div>
 
+    ${flyerUrl ? `<figure class="eventFlyer"><a href="${escapeHTML(flyerUrl)}" target="_blank" rel="noopener noreferrer"><img src="${escapeHTML(flyerUrl)}" alt="Flyer zu ${escapeHTML(event.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').hidden=true"></a><figcaption>📄 Veranstaltungsflyer · antippen zum Vergrößern</figcaption></figure>` : ""}
+
     <div class="card">
 
       <h3>
 
         ⚔️ Veranstaltung
-
       </h3>
 
       <p class="muted">
@@ -5874,6 +5862,7 @@ function bearbeiteTermin(id){
     field("address","Adresse",event.address,"text",false,240) +
     field("organizer","Veranstalter",event.organizer,"text",false,160) +
     field("website","Veranstalter-Webseite",event.website,"url",false,500) +
+    field("flyer","Flyer-Bildadresse (optional)",event.flyer || event.flyerUrl || event.image || event.image_url || event.imageUrl || event.poster || event.bild,"url",false,1000) +
     area("info","Beschreibung",event.info,4,1200) +
     field("hours","Öffnungszeiten / Zeiten",event.hours,"text",false,240) +
     '<button class="btn primary" type="button" onclick="sendeTerminAenderung()">🔒 Änderung an den Herold senden</button>' +
@@ -5895,6 +5884,7 @@ async function sendeTerminAenderung(){
     name:value("name"),start:value("start"),end:value("end"),
     city:value("city"),country:value("country"),venue:value("venue"),
     address:value("address"),organizer:value("organizer"),website:value("website"),
+    flyer:value("flyer"),
     info:value("info"),hours:value("hours")
   };
   if(!proposed.name || !proposed.start || !proposed.end || !proposed.city || !proposed.country){
@@ -5998,7 +5988,6 @@ function initMap(){
       5
 
     );
-
   L.tileLayer(
 
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -6298,7 +6287,6 @@ function applyCalendarFilters(){
         (flagge ? flagge + " " : "") + escapeHTML(country) + '</option>';
     }).join("");
   countrySelect.value = countries.includes(selectedCountry) ? selectedCountry : "Alle";
-
   const months = [...new Set(allEvents.map(event => event.start.slice(0, 7)))].sort();
   monthSelect.innerHTML = '<option value="Alle">📅 Alle Monate</option>' +
     months.map(month =>
@@ -6597,8 +6585,7 @@ function aktualisiereHeroldAnmeldung(session){
   }
   auth.innerHTML="";
   inhalt.classList.remove("hidden");
-  const account=document.getElementById("heroldAccount");
-  if(account){
+  const account=document.getElementById("heroldAccount");  if(account){
     account.innerHTML='<div style="text-align:right;margin:8px 0;"><span class="muted">Angemeldet: '
       +heroldHtmlEsc(session.user?.email)
       +' </span><button onclick="heroldAbmelden()">Abmelden</button></div>';
@@ -6660,7 +6647,7 @@ function renderHeroldUpdates(){
   }
   const fieldLabels={
     name:"Veranstaltung",date:"Datum",city:"Ort",country:"Land",venue:"Veranstaltungsort",
-    address:"Adresse",organizer:"Veranstalter",website:"Webseite",info:"Beschreibung",hours:"Zeiten"
+    address:"Adresse",organizer:"Veranstalter",website:"Webseite",flyer:"Flyer-Bildadresse",info:"Beschreibung",hours:"Zeiten"
   };
   box.innerHTML='<h2>✏️ Änderungsvorschläge</h2>' + heroldUpdates.map(request=>{
     const oldEvent=request.old_event || {};
@@ -6883,5 +6870,4 @@ window.addEventListener('focus', () => {
 </body>
 
 </html>
-
 
