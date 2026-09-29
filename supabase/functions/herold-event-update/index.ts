@@ -35,8 +35,8 @@ function validIsoDate(value: unknown): value is string {
 function cleanText(value: unknown, max: number): string {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
 }
-function safeUrl(value: unknown): string {
-  const text = cleanText(value, 500);
+function safeUrl(value: unknown, max = 500): string {
+  const text = cleanText(value, max);
   if (!text) return "";
   try {
     const url = new URL(text);
@@ -84,6 +84,7 @@ function validEvent(value: unknown, eventId: string): Record<string, unknown> | 
     address: cleanText(raw.address, 240) || city + ", " + country,
     lat, lng,
     website: safeUrl(raw.website),
+    flyer: safeUrl(raw.flyer, 1000),
     source: safeUrl(raw.source),
     organizer: cleanText(raw.organizer, 160),
     info: cleanText(raw.info, 1200),
