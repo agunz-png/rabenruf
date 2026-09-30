@@ -4709,6 +4709,12 @@ let heroldUpdates = [];
 let requestedEditEventId = "";
 let eventEditId = "";
 let eventEditSnapshot = null;
+let gelöschteHeroldEventIds = new Set();
+
+function heroldEventIstGeloescht(event, ids=gelöschteHeroldEventIds){
+  const id=String(event?.id || "");
+  return ids.has(id) || (id.startsWith("herold-") && ids.has(id.slice("herold-".length)));
+}
 
 async function heroldApi(pfad, optionen = {}){
   const headers = {
@@ -4769,6 +4775,10 @@ async function ladeFreigegebeneEvents(){
 
     try{
       const entscheidungen = await ladeHeroldEntscheide();
+      gelöschteHeroldEventIds = new Set(entscheidungen
+        .filter(e => e.status === "rejected")
+        .map(e => String(e.event_id || ""))
+        .filter(Boolean));
       const ausDatenbank = entscheidungen
         .filter(e => e.status === "approved" && e.event)
         .map(e => e.event);
@@ -4776,6 +4786,9 @@ async function ladeFreigegebeneEvents(){
     }catch(fehler){
       console.warn("Herold-Entscheide konnten nicht geladen werden:", fehler);
     }
+
+    freigegebeneEvents = freigegebeneEvents.filter(event => !heroldEventIstGeloescht(event));
+    events.splice(0, events.length, ...events.filter(event => !heroldEventIstGeloescht(event)));
 
     const eventIndexNachId = new Map(
       events.map((event, index) => [String(event.id || ""), index])
@@ -5877,13 +5890,49 @@ function bearbeiteTermin(id){
     area("info","Beschreibung",event.info,4,1200) +
     field("hours","Öffnungszeiten / Zeiten",event.hours,"text",false,240) +
     '<button class="btn primary" type="button" onclick="sendeTerminAenderung()">🔒 Änderung an den Herold senden</button>' +
+    '<button class="btn" id="eventDeleteButton" type="button" style="border-color:#963e30;color:#f0a096" onclick="loescheTerminDauerhaft()">🗑️ Termin dauerhaft löschen</button>' +
     '<p id="eventEditStatus" class="contactStatus" role="status" aria-live="polite"></p></div>';
   show("eventUpdate");
 }
 
+async function loescheTerminDauerhaft(){
+  if(!heroldIsAdmin() || !heroldSession?.access_token || !eventEditId) return;
+  if(!window.confirm("Diesen Termin dauerhaft aus Kalender, Karte und Herold entfernen? Er soll auch nach einem neuen Suchlauf nicht wieder erscheinen.")) return;
+  const status=byId("eventEditStatus");
+  const button=byId("eventDeleteButton");
+  if(button){button.disabled=true;button.textContent="Wird dauerhaft gelöscht …";}
+  if(status) status.textContent="";
+  try{
+    await heroldSessionErneuern();
+    const result=await heroldApi("functions/v1/herold-event-update",{
+      method:"POST",token:heroldSession.access_token,
+      body:{action:"delete",event_id:eventEditId}
+    });
+    if(!result?.ok) throw new Error(result?.error || "Der Termin konnte nicht gelöscht werden.");
+
+    const ids=new Set([eventEditId]);
+    if(eventEditId.startsWith("herold-")) ids.add(eventEditId.slice("herold-".length));
+    ids.forEach(id=>gelöschteHeroldEventIds.add(id));
+    events.splice(0,events.length,...events.filter(event=>!heroldEventIstGeloescht(event,ids)));
+    const gespeicherte=JSON.parse(localStorage.getItem("rabenrufHeroldEvents") || "[]")
+      .filter(event=>!heroldEventIstGeloescht(event,ids));
+    localStorage.setItem("rabenrufHeroldEvents",JSON.stringify(gespeicherte));
+    heroldFunde=heroldFunde.filter(fund=>!ids.has(String(fund.id || "")));
+    applyFilters();
+    renderCalendar();
+    renderMapMarkers();
+    renderHerold();
+    byId("eventUpdateForm").innerHTML=
+      '<div class="card"><h2>🗑️ Termin gelöscht</h2><p class="muted">Der Termin wurde aus Kalender und Karte entfernt und im Herold dauerhaft als verworfen markiert. Auch ein späterer Suchlauf blendet ihn aus.</p><button class="btn" type="button" onclick="show(\'calendar\')">Zum Kalender</button></div>';
+  }catch(error){
+    if(status) status.textContent=error.message || "Das Löschen hat nicht funktioniert.";
+    if(button){button.disabled=false;button.textContent="🗑️ Termin dauerhaft löschen";}
+  }
+}
+
 async function sendeTerminAenderung(){
   const status=byId("eventEditStatus");
-  const button=document.querySelector("#eventUpdateForm button");
+  const button=document.querySelector("#eventUpdateForm .primary");
   if(!heroldIsAdmin() || !heroldSession?.access_token){
     if(status) status.textContent="Bitte melde dich zuerst mit dem Herold-Passwort an.";
     return;
