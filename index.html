@@ -6312,8 +6312,8 @@ function applyCalendarFilters(){
     event.start && !Number.isNaN(dateObject(event.start).getTime())
   );
   aktualisiereJahresFilter(allEvents);
-  allEvents = getEventsForSelectedYear(allEvents);
   aktualisiereLaenderFilter(allEvents);
+  allEvents = getEventsForSelectedYear(allEvents);
 
   const selectedCountry = countrySelect.value || "Alle";
   const selectedMonth = monthSelect.value || "Alle";
