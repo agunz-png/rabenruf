@@ -164,6 +164,10 @@ Deno.serve(async (req: Request) => {
     if (payload.action === "submit") {
       const eventId = cleanText(payload.event_id, 120);
       if (!/^[A-Za-z0-9_-]{1,120}$/.test(eventId)) return reply({ error: "Ungültige Termin-ID." }, 400);
+      const { data: priorDecision, error: priorDecisionError } = await admin.from("herold_decisions")
+        .select("status").eq("event_id", eventId).maybeSingle();
+      if (priorDecisionError) throw priorDecisionError;
+      if (priorDecision?.status === "rejected") return reply({ error: "Dieser Termin wurde dauerhaft gelöscht und kann nicht mehr geändert werden." }, 410);
       const oldEvent = validEvent(payload.old_event, eventId);
       const proposed = validEvent(payload.proposed_event, eventId);
       if (!oldEvent || !proposed) return reply({ error: "Bitte prüfe die Pflichtfelder: Titel, Zeitraum, Ort und Land." }, 422);
@@ -181,6 +185,26 @@ Deno.serve(async (req: Request) => {
         throw error;
       }
       return reply({ ok: true, request_id: data.id });
+    }
+
+    if (payload.action === "delete") {
+      const eventId = cleanText(payload.event_id, 120);
+      if (!/^[A-Za-z0-9_-]{1,120}$/.test(eventId)) return reply({ error: "Ungültige Termin-ID." }, 400);
+      const eventIds = new Set([eventId]);
+      if (eventId.startsWith("herold-") && eventId.length > "herold-".length) {
+        eventIds.add(eventId.slice("herold-".length));
+      }
+      const updatedAt = new Date().toISOString();
+      const { error: decisionError } = await admin.from("herold_decisions").upsert(
+        [...eventIds].map(id => ({ event_id: id, status: "rejected", event: null, updated_at: updatedAt })),
+        { onConflict: "event_id" },
+      );
+      if (decisionError) throw decisionError;
+      const { error: updateError } = await admin.from("herold_update_requests")
+        .update({ status: "rejected", updated_at: updatedAt })
+        .in("event_id", [...eventIds]).eq("status", "pending");
+      if (updateError) throw updateError;
+      return reply({ ok: true, action: "delete", event_id: eventId });
     }
 
     if (payload.action === "approve" || payload.action === "reject") {
