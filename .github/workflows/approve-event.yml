@@ -212,7 +212,7 @@ jobs:
               "address": city + ", " + country,
               "lat": lat,
               "lng": lng,
-              "website": fund.get("source", ""),
+              "website": fund.get("website") or fund.get("source", ""),
               "organizer": "",
               "info": "Gefunden und bestätigt durch den Herold",
               "hours": ""
