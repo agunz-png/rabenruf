@@ -20,7 +20,11 @@ MONTHS = {
     "octobre": 10, "oktober": 10, "novembre": 11, "november": 11,
     "décembre": 12, "dezember": 12,
 }
-ROMANDIE_CANTONS = {"GE", "VD", "NE", "JU", "FR", "VS"}
+SWISS_CANTONS = {
+    "AG", "AI", "AR", "BE", "BL", "BS", "FR", "GE", "GL", "GR",
+    "JU", "LU", "NE", "NW", "OW", "SG", "SH", "SO", "SZ", "TG",
+    "TI", "UR", "VD", "VS", "ZG", "ZH",
+}
 ITALIAN_REGIONS = {
     "abruzzo", "basilicata", "calabria", "campania", "emilia romagna",
     "friuli venezia giulia", "lazio", "liguria", "lombardia", "marche",
@@ -295,19 +299,37 @@ def mirimor_date(text, year, month):
 
 def mirimor_canton(text):
     upper = text.upper()
-    for canton in ROMANDIE_CANTONS:
+    for canton in SWISS_CANTONS:
+        # Mirimor commonly puts the canton abbreviation after the locality,
+        # e.g. "8608 Bubikon ZH" or "Eschenbach LU". Search the full event
+        # block too, because some entries place the location on a separate line.
         if re.search(rf"\b{canton}\b", upper):
             return canton
-    # Entries may use a postal code and a well-known Romandie locality without
-    # displaying the canton abbreviation.
+    # Some listings omit the canton abbreviation entirely.
     places = {
         "grandson", "buttes", "neuchatel", "neuchâtel", "geneve", "genève",
         "lausanne", "montreux", "vevey", "nyon", "sion", "martigny",
         "fribourg", "bulle", "st-ursanne", "saint-ursanne", "le landeron",
-        "biel/nidau", "biel/bienne", "nidau", "yverdon",
+        "biel/nidau", "biel/bienne", "nidau", "yverdon", "lausen",
+        "winterthur", "fischingen", "bremgarten", "zofingen", "stein am rhein",
+        "dachsen", "eschenz", "rheineck", "altdorf", "hinwil", "herrendingen",
+        "wattwil", "sils im domleschg", "laupen", "kemptthal", "volketswil",
+        "filzbach", "huttwil", "allmendingen", "abtwil", "frauenfeld",
+        "estavayer", "zug", "lenzburg", "bubikon", "kiesen", "uster",
+        "zürich", "zurich", "bern", "basel", "luzern", "lucerne",
+        "schaffhausen", "st. gallen", "st gallen", "neunkirch", "kilchberg",
     }
     normalized = norm(text)
-    return "Romandie" if any(norm(place) in normalized for place in places) else ""
+    if any(norm(place) in normalized for place in places):
+        return "Schweiz"
+    # Swiss postcodes have four digits. Exclude known neighbouring-country
+    # listings on Mirimor (which notes that the calendar has a few exceptions).
+    if re.search(r"\b\d{4}\s+[\wÀ-ÿ]", text) and not re.search(
+        r"(?i)\b(?:deutschland|germany|österreich|austria|frankreich|france|italien|italy)\b|\b(?:bad säckingen|weil am rhein)\b",
+        text,
+    ):
+        return "Schweiz"
+    return ""
 
 
 def scrape_mirimor():
@@ -353,6 +375,10 @@ def scrape_mirimor():
         seen_text.add(block)
         # Derive event title and city from the location/canton text.
         parts = [plain(x) for x in container.stripped_strings if plain(x)]
+        # Mirimor marks workshops, meals, courses and similar listings as
+        # "Sonstiges". This source is being used here for markets and festivals.
+        if any(re.fullmatch(r"Sonstiges", part, re.I) for part in parts):
+            continue
         parts = [p for p in parts if not re.fullmatch(r"(?:Sonstiges|Markt|Image)", p, re.I)]
         title = ""
         for part in parts:
@@ -367,13 +393,11 @@ def scrape_mirimor():
         if not title:
             title = next((p for p in parts if len(p) > 8 and not re.search(r"\b\d{4}\b", p)), "")
         canton = mirimor_canton(block)
-        location_line = next(
-            (p for p in parts if re.search(r"\b(?:GE|VD|NE|JU|FR|VS)\b", p, re.I)),
-            "",
-        )
+        canton_pattern = r"\b(?:" + "|".join(sorted(SWISS_CANTONS)) + r")\b"
+        location_line = next((p for p in parts if re.search(canton_pattern, p, re.I)), "")
         if location_line:
             city = re.sub(r"\b\d{4}\b", "", location_line)
-            city = re.sub(r"\b(?:GE|VD|NE|JU|FR|VS)\b", "", city, flags=re.I)
+            city = re.sub(canton_pattern, "", city, flags=re.I)
             city = plain(re.sub(r"^[,\s]+|[,\s]+$", "", city))
             city = city.split(",")[-1].strip() if "," in city else city
         else:
@@ -381,8 +405,18 @@ def scrape_mirimor():
                 "Grandson", "Buttes", "Neuchâtel", "Genève", "Lausanne", "Montreux",
                 "Vevey", "Nyon", "Sion", "Martigny", "Fribourg", "Bulle",
                 "Saint-Ursanne", "Le Landeron", "Biel/Nidau", "Yverdon",
+                "Lausen", "Winterthur", "Fischingen", "Bremgarten", "Zofingen",
+                "Stein am Rhein", "Dachsen", "Eschenz", "Rheineck", "Altdorf",
+                "Hinwil", "Herrendingen", "Wattwil", "Laupen", "Volketswil",
+                "Filzbach", "Huttwil", "Allmendingen", "Abtwil", "Frauenfeld",
+                "Estavayer", "Zug", "Lenzburg", "Bubikon", "Kiesen", "Uster",
+                "Zürich", "Bern", "Basel", "Luzern", "Schaffhausen", "Neunkirch",
             )
             city = next((place for place in places if norm(place) in norm(block)), "")
+            if not city:
+                postal_line = next((p for p in parts if re.search(r"\b\d{4}\s+[\wÀ-ÿ]", p)), "")
+                postal_match = re.search(r"\b\d{4}\s+(.+)$", postal_line)
+                city = plain(postal_match.group(1)) if postal_match else ""
         if not title or not city or re.search(
             r"(?i)\b(?:kalender|termine|veranstaltungen)\b", title
         ):
@@ -394,7 +428,7 @@ def scrape_mirimor():
     unique = {}
     for item in results:
         unique[(item["name"].lower(), item["city"].lower(), item["start"])] = item
-    print(f"Mirimor Romandie: {len(unique)} Funde")
+    print(f"Mirimor Schweiz (Märkte/Feste): {len(unique)} Funde")
     return list(unique.values())
 
 
@@ -404,6 +438,28 @@ def event_key(item):
         norm(item.get("city", "")),
         item.get("start", ""),
     )
+
+
+def load_app_events():
+    """Read current calendar entries so source imports do not create duplicates."""
+    try:
+        with open("index.html", "r", encoding="utf-8") as handle:
+            content = handle.read()
+    except OSError:
+        return []
+
+    events_in_app = []
+    for block in re.findall(r"\{.*?\}", content, re.S):
+        name = re.search(r"name:\s*[\"']([^\"']+)[\"']", block)
+        start = re.search(r"start:\s*[\"'](20\d{2}-\d{2}-\d{2})[\"']", block)
+        city = re.search(r"city:\s*[\"']([^\"']*)[\"']", block)
+        if name and start and city:
+            events_in_app.append({
+                "name": name.group(1),
+                "city": city.group(1),
+                "start": start.group(1),
+            })
+    return events_in_app
 
 
 def already_present(candidate, existing):
@@ -430,6 +486,8 @@ def main():
     except (FileNotFoundError, json.JSONDecodeError):
         existing = []
 
+    app_events = load_app_events()
+
     # Remove malformed page headings left by earlier Mirimor parser runs.
     existing = [
         item for item in existing
@@ -444,7 +502,7 @@ def main():
     for candidate in scrape_vehi() + scrape_mirimor():
         if (candidate.get("end") or candidate.get("start") or "9999-12-31") < date.today().isoformat():
             continue
-        if not already_present(candidate, existing + new_events):
+        if not already_present(candidate, existing + new_events + app_events):
             new_events.append(candidate)
 
     existing.extend(new_events)
