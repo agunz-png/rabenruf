@@ -164,8 +164,12 @@ Deno.serve(async (req: Request) => {
     if (payload.action === "submit") {
       const eventId = cleanText(payload.event_id, 120);
       if (!/^[A-Za-z0-9_-]{1,120}$/.test(eventId)) return reply({ error: "Ungültige Termin-ID." }, 400);
+      const eventIds = new Set([eventId]);
+      if (eventId.startsWith("herold-") && eventId.length > "herold-".length) {
+        eventIds.add(eventId.slice("herold-".length));
+      }
       const { data: priorDecision, error: priorDecisionError } = await admin.from("herold_decisions")
-        .select("status").eq("event_id", eventId).maybeSingle();
+        .select("status").in("event_id", [...eventIds]).eq("status", "rejected").limit(1).maybeSingle();
       if (priorDecisionError) throw priorDecisionError;
       if (priorDecision?.status === "rejected") return reply({ error: "Dieser Termin wurde dauerhaft gelöscht und kann nicht mehr geändert werden." }, 410);
       const oldEvent = validEvent(payload.old_event, eventId);
