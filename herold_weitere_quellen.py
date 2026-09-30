@@ -5,6 +5,7 @@ import unicodedata
 import urllib.request
 from datetime import date, datetime
 from difflib import SequenceMatcher
+from urllib.parse import urlsplit
 
 from bs4 import BeautifulSoup
 
@@ -25,6 +26,20 @@ SWISS_CANTONS = {
     "JU", "LU", "NE", "NW", "OW", "SG", "SH", "SO", "SZ", "TG",
     "TI", "UR", "VD", "VS", "ZG", "ZH",
 }
+SWISS_PLACES = (
+    "Neuhausen am Rheinfall", "Sils im Domleschg", "Stein am Rhein",
+    "Wangen a. Aare", "Wangen a.d.Aare", "Wangen an der Aare", "Saint-Ursanne", "St-Ursanne",
+    "Biel/Bienne", "Biel/Nidau", "Le Landeron", "Neuchâtel", "Neuchatel",
+    "Schaffhausen", "Winterthur", "Frauenfeld", "Bassersdorf", "Bremgarten",
+    "Allmendingen", "Volketswil", "Herrendingen", "Eschenbach", "Fischingen", "Rheineck",
+    "Estavayer", "Lenzburg", "Bubikon", "Altstätten", "Kemptthal", "Filzbach",
+    "Wattwil", "Burgdorf", "Hallau", "Hinwil", "Zofingen", "Lausen", "Lausanne",
+    "Zürich", "Zurich", "Geneve", "Genève", "Grandson", "Buttes",
+    "Montreux", "Vevey", "Nyon", "Sion", "Martigny", "Fribourg", "Bulle",
+    "Yverdon", "Dachsen", "Eschenz", "Altdorf", "Laupen", "Huttwil", "Zug",
+    "Kiesen", "Uster", "Bern", "Basel", "Luzern", "Lucerne", "Neunkirch",
+    "Ettiswil", "Köniz", "Koeniz", "Derendingen", "Abtwil", "Riedikon",
+)
 ITALIAN_REGIONS = {
     "abruzzo", "basilicata", "calabria", "campania", "emilia romagna",
     "friuli venezia giulia", "lazio", "liguria", "lombardia", "marche",
@@ -80,6 +95,11 @@ def event_record(name, city, country, start, end, source, postcode=""):
         "postcode": plain(postcode),
         "source": source,
     }
+
+
+def domain(value):
+    host = urlsplit(str(value or "")).netloc.lower().split("@")[-1].split(":")[0]
+    return host.removeprefix("www.")
 
 
 def jsonld_events(soup, source):
@@ -306,30 +326,33 @@ def mirimor_canton(text):
         if re.search(rf"\b{canton}\b", upper):
             return canton
     # Some listings omit the canton abbreviation entirely.
-    places = {
-        "grandson", "buttes", "neuchatel", "neuchâtel", "geneve", "genève",
-        "lausanne", "montreux", "vevey", "nyon", "sion", "martigny",
-        "fribourg", "bulle", "st-ursanne", "saint-ursanne", "le landeron",
-        "biel/nidau", "biel/bienne", "nidau", "yverdon", "lausen",
-        "winterthur", "fischingen", "bremgarten", "zofingen", "stein am rhein",
-        "dachsen", "eschenz", "rheineck", "altdorf", "hinwil", "herrendingen",
-        "wattwil", "sils im domleschg", "laupen", "kemptthal", "volketswil",
-        "filzbach", "huttwil", "allmendingen", "abtwil", "frauenfeld",
-        "estavayer", "zug", "lenzburg", "bubikon", "kiesen", "uster",
-        "zürich", "zurich", "bern", "basel", "luzern", "lucerne",
-        "schaffhausen", "st. gallen", "st gallen", "neunkirch", "kilchberg",
-    }
     normalized = norm(text)
-    if any(norm(place) in normalized for place in places):
+    if any(norm(place) in normalized for place in SWISS_PLACES):
         return "Schweiz"
     # Swiss postcodes have four digits. Exclude known neighbouring-country
     # listings on Mirimor (which notes that the calendar has a few exceptions).
     if re.search(r"\b\d{4}\s+[\wÀ-ÿ]", text) and not re.search(
-        r"(?i)\b(?:deutschland|germany|österreich|austria|frankreich|france|italien|italy)\b|\b(?:bad säckingen|weil am rhein)\b",
+        r"(?i)\b(?:deutschland|germany|österreich|austria|frankreich|france|italien|italy|südtirol|south tyrol)\b|\b(?:bad säckingen|weil am rhein)\b",
         text,
     ):
         return "Schweiz"
     return ""
+
+
+def mirimor_city(text):
+    normalized = norm(text)
+    # Prefer the municipality after a venue/street comma, and the town after
+    # "bei" when Mirimor gives a smaller locality plus its nearby municipality.
+    candidates = [normalized.rsplit(",", 1)[-1]]
+    if " bei " in normalized:
+        candidates.insert(0, normalized.rsplit(" bei ", 1)[-1])
+    for candidate in candidates:
+        match = next((place for place in sorted(SWISS_PLACES, key=len, reverse=True)
+                      if norm(place) in candidate), "")
+        if match:
+            return match
+    return next((place for place in sorted(SWISS_PLACES, key=len, reverse=True)
+                 if norm(place) in normalized), "")
 
 
 def scrape_mirimor():
@@ -396,32 +419,31 @@ def scrape_mirimor():
         canton_pattern = r"\b(?:" + "|".join(sorted(SWISS_CANTONS)) + r")\b"
         location_line = next((p for p in parts if re.search(canton_pattern, p, re.I)), "")
         if location_line:
-            city = re.sub(r"\b\d{4}\b", "", location_line)
-            city = re.sub(canton_pattern, "", city, flags=re.I)
-            city = plain(re.sub(r"^[,\s]+|[,\s]+$", "", city))
-            city = city.split(",")[-1].strip() if "," in city else city
+            city = mirimor_city(location_line)
+            if not city:
+                cleaned = re.sub(r"\b\d{4}\b", "", location_line)
+                cleaned = re.sub(canton_pattern, "", cleaned, flags=re.I)
+                cleaned = plain(re.sub(r"^[,\s]+|[,\s]+$", "", cleaned))
+                city = cleaned.split(",")[-1].strip() if "," in cleaned else cleaned
         else:
-            places = (
-                "Grandson", "Buttes", "Neuchâtel", "Genève", "Lausanne", "Montreux",
-                "Vevey", "Nyon", "Sion", "Martigny", "Fribourg", "Bulle",
-                "Saint-Ursanne", "Le Landeron", "Biel/Nidau", "Yverdon",
-                "Lausen", "Winterthur", "Fischingen", "Bremgarten", "Zofingen",
-                "Stein am Rhein", "Dachsen", "Eschenz", "Rheineck", "Altdorf",
-                "Hinwil", "Herrendingen", "Wattwil", "Laupen", "Volketswil",
-                "Filzbach", "Huttwil", "Allmendingen", "Abtwil", "Frauenfeld",
-                "Estavayer", "Zug", "Lenzburg", "Bubikon", "Kiesen", "Uster",
-                "Zürich", "Bern", "Basel", "Luzern", "Schaffhausen", "Neunkirch",
-            )
-            city = next((place for place in places if norm(place) in norm(block)), "")
+            city = mirimor_city(block)
             if not city:
                 postal_line = next((p for p in parts if re.search(r"\b\d{4}\s+[\wÀ-ÿ]", p)), "")
                 postal_match = re.search(r"\b\d{4}\s+(.+)$", postal_line)
                 city = plain(postal_match.group(1)) if postal_match else ""
         if not title or not city or re.search(
-            r"(?i)\b(?:kalender|termine|veranstaltungen)\b", title
+            r"(?i)\b(?:kalender|termine|veranstaltungen|kein mittelaltermarkt|kein markt)\b", title
         ):
             continue
         item = event_record(title, city, "Schweiz", start, end, MIRIMOR_URL)
+        if item:
+            item["websites"] = [
+                href for link in container.find_all("a", href=True)
+                if (href := plain(link.get("href"))).startswith(("https://", "http://"))
+                and domain(href) not in {"mirimor.ch", "www.mirimor.ch"}
+                and not href.lower().endswith(".pdf")
+            ]
+            item["website"] = item["websites"][0] if item["websites"] else ""
         if item and (item["end"] or item["start"]) >= date.today().isoformat():
             results.append(item)
 
@@ -454,10 +476,12 @@ def load_app_events():
         start = re.search(r"start:\s*[\"'](20\d{2}-\d{2}-\d{2})[\"']", block)
         city = re.search(r"city:\s*[\"']([^\"']*)[\"']", block)
         if name and start and city:
+            website = re.search(r"website:\s*[\"'](https?://[^\"']+)[\"']", block)
             events_in_app.append({
                 "name": name.group(1),
                 "city": city.group(1),
                 "start": start.group(1),
+                "websites": [website.group(1)] if website else [],
             })
     return events_in_app
 
@@ -470,6 +494,12 @@ def already_present(candidate, existing):
             return True
         if candidate.get("start") != item.get("start"):
             continue
+        candidate_domains = {domain(site) for site in candidate.get("websites", []) if domain(site)}
+        candidate_domains.update({domain(candidate.get("website"))} if domain(candidate.get("website")) else set())
+        item_domains = {domain(site) for site in item.get("websites", []) if domain(site)}
+        item_domains.update({domain(item.get("website"))} if domain(item.get("website")) else set())
+        if candidate_domains & item_domains:
+            return True
         other_name = norm(item.get("name", ""))
         other_city = norm(item.get("city", ""))
         if (city == other_city and SequenceMatcher(None, name, other_name).ratio() >= 0.60):
@@ -494,6 +524,10 @@ def main():
         if not (
             item.get("source") == MIRIMOR_URL
             and re.search(r"(?i)\b(?:kalender|termine|veranstaltungen)\b", item.get("name", ""))
+        )
+        and not (
+            item.get("source") == MIRIMOR_URL
+            and re.search(r"(?i)\b(?:kein mittelaltermarkt|kein markt)\b", item.get("name", ""))
         )
         and not str(item.get("source", "")).startswith(VEHI_BASE)
     ]
