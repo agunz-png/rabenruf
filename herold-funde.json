@@ -520,18 +520,6 @@
     "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-enter-2026/"
   },
   {
-    "id": "eu-source-55071f1699b339ea",
-    "name": "Mittelaltermarkt am HeroFest",
-    "type": "Markt",
-    "date": "2026-10-02 bis 2026-10-04",
-    "start": "2026-10-02",
-    "end": "2026-10-04",
-    "country": "Schweiz",
-    "city": "Bern",
-    "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
-  },
-  {
     "id": "eu-source-566bcb11443a9797",
     "name": "Mittelalterfest Lausen",
     "type": "Markt",
@@ -541,67 +529,25 @@
     "country": "Schweiz",
     "city": "Lausen",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [],
+    "website": ""
   },
   {
-    "id": "eu-source-925b220e215c06e2",
-    "name": "Halloween Mittelalterspektakel",
-    "type": "Markt",
-    "date": "2026-10-09 bis 2026-10-11",
-    "start": "2026-10-09",
-    "end": "2026-10-11",
-    "country": "Schweiz",
-    "city": "Winterthur",
-    "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
-  },
-  {
-    "id": "eu-source-9b2ed67a8b946e52",
-    "name": "Jahrmarkt Fischingen mit kleinem Mittelalter Handwerker-",
-    "type": "Markt",
-    "date": "2026-10-11 bis 2026-10-12",
-    "start": "2026-10-11",
-    "end": "2026-10-12",
-    "country": "Schweiz",
-    "city": "Fischingen",
-    "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
-  },
-  {
-    "id": "eu-source-1925e997392a21c1",
+    "id": "eu-source-29deb7f636c0c00b",
     "name": "Historisches Handwerk Bremgarten am Markt der Vielfalt",
     "type": "Markt",
     "date": "2026-10-24 bis 2026-10-25",
     "start": "2026-10-24",
     "end": "2026-10-25",
     "country": "Schweiz",
-    "city": "Altstadt Bremgarten",
+    "city": "Bremgarten",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
-  },
-  {
-    "id": "eu-source-44f0b7b95d5ca4ee",
-    "name": "Weihnachtsmarkt der Sinne mit Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2026-12-04 bis 2026-12-06",
-    "start": "2026-12-04",
-    "end": "2026-12-06",
-    "country": "Schweiz",
-    "city": "Zofingen",
-    "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
-  },
-  {
-    "id": "eu-source-e522a98300f3a724",
-    "name": "Mittelalter-Fantasy Silvester auf Schloss Laupen",
-    "type": "Markt",
-    "date": "2026-12-31 bis 2026-12-31",
-    "start": "2026-12-31",
-    "end": "2026-12-31",
-    "country": "Schweiz",
-    "city": "Schloss Laupen",
-    "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "https://historisches-handwerk.ch"
+    ],
+    "website": "https://historisches-handwerk.ch"
   },
   {
     "id": "eu-source-2e83fa68d592f8ac",
@@ -613,7 +559,11 @@
     "country": "Schweiz",
     "city": "Wattwil",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
     "id": "eu-source-af6dd389f1bb9443",
@@ -625,7 +575,11 @@
     "country": "Schweiz",
     "city": "Ettiswil",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.corvus-nidum.ch/eventing/schloss-wyher/"
+    ],
+    "website": "http://www.corvus-nidum.ch/eventing/schloss-wyher/"
   },
   {
     "id": "eu-source-0f07d63283d86a75",
@@ -637,7 +591,25 @@
     "country": "Schweiz",
     "city": "Laupen",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [],
+    "website": ""
+  },
+  {
+    "id": "eu-source-1b36d538760fcdcf",
+    "name": "Walpurgis Fantasy und Mittelalterspektakel",
+    "type": "Markt",
+    "date": "2027-04-23 bis 2027-04-25",
+    "start": "2027-04-23",
+    "end": "2027-04-25",
+    "country": "Schweiz",
+    "city": "Kemptthal",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
     "id": "eu-source-e977d892496a831f",
@@ -649,43 +621,41 @@
     "country": "Schweiz",
     "city": "Rheineck",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.mittelaltermarkt-rheineck.ch"
+    ],
+    "website": "http://www.mittelaltermarkt-rheineck.ch"
   },
   {
-    "id": "eu-source-d35dc1e221bf06cf",
+    "id": "eu-source-91e41109befc10ef",
     "name": "Mittelalterspektakel Hinwil",
     "type": "Markt",
     "date": "2027-05-07 bis 2027-05-09",
     "start": "2027-05-07",
     "end": "2027-05-09",
     "country": "Schweiz",
-    "city": "Hinwil Obererlosen",
+    "city": "Hinwil",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
-    "id": "eu-source-973b8167afe768e2",
+    "id": "eu-source-601ac540387b0831",
     "name": "Viking Rock Festival mit Mittelaltermarkt",
     "type": "Markt",
     "date": "2027-05-21 bis 2027-05-23",
     "start": "2027-05-21",
     "end": "2027-05-23",
     "country": "Schweiz",
-    "city": "Allmendingen",
+    "city": "Bern",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
-  },
-  {
-    "id": "eu-source-bc118b7b3aa38e7e",
-    "name": "Achtung kein Mittelaltermarkt! Reenactmentalnass.",
-    "type": "Markt",
-    "date": "2027-05-29 bis 2027-05-30",
-    "start": "2027-05-29",
-    "end": "2027-05-30",
-    "country": "Schweiz",
-    "city": "Frauenfeld",
-    "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [],
+    "website": ""
   },
   {
     "id": "eu-source-116b3c11045411dc",
@@ -697,19 +667,27 @@
     "country": "Schweiz",
     "city": "Köniz",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
-    "id": "eu-source-b7eb1da136896bb4",
+    "id": "eu-source-f1a96200fecc41cb",
     "name": "Fantasy Festival mit Mittelaltermarkt",
     "type": "Markt",
     "date": "2027-06-12 bis 2027-06-13",
     "start": "2027-06-12",
     "end": "2027-06-13",
     "country": "Schweiz",
-    "city": "Griespark Volketswil",
+    "city": "Volketswil",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.fabelhafteswichtelfest.ch"
+    ],
+    "website": "http://www.fabelhafteswichtelfest.ch"
   },
   {
     "id": "eu-source-d0e4ca740f3f2fa3",
@@ -721,7 +699,11 @@
     "country": "Schweiz",
     "city": "Derendingen",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.mittelaltermarktenter.ch"
+    ],
+    "website": "http://www.mittelaltermarktenter.ch"
   },
   {
     "id": "eu-source-4a46a7250853037b",
@@ -733,7 +715,11 @@
     "country": "Schweiz",
     "city": "Filzbach",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.habermaert.ch"
+    ],
+    "website": "http://www.habermaert.ch"
   },
   {
     "id": "eu-source-b3988deb40e93fc3",
@@ -745,7 +731,11 @@
     "country": "Schweiz",
     "city": "Huttwil",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.spycher-handwerk.ch"
+    ],
+    "website": "http://www.spycher-handwerk.ch"
   },
   {
     "id": "eu-source-3e086bc625849061",
@@ -757,19 +747,25 @@
     "country": "Schweiz",
     "city": "Saint Ursanne",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "https://medievales.ch/"
+    ],
+    "website": "https://medievales.ch/"
   },
   {
-    "id": "eu-source-38d43b9af30ef4a0",
+    "id": "eu-source-e18ad407b3e0e22f",
     "name": "Mittelalterspektakel Burgdorf",
     "type": "Markt",
     "date": "2027-07-23 bis 2027-07-25",
     "start": "2027-07-23",
     "end": "2027-07-25",
     "country": "Schweiz",
-    "city": "Schützenmatt Burgdorf",
+    "city": "Burgdorf",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [],
+    "website": ""
   },
   {
     "id": "eu-source-5bb8d8751a56814f",
@@ -781,19 +777,27 @@
     "country": "Schweiz",
     "city": "Altstätten",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
-    "id": "eu-source-f4286e64945e4bca",
+    "id": "eu-source-d6afb0062d782b32",
     "name": "Mittelalter Fantasy Spektakulum",
     "type": "Markt",
     "date": "2027-08-27 bis 2027-08-29",
     "start": "2027-08-27",
     "end": "2027-08-29",
     "country": "Schweiz",
-    "city": "Riedikon bei Uster",
+    "city": "Uster",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
     "id": "eu-source-fdc0641d9af54655",
@@ -805,7 +809,11 @@
     "country": "Schweiz",
     "city": "Bassersdorf",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.mittelaltergilde.ch"
+    ],
+    "website": "http://www.mittelaltergilde.ch"
   },
   {
     "id": "eu-source-30b813c50b9bfe28",
@@ -817,31 +825,43 @@
     "country": "Schweiz",
     "city": "Hilfikon/Villmergen",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.wums.ch"
+    ],
+    "website": "http://www.wums.ch"
   },
   {
-    "id": "eu-source-475c64315c17b58d",
+    "id": "eu-source-40528e64997c3260",
     "name": "Mittelaltermarkt Schloss Lenzburg",
     "type": "Markt",
     "date": "2027-09-10 bis 2027-09-12",
     "start": "2027-09-10",
     "end": "2027-09-12",
     "country": "Schweiz",
-    "city": "Schloss Lenzburg Lenzburg",
+    "city": "Lenzburg",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.museumaargau.ch/schloss-lenzburg"
+    ],
+    "website": "http://www.museumaargau.ch/schloss-lenzburg"
   },
   {
-    "id": "eu-source-5f2cf0432ac6ec48",
+    "id": "eu-source-e379b2d8a6a36542",
     "name": "Mittelaltermarkt Klettgau in Hallau",
     "type": "Markt",
     "date": "2027-09-11 bis 2027-09-12",
     "start": "2027-09-11",
     "end": "2027-09-12",
     "country": "Schweiz",
-    "city": "beim Berghof Hallau",
+    "city": "Hallau",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.mittelaltermarkt-klettgau.ch"
+    ],
+    "website": "http://www.mittelaltermarkt-klettgau.ch"
   },
   {
     "id": "eu-source-1fec229786a957ca",
@@ -853,7 +873,9 @@
     "country": "Schweiz",
     "city": "Biel/Nidau",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [],
+    "website": ""
   },
   {
     "id": "eu-source-01146993fc6b6e76",
@@ -865,7 +887,11 @@
     "country": "Schweiz",
     "city": "Bubikon",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
     "id": "eu-source-c0dff29a08a335cd",
@@ -877,19 +903,27 @@
     "country": "Schweiz",
     "city": "Eschenbach",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.arbor-noctuarum.ch"
+    ],
+    "website": "http://www.arbor-noctuarum.ch"
   },
   {
-    "id": "eu-source-f2d083e1c530181e",
+    "id": "eu-source-52b59bc55930de36",
     "name": "Historischer Herbstmarkt Wangen a. Aare",
     "type": "Markt",
     "date": "2027-10-09 bis 2027-10-10",
     "start": "2027-10-09",
     "end": "2027-10-10",
     "country": "Schweiz",
-    "city": "Altstadt und Salzhaus Wangen a.d.Aare",
+    "city": "Wangen a.d.Aare",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.marktzunft.ch"
+    ],
+    "website": "http://www.marktzunft.ch"
   },
   {
     "id": "eu-source-7a64ceb998518982",
@@ -901,7 +935,11 @@
     "country": "Schweiz",
     "city": "Fischingen",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
     "id": "eu-source-973ea422a106e7e0",
@@ -913,31 +951,43 @@
     "country": "Schweiz",
     "city": "Winterthur",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
-    "id": "eu-source-29e819a8fd068ead",
+    "id": "eu-source-3eb044140a7c2a2d",
     "name": "Mittelaltermarkt Bremgarten",
     "type": "Markt",
     "date": "2027-10-22 bis 2027-10-24",
     "start": "2027-10-22",
     "end": "2027-10-24",
     "country": "Schweiz",
-    "city": "Casino-Areal Bremgarten",
+    "city": "Bremgarten",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "https://mittelalter-bremgarten.ch"
+    ],
+    "website": "https://mittelalter-bremgarten.ch"
   },
   {
-    "id": "eu-source-346a5ecb740c91b3",
+    "id": "eu-source-25907ab00bbc597b",
     "name": "Historisches Handwerk Bremgarten am Markt der Vielfalt",
     "type": "Markt",
     "date": "2027-10-23 bis 2027-10-24",
     "start": "2027-10-23",
     "end": "2027-10-24",
     "country": "Schweiz",
-    "city": "Altstadt Bremgarten",
+    "city": "Bremgarten",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "https://historisches-handwerk.ch"
+    ],
+    "website": "https://historisches-handwerk.ch"
   },
   {
     "id": "eu-source-cbbf252924d89dad",
@@ -949,7 +999,11 @@
     "country": "Schweiz",
     "city": "Neuhausen am Rheinfall",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
     "id": "eu-source-202e88ab83dde0bf",
@@ -961,19 +1015,43 @@
     "country": "Schweiz",
     "city": "Wattwil",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
-    "id": "eu-source-416546d3d0df0d12",
+    "id": "eu-source-7ba4adadd8695d11",
+    "name": "Walpurgis Mittelalter- und Fantasyspektakel",
+    "type": "Markt",
+    "date": "2028-04-29 bis 2028-04-30",
+    "start": "2028-04-29",
+    "end": "2028-04-30",
+    "country": "Schweiz",
+    "city": "Kemptthal",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
+  },
+  {
+    "id": "eu-source-f8be6bb4a0779f42",
     "name": "Mittelalterspektakel Hinwil",
     "type": "Markt",
     "date": "2028-05-26 bis 2028-05-28",
     "start": "2028-05-26",
     "end": "2028-05-28",
     "country": "Schweiz",
-    "city": "Hinwil Obererlosen",
+    "city": "Hinwil",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
     "id": "eu-source-d7670dcde86e76e1",
@@ -985,7 +1063,11 @@
     "country": "Schweiz",
     "city": "Köniz",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
     "id": "eu-source-d31789b7f2cd2010",
@@ -997,55 +1079,75 @@
     "country": "Schweiz",
     "city": "Altstätten",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
-    "id": "eu-source-736bff7e85e38041",
+    "id": "eu-source-0572af5790e853f0",
     "name": "Mittelaltermarkt zu Chisun",
     "type": "Markt",
     "date": "2028-08-19 bis 2028-08-20",
     "start": "2028-08-19",
     "end": "2028-08-20",
     "country": "Schweiz",
-    "city": "Wichtrach Kiesen",
+    "city": "Kiesen",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.mittelaltermarkt-kiesen.ch"
+    ],
+    "website": "http://www.mittelaltermarkt-kiesen.ch"
   },
   {
-    "id": "eu-source-464c6957a35733df",
+    "id": "eu-source-92df6b9a5221d0a2",
     "name": "Mittelalter Fantasy Spektakulum",
     "type": "Markt",
     "date": "2028-08-25 bis 2028-08-27",
     "start": "2028-08-25",
     "end": "2028-08-27",
     "country": "Schweiz",
-    "city": "Riedikon bei Uster",
+    "city": "Uster",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
-    "id": "eu-source-0d840ca2967eaeb3",
+    "id": "eu-source-83e30e0a9640fec1",
     "name": "Mittelaltermarkt Schloss Lenzburg",
     "type": "Markt",
     "date": "2028-09-08 bis 2028-09-10",
     "start": "2028-09-08",
     "end": "2028-09-10",
     "country": "Schweiz",
-    "city": "Schloss Lenzburg Lenzburg",
+    "city": "Lenzburg",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.museumaargau.ch/schloss-lenzburg"
+    ],
+    "website": "http://www.museumaargau.ch/schloss-lenzburg"
   },
   {
-    "id": "eu-source-396badaa369a98ba",
+    "id": "eu-source-cbfd12159f751b3b",
     "name": "7. Mittelalterfest Zug",
     "type": "Markt",
     "date": "2028-09-16 bis 2028-09-17",
     "start": "2028-09-16",
     "end": "2028-09-17",
     "country": "Schweiz",
-    "city": "Burg Zug und Umgebung",
+    "city": "Zug",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.mittelalterfestzug.ch"
+    ],
+    "website": "http://www.mittelalterfestzug.ch"
   },
   {
     "id": "eu-source-44020bff287a2db4",
@@ -1057,7 +1159,11 @@
     "country": "Schweiz",
     "city": "Bubikon",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
     "id": "eu-source-e095316ceeecc9f2",
@@ -1069,31 +1175,43 @@
     "country": "Schweiz",
     "city": "Winterthur",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
-    "id": "eu-source-354da1e536f703a9",
+    "id": "eu-source-97ad74b7b1991c07",
     "name": "Mittelaltermarkt Bremgarten",
     "type": "Markt",
     "date": "2028-10-27 bis 2028-10-29",
     "start": "2028-10-27",
     "end": "2028-10-29",
     "country": "Schweiz",
-    "city": "Casino-Areal Bremgarten",
+    "city": "Bremgarten",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "https://mittelalter-bremgarten.ch"
+    ],
+    "website": "https://mittelalter-bremgarten.ch"
   },
   {
-    "id": "eu-source-b706c4c1cc412643",
+    "id": "eu-source-40adf2804443b2d2",
     "name": "Historisches Handwerk Bremgarten am Markt der Vielfalt",
     "type": "Markt",
     "date": "2028-10-28 bis 2028-10-29",
     "start": "2028-10-28",
     "end": "2028-10-29",
     "country": "Schweiz",
-    "city": "Altstadt Bremgarten",
+    "city": "Bremgarten",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "https://historisches-handwerk.ch"
+    ],
+    "website": "https://historisches-handwerk.ch"
   },
   {
     "id": "eu-source-dc38b0e8ceb2c192",
@@ -1105,7 +1223,12 @@
     "country": "Schweiz",
     "city": "Neuhausen am Rheinfall",
     "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/"
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch",
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch"
   },
   {
     "id": "bi-buhurt-645b1fa1a6cd845e",
