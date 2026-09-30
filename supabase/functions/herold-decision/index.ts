@@ -103,6 +103,18 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
+    const adminClient = createClient(url, serviceKey, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+    if (action === "approve") {
+      const { data: priorDecision, error: priorDecisionError } = await adminClient.from("herold_decisions")
+        .select("status").eq("event_id", eventId).maybeSingle();
+      if (priorDecisionError) throw priorDecisionError;
+      if (priorDecision?.status === "rejected") {
+        return reply({ error: "Dieser Fund wurde dauerhaft gelöscht und kann nicht mehr freigegeben werden." }, 409);
+      }
+    }
+
     const fundResponse = await fetch("https://raw.githubusercontent.com/agunz-png/rabenruf/main/herold-funde.json", {
       headers: { "Accept": "application/json" },
       signal: AbortSignal.timeout(12000),
@@ -191,9 +203,6 @@ Deno.serve(async (req: Request) => {
       };
     }
 
-    const adminClient = createClient(url, serviceKey, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
     const { error } = await adminClient.from("herold_decisions").upsert({
       event_id: eventId,
       status: action === "approve" ? "approved" : "rejected",
