@@ -966,6 +966,12 @@ textarea.contactField{min-height:150px;resize:vertical;}
 
   <div class="mapTools">
 
+    <select id="mapYearFilter" class="btn" aria-label="Jahr auf der Karte auswählen" onchange="setEventYear(this.value)">
+
+      <option value="Alle">📅 Alle Jahre</option>
+
+    </select>
+
     <button class="btn" onclick="findMe()">
 
       📍 Mein Standort
@@ -1015,6 +1021,9 @@ textarea.contactField{min-height:150px;resize:vertical;}
   <div class="filterBox">
     <select id="calendarCountryFilter" onchange="applyCalendarFilters()">
       <option value="Alle">🌍 Alle Länder</option>
+    </select>
+    <select id="calendarYearFilter" onchange="setEventYear(this.value)" aria-label="Kalenderjahr auswählen">
+      <option value="Alle">📅 Alle Jahre</option>
     </select>
     <select id="calendarMonthFilter" onchange="applyCalendarFilters()">
       <option value="Alle">📅 Alle Monate</option>
@@ -4803,6 +4812,8 @@ let map = null;
 
 let mapMarkers = [];
 
+let selectedEventYear = "Alle";
+
 let userMarker = null;
 
 let userLocation = null;
@@ -6024,7 +6035,8 @@ function renderMapMarkers(){
 
   mapMarkers = [];
 
-  getCurrentEvents().forEach(event => {
+  aktualisiereJahresFilter(getCurrentEvents());
+  getEventsForSelectedYear(getCurrentEvents()).forEach(event => {
     const lat = Number(event.lat);
     const lng = Number(event.lng);
 
@@ -6254,6 +6266,32 @@ function findMe(){
 
 let calendarType = "Alle";
 
+function getEventsForSelectedYear(events){
+  if(selectedEventYear === "Alle") return events;
+  return events.filter(event => event.start && event.start.slice(0, 4) === selectedEventYear);
+}
+
+function aktualisiereJahresFilter(events){
+  const years = [...new Set(events
+    .map(event => String(event.start || "").slice(0, 4))
+    .filter(year => /^\d{4}$/.test(year)))]
+    .sort();
+  [byId("calendarYearFilter"), byId("mapYearFilter")].forEach(select => {
+    if(!select) return;
+    select.innerHTML = '<option value="Alle">📅 Alle Jahre</option>' +
+      years.map(year => '<option value="' + year + '">' + year + '</option>').join("");
+    select.value = years.includes(selectedEventYear) ? selectedEventYear : "Alle";
+  });
+  if(!years.includes(selectedEventYear)) selectedEventYear = "Alle";
+}
+
+function setEventYear(year){
+  selectedEventYear = year || "Alle";
+  aktualisiereJahresFilter(getCurrentEvents());
+  applyCalendarFilters();
+  renderMapMarkers();
+}
+
 function setCalendarType(type){
   calendarType = type;
   document.querySelectorAll("#calendarTypeFilters .chip").forEach(button => {
@@ -6273,6 +6311,8 @@ function applyCalendarFilters(){
   let allEvents = getCurrentEvents().filter(event =>
     event.start && !Number.isNaN(dateObject(event.start).getTime())
   );
+  aktualisiereJahresFilter(allEvents);
+  allEvents = getEventsForSelectedYear(allEvents);
   aktualisiereLaenderFilter(allEvents);
 
   const selectedCountry = countrySelect.value || "Alle";
