@@ -4,6 +4,7 @@ import re
 import urllib.request
 from difflib import SequenceMatcher
 from datetime import date, datetime
+from urllib.parse import urljoin, urlsplit
 
 from bs4 import BeautifulSoup
 
@@ -25,6 +26,7 @@ LAENDER = {
     "Finnland",
     "Frankreich",
     "Georgien",
+    "Großbritannien",
     "Griechenland",
     "Irland",
     "Island",
@@ -105,19 +107,45 @@ def schluessel(name, city, start):
     )
 
 
-req = urllib.request.Request(
-    URL,
-    headers={
-        "User-Agent": "Mozilla/5.0 Rabenruf-Herold/1.0"
-    }
-)
+def seite_laden(url):
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 Rabenruf-Herold/1.0"
+        }
+    )
+    html = urllib.request.urlopen(req, timeout=30).read()
+    return BeautifulSoup(html, "html.parser")
 
-html = urllib.request.urlopen(
-    req,
-    timeout=30
-).read()
 
-soup = BeautifulSoup(html, "html.parser")
+soup = seite_laden(URL)
+seiten = [(URL, soup)]
+besucht = {URL}
+seiten_index = 0
+
+# Der Kalender verlinkt die Europaübersicht für jedes verfügbare Jahr separat.
+# Den Links folgen, damit auch neu veröffentlichte Jahresübersichten gefunden werden.
+while seiten_index < len(seiten) and len(seiten) < 8:
+    basis_url, basis_soup = seiten[seiten_index]
+    seiten_index += 1
+
+    for link in basis_soup.find_all("a", href=True):
+        if link.get_text(" ", strip=True).casefold() != "europa":
+            continue
+
+        ziel_url = urljoin(basis_url, link["href"]).split("#", 1)[0]
+        ziel = urlsplit(ziel_url)
+        host = ziel.netloc.lower().removeprefix("www.")
+        if host != "mittelalterkalender.info" or not ziel.path.endswith(".php"):
+            continue
+        if ziel_url in besucht:
+            continue
+
+        besucht.add(ziel_url)
+        try:
+            seiten.append((ziel_url, seite_laden(ziel_url)))
+        except Exception as exc:
+            print(f"Mittelalterkalender-Seite nicht erreichbar ({ziel_url}): {exc}")
 
 try:
     with open(
@@ -212,7 +240,13 @@ neue_funde = []
 pro_land = {}
 
 
-for heading in soup.find_all("h2"):
+headings = [
+    (page_url, heading)
+    for page_url, page_soup in seiten
+    for heading in page_soup.find_all("h2")
+]
+
+for page_url, heading in headings:
 
     country = heading.get_text(
         " ",
@@ -222,10 +256,12 @@ for heading in soup.find_all("h2"):
     if country not in LAENDER:
         continue
 
-    table = heading.find_next("table")
-
-    if table is None:
+    # Nicht versehentlich die Tabelle des nächsten Landes übernehmen,
+    # wenn dieses Land auf der Seite aktuell keine Veranstaltungen hat.
+    section_start = heading.find_next(["h2", "table"])
+    if section_start is None or section_start.name != "table":
         continue
+    table = section_start
 
     for row in table.find_all("tr"):
 
@@ -318,7 +354,7 @@ for heading in soup.find_all("h2"):
             "country": country,
             "city": city,
             "postcode": postcode,
-            "source": URL
+            "source": page_url
         }
 
         neue_funde.append(neues_event)
