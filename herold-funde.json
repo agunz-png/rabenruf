@@ -1252,8 +1252,8 @@
     "country": "Vereinigtes Königreich",
     "city": "Hatsford Farm",
     "postcode": "",
-    "lat": 0.0,
-    "lng": 0.0,
+    "lat": 0,
+    "lng": 0,
     "source": "https://www.buhurtinternational.com/tournament/heritage-shield-2026"
   },
   {
@@ -1266,8 +1266,8 @@
     "country": "Ungarn",
     "city": "Veszprém",
     "postcode": "",
-    "lat": 0.0,
-    "lng": 0.0,
+    "lat": 0,
+    "lng": 0,
     "source": "https://www.buhurtinternational.com/tournament/v.-veszpr%C3%A9m-medieval-day"
   },
   {
@@ -1280,8 +1280,8 @@
     "country": "Vereinigtes Königreich",
     "city": "Rochdale Mayfield Rugby Club",
     "postcode": "",
-    "lat": 0.0,
-    "lng": 0.0,
+    "lat": 0,
+    "lng": 0,
     "source": "https://www.buhurtinternational.com/tournament/castleton-cup"
   },
   {
@@ -1297,5 +1297,41 @@
     "lat": 47.2580585,
     "lng": 10.7745265,
     "source": "https://www.buhurtinternational.com/tournament/alpine-warrior-2027"
+  },
+  {
+    "id": "community-buhurt-2027-swaiut-toringi-cup",
+    "name": "Swaiut Toringi Cup",
+    "type": "Buhurt",
+    "date": "2027-04-24 bis 2027-04-25",
+    "start": "2027-04-24",
+    "end": "2027-04-25",
+    "country": "Deutschland",
+    "city": "Mühlhausen",
+    "postcode": "",
+    "source": "Discord #turnier-daten, Screenshot vom 30.09.2026"
+  },
+  {
+    "id": "community-buhurt-2027-schluderns-5v5",
+    "name": "Buhurt 5v5 – Südtiroler Ritterspiele",
+    "type": "Buhurt",
+    "date": "2027-08-21",
+    "start": "2027-08-21",
+    "end": "2027-08-21",
+    "country": "Italien",
+    "city": "Schluderns",
+    "postcode": "",
+    "source": "Discord #turnier-daten, Screenshot vom 30.09.2026"
+  },
+  {
+    "id": "community-buhurt-2027-st-georgen-cup",
+    "name": "St. Georgen Cup – Duell und 3×3 Buhurt",
+    "type": "Buhurt",
+    "date": "2027-09-04 bis 2027-09-05",
+    "start": "2027-09-04",
+    "end": "2027-09-05",
+    "country": "Deutschland",
+    "city": "Schneeberg",
+    "postcode": "",
+    "source": "Discord #turnier-daten, Screenshot vom 30.09.2026"
   }
 ]
