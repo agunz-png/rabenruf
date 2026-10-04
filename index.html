@@ -6864,7 +6864,10 @@ async function sendeManuellenTermin(event){
   const eventId="manual-"+crypto.randomUUID().replaceAll("-","");
   const city=String(data.get("city")||"").trim();
   const country=String(data.get("country")||"").trim();
-  const typeField=byId("manualType");\n  const categories=JSON.parse(typeField?.dataset.categories||"[]");\n  if(!typeField?.dataset.confirmed || !categories.length){if(status) status.textContent="Bitte wähle eine oder mehrere Arten aus und bestätige sie mit ❌.";return;}\n  const type=categories[0];
+  const typeField=byId("manualType");
+  const categories=JSON.parse(typeField?.dataset.categories||"[]");
+  if(!typeField?.dataset.confirmed || !categories.length){if(status) status.textContent="Bitte wähle eine oder mehrere Arten aus und bestätige sie mit ❌.";return;}
+  const type=categories[0];
   const proposed_event={
     id:eventId,name:String(data.get("name")||"").trim(),type,
     tags:[...categories,...(categories.includes("Buhurt")?["Turnier"]:[]),"Herold"],
