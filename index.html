@@ -776,6 +776,37 @@ textarea.contactField{min-height:150px;resize:vertical;}
 .categoryChoices label{display:flex;align-items:center;gap:7px;padding:10px;background:#211b16;border:1px solid var(--line);border-radius:10px;color:var(--text);}
 .categoryChoices input{accent-color:var(--gold);width:18px;height:18px;}
 
+#heroldManualForm{margin-top:16px;}
+#heroldManualForm label{display:block;margin:14px 0 6px;color:var(--muted);font-size:13px;font-weight:650;line-height:1.35;}
+#heroldManualForm input:not([type="checkbox"]):not([type="hidden"]),
+#heroldManualForm textarea,
+#heroldManualForm select{
+  display:block;width:100%;min-width:0;min-height:46px;margin:0 0 4px;padding:11px 12px;
+  border:1px solid var(--line);border-radius:12px;background:#15110d;color:var(--text);
+  color-scheme:dark;box-shadow:inset 0 1px 2px #0005;
+}
+#heroldManualForm input::placeholder,
+#heroldManualForm textarea::placeholder{color:#968777;opacity:1;}
+#heroldManualForm input:focus,
+#heroldManualForm textarea:focus,
+#heroldManualForm select:focus{outline:2px solid #d6ad6280;border-color:var(--gold);}
+#heroldManualForm textarea{min-height:100px;resize:vertical;}
+#heroldManualForm .formGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px;}
+#heroldManualForm .formGrid>div{min-width:0;}
+#heroldManualForm .categoryChoices{margin:8px 0 10px;}
+#heroldManualForm .categoryChoices label{
+  display:flex;align-items:center;gap:9px;min-height:48px;margin:0;padding:10px 12px;
+  border:1px solid var(--line);border-radius:12px;background:#211b16;color:var(--text);
+  font-size:14px;font-weight:600;cursor:pointer;transition:border-color .15s,background .15s;
+}
+#heroldManualForm .categoryChoices label:has(input:checked){border-color:var(--gold);background:#342719;}
+#heroldManualForm .categoryChoices input{flex:none;margin:0;}
+#manualCategoryStatus{margin:8px 0 12px;font-size:13px;}
+#manualSubmit{margin-top:16px;}
+@media(max-width:380px){
+  #heroldManualForm .formGrid{grid-template-columns:1fr;}
+}
+
 .eventEditForm textarea{min-height:95px;resize:vertical;}
 .eventFlyer{padding:10px;margin:8px 0 18px;border:1px solid #63472d;border-radius:16px;background:#17120e;text-align:center;}
 .eventFlyer img{display:block;width:100%;max-height:520px;object-fit:contain;border-radius:10px;}
