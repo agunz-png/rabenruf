@@ -10,6 +10,7 @@ on:
     paths:
       - herold_europa.py
       - herold_weitere_quellen.py
+      - .github/workflows/herold.yml
 
   schedule:
 
@@ -177,7 +178,67 @@ jobs:
 
       - name: Vergangene Herold-Funde entfernen
         run: |
-          python3 -c 'import json; from datetime import date; p="herold-funde.json"; f=json.load(open(p,encoding="utf-8")); h=date.today().isoformat(); n=len(f); f=[x for x in f if (x.get("end") or x.get("start") or "9999-12-31") >= h]; json.dump(f,open(p,"w",encoding="utf-8"),ensure_ascii=False,indent=2); print("Vergangene Funde entfernt:",n-len(f)); print("Verbleibende Funde:",len(f))' 
+          python3 - <<'PY'
+          import json
+          import re
+          from datetime import date
+
+          path = "herold-funde.json"
+          today = date.today()
+          with open(path, encoding="utf-8") as handle:
+              events = json.load(handle)
+
+          def iso_date(value):
+              text = str(value or "").strip()
+              if re.fullmatch(r"20\\d{2}-\\d{2}-\\d{2}", text):
+                  try:
+                      return date.fromisoformat(text)
+                  except ValueError:
+                      return None
+              return None
+
+          def event_dates(event):
+              start = iso_date(event.get("start"))
+              end = iso_date(event.get("end"))
+              if start and not end:
+                  end = start
+              if not start or not end:
+                  label = str(event.get("date") or "")
+                  match = re.search(
+                      r"(\\d{1,2})\\.(\\d{1,2})\\.\\s*(?:[–—-]\\s*(\\d{1,2})\\.(\\d{1,2})\\.)?\\s*(20\\d{2})",
+                      label,
+                  )
+                  if match:
+                      d1, m1, d2, m2, year = match.groups()
+                      try:
+                          start = date(int(year), int(m1), int(d1))
+                          end = date(int(year), int(m2 or m1), int(d2 or d1))
+                      except ValueError:
+                          return None, None
+              return start, end
+
+          kept = []
+          past_count = 0
+          invalid_count = 0
+          for event in events:
+              start, end = event_dates(event)
+              if not start or not end:
+                  invalid_count += 1
+                  continue
+              if end < today:
+                  past_count += 1
+                  continue
+              event["start"] = start.isoformat()
+              event["end"] = end.isoformat()
+              kept.append(event)
+
+          with open(path, "w", encoding="utf-8") as handle:
+              json.dump(kept, handle, ensure_ascii=False, indent=2)
+
+          print("Vergangene Funde entfernt:", past_count)
+          print("Funde ohne gültiges Datum entfernt:", invalid_count)
+          print("Verbleibende Funde:", len(kept))
+          PY
       - name: Änderungen speichern
 
         run: |
