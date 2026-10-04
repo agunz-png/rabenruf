@@ -1105,7 +1105,14 @@ textarea.contactField{min-height:150px;resize:vertical;}
         <label for="manualName">Veranstaltungsname *</label>
         <input id="manualName" name="name" required maxlength="180" placeholder="z. B. Mittelaltermarkt am Schloss">
         <label>Art / Kategorien * (Mehrfachauswahl)</label>
-        <div id="manualTypeChoices" class="categoryChoices"></div>
+        <div id="manualTypeChoices" class="categoryChoices">
+          <label><input type="checkbox" value="Markt" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> Markt</label>
+          <label><input type="checkbox" value="MPS" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> MPS</label>
+          <label><input type="checkbox" value="Lager" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> Lager</label>
+          <label><input type="checkbox" value="Reenactment" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> Reenactment</label>
+          <label><input type="checkbox" value="Buhurt" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> Buhurt</label>
+          <label><input type="checkbox" value="Spezialevent" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> Spezialevent</label>
+        </div>
         <input id="manualType" type="hidden" name="type" required>
         <button class="btn" type="button" onclick="bestaetigeKategorien('manualType','manualTypeChoices','manualCategoryStatus')">❌ Auswahl bestätigen</button>
         <p id="manualCategoryStatus" class="muted" role="status">Bitte eine oder mehrere Arten anklicken und mit ❌ bestätigen.</p>
@@ -6796,8 +6803,16 @@ function renderHeroldUpdates(){
     const event=request.proposed_event || {};
     const isNew=!Object.keys(oldEvent).length;
     const fields=Object.keys(fieldLabels).filter(key=>String(event[key]||""));
-    const changes=fields.map(key=>'<p><b>'+fieldLabels[key]+':</b><br><span class="muted">'+
-      (isNew ? escapeHTML(event[key]) : escapeHTML(oldEvent[key]||"—")+' → '+escapeHTML(event[key]))+'</span></p>').join("");
+    const categoryText=value=>{
+      const chosen=Array.isArray(value.tags)?value.tags.filter(tag=>HEROLD_EVENT_TYPES.includes(tag)):[];
+      return chosen.length?chosen.join(", "):String(value.type||"");
+    };
+    const changes=fields.map(key=>{
+      const shown=key==="type"?categoryText(event):String(event[key]||"");
+      const oldShown=key==="type"?categoryText(oldEvent):String(oldEvent[key]||"—");
+      return '<p><b>'+fieldLabels[key]+':</b><br><span class="muted">'+
+        (isNew?escapeHTML(shown):escapeHTML(oldShown)+' → '+escapeHTML(shown))+'</span></p>';
+    }).join("");
     const id=String(request.id||"");
     return '<div class="card"><h3>'+escapeHTML(event.name||"Terminänderung")+(isNew?' <span class="muted">· Neuer Termin</span>':'')+'</h3>'+
       '<p class="muted">📅 '+escapeHTML(event.date||"")+'<br>📍 '+escapeHTML((event.city||"")+", "+(event.country||""))+'</p>'+
