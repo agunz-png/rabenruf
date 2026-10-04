@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - herold_europa.py
+      - herold_weitere_quellen.py
 
   schedule:
 
