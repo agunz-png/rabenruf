@@ -130,7 +130,8 @@ while seiten_index < len(seiten) and len(seiten) < 8:
     seiten_index += 1
 
     for link in basis_soup.find_all("a", href=True):
-        if link.get_text(" ", strip=True).casefold() != "europa":
+        label = link.get_text(" ", strip=True).casefold()
+        if label not in {"europa", "nach bundesland"}:
             continue
 
         ziel_url = urljoin(basis_url, link["href"]).split("#", 1)[0]
@@ -248,13 +249,18 @@ headings = [
 
 for page_url, heading in headings:
 
-    country = heading.get_text(
-        " ",
-        strip=True
-    )
+    page_path = urlsplit(page_url).path.casefold()
+    if "nach-bundesland" in page_path:
+        # Die Bundeslandübersicht enthält nur deutsche Veranstaltungen.
+        country = "Deutschland"
+    else:
+        country = heading.get_text(
+            " ",
+            strip=True
+        )
 
-    if country not in LAENDER:
-        continue
+        if country not in LAENDER:
+            continue
 
     # Nicht versehentlich die Tabelle des nächsten Landes übernehmen,
     # wenn dieses Land auf der Seite aktuell keine Veranstaltungen hat.
