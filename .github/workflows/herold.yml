@@ -4,6 +4,12 @@ on:
 
   workflow_dispatch:
 
+  push:
+    branches:
+      - main
+    paths:
+      - herold_europa.py
+
   schedule:
 
     - cron: "15 4 * * *"
