@@ -1095,6 +1095,35 @@ textarea.contactField{min-height:150px;resize:vertical;}
     </p>
 
     <div class="card">
+      <h3>➕ Veranstaltung manuell eintragen</h3>
+      <p class="muted">Dein Eintrag wird zuerst als Vorschlag gespeichert. Er erscheint erst nach deiner Freigabe im Kalender und auf der Karte.</p>
+      <form id="heroldManualForm" onsubmit="sendeManuellenTermin(event)">
+        <label for="manualName">Veranstaltungsname *</label>
+        <input id="manualName" name="name" required maxlength="180" placeholder="z. B. Mittelaltermarkt am Schloss">
+        <label for="manualType">Art *</label>
+        <select id="manualType" name="type" required>
+          <option>Markt</option><option>MPS</option><option>Lager</option><option>Reenactment</option><option>Buhurt</option><option>Spezialevent</option>
+        </select>
+        <div class="formGrid">
+          <div><label for="manualStart">Beginn *</label><input id="manualStart" name="start" type="date" required></div>
+          <div><label for="manualEnd">Ende</label><input id="manualEnd" name="end" type="date"></div>
+        </div>
+        <div class="formGrid">
+          <div><label for="manualCity">Ort / Stadt *</label><input id="manualCity" name="city" required maxlength="100" placeholder="z. B. Mühlhausen"></div>
+          <div><label for="manualCountry">Land *</label><input id="manualCountry" name="country" required maxlength="100" placeholder="z. B. Deutschland"></div>
+        </div>
+        <label for="manualVenue">Veranstaltungsort</label><input id="manualVenue" name="venue" maxlength="180" placeholder="z. B. Schloss, Marktgelände">
+        <label for="manualOrganizer">Veranstalter</label><input id="manualOrganizer" name="organizer" maxlength="160">
+        <label for="manualWebsite">Veranstalter-Webseite</label><input id="manualWebsite" name="website" type="url" maxlength="500" placeholder="https://…">
+        <label for="manualSource">Quelle / Fundlink</label><input id="manualSource" name="source" type="url" maxlength="500" placeholder="https://…">
+        <label for="manualInfo">Beschreibung</label><textarea id="manualInfo" name="info" maxlength="1200" rows="3"></textarea>
+        <label for="manualHours">Öffnungszeiten</label><input id="manualHours" name="hours" maxlength="240">
+        <button class="btn primary" type="submit" id="manualSubmit">Vorschlag speichern</button>
+        <p id="manualEventStatus" class="contactStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="card">
       <h3>⚔️ Buhurt-Quellen</h3>
       <p><a style="color:#f0d18c" href="https://www.buhurtinternational.com/tournaments" target="_blank" rel="noopener noreferrer">Buhurt International – offizieller Turnierkalender</a><br><span class="muted">Europaweite Hauptquelle für genehmigte Turniere.</span></p>
       <p><a style="color:#f0d18c" href="https://linktr.ee/eisenliga" target="_blank" rel="noopener noreferrer">Eisenliga – deutsche Ergänzungsquelle</a><br><span class="muted">Linktree mit Website und Facebook.</span></p>
@@ -6731,26 +6760,74 @@ function renderHeroldUpdates(){
   const box=byId("heroldUpdateList");
   if(!box) return;
   if(!heroldUpdates.length){
-    box.innerHTML='<div class="card"><h3>✏️ Keine Terminänderungen offen</h3><p class="muted">Neue Vorschläge erscheinen hier zur Prüfung.</p></div>';
+    box.innerHTML='<div class="card"><h3>✏️ Keine offenen Vorschläge</h3><p class="muted">Manuell eingetragene Termine und Änderungen erscheinen hier zur Prüfung.</p></div>';
     return;
   }
   const fieldLabels={
     name:"Veranstaltung",date:"Datum",city:"Ort",country:"Land",venue:"Veranstaltungsort",
-    address:"Adresse",organizer:"Veranstalter",website:"Webseite",flyer:"Flyer-Bildadresse",info:"Beschreibung",hours:"Zeiten"
+    address:"Adresse",organizer:"Veranstalter",website:"Webseite",source:"Quelle",flyer:"Flyer-Bildadresse",info:"Beschreibung",hours:"Zeiten"
   };
-  box.innerHTML='<h2>✏️ Änderungsvorschläge</h2>' + heroldUpdates.map(request=>{
+  box.innerHTML='<h2>✏️ Vorschläge zur Prüfung</h2>' + heroldUpdates.map(request=>{
     const oldEvent=request.old_event || {};
     const event=request.proposed_event || {};
-    const changes=Object.keys(fieldLabels).filter(key=>String(oldEvent[key]||"")!==String(event[key]||""))
-      .map(key=>'<p><b>'+fieldLabels[key]+':</b><br><span class="muted">'+
-        escapeHTML(oldEvent[key]||"—")+' → '+escapeHTML(event[key]||"—")+'</span></p>').join("");
+    const isNew=!Object.keys(oldEvent).length;
+    const fields=Object.keys(fieldLabels).filter(key=>String(event[key]||""));
+    const changes=fields.map(key=>'<p><b>'+fieldLabels[key]+':</b><br><span class="muted">'+
+      (isNew ? escapeHTML(event[key]) : escapeHTML(oldEvent[key]||"—")+' → '+escapeHTML(event[key]))+'</span></p>').join("");
     const id=String(request.id||"");
-    return '<div class="card"><h3>'+escapeHTML(event.name||"Terminänderung")+'</h3>'+
+    return '<div class="card"><h3>'+escapeHTML(event.name||"Terminänderung")+(isNew?' <span class="muted">· Neuer Termin</span>':'')+'</h3>'+
       '<p class="muted">📅 '+escapeHTML(event.date||"")+'<br>📍 '+escapeHTML((event.city||"")+", "+(event.country||""))+'</p>'+
-      '<details><summary>Änderungen prüfen</summary>'+changes+'</details>'+
-      '<button class="btn green" onclick="entscheideTerminAenderung(\''+id+'\',\'approve\')">✅ Änderung freigeben</button>'+
-      '<button class="btn" onclick="entscheideTerminAenderung(\''+id+'\',\'reject\')">❌ Änderung verwerfen</button></div>';
+      '<details><summary>'+(isNew?'Termindaten prüfen':'Änderungen prüfen')+'</summary>'+changes+'</details>'+
+      '<button class="btn green" onclick="entscheideTerminAenderung(\''+id+'\',\'approve\')">'+(isNew?'✅ Termin freigeben':'✅ Änderung freigeben')+'</button>'+
+      '<button class="btn" onclick="entscheideTerminAenderung(\''+id+'\',\'reject\')">❌ Vorschlag verwerfen</button></div>';
   }).join("");
+}
+
+async function sendeManuellenTermin(event){
+  event.preventDefault();
+  const form=byId("heroldManualForm");
+  const status=byId("manualEventStatus");
+  const button=byId("manualSubmit");
+  if(!heroldIsAdmin() || !heroldSession?.access_token){
+    if(status) status.textContent="Bitte melde dich zuerst mit dem Herold-Passwort an.";
+    return;
+  }
+  const data=new FormData(form);
+  const start=String(data.get("start")||"").trim();
+  const end=String(data.get("end")||"").trim() || start;
+  const eventId="manual-"+crypto.randomUUID().replaceAll("-","");
+  const city=String(data.get("city")||"").trim();
+  const country=String(data.get("country")||"").trim();
+  const type=String(data.get("type")||"Markt").trim();
+  const proposed_event={
+    id:eventId,name:String(data.get("name")||"").trim(),type,
+    tags:type==="Buhurt"?["Buhurt","Turnier","Herold"]:[type,"Herold"],
+    start,end,date:start===end?start:start+" bis "+end,
+    city,country,address:city+", "+country,
+    venue:String(data.get("venue")||"").trim(),
+    organizer:String(data.get("organizer")||"").trim(),
+    website:String(data.get("website")||"").trim(),
+    source:String(data.get("source")||"").trim(),
+    info:String(data.get("info")||"").trim(),
+    hours:String(data.get("hours")||"").trim()
+  };
+  if(status) status.textContent="";
+  if(button){button.disabled=true;button.textContent="Wird gespeichert …";}
+  try{
+    await heroldSessionErneuern();
+    const result=await heroldApi("functions/v1/herold-event-update",{
+      method:"POST",token:heroldSession.access_token,
+      body:{action:"create",event_id:eventId,proposed_event}
+    });
+    if(!result?.ok) throw new Error(result?.error || "Der Vorschlag konnte nicht gespeichert werden.");
+    form.reset();
+    if(status) status.textContent="Vorschlag gespeichert. Du findest ihn unten bei „Vorschläge zur Prüfung“. Er erscheint erst nach Freigabe im Kalender.";
+    await ladeHeroldUpdates();
+  }catch(error){
+    if(status) status.textContent=error.message || "Speichern hat nicht funktioniert. Bitte versuche es erneut.";
+  }finally{
+    if(button){button.disabled=false;button.textContent="Vorschlag speichern";}
+  }
 }
 
 async function entscheideTerminAenderung(requestId,action){
