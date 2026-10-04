@@ -6887,6 +6887,8 @@ async function sendeManuellenTermin(event){
     });
     if(!result?.ok) throw new Error(result?.error || "Der Vorschlag konnte nicht gespeichert werden.");
     form.reset();
+    const categoryField=byId("manualType");
+    if(categoryField){categoryField.value="";categoryField.dataset.categories="[]";categoryField.dataset.confirmed="false";}
     if(status) status.textContent="Vorschlag gespeichert. Du findest ihn unten bei „Vorschläge zur Prüfung“. Er erscheint erst nach Freigabe im Kalender.";
     await ladeHeroldUpdates();
   }catch(error){
