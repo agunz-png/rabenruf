@@ -161,6 +161,45 @@ Deno.serve(async (req: Request) => {
       return reply({ ok: true, updates: data || [] });
     }
 
+    if (payload.action === "create") {
+      const eventId = cleanText(payload.event_id, 120);
+      if (!/^manual-[A-Za-z0-9_-]{1,100}$/.test(eventId)) {
+        return reply({ error: "Ungültige ID für den neuen Termin." }, 400);
+      }
+      const rawValue = payload.proposed_event;
+      if (!rawValue || typeof rawValue !== "object" || Array.isArray(rawValue)) {
+        return reply({ error: "Die Termindaten fehlen." }, 400);
+      }
+      const raw = rawValue as Record<string, unknown>;
+      const name = cleanText(raw.name, 180);
+      const type = cleanText(raw.type, 30);
+      const city = cleanText(raw.city, 100);
+      const country = cleanText(raw.country, 100);
+      const start = raw.start;
+      const end = raw.end;
+      if (!name || !types.has(type) || !city || !country ||
+          !validIsoDate(start) || !validIsoDate(end) || end < start) {
+        return reply({ error: "Bitte prüfe Titel, Art, Zeitraum, Ort und Land." }, 422);
+      }
+      const coordinates = await coordinatesFor(city, country);
+      if (!coordinates) return reply({ error: "Für diesen Ort konnten keine Kartenkoordinaten gefunden werden. Prüfe Ort und Land." }, 422);
+      const proposed = validEvent({
+        ...raw,
+        id: eventId,
+        lat: coordinates.lat,
+        lng: coordinates.lng,
+      }, eventId);
+      if (!proposed) return reply({ error: "Die Termindaten sind ungültig. Bitte prüfe deine Eingaben." }, 422);
+      const { data, error } = await admin.from("herold_update_requests")
+        .insert({ event_id: eventId, old_event: {}, proposed_event: proposed, status: "pending" })
+        .select("id").single();
+      if (error) {
+        if (error.code === "23505") return reply({ error: "Dieser Vorschlag ist bereits zur Prüfung eingereicht." }, 409);
+        throw error;
+      }
+      return reply({ ok: true, request_id: data.id });
+    }
+
     if (payload.action === "submit") {
       const eventId = cleanText(payload.event_id, 120);
       if (!/^[A-Za-z0-9_-]{1,120}$/.test(eventId)) return reply({ error: "Ungültige Termin-ID." }, 400);
