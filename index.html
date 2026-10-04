@@ -1100,10 +1100,14 @@ textarea.contactField{min-height:150px;resize:vertical;}
       <form id="heroldManualForm" onsubmit="sendeManuellenTermin(event)">
         <label for="manualName">Veranstaltungsname *</label>
         <input id="manualName" name="name" required maxlength="180" placeholder="z. B. Mittelaltermarkt am Schloss">
-        <label for="manualType">Art *</label>
-        <select id="manualType" name="type" required>
-          <option>Markt</option><option>MPS</option><option>Lager</option><option>Reenactment</option><option>Buhurt</option><option>Spezialevent</option>
-        </select>
+        <label for="manualType">Art / Kategorie *</label>
+        <div class="formGrid">
+          <select id="manualType" name="type" required>
+            <option value="">Bitte auswählen …</option>
+            <option>Markt</option><option>MPS</option><option>Lager</option><option>Reenactment</option><option>Buhurt</option><option>Spezialevent</option>
+          </select>
+          <button type="button" aria-label="Kategorie zurücksetzen" title="Auswahl löschen" onclick="setzeKategorieZurueck('manualType')">❌</button>
+        </div>
         <div class="formGrid">
           <div><label for="manualStart">Beginn *</label><input id="manualStart" name="start" type="date" required></div>
           <div><label for="manualEnd">Ende</label><input id="manualEnd" name="end" type="date"></div>
@@ -5903,10 +5907,20 @@ function bearbeiteTermin(id){
     '<label for="edit-' + name + '">' + label + '</label>' +
     '<textarea class="eventEditField" id="edit-' + name + '" name="' + name +
     '" maxlength="' + maxlength + '" rows="' + rows + '">' + escapeHTML(value || "") + '</textarea>';
+  const category=() => {
+    const types=["Markt","MPS","Lager","Reenactment","Buhurt","Spezialevent"];
+    const options='<option value="">Bitte auswählen …</option>'+types.map(type =>
+      '<option value="'+type+'"'+(String(event.type||"")===type?' selected':'')+'>'+type+'</option>'
+    ).join("");
+    return '<label for="edit-type">Art / Kategorie *</label><div class="formGrid">'+
+      '<select class="eventEditField" id="edit-type" name="type" required>'+options+'</select>'+
+      '<button class="btn" style="margin:7px 0 13px;width:auto" type="button" aria-label="Kategorie zurücksetzen" title="Auswahl löschen" onclick="setzeKategorieZurueck(\'edit-type\')">❌</button></div>';
+  };
   box.innerHTML=
     '<div class="card eventEditForm"><h2>✏️ Termin ergänzen oder korrigieren</h2>' +
     '<p class="muted">Änderungen werden zuerst im Herold geprüft. Im Kalender bleibt der bisherige Eintrag stehen, bis du den Vorschlag freigibst.</p>' +
     field("name","Veranstaltung",event.name,"text",true,180) +
+    category() +
     field("start","Beginn",event.start,"date",true) +
     field("end","Ende",event.end || event.start,"date",true) +
     field("city","Ort / Stadt",event.city,"text",true,100) +
@@ -5970,7 +5984,7 @@ async function sendeTerminAenderung(){
   const proposed={
     ...eventEditSnapshot,
     id:eventEditId,
-    name:value("name"),start:value("start"),end:value("end"),
+    name:value("name"),type:value("type"),start:value("start"),end:value("end"),
     city:value("city"),country:value("country"),venue:value("venue"),
     address:value("address"),organizer:value("organizer"),website:value("website"),
     flyer:value("flyer"),
@@ -6764,7 +6778,7 @@ function renderHeroldUpdates(){
     return;
   }
   const fieldLabels={
-    name:"Veranstaltung",date:"Datum",city:"Ort",country:"Land",venue:"Veranstaltungsort",
+    name:"Veranstaltung",type:"Art / Kategorie",date:"Datum",city:"Ort",country:"Land",venue:"Veranstaltungsort",
     address:"Adresse",organizer:"Veranstalter",website:"Webseite",source:"Quelle",flyer:"Flyer-Bildadresse",info:"Beschreibung",hours:"Zeiten"
   };
   box.innerHTML='<h2>✏️ Vorschläge zur Prüfung</h2>' + heroldUpdates.map(request=>{
@@ -6783,6 +6797,11 @@ function renderHeroldUpdates(){
   }).join("");
 }
 
+function setzeKategorieZurueck(id){
+  const select=byId(id);
+  if(select){select.value="";select.focus();}
+}
+
 async function sendeManuellenTermin(event){
   event.preventDefault();
   const form=byId("heroldManualForm");
@@ -6798,7 +6817,7 @@ async function sendeManuellenTermin(event){
   const eventId="manual-"+crypto.randomUUID().replaceAll("-","");
   const city=String(data.get("city")||"").trim();
   const country=String(data.get("country")||"").trim();
-  const type=String(data.get("type")||"Markt").trim();
+  const type=String(data.get("type")||"").trim();
   const proposed_event={
     id:eventId,name:String(data.get("name")||"").trim(),type,
     tags:type==="Buhurt"?["Buhurt","Turnier","Herold"]:[type,"Herold"],
