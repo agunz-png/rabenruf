@@ -5,7 +5,7 @@ import unicodedata
 import urllib.request
 from datetime import date, datetime
 from difflib import SequenceMatcher
-from urllib.parse import urlsplit
+from urllib.parse import urljoin, urlsplit
 
 from bs4 import BeautifulSoup
 
