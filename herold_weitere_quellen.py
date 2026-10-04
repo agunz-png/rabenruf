@@ -293,7 +293,7 @@ def scrape_fyndling():
         city = location_text
         if code_match:
             city = location_text[:code_match.start()]
-        city = re.sub(r"\s*\([^)]*\)\s*$", "", city)
+        city = re.sub(r"\s*\([^)]*(?:\)|$)\s*$", "", city)
         city = re.sub(r"^\d{4,6}\s+", "", city).strip(" ,")
         city = re.sub(r"\s+", " ", city)
         if not name or not city:
