@@ -5993,7 +5993,7 @@ async function sendeTerminAenderung(){
   const categoryField=byId("edit-type");
   const categories=JSON.parse(categoryField?.dataset.categories||"[]");
   if(!categoryField?.dataset.confirmed || !categories.length){
-    if(status) status.textContent="Bitte wähle eine oder mehrere Arten aus und bestätige sie mit ❌.";
+    if(status) status.textContent="Bitte wähle mindestens eine Art aus.";
     return;
   }
   const proposed={
@@ -6855,7 +6855,7 @@ async function sendeManuellenTermin(event){
   const country=String(data.get("country")||"").trim();
   const typeField=byId("manualType");
   const categories=JSON.parse(typeField?.dataset.categories||"[]");
-  if(!typeField?.dataset.confirmed || !categories.length){if(status) status.textContent="Bitte wähle eine oder mehrere Arten aus und bestätige sie mit ❌.";return;}
+  if(!typeField?.dataset.confirmed || !categories.length){if(status) status.textContent="Bitte wähle mindestens eine Art aus.";return;}
   const type=categories[0];
   const proposed_event={
     id:eventId,name:String(data.get("name")||"").trim(),type,
