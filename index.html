@@ -772,6 +772,10 @@ textarea.contactField{min-height:150px;resize:vertical;}
 .eventEditField{display:block;width:100%;margin:7px 0 13px;padding:12px;background:#1c1813;color:var(--text);border:1px solid var(--line);border-radius:10px;}
 .eventEditField:focus{outline:2px solid var(--gold);border-color:var(--gold);}
 .eventEditForm label{display:block;color:var(--muted);font-size:13px;}
+.categoryChoices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:7px 0 10px;}
+.categoryChoices label{display:flex;align-items:center;gap:7px;padding:10px;background:#211b16;border:1px solid var(--line);border-radius:10px;color:var(--text);}
+.categoryChoices input{accent-color:var(--gold);width:18px;height:18px;}
+
 .eventEditForm textarea{min-height:95px;resize:vertical;}
 .eventFlyer{padding:10px;margin:8px 0 18px;border:1px solid #63472d;border-radius:16px;background:#17120e;text-align:center;}
 .eventFlyer img{display:block;width:100%;max-height:520px;object-fit:contain;border-radius:10px;}
@@ -1100,14 +1104,11 @@ textarea.contactField{min-height:150px;resize:vertical;}
       <form id="heroldManualForm" onsubmit="sendeManuellenTermin(event)">
         <label for="manualName">Veranstaltungsname *</label>
         <input id="manualName" name="name" required maxlength="180" placeholder="z. B. Mittelaltermarkt am Schloss">
-        <label for="manualType">Art / Kategorie *</label>
-        <div class="formGrid">
-          <select id="manualType" name="type" required>
-            <option value="">Bitte auswählen …</option>
-            <option>Markt</option><option>MPS</option><option>Lager</option><option>Reenactment</option><option>Buhurt</option><option>Spezialevent</option>
-          </select>
-          <button type="button" aria-label="Kategorie zurücksetzen" title="Auswahl löschen" onclick="setzeKategorieZurueck('manualType')">❌</button>
-        </div>
+        <label>Art / Kategorien * (Mehrfachauswahl)</label>
+        <div id="manualTypeChoices" class="categoryChoices"></div>
+        <input id="manualType" type="hidden" name="type" required>
+        <button class="btn" type="button" onclick="bestaetigeKategorien('manualType','manualTypeChoices','manualCategoryStatus')">❌ Auswahl bestätigen</button>
+        <p id="manualCategoryStatus" class="muted" role="status">Bitte eine oder mehrere Arten anklicken und mit ❌ bestätigen.</p>
         <div class="formGrid">
           <div><label for="manualStart">Beginn *</label><input id="manualStart" name="start" type="date" required></div>
           <div><label for="manualEnd">Ende</label><input id="manualEnd" name="end" type="date"></div>
@@ -5909,12 +5910,15 @@ function bearbeiteTermin(id){
     '" maxlength="' + maxlength + '" rows="' + rows + '">' + escapeHTML(value || "") + '</textarea>';
   const category=() => {
     const types=["Markt","MPS","Lager","Reenactment","Buhurt","Spezialevent"];
-    const options='<option value="">Bitte auswählen …</option>'+types.map(type =>
-      '<option value="'+type+'"'+(String(event.type||"")===type?' selected':'')+'>'+type+'</option>'
-    ).join("");
-    return '<label for="edit-type">Art / Kategorie *</label><div class="formGrid">'+
-      '<select class="eventEditField" id="edit-type" name="type" required>'+options+'</select>'+
-      '<button class="btn" style="margin:7px 0 13px;width:auto" type="button" aria-label="Kategorie zurücksetzen" title="Auswahl löschen" onclick="setzeKategorieZurueck(\'edit-type\')">❌</button></div>';
+    const selected=Array.isArray(event.tags)?event.tags.filter(tag=>types.includes(tag)):[];
+    if(types.includes(event.type) && !selected.includes(event.type)) selected.unshift(event.type);
+    const checks=types.map((type,index)=>'<label><input type="checkbox" value="'+type+'"'+(selected.includes(type)?' checked':'')+
+      ' onchange="kategorienGeaendert(\'edit-type\',\'editCategoryStatus\')"> '+type+'</label>').join("");
+    const extraTags=(Array.isArray(event.tags)?event.tags:[]).filter(tag=>!types.includes(tag));
+    return '<label>Art / Kategorien * (Mehrfachauswahl)</label><div id="editTypeChoices" class="categoryChoices">'+checks+'</div>'+
+      '<input type="hidden" id="edit-type" value="'+escapeHTML(selected[0]||"")+'" data-categories="'+escapeHTML(JSON.stringify(selected))+'" data-extra-tags="'+escapeHTML(JSON.stringify(extraTags))+'" data-confirmed="'+(selected.length?'true':'false')+'">'+
+      '<button class="btn" type="button" onclick="bestaetigeKategorien(\'edit-type\',\'editTypeChoices\',\'editCategoryStatus\')">❌ Auswahl bestätigen</button>'+
+      '<p id="editCategoryStatus" class="muted" role="status">'+(selected.length?'✅ '+escapeHTML(selected.join(", ")):'Bitte Arten anklicken und mit ❌ bestätigen.')+'</p>';
   };
   box.innerHTML=
     '<div class="card eventEditForm"><h2>✏️ Termin ergänzen oder korrigieren</h2>' +
@@ -5981,10 +5985,16 @@ async function sendeTerminAenderung(){
     return;
   }
   const value=name=>byId("edit-"+name)?.value.trim() || "";
+  const categoryField=byId("edit-type");
+  const categories=JSON.parse(categoryField?.dataset.categories||"[]");
+  if(!categoryField?.dataset.confirmed || !categories.length){
+    if(status) status.textContent="Bitte wähle eine oder mehrere Arten aus und bestätige sie mit ❌.";
+    return;
+  }
   const proposed={
     ...eventEditSnapshot,
     id:eventEditId,
-    name:value("name"),type:value("type"),start:value("start"),end:value("end"),
+    name:value("name"),type:categories[0],tags:[...categories,...JSON.parse(categoryField.dataset.extraTags||"[]")],start:value("start"),end:value("end"),
     city:value("city"),country:value("country"),venue:value("venue"),
     address:value("address"),organizer:value("organizer"),website:value("website"),
     flyer:value("flyer"),
@@ -6797,9 +6807,31 @@ function renderHeroldUpdates(){
   }).join("");
 }
 
-function setzeKategorieZurueck(id){
-  const select=byId(id);
-  if(select){select.value="";select.focus();}
+const HEROLD_EVENT_TYPES=["Markt","MPS","Lager","Reenactment","Buhurt","Spezialevent"];
+
+function kategorienGeaendert(hiddenId,statusId){
+  const hidden=byId(hiddenId);
+  if(hidden) hidden.dataset.confirmed="false";
+  const status=byId(statusId);
+  if(status) status.textContent="Auswahl geändert. Bitte mit ❌ bestätigen.";
+}
+
+function bestaetigeKategorien(hiddenId,choicesId,statusId){
+  const hidden=byId(hiddenId);
+  const choices=byId(choicesId);
+  const selected=Array.from(choices?.querySelectorAll('input[type="checkbox"]:checked')||[]).map(input=>input.value);
+  const status=byId(statusId);
+  if(!selected.length){
+    if(hidden){hidden.value="";hidden.dataset.categories="[]";hidden.dataset.confirmed="false";}
+    if(status) status.textContent="Bitte mindestens eine Art anklicken.";
+    return;
+  }
+  if(hidden){
+    hidden.value=selected[0];
+    hidden.dataset.categories=JSON.stringify(selected);
+    hidden.dataset.confirmed="true";
+  }
+  if(status) status.textContent="✅ Übernommen: "+selected.join(", ");
 }
 
 async function sendeManuellenTermin(event){
@@ -6817,10 +6849,10 @@ async function sendeManuellenTermin(event){
   const eventId="manual-"+crypto.randomUUID().replaceAll("-","");
   const city=String(data.get("city")||"").trim();
   const country=String(data.get("country")||"").trim();
-  const type=String(data.get("type")||"").trim();
+  const typeField=byId("manualType");\n  const categories=JSON.parse(typeField?.dataset.categories||"[]");\n  if(!typeField?.dataset.confirmed || !categories.length){if(status) status.textContent="Bitte wähle eine oder mehrere Arten aus und bestätige sie mit ❌.";return;}\n  const type=categories[0];
   const proposed_event={
     id:eventId,name:String(data.get("name")||"").trim(),type,
-    tags:type==="Buhurt"?["Buhurt","Turnier","Herold"]:[type,"Herold"],
+    tags:[...categories,...(categories.includes("Buhurt")?["Turnier"]:[]),"Herold"],
     start,end,date:start===end?start:start+" bis "+end,
     city,country,address:city+", "+country,
     venue:String(data.get("venue")||"").trim(),
