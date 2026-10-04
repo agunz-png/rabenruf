@@ -12,6 +12,14 @@ from bs4 import BeautifulSoup
 
 VEHI_BASE = "https://vehi-mercatus.fr/calendrier-des-marches/"
 MIRIMOR_URL = "https://www.mirimor.ch/kalender/"
+FINDLING_URL = "https://fyndling.de/maerkte.html"
+FINDLING_CODES = {
+    "AT": "Österreich", "BE": "Belgien", "CH": "Schweiz", "CZ": "Tschechien",
+    "DK": "Dänemark", "EE": "Estland", "ES": "Spanien", "FR": "Frankreich",
+    "GB": "Vereinigtes Königreich", "IE": "Irland", "IT": "Italien",
+    "LT": "Litauen", "LU": "Luxemburg", "NL": "Niederlande", "NO": "Norwegen",
+    "PL": "Polen", "PT": "Portugal", "SE": "Schweden",
+}
 USER_AGENT = "Mozilla/5.0 Rabenruf-Herold/1.0"
 MONTHS = {
     "janvier": 1, "januar": 1, "février": 2, "februar": 2,
@@ -225,6 +233,82 @@ def country_from_vehi(text, postal):
     if re.search(r"\bfr\b", t) and postal and len(postal) == 5:
         return "Frankreich"
     return ""
+
+def fyndling_dates(text):
+    match = re.search(
+        r"(?<!\d)(?P<d1>\d{1,2})\.(?P<m1>\d{1,2})\.(?P<y1>20\d{2})"
+        r"(?:\s*[–—-]\s*(?P<d2>\d{1,2})\.(?P<m2>\d{1,2})\.(?P<y2>20\d{2}))?",
+        plain(text),
+    )
+    if not match:
+        return "", ""
+    try:
+        start = date(int(match.group("y1")), int(match.group("m1")), int(match.group("d1")))
+        end = date(
+            int(match.group("y2") or match.group("y1")),
+            int(match.group("m2") or match.group("m1")),
+            int(match.group("d2") or match.group("d1")),
+        )
+        if end < start:
+            return "", ""
+        return start.isoformat(), end.isoformat()
+    except ValueError:
+        return "", ""
+
+
+def scrape_fyndling():
+    """Read Fyndling's public medieval-market listing as unapproved Herold leads."""
+    try:
+        soup = BeautifulSoup(fetch(FINDLING_URL), "html.parser")
+    except Exception as exc:
+        print(f"Fyndling: Abruf fehlgeschlagen: {exc}")
+        return []
+
+    results = []
+    for row in soup.find_all("tr"):
+        cells = row.find_all(["td", "th"], recursive=False)
+        if len(cells) < 3:
+            continue
+        date_text = plain(cells[0].get_text(" ", strip=True))
+        start, end = fyndling_dates(date_text)
+        if not start or (end or start) < date.today().isoformat():
+            continue
+
+        event_link = next(
+            (link for link in row.find_all("a", href=True)
+             if re.search(r"/e/[A-Za-z0-9_-]+", link["href"])),
+            None,
+        )
+        if not event_link:
+            continue
+        name = plain(event_link.get_text(" ", strip=True))
+        location_text = plain(cells[-1].get_text(" ", strip=True))
+        code_match = re.search(r"\b(" + "|".join(FINDLING_CODES) + r")\s*\)?\s*$", location_text)
+        country = FINDLING_CODES.get(code_match.group(1)) if code_match else ""
+        if not country and re.search(r"\b\d{5}\s+\S", location_text):
+            country = "Deutschland"
+        if not country:
+            continue
+
+        city = location_text
+        if code_match:
+            city = location_text[:code_match.start()].rstrip(" (")
+        city = re.sub(r"^\d{4,6}\s+", "", city).strip(" ,")
+        city = re.sub(r"\s+", " ", city)
+        if not name or not city:
+            continue
+        source = urljoin(FINDLING_URL, event_link["href"])
+        item = event_record(name, city, country, start, end, source)
+        if item:
+            results.append(item)
+
+    unique = {}
+    for item in results:
+        key = (norm(item["name"]), norm(item["city"]), item["start"])
+        unique[key] = item
+    print(f"Fyndling Mittelaltermärkte: {len(unique)} Funde")
+    return list(unique.values())
+
 
 def scrape_vehi():
     results = []
@@ -530,10 +614,11 @@ def main():
             and re.search(r"(?i)\b(?:kein mittelaltermarkt|kein markt)\b", item.get("name", ""))
         )
         and not str(item.get("source", "")).startswith(VEHI_BASE)
+        and "fyndling.de" not in domain(item.get("source", ""))
     ]
 
     new_events = []
-    for candidate in scrape_vehi() + scrape_mirimor():
+    for candidate in scrape_vehi() + scrape_mirimor() + scrape_fyndling():
         if (candidate.get("end") or candidate.get("start") or "9999-12-31") < date.today().isoformat():
             continue
         if not already_present(candidate, existing + new_events + app_events):
@@ -543,7 +628,7 @@ def main():
     with open("herold-funde.json", "w", encoding="utf-8") as handle:
         json.dump(existing, handle, ensure_ascii=False, indent=2)
 
-    print("Neue Funde aus Vehi Mercatus und Mirimor:", len(new_events))
+    print("Neue Funde aus Vehi Mercatus, Mirimor und Fyndling:", len(new_events))
 
 
 if __name__ == "__main__":
