@@ -5990,8 +5990,8 @@ async function sendeTerminAenderung(){
     flyer:value("flyer"),
     info:value("info"),hours:value("hours")
   };
-  if(!proposed.name || !proposed.start || !proposed.end || !proposed.city || !proposed.country){
-    if(status) status.textContent="Bitte fülle Titel, Zeitraum, Ort und Land aus.";
+  if(!proposed.name || !proposed.type || !proposed.start || !proposed.end || !proposed.city || !proposed.country){
+    if(status) status.textContent="Bitte fülle Titel, Art, Zeitraum, Ort und Land aus.";
     return;
   }
   if(button){button.disabled=true;button.textContent="Wird an den Herold gesendet …";}
