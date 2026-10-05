@@ -5525,7 +5525,7 @@ function applyFilters(){
   const heute = new Date();
   heute.setHours(0, 0, 0, 0);
   const grenze = new Date(heute);
-  grenze.setDate(grenze.getDate() + 30);
+  grenze.setDate(grenze.getDate() + 14);
   grenze.setHours(23, 59, 59, 999);
 
   list = list.filter(event => {
