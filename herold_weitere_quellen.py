@@ -3,6 +3,7 @@ import json
 import re
 import unicodedata
 import urllib.request
+import time
 from datetime import date, datetime
 from difflib import SequenceMatcher
 from urllib.parse import urljoin, urlsplit
@@ -14,11 +15,17 @@ VEHI_BASE = "https://vehi-mercatus.fr/calendrier-des-marches/"
 MIRIMOR_URL = "https://www.mirimor.ch/kalender/"
 FINDLING_URL = "https://fyndling.de/maerkte.html"
 FINDLING_CODES = {
-    "AT": "Österreich", "BE": "Belgien", "CH": "Schweiz", "CZ": "Tschechien",
-    "DK": "Dänemark", "EE": "Estland", "ES": "Spanien", "FR": "Frankreich",
-    "GB": "Vereinigtes Königreich", "IE": "Irland", "IT": "Italien",
-    "LT": "Litauen", "LU": "Luxemburg", "NL": "Niederlande", "NO": "Norwegen",
-    "PL": "Polen", "PT": "Portugal", "SE": "Schweden",
+    "AD": "Andorra", "AL": "Albanien", "AT": "Österreich", "BA": "Bosnien und Herzegowina",
+    "BE": "Belgien", "BG": "Bulgarien", "CH": "Schweiz", "CY": "Zypern",
+    "CZ": "Tschechien", "DE": "Deutschland", "DK": "Dänemark", "EE": "Estland",
+    "ES": "Spanien", "FI": "Finnland", "FR": "Frankreich", "GB": "Vereinigtes Königreich",
+    "GE": "Georgien", "GR": "Griechenland", "HR": "Kroatien", "HU": "Ungarn",
+    "IE": "Irland", "IS": "Island", "IT": "Italien", "LI": "Liechtenstein",
+    "LT": "Litauen", "LU": "Luxemburg", "LV": "Lettland", "MC": "Monaco",
+    "MD": "Moldau", "ME": "Montenegro", "MK": "Nordmazedonien", "MT": "Malta",
+    "NL": "Niederlande", "NO": "Norwegen", "PL": "Polen", "PT": "Portugal",
+    "RO": "Rumänien", "RS": "Serbien", "SE": "Schweden", "SI": "Slowenien",
+    "SK": "Slowakei", "UA": "Ukraine",
 }
 USER_AGENT = "Mozilla/5.0 Rabenruf-Herold/1.0"
 MONTHS = {
@@ -256,7 +263,168 @@ def fyndling_dates(text):
         return "", ""
 
 
+
+
+def fyndling_mcp_request(payload, session_id=None):
+    body = json.dumps(payload).encode("utf-8")
+    headers = {
+        "Accept": "application/json, text/event-stream",
+        "Content-Type": "application/json",
+        "User-Agent": USER_AGENT,
+    }
+    if session_id:
+        headers["Mcp-Session-Id"] = session_id
+    request = urllib.request.Request("https://fyndling.de/mcp", data=body, headers=headers, method="POST")
+    with urllib.request.urlopen(request, timeout=45) as response:
+        session_id = response.headers.get("Mcp-Session-Id", session_id)
+        content_type = response.headers.get("Content-Type", "").lower()
+        raw = response.read().decode("utf-8", errors="replace")
+    if not raw.strip():
+        return None, session_id
+
+    if "text/event-stream" in content_type:
+        messages = []
+        for line in raw.splitlines():
+            if line.startswith("data:"):
+                value = line[5:].strip()
+                if value and value != "[DONE]":
+                    try:
+                        messages.append(json.loads(value))
+                    except json.JSONDecodeError:
+                        continue
+        response_message = next(
+            (message for message in messages
+             if not isinstance(payload, dict) or "id" not in payload or message.get("id") == payload.get("id")),
+            messages[-1] if messages else None,
+        )
+        return response_message, session_id
+    return json.loads(raw), session_id
+
+
+def fyndling_mcp_tool(session_id, request_id, name, arguments):
+    message, session_id = fyndling_mcp_request({
+        "jsonrpc": "2.0",
+        "id": request_id,
+        "method": "tools/call",
+        "params": {"name": name, "arguments": arguments},
+    }, session_id)
+    if not message or message.get("error"):
+        raise RuntimeError("Fyndling-MCP-Anfrage fehlgeschlagen: " + str((message or {}).get("error", "leere Antwort")))
+    result = message.get("result") or {}
+    if result.get("isError"):
+        raise RuntimeError("Fyndling-MCP-Tool meldet einen Fehler: " + str(result.get("content", "")))
+    data = result.get("structuredContent")
+    if isinstance(data, dict):
+        return data, session_id
+    for block in result.get("content", []):
+        if block.get("type") == "text":
+            try:
+                return json.loads(block.get("text", "")), session_id
+            except (json.JSONDecodeError, TypeError):
+                continue
+    raise RuntimeError("Fyndling-MCP lieferte keine lesbare Terminliste.")
+
+
+def scrape_fyndling_mcp():
+    today = date.today()
+    date_from = today.isoformat()
+    date_to = date(today.year + 2, 12, 31).isoformat()
+    init, session_id = fyndling_mcp_request({
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "initialize",
+        "params": {
+            "protocolVersion": "2025-03-26",
+            "capabilities": {},
+            "clientInfo": {"name": "Rabenruf-Herold", "version": "1.0"},
+        },
+    })
+    if not init or init.get("error"):
+        raise RuntimeError("Fyndling-MCP-Initialisierung fehlgeschlagen: " + str((init or {}).get("error", "leere Antwort")))
+    _, session_id = fyndling_mcp_request({
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized",
+    }, session_id)
+
+    results = []
+    offset = 0
+    request_id = 2
+    total = None
+    while True:
+        page, session_id = fyndling_mcp_tool(session_id, request_id, "list_events", {
+            "category": "market",
+            "date_from": date_from,
+            "date_to": date_to,
+            "limit": 100,
+            "offset": offset,
+            "include_cancelled": False,
+            "dedupe": True,
+        })
+        request_id += 1
+        events = page.get("events", [])
+        if not isinstance(events, list):
+            raise RuntimeError("Fyndling-MCP-Antwort enthält keine Ereignisliste.")
+        if total is None:
+            total = int(page.get("total", len(events)) or 0)
+
+        for event in events:
+            if not isinstance(event, dict) or event.get("cancelled"):
+                continue
+            country_code = str(event.get("country") or "").strip().upper()
+            country = FINDLING_CODES.get(country_code)
+            if not country:
+                continue
+            start = parse_iso(event.get("date_from"))
+            end = parse_iso(event.get("date_to")) or start
+            if not start or not end or end < today.isoformat():
+                continue
+            city = plain(event.get("ort", ""))
+            name = plain(event.get("name", ""))
+            if not city or not name:
+                continue
+            source_url = plain(event.get("source_url", ""))
+            detail_url = plain(event.get("fyndling_url", "")) or source_url or FINDLING_URL
+            item = event_record(name, city, country, start, end, detail_url, event.get("plz", ""))
+            if not item:
+                continue
+            if event.get("venue"):
+                item["venue"] = plain(event["venue"])[:180]
+            if event.get("description"):
+                item["info"] = plain(event["description"])[:1200]
+            if source_url and domain(source_url) != "fyndling.de":
+                item["website"] = source_url
+                item["websites"] = [source_url]
+            try:
+                lat, lng = float(event.get("lat")), float(event.get("lon"))
+                if -90 <= lat <= 90 and -180 <= lng <= 180:
+                    item["lat"], item["lng"] = lat, lng
+            except (TypeError, ValueError):
+                pass
+            results.append(item)
+
+        offset += len(events)
+        if not page.get("has_more") or not events or offset >= total:
+            break
+        if request_id > 60:
+            raise RuntimeError("Fyndling-MCP-Paginierung überschritt das sichere Anfrage-Limit.")
+        time.sleep(1.05)
+
+    unique = {}
+    for item in results:
+        unique[(norm(item["name"]), norm(item["city"]), item["start"])] = item
+    print(f"Fyndling-MCP Markttermine {date_from} bis {date_to}: {len(unique)} eindeutige Funde (API meldet {total})")
+    return list(unique.values())
+
+
 def scrape_fyndling():
+    try:
+        return scrape_fyndling_mcp()
+    except Exception as exc:
+        print(f"Fyndling-MCP nicht verfügbar, HTML-Fallback wird verwendet: {exc}")
+        return scrape_fyndling_html()
+
+
+def scrape_fyndling_html():
     """Read Fyndling's public medieval-market listing as unapproved Herold leads."""
     try:
         soup = BeautifulSoup(fetch(FINDLING_URL), "html.parser")
