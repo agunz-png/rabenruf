@@ -2148,78 +2148,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltertermine-in-europa.php"
   },
   {
-    "id": "eu-source-adc74694563b481a",
-    "name": "Halloween Spectacle médiéval Winterthur",
-    "type": "Markt",
-    "date": "2026-10-09 bis 2026-10-11",
-    "start": "2026-10-09",
-    "end": "2026-10-11",
-    "country": "Schweiz",
-    "city": "Winterthur",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/halloween-mittelalterspektakel-winterthur-2026/"
-  },
-  {
-    "id": "eu-source-37e2e630a79e5348",
-    "name": "Marché médiéval de Bremgarten",
-    "type": "Markt",
-    "date": "2026-10-23 bis 2026-10-25",
-    "start": "2026-10-23",
-    "end": "2026-10-25",
-    "country": "Schweiz",
-    "city": "Bremgarten",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-bremgarten-2026/"
-  },
-  {
-    "id": "eu-source-7e0ea9fead34f7bd",
-    "name": "Spectacle médiéval d'Halloween à Zurich",
-    "type": "Markt",
-    "date": "2026-10-30 bis 2026-11-01",
-    "start": "2026-10-30",
-    "end": "2026-11-01",
-    "country": "Schweiz",
-    "city": "Zürich",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/halloween-mittelalterspektakel-zuerich-2026/"
-  },
-  {
-    "id": "eu-source-bfe13e1365e120d0",
-    "name": "Marché de Noël médiéval du château de Laufen",
-    "type": "Markt",
-    "date": "2026-11-20 bis 2026-11-22",
-    "start": "2026-11-20",
-    "end": "2026-11-22",
-    "country": "Schweiz",
-    "city": "Schaffhausen",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelalter-weihnachtsmarkt-schloss-laufen-2026/"
-  },
-  {
-    "id": "eu-source-ebf200ba963d27ba",
-    "name": "Marché de Noël Médiéval de Ribeauvillé",
-    "type": "Markt",
-    "date": "2026-12-05 bis 2026-12-13",
-    "start": "2026-12-05",
-    "end": "2026-12-13",
-    "country": "Frankreich",
-    "city": "Ribeauvillé",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/ribeauville-marche-noel-medieval-2026/"
-  },
-  {
-    "id": "eu-source-d23363e2a21e77da",
-    "name": "Marché médiéval d'Enter",
-    "type": "Markt",
-    "date": "2027-06-19 bis 2027-06-20",
-    "start": "2027-06-19",
-    "end": "2027-06-20",
-    "country": "Schweiz",
-    "city": "Derendingen",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-enter-2026/"
-  },
-  {
     "id": "eu-source-29deb7f636c0c00b",
     "name": "Historisches Handwerk Bremgarten am Markt der Vielfalt",
     "type": "Markt",
@@ -3275,6 +3203,25 @@
     "lng": 9.2484
   },
   {
+    "id": "eu-source-0f59ce6a26beebca",
+    "name": "Winterzauber Schloss Laubach",
+    "type": "Markt",
+    "date": "2026-10-15 bis 2026-10-25",
+    "start": "2026-10-15",
+    "end": "2026-10-25",
+    "country": "Deutschland",
+    "city": "Laubach",
+    "postcode": "35321",
+    "source": "https://fyndling.de/e/06403450b10cd63b",
+    "venue": "Schloss Laubach, Philipp-Reis-Straße",
+    "website": "https://christkindlmaerkte.com/deutschland/hessen/laubach/winterzauber-schloss-laubach/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/hessen/laubach/winterzauber-schloss-laubach/"
+    ],
+    "lat": 50.542892,
+    "lng": 8.9916478
+  },
+  {
     "id": "eu-source-e7a4705a864726f1",
     "name": "Mercado Medieval de Yuncler",
     "type": "Markt",
@@ -3485,6 +3432,25 @@
     "lng": 3.6854541
   },
   {
+    "id": "eu-source-8aebd983e59d2582",
+    "name": "Vorweihnachtlicher Kunsthandwerkermarkt Ottobrunn",
+    "type": "Markt",
+    "date": "2026-10-18 bis 2026-10-18",
+    "start": "2026-10-18",
+    "end": "2026-10-18",
+    "country": "Deutschland",
+    "city": "Ottobrunn",
+    "postcode": "85521",
+    "source": "https://fyndling.de/e/298fc54a0940563d",
+    "venue": "Wolf-Ferrari-Haus, Rathausplatz 2",
+    "website": "https://christkindlmaerkte.com/deutschland/bayern/ottobrunn/vorweihnachtlicher-kunsthandwerkermarkt-ottobrunn/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/bayern/ottobrunn/vorweihnachtlicher-kunsthandwerkermarkt-ottobrunn/"
+    ],
+    "lat": 48.0648406,
+    "lng": 11.6647814
+  },
+  {
     "id": "eu-source-f6baf567f3c8b5e7",
     "name": "Gallus-Markt",
     "type": "Markt",
@@ -3596,6 +3562,25 @@
     ],
     "lat": 51.9364,
     "lng": 8.8738
+  },
+  {
+    "id": "eu-source-4f2975f3a6e77191",
+    "name": "Adventmarkt im Schlüsselamt Krems",
+    "type": "Markt",
+    "date": "2026-10-23 bis 2026-12-23",
+    "start": "2026-10-23",
+    "end": "2026-12-23",
+    "country": "Österreich",
+    "city": "Krems an der Donau",
+    "postcode": "3500",
+    "source": "https://fyndling.de/e/1fe9fdcb2aeef203",
+    "venue": "Schlüsselamt Krems, Dominikanerplatz 11",
+    "website": "https://christkindlmaerkte.com/oesterreich/niederoesterreich/krems-an-der-donau/adventmarkt-schluesselamt-krems/",
+    "websites": [
+      "https://christkindlmaerkte.com/oesterreich/niederoesterreich/krems-an-der-donau/adventmarkt-schluesselamt-krems/"
+    ],
+    "lat": 48.4112476,
+    "lng": 15.5985394
   },
   {
     "id": "eu-source-3617c0fe7eb95372",
@@ -3798,6 +3783,25 @@
     "lng": 8.8738
   },
   {
+    "id": "eu-source-8758dd6516a07506",
+    "name": "Winterzauber am Schloss Herrenhausen in Hannover",
+    "type": "Markt",
+    "date": "2026-10-28 bis 2026-11-01",
+    "start": "2026-10-28",
+    "end": "2026-11-01",
+    "country": "Deutschland",
+    "city": "Hannover",
+    "postcode": "30419",
+    "source": "https://fyndling.de/e/225efbf2a2fc0d61",
+    "venue": "Herrenhäuser Straße 3",
+    "website": "https://christkindlmaerkte.com/deutschland/niedersachsen/hannover/winterzauber-schloss-herrenhausen-in-hannover/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/niedersachsen/hannover/winterzauber-schloss-herrenhausen-in-hannover/"
+    ],
+    "lat": 52.39089,
+    "lng": 9.6999045
+  },
+  {
     "id": "eu-source-d885fcee42b4f7cb",
     "name": "ANNO 1320 zu Rahden",
     "type": "Markt",
@@ -3884,6 +3888,26 @@
     ],
     "lat": 51.312,
     "lng": 9.479
+  },
+  {
+    "id": "eu-source-02a19f5ce90e04d2",
+    "name": "Badener WunderDorf",
+    "type": "Markt",
+    "date": "2026-10-29 bis 2026-12-23",
+    "start": "2026-10-29",
+    "end": "2026-12-23",
+    "country": "Schweiz",
+    "city": "Baden",
+    "postcode": "5400",
+    "source": "https://fyndling.de/e/773a0b680414ed62",
+    "venue": "Theaterplatz",
+    "info": "Weihnachtsdorf auf dem Theaterplatz in der Badener Innenstadt mit Street Food, Geschenke- und Marktständen. Dazu gibt es mehrere Bars, ein Lounge-Zelt mit Strohballen, Glühwein und Chalets sowie Puppentheater und Feuerstellen.",
+    "website": "https://www.wunderdorf.ch/",
+    "websites": [
+      "https://www.wunderdorf.ch/"
+    ],
+    "lat": 47.4744754,
+    "lng": 8.3001869
   },
   {
     "id": "eu-source-5b0e383830d0efb0",
@@ -3973,6 +3997,25 @@
     "lng": 15.4258899
   },
   {
+    "id": "eu-source-749157e030b09d89",
+    "name": "Weihnachtsmarkt im Landgestüt Traventhal",
+    "type": "Markt",
+    "date": "2026-10-31 bis 2026-11-08",
+    "start": "2026-10-31",
+    "end": "2026-11-08",
+    "country": "Deutschland",
+    "city": "Traventhal",
+    "postcode": "23795",
+    "source": "https://fyndling.de/e/270d6492e9ae0f9b",
+    "venue": "Landgestüt Traventhal",
+    "website": "https://christkindlmaerkte.com/deutschland/schleswig-holstein/traventhal/weihnachtsmarkt-landgestuet-traventhal/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/schleswig-holstein/traventhal/weihnachtsmarkt-landgestuet-traventhal/"
+    ],
+    "lat": 53.9,
+    "lng": 10.3167
+  },
+  {
     "id": "eu-source-8938bbda866e38e5",
     "name": "Mercado Artesanal Infantil de Osuna",
     "type": "Markt",
@@ -3989,6 +4032,25 @@
     ],
     "lat": 37.2373532,
     "lng": -5.1033306
+  },
+  {
+    "id": "eu-source-4c71932311961864",
+    "name": "Adventmarkt im Rathaus Norderstedt",
+    "type": "Markt",
+    "date": "2026-11-01 bis 2026-11-01",
+    "start": "2026-11-01",
+    "end": "2026-11-01",
+    "country": "Deutschland",
+    "city": "Norderstedt",
+    "postcode": "22846",
+    "source": "https://fyndling.de/e/0fecf862de375311",
+    "venue": "Rathaus Norderstedt, Rathausallee 50",
+    "website": "https://christkindlmaerkte.com/deutschland/schleswig-holstein/norderstedt/adventmarkt-rathaus-norderstedt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/schleswig-holstein/norderstedt/adventmarkt-rathaus-norderstedt/"
+    ],
+    "lat": 53.7079148,
+    "lng": 9.993705
   },
   {
     "id": "eu-source-d896c326a3075570",
@@ -4028,6 +4090,25 @@
     "lng": 12.3220577
   },
   {
+    "id": "eu-source-9d743ece42e687fa",
+    "name": "Weihnachtsausstellung im Schloss Burgau",
+    "type": "Markt",
+    "date": "2026-11-02 bis 2026-12-23",
+    "start": "2026-11-02",
+    "end": "2026-12-23",
+    "country": "Österreich",
+    "city": "Burgau",
+    "postcode": "8291",
+    "source": "https://fyndling.de/e/1103a8a2efe2d63b",
+    "venue": "Schloss Burgau, Schlossweg 1",
+    "website": "https://christkindlmaerkte.com/oesterreich/steiermark/burgau/advent-schloss-burgau/",
+    "websites": [
+      "https://christkindlmaerkte.com/oesterreich/steiermark/burgau/advent-schloss-burgau/"
+    ],
+    "lat": 47.1456865,
+    "lng": 16.0992913
+  },
+  {
     "id": "eu-source-dfc8ce05b5f0ec52",
     "name": "Hansemarkt Dortmund ( Ritterschlag möglich )",
     "type": "Markt",
@@ -4042,6 +4123,44 @@
     "info": "Peter und Hubert sind wieder für Euch da! Näheres in Bälde!",
     "lat": 51.5082128,
     "lng": 7.4488951
+  },
+  {
+    "id": "eu-source-fde1e660ce9f773d",
+    "name": "Weihnachtsausstellung Schloss Kornberg",
+    "type": "Markt",
+    "date": "2026-11-04 bis 2026-12-20",
+    "start": "2026-11-04",
+    "end": "2026-12-20",
+    "country": "Österreich",
+    "city": "Kornberg bei Riegersburg",
+    "postcode": "8330",
+    "source": "https://fyndling.de/e/15191cfb2d8b40a4",
+    "venue": "Dörfl 2",
+    "website": "https://christkindlmaerkte.com/oesterreich/steiermark/kornberg-bei-riegersburg/weihnachtsausstellung-schloss-kornberg/",
+    "websites": [
+      "https://christkindlmaerkte.com/oesterreich/steiermark/kornberg-bei-riegersburg/weihnachtsausstellung-schloss-kornberg/"
+    ],
+    "lat": 46.9812174,
+    "lng": 15.8774363
+  },
+  {
+    "id": "eu-source-dc8319cf9dfcbae5",
+    "name": "WintersZeit im Schloss Eyrichshof in den Hassbergen",
+    "type": "Markt",
+    "date": "2026-11-05 bis 2026-11-08",
+    "start": "2026-11-05",
+    "end": "2026-11-08",
+    "country": "Deutschland",
+    "city": "Ebern",
+    "postcode": "96106",
+    "source": "https://fyndling.de/e/42f2e3953a65d3ae",
+    "venue": "Schloss Eyrichshof, Schlosshof 7",
+    "website": "https://christkindlmaerkte.com/deutschland/bayern/ebern/winterszeit-schloss-eyrichshof-hassbergen/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/bayern/ebern/winterszeit-schloss-eyrichshof-hassbergen/"
+    ],
+    "lat": 50.1083766,
+    "lng": 10.7830404
   },
   {
     "id": "eu-source-f3b9413151cd0cfb",
@@ -4080,6 +4199,25 @@
     "lng": -0.1412219
   },
   {
+    "id": "eu-source-cee111ff79659a72",
+    "name": "Emkendorfer Adventsmarkt",
+    "type": "Markt",
+    "date": "2026-11-06 bis 2026-11-08",
+    "start": "2026-11-06",
+    "end": "2026-11-08",
+    "country": "Deutschland",
+    "city": "Kleinvollstedt",
+    "postcode": "24802",
+    "source": "https://fyndling.de/e/560df073c8d41712",
+    "venue": "Herrenhaus Emkendorf, Gutshof 3",
+    "website": "https://christkindlmaerkte.com/deutschland/schleswig-holstein/kleinvollstedt/emkendorfer-adventsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/schleswig-holstein/kleinvollstedt/emkendorfer-adventsmarkt/"
+    ],
+    "lat": 54.2623019,
+    "lng": 9.8470685
+  },
+  {
     "id": "eu-source-a07803e973cfee56",
     "name": "Dieburger Martinsmarkt",
     "type": "Markt",
@@ -4097,6 +4235,43 @@
     ],
     "lat": 49.9054256,
     "lng": 8.8163987
+  },
+  {
+    "id": "eu-source-c3e5ad7d07cc2fc5",
+    "name": "Vorweihnachtlicher Kunsthandwerkermarkt in der Heidesiedlung Neu Wulmstorf 2026",
+    "type": "Markt",
+    "date": "2026-11-07 bis 2026-11-08",
+    "start": "2026-11-07",
+    "end": "2026-11-08",
+    "country": "Deutschland",
+    "city": "Neu Wulmstorf",
+    "postcode": "21629",
+    "source": "https://fyndling.de/e/06fd40d457e4ceb0",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 53.4312789,
+    "lng": 9.7960729
+  },
+  {
+    "id": "eu-source-eaa4fb9b863a90d5",
+    "name": "Suderwicher Martinimarkt in Recklinghausen",
+    "type": "Markt",
+    "date": "2026-11-07 bis 2026-11-08",
+    "start": "2026-11-07",
+    "end": "2026-11-08",
+    "country": "Deutschland",
+    "city": "Recklinghausen",
+    "postcode": "45665",
+    "source": "https://fyndling.de/e/45468981934b4bf4",
+    "venue": "Henrichenburger Straße",
+    "website": "https://christkindlmaerkte.com/deutschland/nordrhein-westfalen/recklinghausen/suderwicher-martinimarkt-in-recklinghausen/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/nordrhein-westfalen/recklinghausen/suderwicher-martinimarkt-in-recklinghausen/"
+    ],
+    "lat": 51.60174869999999,
+    "lng": 7.2684884
   },
   {
     "id": "eu-source-07a3f2859dfdc639",
@@ -4153,6 +4328,43 @@
     "lng": 2.8263171
   },
   {
+    "id": "eu-source-8ad4cf1a5a692aa0",
+    "name": "Weihnachtsmarkt & Lichterzauber Ludwigshafen",
+    "type": "Markt",
+    "date": "2026-11-11 bis 2026-12-23",
+    "start": "2026-11-11",
+    "end": "2026-12-23",
+    "country": "Deutschland",
+    "city": "Ludwigshafen",
+    "postcode": "67059",
+    "source": "https://fyndling.de/e/5dd02b0d7be9bc68",
+    "venue": "Berliner Platz",
+    "website": "https://christkindlmaerkte.com/deutschland/rheinland-pfalz/ludwigshafen/weihnachtsmarkt-lichterzauber-ludwigshafen/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/rheinland-pfalz/ludwigshafen/weihnachtsmarkt-lichterzauber-ludwigshafen/"
+    ],
+    "lat": 49.4799491,
+    "lng": 8.451208599999973
+  },
+  {
+    "id": "eu-source-3a44969eac111dfe",
+    "name": "Weihnachtsmarkt in Bad Sassendorf 2026",
+    "type": "Markt",
+    "date": "2026-11-12 bis 2026-11-15",
+    "start": "2026-11-12",
+    "end": "2026-11-15",
+    "country": "Deutschland",
+    "city": "Bad Sassendorf",
+    "postcode": "59505",
+    "source": "https://fyndling.de/e/173c1c0c2e79418a",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 51.580861,
+    "lng": 8.186587
+  },
+  {
     "id": "eu-source-08899f21183b7e08",
     "name": "Mercados Medieval de Las Tres Culturas de Caceres",
     "type": "Markt",
@@ -4169,6 +4381,25 @@
     ],
     "lat": 39.4745175,
     "lng": -6.3716761
+  },
+  {
+    "id": "eu-source-4b34135830424ed2",
+    "name": "Winterdorf Gummersbach",
+    "type": "Markt",
+    "date": "2026-11-12 bis 2026-12-23",
+    "start": "2026-11-12",
+    "end": "2026-12-23",
+    "country": "Deutschland",
+    "city": "Gummersbach",
+    "postcode": "51643",
+    "source": "https://fyndling.de/e/3abd1db80f332531",
+    "venue": "Festplatz Steinmüllerallee",
+    "website": "https://christkindlmaerkte.com/deutschland/nordrhein-westfalen/gummersbach/winterdorf-gummersbach/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/nordrhein-westfalen/gummersbach/winterdorf-gummersbach/"
+    ],
+    "lat": 51.0277658,
+    "lng": 7.5630545
   },
   {
     "id": "eu-source-81cc10fb3ff5819d",
@@ -4190,6 +4421,25 @@
     "lng": 13.4578943
   },
   {
+    "id": "eu-source-85a50f6270c83031",
+    "name": "Christkindlmarkt Villach",
+    "type": "Markt",
+    "date": "2026-11-13 bis 2026-12-31",
+    "start": "2026-11-13",
+    "end": "2026-12-31",
+    "country": "Österreich",
+    "city": "Villach",
+    "postcode": "9500",
+    "source": "https://fyndling.de/e/029aaa89bcf0ed06",
+    "venue": "Hauptplatz, Stadtpfarrkirche und Nikolaiplatz",
+    "website": "https://christkindlmaerkte.com/oesterreich/kaernten/villach/christkindlmarkt-villach/",
+    "websites": [
+      "https://christkindlmaerkte.com/oesterreich/kaernten/villach/christkindlmarkt-villach/"
+    ],
+    "lat": 46.6139786,
+    "lng": 13.8466415
+  },
+  {
     "id": "eu-source-963b3f4bbd9b6f85",
     "name": "TORM - The Original Reenactors Market (Autumn)",
     "type": "Markt",
@@ -4207,6 +4457,24 @@
     ],
     "lat": 52.3623,
     "lng": -1.433
+  },
+  {
+    "id": "eu-source-29007f9d6417af2e",
+    "name": "Pronstorfer Weihnacht auf Gut Pronstorf 2026",
+    "type": "Markt",
+    "date": "2026-11-13 bis 2026-11-15",
+    "start": "2026-11-13",
+    "end": "2026-11-15",
+    "country": "Deutschland",
+    "city": "Pronstorf",
+    "postcode": "23820",
+    "source": "https://fyndling.de/e/c650fea41d82baef",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 53.9535266,
+    "lng": 10.4966032
   },
   {
     "id": "eu-source-e2160603a2a08ca4",
@@ -4246,6 +4514,45 @@
     "lng": 7.0103435
   },
   {
+    "id": "eu-source-e6f3dd4a40ba6d2e",
+    "name": "Weihnachtsmarkt Wintervergnügen Norderstedt",
+    "type": "Markt",
+    "date": "2026-11-14 bis 2026-12-23",
+    "start": "2026-11-14",
+    "end": "2026-12-23",
+    "country": "Deutschland",
+    "city": "Norderstedt",
+    "postcode": "22846",
+    "source": "https://fyndling.de/e/2e7e1f638e0dbfeb",
+    "venue": "Rathausallee 33",
+    "website": "https://christkindlmaerkte.com/deutschland/schleswig-holstein/norderstedt/weihnachtsmarkt-wintervergnuegen-norderstedt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/schleswig-holstein/norderstedt/weihnachtsmarkt-wintervergnuegen-norderstedt/"
+    ],
+    "lat": 53.70899,
+    "lng": 9.989191
+  },
+  {
+    "id": "eu-source-2727ea56c2ddb00b",
+    "name": "Hobby-Märit Schwanden",
+    "type": "Markt",
+    "date": "2026-11-14 bis 2026-11-14",
+    "start": "2026-11-14",
+    "end": "2026-11-14",
+    "country": "Schweiz",
+    "city": "Schwanden ob Sigriswil",
+    "postcode": "3657",
+    "source": "https://fyndling.de/e/4976822bc628d51c",
+    "venue": "Mehrzweckhalle Schwanden, Schwandenstrasse 101",
+    "info": "Hobby-Markt mit selbstgemachten Weihnachtsgeschenken, Kunsthandwerk, Gebasteltem sowie Gestricktem und Gesticktem. Für Kinder gibt es Basteln, Geschenkefischen und Lebkuchenverzieren; im Märitbeizli gibt es durchgehend warme Küche.",
+    "website": "https://www.myswitzerland.com/en-us/experiences/events/hobby-maerit-schwanden/",
+    "websites": [
+      "https://www.myswitzerland.com/en-us/experiences/events/hobby-maerit-schwanden/"
+    ],
+    "lat": 46.7188097,
+    "lng": 7.7139077
+  },
+  {
     "id": "eu-source-6090ff3f9d48e0cd",
     "name": "Fous d’Histoire",
     "type": "Markt",
@@ -4262,6 +4569,138 @@
     ],
     "lat": 49.4393621,
     "lng": 2.7953434
+  },
+  {
+    "id": "eu-source-5556dd993e61a2ae",
+    "name": "Weihnachtsmarkt in Röthenbach a. d. Pegnitz 2026",
+    "type": "Markt",
+    "date": "2026-11-15 bis 2026-11-15",
+    "start": "2026-11-15",
+    "end": "2026-11-15",
+    "country": "Deutschland",
+    "city": "Röthenbach a. d. Pegnitz",
+    "postcode": "90552",
+    "source": "https://fyndling.de/e/1631d7b941bfcdf5",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 49.4707151,
+    "lng": 11.2518071
+  },
+  {
+    "id": "eu-source-194eff9f6e49cdbf",
+    "name": "Wiehnachtsmärt Meienberg",
+    "type": "Markt",
+    "date": "2026-11-15 bis 2026-11-15",
+    "start": "2026-11-15",
+    "end": "2026-11-15",
+    "country": "Schweiz",
+    "city": "Meienberg",
+    "postcode": "5643",
+    "source": "https://fyndling.de/e/25488e72393b7fd0",
+    "venue": "Ehemaliges Verwaltungsgebäude und Aussenbereich, Städtli Meienberg",
+    "info": "Kleiner Weihnachtsmarkt im historischen Städtli Meienberg (Gemeinde Sins). Die Marktstände sind festlich dekoriert im ehemaligen Verwaltungsgebäude und im Aussenbereich und bieten vielfältige Geschenkideen.",
+    "website": "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/wiehnachtsmaert-meienberg/",
+    "websites": [
+      "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/wiehnachtsmaert-meienberg/"
+    ],
+    "lat": 47.198602,
+    "lng": 8.3747859
+  },
+  {
+    "id": "eu-source-1deeeaa9b2f5b442",
+    "name": "Kunsthandwerkermarkt in St. Leon-Rot",
+    "type": "Markt",
+    "date": "2026-11-15 bis 2026-11-15",
+    "start": "2026-11-15",
+    "end": "2026-11-15",
+    "country": "Deutschland",
+    "city": "St. Leon-Rot",
+    "postcode": "68789",
+    "source": "https://fyndling.de/e/a135569552e42c82",
+    "venue": "Harres Kulturzentrum, An der Autobahn 60",
+    "website": "https://christkindlmaerkte.com/deutschland/baden-wuerttemberg/st-leon-rot/kunsthandwerkermarkt-in-st-leon-rot/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/baden-wuerttemberg/st-leon-rot/kunsthandwerkermarkt-in-st-leon-rot/"
+    ],
+    "lat": 49.267133,
+    "lng": 8.614262
+  },
+  {
+    "id": "eu-source-fe23d6a0dd43fdfe",
+    "name": "Darmstädter Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-11-16 bis 2026-12-23",
+    "start": "2026-11-16",
+    "end": "2026-12-23",
+    "country": "Deutschland",
+    "city": "Darmstadt",
+    "postcode": "64283",
+    "source": "https://fyndling.de/e/1d6aa35a221aa2e1",
+    "venue": "Marktplatz am Alten Rathaus, Luisenplatz, Ludwigsplatz und Friedensplatz",
+    "website": "https://christkindlmaerkte.com/deutschland/hessen/darmstadt/darmstaedter-weihnachtsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/hessen/darmstadt/darmstaedter-weihnachtsmarkt/"
+    ],
+    "lat": 49.872775,
+    "lng": 8.651177
+  },
+  {
+    "id": "eu-source-a7dc0bd2f0cc25cd",
+    "name": "Sternenadventmarkt in Zell am See",
+    "type": "Markt",
+    "date": "2026-11-18 bis 2026-12-23",
+    "start": "2026-11-18",
+    "end": "2026-12-23",
+    "country": "Österreich",
+    "city": "Zell am See",
+    "postcode": "5700",
+    "source": "https://fyndling.de/e/7d6fbd7641d141ec",
+    "venue": "Stadtplatz",
+    "website": "https://christkindlmaerkte.com/oesterreich/salzburg/zell-am-see/sternenadventmarkt-in-zell-see/",
+    "websites": [
+      "https://christkindlmaerkte.com/oesterreich/salzburg/zell-am-see/sternenadventmarkt-in-zell-see/"
+    ],
+    "lat": 47.3233614,
+    "lng": 12.7981685
+  },
+  {
+    "id": "eu-source-956fbda9a1192a97",
+    "name": "Weihnachtsmarkt in Bardenberg 2026",
+    "type": "Markt",
+    "date": "2026-11-18 bis 2026-11-22",
+    "start": "2026-11-18",
+    "end": "2026-11-22",
+    "country": "Deutschland",
+    "city": "Würselen",
+    "postcode": "52146",
+    "source": "https://fyndling.de/e/c31b299d14833de7",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 50.8271543,
+    "lng": 6.1506663
+  },
+  {
+    "id": "eu-source-a1b754193a2e08b2",
+    "name": "Schadow-Markt",
+    "type": "Markt",
+    "date": "2026-11-19 bis 2026-12-30",
+    "start": "2026-11-19",
+    "end": "2026-12-30",
+    "country": "Deutschland",
+    "city": "Düsseldorf",
+    "postcode": "40212",
+    "source": "https://fyndling.de/e/0929400682668f30",
+    "venue": "Schadowstraße 75",
+    "website": "https://christkindlmaerkte.com/deutschland/nordrhein-westfalen/duesseldorf/schadow-markt-in-duesseldorf-ehemals-sternchenmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/nordrhein-westfalen/duesseldorf/schadow-markt-in-duesseldorf-ehemals-sternchenmarkt/"
+    ],
+    "lat": 51.2270075,
+    "lng": 6.7856435
   },
   {
     "id": "eu-source-0be39a440d084aed",
@@ -4283,6 +4722,121 @@
     "lng": 12.2828469
   },
   {
+    "id": "eu-source-5b6336a3bdfe13fe",
+    "name": "Winterland 2026/27",
+    "type": "Markt",
+    "date": "2026-11-19 bis 2027-01-06",
+    "start": "2026-11-19",
+    "end": "2027-01-06",
+    "country": "Schweiz",
+    "city": "Locarno",
+    "postcode": "6600",
+    "source": "https://fyndling.de/e/b273cbdc5619faaf",
+    "venue": "Piazza Grande",
+    "info": "Winterdorf auf der Piazza Grande in Locarno mit Eisbahn, Eis-Minigolf und einer 250 Meter langen Seilrutsche, dazu Street Food und Pop-up-Restaurants. Neu ist die Erweiterung zu einem gemeinsamen Winterland Ascona-Locarno.",
+    "website": "https://www.ascona-locarno.com/en/events/details/winterland-2025-26/10074",
+    "websites": [
+      "https://www.ascona-locarno.com/en/events/details/winterland-2025-26/10074"
+    ],
+    "lat": 46.1693418,
+    "lng": 8.7914513
+  },
+  {
+    "id": "eu-source-9073109bc4ab4fba",
+    "name": "Weihnachtsmarkt in Bochum 2026",
+    "type": "Markt",
+    "date": "2026-11-19 bis 2026-12-23",
+    "start": "2026-11-19",
+    "end": "2026-12-23",
+    "country": "Deutschland",
+    "city": "Bochum",
+    "postcode": "44787",
+    "source": "https://fyndling.de/e/dbfed5cf05108015",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 51.4820569,
+    "lng": 7.2171218
+  },
+  {
+    "id": "eu-source-55c7be94d92d45e4",
+    "name": "Christkindlmarkt am Hauptplatz Graz",
+    "type": "Markt",
+    "date": "2026-11-20 bis 2026-12-24",
+    "start": "2026-11-20",
+    "end": "2026-12-24",
+    "country": "Österreich",
+    "city": "Graz",
+    "postcode": "8010",
+    "source": "https://fyndling.de/e/022c90d7d4e32af5",
+    "venue": "Hauptplatz vor dem Rathaus",
+    "website": "https://christkindlmaerkte.com/oesterreich/steiermark/graz/christkindlmarkt-hauptplatz-graz/",
+    "websites": [
+      "https://christkindlmaerkte.com/oesterreich/steiermark/graz/christkindlmarkt-hauptplatz-graz/"
+    ],
+    "lat": 47.07082,
+    "lng": 15.43826
+  },
+  {
+    "id": "eu-source-5f86f1012d4e8124",
+    "name": "Bô Noël Lausanne – Weihnachtsmärkte",
+    "type": "Markt",
+    "date": "2026-11-20 bis 2026-12-31",
+    "start": "2026-11-20",
+    "end": "2026-12-31",
+    "country": "Schweiz",
+    "city": "Lausanne",
+    "postcode": "1003",
+    "source": "https://fyndling.de/e/1c844ce73fc8823f",
+    "venue": "Innenstadt Lausanne (mehrere Plätze)",
+    "info": "Weihnachtsmärkte mit Holzchalets von Kunsthandwerkern an mehreren Plätzen der Lausanner Innenstadt. Das Programm für 2026 war auf der Veranstalterseite noch nicht veröffentlicht.",
+    "website": "https://bo-noel.ch/",
+    "websites": [
+      "https://bo-noel.ch/"
+    ],
+    "lat": 46.520774,
+    "lng": 6.6315399
+  },
+  {
+    "id": "eu-source-6f8fbc0c8508e3cb",
+    "name": "Rudolfs Weihnacht",
+    "type": "Markt",
+    "date": "2026-11-20 bis 2026-12-23",
+    "start": "2026-11-20",
+    "end": "2026-12-23",
+    "country": "Schweiz",
+    "city": "Luzern",
+    "postcode": "6005",
+    "source": "https://fyndling.de/e/2525698999dfea46",
+    "venue": "Inseli-Park, Werftsteg",
+    "info": "Weihnachtsmarkt im Luzerner Inseli-Park mit über 50 Ständen, Bars und Foodtrucks. Dazu gibt es ein Fondue-Chalet, ein Musik-Chalet und ein Kinderzelt mit Geschichten und Basteln. Das Programm umfasst unter anderem Stelzenläufer, Konzerte, Feuershows und den Besuch des…",
+    "website": "https://www.rudolfs.ch/",
+    "websites": [
+      "https://www.rudolfs.ch/"
+    ],
+    "lat": 47.038555,
+    "lng": 8.3144481
+  },
+  {
+    "id": "eu-source-ed4abec03c2e6125",
+    "name": "Weihnachtsmarkt in Lilienthal (Gemeinde Dobersdorf) 2026",
+    "type": "Markt",
+    "date": "2026-11-20 bis 2026-11-22",
+    "start": "2026-11-20",
+    "end": "2026-11-22",
+    "country": "Deutschland",
+    "city": "Dobersdorf",
+    "postcode": "24232",
+    "source": "https://fyndling.de/e/2b4caf43a5a140dd",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 54.318601,
+    "lng": 10.2690194
+  },
+  {
     "id": "eu-source-b690e79d1b2013a5",
     "name": "Weihnachtswelt Montreux",
     "type": "Markt",
@@ -4300,6 +4854,26 @@
     ],
     "lat": 46.4293761,
     "lng": 6.9172299
+  },
+  {
+    "id": "eu-source-a068acf0a54fefd2",
+    "name": "Gommer Adventsmärt",
+    "type": "Markt",
+    "date": "2026-11-20 bis 2026-11-22",
+    "start": "2026-11-20",
+    "end": "2026-11-22",
+    "country": "Schweiz",
+    "city": "Fiesch",
+    "postcode": "3984",
+    "source": "https://fyndling.de/e/94d14fb98593c709",
+    "venue": "Fiesch",
+    "info": "Traditioneller Adventsmarkt am Fuss des Aletschgletschers mit über 80 Marktständen, Märchenerzählungen für Kinder, regionalen Spezialitäten wie Walliser Glühwein und Musikdarbietungen lokaler Gruppen.",
+    "website": "http://www.aletscharena.ch/hier-jetzt/veranstaltung/gommer-adventsmaert",
+    "websites": [
+      "http://www.aletscharena.ch/hier-jetzt/veranstaltung/gommer-adventsmaert"
+    ],
+    "lat": 46.4101738,
+    "lng": 8.1373587
   },
   {
     "id": "eu-source-cd4b75bf151a59b4",
@@ -4320,8 +4894,8 @@
     "lng": -2.6334897
   },
   {
-    "id": "eu-source-d30ddf07d0cb2eeb",
-    "name": "Nikolausmarkt Bad Kreuznach",
+    "id": "eu-source-9bee12815d0216bb",
+    "name": "Nikolausmarkt Bad Kreuznach (Weihnachtsmarkt)",
     "type": "Markt",
     "date": "2026-11-20 bis 2026-12-20",
     "start": "2026-11-20",
@@ -4340,6 +4914,45 @@
     "lng": 7.8792268
   },
   {
+    "id": "eu-source-78db4e22a4fd1061",
+    "name": "Advent im Kloster",
+    "type": "Markt",
+    "date": "2026-11-20 bis 2026-11-29",
+    "start": "2026-11-20",
+    "end": "2026-11-29",
+    "country": "Schweiz",
+    "city": "Solothurn",
+    "postcode": "4500",
+    "source": "https://fyndling.de/e/f467967593afbeb3",
+    "venue": "Kapuzinerkloster, Kapuzinerstrasse 18",
+    "info": "Adventsmarkt im Innern des Kapuzinerklosters mit regionalen Ausstellern (Handwerk, Kulinarisches), die an jedem Wochenende wechseln. Der Markt findet nur an den zwei Wochenenden 20.–22.11. und 27.–29.11.2026 statt. Wegen enger Gänge sind Kinderwagen drinnen nicht erlaubt, Hunde…",
+    "website": "https://www.adventimkloster.ch/",
+    "websites": [
+      "https://www.adventimkloster.ch/"
+    ],
+    "lat": 47.2072347,
+    "lng": 7.5332626
+  },
+  {
+    "id": "eu-source-4725edfe95058d84",
+    "name": "Rettenegger Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-11-21 bis 2026-11-22",
+    "start": "2026-11-21",
+    "end": "2026-11-22",
+    "country": "Österreich",
+    "city": "Rettenegg",
+    "postcode": "8674",
+    "source": "https://fyndling.de/e/009514f4180eb413",
+    "venue": "Dorfstadl, Rettenegg 27",
+    "website": "https://christkindlmaerkte.com/oesterreich/steiermark/rettenegg/rettenegger-weihnachtsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/oesterreich/steiermark/rettenegg/rettenegger-weihnachtsmarkt/"
+    ],
+    "lat": 47.5261387,
+    "lng": 15.7797636
+  },
+  {
     "id": "eu-source-a9aa6e667b00e346",
     "name": "Feria de Navidad de Vigo",
     "type": "Markt",
@@ -4356,6 +4969,122 @@
     ],
     "lat": 42.1986395,
     "lng": -8.727956
+  },
+  {
+    "id": "eu-source-d48a00d9311486df",
+    "name": "Adventsmarkt in Neunkirch",
+    "type": "Markt",
+    "date": "2026-11-21 bis 2026-11-21",
+    "start": "2026-11-21",
+    "end": "2026-11-21",
+    "country": "Schweiz",
+    "city": "Neunkirch",
+    "postcode": "8213",
+    "source": "https://fyndling.de/e/275b51c8f3681bab",
+    "venue": "Vordergasse, historisches Städtli",
+    "info": "32. Neunkircher Adventsmarkt im historischen Städtli mit zahlreichen Verkaufsständen und Gastronomie.",
+    "website": "https://www.neunkirch.ch/freizeit/veranstaltungen.html/23",
+    "websites": [
+      "https://www.neunkirch.ch/freizeit/veranstaltungen.html/23"
+    ],
+    "lat": 47.6900903,
+    "lng": 8.5009665
+  },
+  {
+    "id": "eu-source-909dfc3ca2779ec1",
+    "name": "Weihnachtsmarkt Bad Ragaz",
+    "type": "Markt",
+    "date": "2026-11-21 bis 2026-11-22",
+    "start": "2026-11-21",
+    "end": "2026-11-22",
+    "country": "Schweiz",
+    "city": "Bad Ragaz",
+    "postcode": "7310",
+    "source": "https://fyndling.de/e/311b51abd6b4695c",
+    "venue": "Rathausplatz",
+    "info": "Weihnachtsmarkt auf dem Rathausplatz im Rahmen der Lichterfeier mit Eröffnungsfeier um 17 Uhr in der Historischen Dorfbadhalle. Am Sonntag findet der Gschenklisunntig der Ragazer Geschäfte statt.",
+    "website": "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/lichterfeier",
+    "websites": [
+      "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/lichterfeier"
+    ],
+    "lat": 47.0052183,
+    "lng": 9.5021464
+  },
+  {
+    "id": "eu-source-5374f9898a87f5cb",
+    "name": "Weihnachtsmarkt (Kathreinmarkt) in Aindling 2026",
+    "type": "Markt",
+    "date": "2026-11-21 bis 2026-11-22",
+    "start": "2026-11-21",
+    "end": "2026-11-22",
+    "country": "Deutschland",
+    "city": "Aindling",
+    "postcode": "86447",
+    "source": "https://fyndling.de/e/696b375fa64ed855",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 48.5118594,
+    "lng": 10.9503789
+  },
+  {
+    "id": "eu-source-e96a08be4faf2ec3",
+    "name": "Merliger Winterzauber-Märit",
+    "type": "Markt",
+    "date": "2026-11-22 bis 2026-11-22",
+    "start": "2026-11-22",
+    "end": "2026-11-22",
+    "country": "Schweiz",
+    "city": "Merligen",
+    "postcode": "3658",
+    "source": "https://fyndling.de/e/347e97da789aa3f8",
+    "venue": "neben dem Tourismusbüro, Seestrasse 294",
+    "info": "Kleiner Weihnachtsmarkt in Merligen mit regionalen Produkten, handgemachten Geschenkideen und Spezialitäten (Raclette, Gerstensuppe, Glühwein). Programm: Kutschenfahrt, Basteln für Kinder, Guetzli-Dekorieren und ein Konzert.",
+    "website": "https://www.myfarm.ch/de/veranstaltungen/merligen/merliger-winterzauber-maerit_A7mbAka",
+    "websites": [
+      "https://www.myfarm.ch/de/veranstaltungen/merligen/merliger-winterzauber-maerit_A7mbAka"
+    ],
+    "lat": 46.6996078,
+    "lng": 7.7374284
+  },
+  {
+    "id": "eu-source-776b1914927c2f4d",
+    "name": "Adventsmarkt Greifvogelpark Saarburg",
+    "type": "Markt",
+    "date": "2026-11-22 bis 2026-11-22",
+    "start": "2026-11-22",
+    "end": "2026-11-22",
+    "country": "Deutschland",
+    "city": "Saarburg",
+    "postcode": "54439",
+    "source": "https://fyndling.de/e/e5def46abdf37adf",
+    "venue": "Greifvogelpark Saarburg, Am Engelbach 1",
+    "website": "https://christkindlmaerkte.com/deutschland/rheinland-pfalz/saarburg/adventsmarkt-greifvogelpark-saarburg/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/rheinland-pfalz/saarburg/adventsmarkt-greifvogelpark-saarburg/"
+    ],
+    "lat": 49.608253,
+    "lng": 6.548746
+  },
+  {
+    "id": "eu-source-ccb06804e2699620",
+    "name": "Rendsburger Weihnachtsmarkt De lütte Wiehnacht",
+    "type": "Markt",
+    "date": "2026-11-23 bis 2027-01-03",
+    "start": "2026-11-23",
+    "end": "2027-01-03",
+    "country": "Deutschland",
+    "city": "Rendsburg",
+    "postcode": "24768",
+    "source": "https://fyndling.de/e/079a4f61e6bcab34",
+    "venue": "Schiffbrückenplatz",
+    "website": "https://christkindlmaerkte.com/deutschland/schleswig-holstein/rendsburg/rendsburger-weihnachtsmarkt-de-luette-wiehnacht/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/schleswig-holstein/rendsburg/rendsburger-weihnachtsmarkt-de-luette-wiehnacht/"
+    ],
+    "lat": 54.300292,
+    "lng": 9.6650076
   },
   {
     "id": "eu-source-ebcc8200a94700db",
@@ -4456,6 +5185,43 @@
     "lng": 10.6880331
   },
   {
+    "id": "eu-source-3154eadab4b87f1c",
+    "name": "Weihnachtsmarkt in Bad Salzungen 2026",
+    "type": "Markt",
+    "date": "2026-11-23 bis 2026-12-20",
+    "start": "2026-11-23",
+    "end": "2026-12-20",
+    "country": "Deutschland",
+    "city": "Bad Salzungen",
+    "postcode": "36433",
+    "source": "https://fyndling.de/e/c14dcbcda6f4dff8",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 50.8313123,
+    "lng": 10.2505253
+  },
+  {
+    "id": "eu-source-8dc8758c3730dfa9",
+    "name": "Weberglockenmarkt Neubrandenburg",
+    "type": "Markt",
+    "date": "2026-11-24 bis 2026-12-20",
+    "start": "2026-11-24",
+    "end": "2026-12-20",
+    "country": "Deutschland",
+    "city": "Neubrandenburg",
+    "postcode": "17033",
+    "source": "https://fyndling.de/e/08a8d6c3a17402b4",
+    "venue": "Innenstadt, von der Turmstraße bis zum Marktplatz",
+    "website": "https://christkindlmaerkte.com/deutschland/mecklenburg-vorpommern/neubrandenburg/weberglockenmarkt-neubrandenburg/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/mecklenburg-vorpommern/neubrandenburg/weberglockenmarkt-neubrandenburg/"
+    ],
+    "lat": 53.5329275,
+    "lng": 13.262318700000037
+  },
+  {
     "id": "eu-source-d9ea9db2b84b4457",
     "name": "Weihnachtsmarkt in Minden",
     "type": "Markt",
@@ -4476,6 +5242,43 @@
     "lng": 8.8973456
   },
   {
+    "id": "eu-source-0215c44577f92655",
+    "name": "Weihnachtsmarkt in Laupheim 2026",
+    "type": "Markt",
+    "date": "2026-11-25 bis 2026-11-29",
+    "start": "2026-11-25",
+    "end": "2026-11-29",
+    "country": "Deutschland",
+    "city": "Laupheim",
+    "postcode": "88471",
+    "source": "https://fyndling.de/e/04f2c2db42cef4fc",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 48.2277175,
+    "lng": 9.8643425
+  },
+  {
+    "id": "eu-source-4ee41a815ebff878",
+    "name": "Kuchlbauers Turmweihnacht Abensberg",
+    "type": "Markt",
+    "date": "2026-11-25 bis 2026-12-20",
+    "start": "2026-11-25",
+    "end": "2026-12-20",
+    "country": "Deutschland",
+    "city": "Abensberg",
+    "postcode": "93326",
+    "source": "https://fyndling.de/e/2aabf79e55a44120",
+    "venue": "Brauerei Kuchlbauer, Römerstraße 5 bis 9",
+    "website": "https://christkindlmaerkte.com/deutschland/bayern/abensberg/kuchlbauer-s-turmweihnacht-abensberg/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/bayern/abensberg/kuchlbauer-s-turmweihnacht-abensberg/"
+    ],
+    "lat": 48.8169063,
+    "lng": 11.8428576
+  },
+  {
     "id": "eu-source-8e2c1d43a8ea46e5",
     "name": "Weihnachtsmarkt Schloss Merode",
     "type": "Markt",
@@ -4493,6 +5296,83 @@
     ],
     "lat": 50.7987719,
     "lng": 6.3643591
+  },
+  {
+    "id": "eu-source-e78ca1c083278621",
+    "name": "Ansbacher Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-11-26 bis 2026-12-23",
+    "start": "2026-11-26",
+    "end": "2026-12-23",
+    "country": "Deutschland",
+    "city": "Ansbach",
+    "postcode": "91522",
+    "source": "https://fyndling.de/e/02fa47ff1b2811ab",
+    "venue": "Rund um das Stadthaus, Johann-Sebastian-Bach-Platz und Martin-Luther-Platz",
+    "website": "https://christkindlmaerkte.com/deutschland/bayern/ansbach/ansbacher-weihnachtsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/bayern/ansbach/ansbacher-weihnachtsmarkt/"
+    ],
+    "lat": 49.30269,
+    "lng": 10.57278
+  },
+  {
+    "id": "eu-source-f82bfce639587fc0",
+    "name": "Weihnachtsmarkt in Haselünne 2026",
+    "type": "Markt",
+    "date": "2026-11-26 bis 2026-11-29",
+    "start": "2026-11-26",
+    "end": "2026-11-29",
+    "country": "Deutschland",
+    "city": "Haselünne",
+    "postcode": "49740",
+    "source": "https://fyndling.de/e/0e2dce83b02d2bf2",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 52.6799563,
+    "lng": 7.4647284
+  },
+  {
+    "id": "eu-source-f16fa648c1b47ef7",
+    "name": "Basler Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-11-26 bis 2026-12-23",
+    "start": "2026-11-26",
+    "end": "2026-12-23",
+    "country": "Schweiz",
+    "city": "Basel",
+    "postcode": "4051",
+    "source": "https://fyndling.de/e/4ad969e09447f314",
+    "venue": "Barfüsserplatz und Münsterplatz",
+    "info": "Weihnachtsmarkt in der Basler Altstadt mit Christbaumschmuck, Geschenkartikeln sowie Speisen und Getränken. Dazu gibt es Bastelangebote (Kerzenziehen, Lebkuchen verzieren, Zinngiessen), ein Puppentheater und den Märchenwald als Kinderbereich.",
+    "website": "https://www.bs.ch/pd/marketing/messenundmaerkte/weihnachtsmarkt",
+    "websites": [
+      "https://www.bs.ch/pd/marketing/messenundmaerkte/weihnachtsmarkt"
+    ],
+    "lat": 47.5549752,
+    "lng": 7.5858048
+  },
+  {
+    "id": "eu-source-f486d631925b4cd6",
+    "name": "Sternenstadt St.Gallen",
+    "type": "Markt",
+    "date": "2026-11-26 bis 2026-12-24",
+    "start": "2026-11-26",
+    "end": "2026-12-24",
+    "country": "Schweiz",
+    "city": "St.Gallen",
+    "postcode": "9000",
+    "source": "https://fyndling.de/e/aee92406bf298dd8",
+    "venue": "Altstadt: Gallusplatz, Vadian-Denkmal, Klosterplatz",
+    "info": "Über 600 Sterne leuchten in einer Lichtchoreografie über der St.Galler Altstadt und dem Stiftsbezirk. Der Sternenmarkt auf dem Gallusplatz bietet über zwei Dutzend Holzchalets mit Handwerk, Dekoration und Kulinarik; dazu kommen ein Christkindlimarkt am 28.11. und 5.12. sowie der…",
+    "website": "https://www.sternenstadt.ch/sternenmarkt",
+    "websites": [
+      "https://www.sternenstadt.ch/sternenmarkt"
+    ],
+    "lat": 47.4240054,
+    "lng": 9.3743181
   },
   {
     "id": "eu-source-9d1c289a8945cac0",
@@ -4528,6 +5408,83 @@
     ],
     "lat": 48.7955301,
     "lng": 9.8019139
+  },
+  {
+    "id": "eu-source-c56be99b63f24f95",
+    "name": "Weihnachtsmarkt in Ottweiler 2026",
+    "type": "Markt",
+    "date": "2026-11-27 bis 2026-11-29",
+    "start": "2026-11-27",
+    "end": "2026-11-29",
+    "country": "Deutschland",
+    "city": "Ottweiler",
+    "postcode": "66564",
+    "source": "https://fyndling.de/e/0044f6985ddd8aab",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 49.4111673,
+    "lng": 7.1939141
+  },
+  {
+    "id": "eu-source-b3ce9110d1a11f58",
+    "name": "Weihnachtsmarkt Altenburg",
+    "type": "Markt",
+    "date": "2026-11-27 bis 2026-12-29",
+    "start": "2026-11-27",
+    "end": "2026-12-29",
+    "country": "Deutschland",
+    "city": "Altenburg",
+    "postcode": "04600",
+    "source": "https://fyndling.de/e/01a3ae9ce704cc28",
+    "venue": "Markt (Marktplatz)",
+    "website": "https://christkindlmaerkte.com/deutschland/thueringen/altenburg/weihnachtsmarkt-altenburg/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/thueringen/altenburg/weihnachtsmarkt-altenburg/"
+    ],
+    "lat": 50.9888921,
+    "lng": 12.429075000000012
+  },
+  {
+    "id": "eu-source-cf54ca0b4ba0b0a8",
+    "name": "Marché de Noël à Jaun",
+    "type": "Markt",
+    "date": "2026-11-27 bis 2026-11-29",
+    "start": "2026-11-27",
+    "end": "2026-11-29",
+    "country": "Schweiz",
+    "city": "Jaun",
+    "postcode": "1656",
+    "source": "https://fyndling.de/e/06791ebff3ca57cf",
+    "venue": "Dorf Jaun",
+    "info": "Weihnachtsmarkt im Dorf Jaun mit Chalets für Glühwein, Weihnachtsguetzli, Kunsthandwerk, Holzskulpturen, Konfitüren, Fondue und Würste; im Schulhaus gibt es Raclette oder Würste.",
+    "website": "https://laccent-gruyere.ch/marche-de-noel-a-jaun/",
+    "websites": [
+      "https://laccent-gruyere.ch/marche-de-noel-a-jaun/"
+    ],
+    "lat": 46.6077637,
+    "lng": 7.2866036
+  },
+  {
+    "id": "eu-source-d4a7dcf5327b6de9",
+    "name": "Weihnachtsmarkt am See Brunnen",
+    "type": "Markt",
+    "date": "2026-11-27 bis 2026-11-29",
+    "start": "2026-11-27",
+    "end": "2026-11-29",
+    "country": "Schweiz",
+    "city": "Brunnen",
+    "postcode": "6440",
+    "source": "https://fyndling.de/e/16c2eae57b2d1e2a",
+    "venue": "am See, Dorfzentrum",
+    "info": "Rund 60 dekorierte Marktstände direkt am Vierwaldstättersee mit handgefertigten Produkten. Für Kinder gibt es ein Adventsprogramm und einen Besuch des Samichlaus.",
+    "website": "https://erlebnisregion-mythen.ch/kultur-events/winterzauber-mythen/weihnachtsmarkt-am-see-brunnen",
+    "websites": [
+      "https://erlebnisregion-mythen.ch/kultur-events/winterzauber-mythen/weihnachtsmarkt-am-see-brunnen"
+    ],
+    "lat": 46.9940439,
+    "lng": 8.6054085
   },
   {
     "id": "eu-source-38896d262ccbf60c",
@@ -4567,6 +5524,46 @@
     "lng": 13.1042633
   },
   {
+    "id": "eu-source-fbbaad8283868099",
+    "name": "Thuner Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-11-27 bis 2026-12-23",
+    "start": "2026-11-27",
+    "end": "2026-12-23",
+    "country": "Schweiz",
+    "city": "Thun",
+    "postcode": "3600",
+    "source": "https://fyndling.de/e/86f3165abd6b8bf1",
+    "venue": "Waisenhausplatz und Mühleplatz (Altstadt)",
+    "info": "Dekorierte Holzchalets in der Thuner Altstadt rund um Waisenhaus- und Mühleplatz mit Spezialitäten und Produkten. Die Gastronomie hat zusätzlich am 27. und 28. Dezember geöffnet, der Markt selbst endet am 23.12.",
+    "website": "https://thuner-weihnachtsmarkt.ch/",
+    "websites": [
+      "https://thuner-weihnachtsmarkt.ch/"
+    ],
+    "lat": 46.7552797,
+    "lng": 7.6250568
+  },
+  {
+    "id": "eu-source-07ad5d7686da71c2",
+    "name": "Einsiedler Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-11-27 bis 2026-12-06",
+    "start": "2026-11-27",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Einsiedeln",
+    "postcode": "8840",
+    "source": "https://fyndling.de/e/8eeb95b536c9e27b",
+    "venue": "Klosterplatz und Hauptstrasse",
+    "info": "Weihnachtsmarkt vor der Kulisse des Klosters Einsiedeln und entlang der Hauptstrasse mit dekorierten Marktständen, grossem Weihnachtsbaum auf dem Klosterplatz und weihnachtlich beleuchtetem Dorf.",
+    "website": "https://www.einsiedler-weihnacht.ch/marktdaten",
+    "websites": [
+      "https://www.einsiedler-weihnacht.ch/marktdaten"
+    ],
+    "lat": 47.127657,
+    "lng": 8.7459768
+  },
+  {
     "id": "eu-source-1565ad1a753ca9de",
     "name": "Romantischer Weihnachtsmarkt Nördlingen",
     "type": "Markt",
@@ -4601,6 +5598,26 @@
     "lng": 16.4463043
   },
   {
+    "id": "eu-source-1af386aeb167bc02",
+    "name": "Weihnachtsmarkt in Gruyères",
+    "type": "Markt",
+    "date": "2026-11-27 bis 2026-12-20",
+    "start": "2026-11-27",
+    "end": "2026-12-20",
+    "country": "Schweiz",
+    "city": "Gruyères",
+    "postcode": "1663",
+    "source": "https://fyndling.de/e/b55a2d3ccca573fc",
+    "venue": "Mittelalterliche Altstadt",
+    "info": "Rund 40 Kunsthandwerker und Kreative zeigen handgefertigte Objekte in der mittelalterlichen Altstadt von Gruyères. An den vier Adventswochenenden gibt es Konzerte, Animationen und Workshops sowie Verpflegung vor Ort.",
+    "website": "https://www.noel-gruyeres.ch",
+    "websites": [
+      "https://www.noel-gruyeres.ch"
+    ],
+    "lat": 46.5857245,
+    "lng": 7.0790179
+  },
+  {
     "id": "eu-source-28a4d30a951858a8",
     "name": "Winter-Spektakulum Burg Altena",
     "type": "Markt",
@@ -4618,6 +5635,63 @@
     ],
     "lat": 51.2846795,
     "lng": 7.6883729
+  },
+  {
+    "id": "eu-source-fa728c08e89c8d4b",
+    "name": "Adventsmarkt Bischofszell",
+    "type": "Markt",
+    "date": "2026-11-27 bis 2026-11-29",
+    "start": "2026-11-27",
+    "end": "2026-11-29",
+    "country": "Schweiz",
+    "city": "Bischofszell",
+    "postcode": "9220",
+    "source": "https://fyndling.de/e/e3116840d824711c",
+    "venue": "Altstadt (Grubplatz bis obere Kirchgasse)",
+    "info": "Traditioneller Adventsmarkt in der historischen Altstadt mit über 120 Ständen und acht Adventsbeizli. Für Kinder gibt es ein Karussell und eine lebensgrosse Krippe; am Samstag um 18 Uhr findet ein Gratiskonzert in der Stiftskirche statt.",
+    "website": "https://www.adventsmarkt-bischofszell.ch/",
+    "websites": [
+      "https://www.adventsmarkt-bischofszell.ch/"
+    ],
+    "lat": 47.4948951,
+    "lng": 9.2447628
+  },
+  {
+    "id": "eu-source-7511be9d6916e541",
+    "name": "Weihnachtsmarkt Diedenshausen",
+    "type": "Markt",
+    "date": "2026-11-28 bis 2026-11-28",
+    "start": "2026-11-28",
+    "end": "2026-11-28",
+    "country": "Deutschland",
+    "city": "Bad Berleburg",
+    "postcode": "57319",
+    "source": "https://fyndling.de/e/00708f67548f1d29",
+    "venue": "Historische Ortsmitte rund um die evangelische Kirche, Zur Saale 9",
+    "website": "https://christkindlmaerkte.com/deutschland/nordrhein-westfalen/bad-berleburg/weihnachtsmarkt-diedenshausen/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/nordrhein-westfalen/bad-berleburg/weihnachtsmarkt-diedenshausen/"
+    ],
+    "lat": 51.0750374,
+    "lng": 8.5012619
+  },
+  {
+    "id": "eu-source-57f75782c48a9a4d",
+    "name": "Weihnachtsmarkt in Renchen 2026",
+    "type": "Markt",
+    "date": "2026-11-28 bis 2026-11-29",
+    "start": "2026-11-28",
+    "end": "2026-11-29",
+    "country": "Deutschland",
+    "city": "Renchen",
+    "postcode": "77871",
+    "source": "https://fyndling.de/e/01517b1721df9558",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 48.5869606,
+    "lng": 8.023808
   },
   {
     "id": "eu-source-47e07bfd86a81e8d",
@@ -4678,6 +5752,26 @@
     "lng": 6.817616
   },
   {
+    "id": "eu-source-919bd2a706947d64",
+    "name": "Adventsdorf in Olten",
+    "type": "Markt",
+    "date": "2026-11-28 bis 2026-12-20",
+    "start": "2026-11-28",
+    "end": "2026-12-20",
+    "country": "Schweiz",
+    "city": "Olten",
+    "postcode": "4600",
+    "source": "https://fyndling.de/e/69068b4769e98ffb",
+    "venue": "Altstadt, Kirchgasse",
+    "info": "Sechste Ausgabe des Adventsdorfs in der Oltner Altstadt, eine Verbindung aus Weihnachtsmarkt und Adventsanlass. Über 66 Chalets mit wechselnden Ausstellern, dazu Gastronomie, Weihnachtskarussell, Rutschbahn und Eisfläche.",
+    "website": "https://www.adventsdorf.ch/index.asp?inc=das_dorf/allg._informationen.asp",
+    "websites": [
+      "https://www.adventsdorf.ch/index.asp?inc=das_dorf/allg._informationen.asp"
+    ],
+    "lat": 47.3492866,
+    "lng": 7.9060533
+  },
+  {
     "id": "eu-source-8b970024538c008e",
     "name": "Born to Rock - Mittelalternacht",
     "type": "Markt",
@@ -4718,6 +5812,26 @@
     "lng": 7.8280391
   },
   {
+    "id": "eu-source-c409775cc3be659d",
+    "name": "Weihnachtsmarkt Andermatt 2026",
+    "type": "Markt",
+    "date": "2026-11-28 bis 2026-11-28",
+    "start": "2026-11-28",
+    "end": "2026-11-28",
+    "country": "Schweiz",
+    "city": "Andermatt",
+    "postcode": "6490",
+    "source": "https://fyndling.de/e/92db249f8769e7d4",
+    "venue": "Kirch- und Rössligasse",
+    "info": "Eintägiger Weihnachtsmarkt in der Kirch- und Rössligasse mit handgemachten Produkten verschiedener Aussteller sowie Essen und Getränken. Weitere Informationen waren laut Tourismusseite noch nicht veröffentlicht.",
+    "website": "https://www.andermatt-sedrun-disentis.ch/andermatt/en/products/andermatt-christmas-market",
+    "websites": [
+      "https://www.andermatt-sedrun-disentis.ch/andermatt/en/products/andermatt-christmas-market"
+    ],
+    "lat": 46.6346413,
+    "lng": 8.5950007
+  },
+  {
     "id": "eu-source-7c22fab7226bb3d9",
     "name": "Weihnachtsmarkt - Advent im Turm",
     "type": "Markt",
@@ -4731,6 +5845,66 @@
     "venue": "Bachritterburg Kanzach",
     "lat": 48.0608,
     "lng": 9.4445
+  },
+  {
+    "id": "eu-source-25ee0221735a4ba8",
+    "name": "Erlebnis Weihnachtsmarkt Brienz",
+    "type": "Markt",
+    "date": "2026-11-28 bis 2026-11-29",
+    "start": "2026-11-28",
+    "end": "2026-11-29",
+    "country": "Schweiz",
+    "city": "Brienz",
+    "postcode": "3855",
+    "source": "https://fyndling.de/e/bcb5a301cdd9b40e",
+    "venue": "Historischer Dorfteil und Seepromenade",
+    "info": "Weihnachtsmarkt im historischen Dorfkern und an der Seepromenade mit dekorierten Verkaufsständen für Handgemachtes und Spezialitäten sowie einem historischen Karussell. Schnitzlerschule und Geigenbauschule öffnen am Marktwochenende ihre Türen.",
+    "website": "https://www.brienzersee.ch/planen/events/event/erlebnis-weihnachtsmarkt-brienz-2026",
+    "websites": [
+      "https://www.brienzersee.ch/planen/events/event/erlebnis-weihnachtsmarkt-brienz-2026"
+    ],
+    "lat": 46.749323,
+    "lng": 8.0413297
+  },
+  {
+    "id": "eu-source-1cad5845b7999a07",
+    "name": "Neuhauser Adventsmarkt und Sonntagsverkauf",
+    "type": "Markt",
+    "date": "2026-11-28 bis 2026-11-29",
+    "start": "2026-11-28",
+    "end": "2026-11-29",
+    "country": "Schweiz",
+    "city": "Neuhausen am Rheinfall",
+    "postcode": "8212",
+    "source": "https://fyndling.de/e/caf4928fe6006d45",
+    "venue": "Sa: SIG Areal am Rheinfall; So: Ortszentrum",
+    "info": "Am Samstag Eröffnungsfeier („Einläuten“) auf dem SIG Areal mit Speisen, Attraktionen, Marktständen und Entertainment. Der eigentliche Adventsmarkt mit Sonntagsverkauf und Familienprogramm folgt am Sonntag im Ortszentrum.",
+    "website": "https://adventsmarkt-neuhausen.ch/",
+    "websites": [
+      "https://adventsmarkt-neuhausen.ch/"
+    ],
+    "lat": 47.6863715,
+    "lng": 8.6155819
+  },
+  {
+    "id": "eu-source-1a24012d7b5b4ecd",
+    "name": "Arboner Christkindlimarkt",
+    "type": "Markt",
+    "date": "2026-11-28 bis 2026-11-28",
+    "start": "2026-11-28",
+    "end": "2026-11-28",
+    "country": "Schweiz",
+    "city": "Arbon",
+    "postcode": "9320",
+    "source": "https://fyndling.de/e/d5c1563a90985c38",
+    "venue": "Altstadt Arbon",
+    "info": "Christkindlimarkt in den beleuchteten Gassen der Arboner Altstadt mit handgefertigten Weihnachtsartikeln und Verpflegung. Nach Angabe der Stadt sind alle Verkaufs- und Verpflegungsstände ausgebucht.",
+    "website": "https://www.arbon.ch/freizeit/tourismus-und-mobilitaet/veranstaltungen/maerkte.html/198",
+    "websites": [
+      "https://www.arbon.ch/freizeit/tourismus-und-mobilitaet/veranstaltungen/maerkte.html/198"
+    ],
+    "lat": 47.5146854,
+    "lng": 9.4211571
   },
   {
     "id": "eu-source-9b4f982c0a034e55",
@@ -4769,6 +5943,103 @@
     "lng": -2.175382
   },
   {
+    "id": "eu-source-5833350af3962af3",
+    "name": "Marchà d'Advent",
+    "type": "Markt",
+    "date": "2026-11-28 bis 2026-11-28",
+    "start": "2026-11-28",
+    "end": "2026-11-28",
+    "country": "Schweiz",
+    "city": "Scuol",
+    "postcode": "7550",
+    "source": "https://fyndling.de/e/f74e3b3952ff34ea",
+    "venue": "Plaz, Scuol Suot",
+    "info": "Weihnachtsmarkt in Scuol Suot mit Handgemachtem, Verpflegung und Glühwein.",
+    "website": "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/marcha-dadvent/",
+    "websites": [
+      "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/marcha-dadvent/"
+    ],
+    "lat": 46.792817,
+    "lng": 10.3005875
+  },
+  {
+    "id": "eu-source-363cda3f700ef89a",
+    "name": "Finnischer Weihnachtsbasar in Darmstadt",
+    "type": "Markt",
+    "date": "2026-11-29 bis 2026-11-29",
+    "start": "2026-11-29",
+    "end": "2026-11-29",
+    "country": "Deutschland",
+    "city": "Darmstadt",
+    "postcode": "64285",
+    "source": "https://fyndling.de/e/02b36354a34b224f",
+    "venue": "Haus der Deutsch-Balten, Herdweg 79",
+    "website": "https://christkindlmaerkte.com/deutschland/hessen/darmstadt/finnischer-weihnachtsbasar-in-darmstadt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/hessen/darmstadt/finnischer-weihnachtsbasar-in-darmstadt/"
+    ],
+    "lat": 49.872775,
+    "lng": 8.651177
+  },
+  {
+    "id": "eu-source-256cb27c64ef30df",
+    "name": "Klausmarkt mit Kinderattraktion",
+    "type": "Markt",
+    "date": "2026-11-29 bis 2026-11-29",
+    "start": "2026-11-29",
+    "end": "2026-11-29",
+    "country": "Schweiz",
+    "city": "Zug",
+    "postcode": "6300",
+    "source": "https://fyndling.de/e/0ed6aec33d7c9f73",
+    "venue": "Landsgemeindeplatz und Vorstadtquai",
+    "info": "Markt mit rund 60 Verkaufsständen (u. a. Lebkuchen, Mandeln, Schmuck, Spielwaren, Dörrfrüchte, Honig, Gewürze, Tee) und Verpflegungsständen. Am Vorstadtquai gibt es eine Kinderattraktion. Die Öffnungszeiten waren in den Quellen widersprüchlich und sind deshalb nicht angegeben.",
+    "website": "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/klausmarkt-mit-kinderattraktion/",
+    "websites": [
+      "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/klausmarkt-mit-kinderattraktion/"
+    ],
+    "lat": 47.1706677,
+    "lng": 8.5154129
+  },
+  {
+    "id": "eu-source-a59f6e23589ecdb4",
+    "name": "Weihnachtsmarkt in Müden (Aller) 2026",
+    "type": "Markt",
+    "date": "2026-11-29 bis 2026-11-29",
+    "start": "2026-11-29",
+    "end": "2026-11-29",
+    "country": "Deutschland",
+    "city": "Müden (Aller)",
+    "postcode": "38539",
+    "source": "https://fyndling.de/e/1a09b32e54ee1d9c",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 52.517348,
+    "lng": 10.3939151
+  },
+  {
+    "id": "eu-source-5a0d5484a9b0c463",
+    "name": "Samichlaus-Einzug & Chlausmarkt",
+    "type": "Markt",
+    "date": "2026-11-29 bis 2026-11-29",
+    "start": "2026-11-29",
+    "end": "2026-11-29",
+    "country": "Schweiz",
+    "city": "Näfels",
+    "postcode": "8752",
+    "source": "https://fyndling.de/e/d661807cfc44cafd",
+    "venue": "Dorf-Schulhausplatz",
+    "info": "Am 1. Adventssonntag Chlausmarkt auf dem Dorf-Schulhausplatz mit rund 15 Standbetreibern, die regionale Produkte anbieten, dazu Würste und Raclette-Brot. Der Samichlaus wird im geschmückten Wagen durchs Dorf geführt, begleitet von Trychlern und Kindern mit Laternen.",
+    "website": "https://nikolaus-naefels.ch/chlausmaert-und-chlauseinzug/",
+    "websites": [
+      "https://nikolaus-naefels.ch/chlausmaert-und-chlauseinzug/"
+    ],
+    "lat": 47.0997753,
+    "lng": 9.0630051
+  },
+  {
     "id": "eu-source-393ad5880c21b772",
     "name": "Mittelalter- Weihnacht Stallhof",
     "type": "Markt",
@@ -4785,6 +6056,84 @@
     ],
     "lat": 51.0493286,
     "lng": 13.7381437
+  },
+  {
+    "id": "eu-source-f0e2ee4ea868cf5f",
+    "name": "Templiner Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-01 bis 2026-12-06",
+    "start": "2026-12-01",
+    "end": "2026-12-06",
+    "country": "Deutschland",
+    "city": "Templin",
+    "postcode": "17268",
+    "source": "https://fyndling.de/e/35aae322a2306341",
+    "venue": "Historischer Marktplatz vor dem Rathaus, Am Markt 19",
+    "website": "https://christkindlmaerkte.com/deutschland/brandenburg/templin/templiner-weihnachtsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/brandenburg/templin/templiner-weihnachtsmarkt/"
+    ],
+    "lat": 53.1196451,
+    "lng": 13.5014345
+  },
+  {
+    "id": "eu-source-c8b07bcbe9001824",
+    "name": "Wittstocker Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-02 bis 2026-12-06",
+    "start": "2026-12-02",
+    "end": "2026-12-06",
+    "country": "Deutschland",
+    "city": "Wittstock",
+    "postcode": "16909",
+    "source": "https://fyndling.de/e/003df986506b479f",
+    "venue": "Marktplatz, Kirchgasse und Sankt-Marien-Kirche",
+    "website": "https://christkindlmaerkte.com/deutschland/brandenburg/wittstock/wittstocker-weihnachtsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/brandenburg/wittstock/wittstocker-weihnachtsmarkt/"
+    ],
+    "lat": 53.1633131,
+    "lng": 12.4855533
+  },
+  {
+    "id": "eu-source-1d25f1bd48b465c5",
+    "name": "Chlausemäret Solothurn",
+    "type": "Markt",
+    "date": "2026-12-02 bis 2026-12-03",
+    "start": "2026-12-02",
+    "end": "2026-12-03",
+    "country": "Schweiz",
+    "city": "Solothurn",
+    "postcode": "4500",
+    "source": "https://fyndling.de/e/19f40cd193bcad02",
+    "venue": "Friedhofplatz und angrenzende Gassen der Altstadt",
+    "info": "Traditioneller Chlausmarkt in der Solothurner Altstadt, seit 1981 am ersten Mittwoch und Donnerstag im Dezember. Über 56 Stände mit Kunsthandwerk, regionalen Produkten, Keramik, Schmuck, Blumen und Backwaren, dazu Glühwein aus der Vereinsküche.",
+    "website": "https://www.chlausemaeret.ch",
+    "websites": [
+      "https://www.chlausemaeret.ch"
+    ],
+    "lat": 47.2072347,
+    "lng": 7.5332626
+  },
+  {
+    "id": "eu-source-0733624b1bca5ae5",
+    "name": "Märlistadt Stein am Rhein",
+    "type": "Markt",
+    "date": "2026-12-02 bis 2027-01-03",
+    "start": "2026-12-02",
+    "end": "2027-01-03",
+    "country": "Schweiz",
+    "city": "Stein am Rhein",
+    "postcode": "8260",
+    "source": "https://fyndling.de/e/4acc5818cee344d2",
+    "venue": "Altstadt",
+    "info": "Die Märlistadt verwandelt die historische Altstadt von Stein am Rhein in eine Märchenkulisse mit Märliweg in den Schaufenstern, beleuchtetem Altstadtschmuck und Märlimarkt mit Ständen. Dazu gehören ein Mittelaltermarkt im Klosterhof, Nachtwächterrundgang und…",
+    "website": "https://www.maerlistadt.ch/",
+    "websites": [
+      "https://www.maerlistadt.ch/"
+    ],
+    "lat": 47.6597403,
+    "lng": 8.857976
   },
   {
     "id": "eu-source-ca4bf16621de1a82",
@@ -4806,6 +6155,220 @@
     "lng": 9.1073152
   },
   {
+    "id": "eu-source-42ecf0b3cf72c1ee",
+    "name": "Weihnachtsmarkt in Bulle",
+    "type": "Markt",
+    "date": "2026-12-02 bis 2026-12-06",
+    "start": "2026-12-02",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Bulle",
+    "postcode": "1630",
+    "source": "https://fyndling.de/e/82db4ae69b848c44",
+    "venue": "Place du Marché",
+    "info": "Weihnachtsmarkt auf der Place du Marché mit rund hundert Chalets von Kunsthandwerkern aus der Region, der Schweiz und dem Ausland sowie lokalen Händlern, mit Spezialitäten, Glühwein und Dekoration.",
+    "website": "https://lagruyeremag.ch/marche-de-noel-2026-a-bulle-dates-et-tout-ce-quil-faut-savoir/",
+    "websites": [
+      "https://lagruyeremag.ch/marche-de-noel-2026-a-bulle-dates-et-tout-ce-quil-faut-savoir/"
+    ],
+    "lat": 46.6223404,
+    "lng": 7.0562897
+  },
+  {
+    "id": "eu-source-e23528185d3c0fa4",
+    "name": "Chlöösler – Chlausmarkt Appenzell",
+    "type": "Markt",
+    "date": "2026-12-02 bis 2026-12-02",
+    "start": "2026-12-02",
+    "end": "2026-12-02",
+    "country": "Schweiz",
+    "city": "Appenzell",
+    "postcode": "9050",
+    "source": "https://fyndling.de/e/94adc4bc8d98d038",
+    "venue": "Dorfkern Appenzell",
+    "info": "Traditioneller Chlausmarkt am ersten Mittwoch im Dezember im Dorfkern von Appenzell. Über 30 Stände bieten regionales Handwerk, Krippenzubehör, gestrickte Socken, Kunstkarten und mehr.",
+    "website": "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/chloeoesler-chlausmarkt-in-appenzell/",
+    "websites": [
+      "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/chloeoesler-chlausmarkt-in-appenzell/"
+    ],
+    "lat": 47.3321278,
+    "lng": 9.4168232
+  },
+  {
+    "id": "eu-source-2dfa169e0f07a966",
+    "name": "Weihnachts- und Christkindlmärt Bremgarten",
+    "type": "Markt",
+    "date": "2026-12-03 bis 2026-12-06",
+    "start": "2026-12-03",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Bremgarten",
+    "postcode": "5620",
+    "source": "https://fyndling.de/e/08283532dc0b655b",
+    "venue": "Altstadt, Casinoplatz",
+    "info": "Über 300 Marktstände in der autofreien Altstadt von Bremgarten, nach eigener Beschreibung einer der grössten Weihnachtsmärkte der Schweiz. Dazu gibt es Streichelzoo, Ponyreiten und Festzelte.",
+    "website": "https://www.bremgarten.ch/markt/7056",
+    "websites": [
+      "https://www.bremgarten.ch/markt/7056"
+    ],
+    "lat": 47.3512339,
+    "lng": 8.3454832
+  },
+  {
+    "id": "eu-source-0edf851420e56073",
+    "name": "Sagenhafte Weihnachtswelt Rotenburg",
+    "type": "Markt",
+    "date": "2026-12-03 bis 2026-12-20",
+    "start": "2026-12-03",
+    "end": "2026-12-20",
+    "country": "Deutschland",
+    "city": "Rotenburg an der Fulda",
+    "postcode": "36199",
+    "source": "https://fyndling.de/e/13805a0c88d9ef41",
+    "venue": "Schlossinnenhof, Marktplatz 3",
+    "website": "https://christkindlmaerkte.com/deutschland/hessen/rotenburg-an-der-fulda/romantischer-weihnachtsmarkt-rotenburg/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/hessen/rotenburg-an-der-fulda/romantischer-weihnachtsmarkt-rotenburg/"
+    ],
+    "lat": 51.018118,
+    "lng": 9.748764
+  },
+  {
+    "id": "eu-source-a4cfbf5939cae97a",
+    "name": "Weihnachtsmarkt in Arnstadt 2026",
+    "type": "Markt",
+    "date": "2026-12-03 bis 2026-12-06",
+    "start": "2026-12-03",
+    "end": "2026-12-06",
+    "country": "Deutschland",
+    "city": "Arnstadt",
+    "postcode": "99310",
+    "source": "https://fyndling.de/e/94789bff208281ef",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 50.816304,
+    "lng": 11.0121877
+  },
+  {
+    "id": "eu-source-ede33db1c29769bf",
+    "name": "Christkindlimärt Rapperswil-Jona",
+    "type": "Markt",
+    "date": "2026-12-03 bis 2026-12-20",
+    "start": "2026-12-03",
+    "end": "2026-12-20",
+    "country": "Schweiz",
+    "city": "Rapperswil-Jona",
+    "postcode": "8640",
+    "source": "https://fyndling.de/e/95d09b9d3dab501e",
+    "venue": "Altstadt Rapperswil",
+    "info": "Christkindlimärt in der mittelalterlichen Altstadt mit handgefertigten Geschenken, Glühweinhütten, Kerzenziehen und Märchenzelt. Der Markt läuft nicht durchgehend: 3.–6.12. (ca. 100 Stände), 9.–13.12. (über 200 Stände) und 17.–20.12. (ca. 100 Stände), dazwischen sind Ruhetage…",
+    "website": "https://www.rapperswil-zuerichsee.ch/de/christkindlimaert-rapperswil-jona",
+    "websites": [
+      "https://www.rapperswil-zuerichsee.ch/de/christkindlimaert-rapperswil-jona"
+    ],
+    "lat": 47.2275029,
+    "lng": 8.822025
+  },
+  {
+    "id": "eu-source-491357e81b72263a",
+    "name": "Weihnachtsmarkt Biel",
+    "type": "Markt",
+    "date": "2026-12-03 bis 2026-12-24",
+    "start": "2026-12-03",
+    "end": "2026-12-24",
+    "country": "Schweiz",
+    "city": "Biel/Bienne",
+    "postcode": "2502",
+    "source": "https://fyndling.de/e/e18c0be41f6e09ec",
+    "venue": "Nidaugasse",
+    "info": "Weihnachtsmarkt in der Bieler Nidaugasse auf über 300 Metern mit Kunsthandwerkern und Marktfahrern sowie lokalen und internationalen Spezialitäten.",
+    "website": "https://www.weihnachtsmarkt-biel.ch/de/",
+    "websites": [
+      "https://www.weihnachtsmarkt-biel.ch/de/"
+    ],
+    "lat": 47.1416683,
+    "lng": 7.2489061
+  },
+  {
+    "id": "eu-source-1f3f274e500fed88",
+    "name": "Wintergold - der außergewöhnliche Markt in Hanau",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-22",
+    "start": "2026-12-04",
+    "end": "2026-12-22",
+    "country": "Deutschland",
+    "city": "Hanau",
+    "postcode": "63450",
+    "source": "https://fyndling.de/e/0041ba5ab408e57c",
+    "venue": "Alte Kanzlei, Schlossplatz 1",
+    "website": "https://christkindlmaerkte.com/deutschland/hessen/hanau/wintergold-der-aussergewoehnliche-markt-in-hanau/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/hessen/hanau/wintergold-der-aussergewoehnliche-markt-in-hanau/"
+    ],
+    "lat": 50.13795649999999,
+    "lng": 8.918122799999999
+  },
+  {
+    "id": "eu-source-8c1fd86338d90b94",
+    "name": "Weihnachtsmarkt in Rünthe 2026",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-06",
+    "start": "2026-12-04",
+    "end": "2026-12-06",
+    "country": "Deutschland",
+    "city": "Bergkamen",
+    "postcode": "59192",
+    "source": "https://fyndling.de/e/02c5c3710b4f14f6",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 51.6241402,
+    "lng": 7.6318111
+  },
+  {
+    "id": "eu-source-1b3cce55f7ad8765",
+    "name": "Christkindli Märt Willisau",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-06",
+    "start": "2026-12-04",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Willisau",
+    "postcode": "6130",
+    "source": "https://fyndling.de/e/136c9f7e530e3637",
+    "venue": "Altstadt, Hauptgasse",
+    "info": "Weihnachtsmarkt in der Altstadt von Willisau mit über 100 Ausstellern, Handwerk und kulinarischen Spezialitäten. Für Kinder gibt es Bastelstube, Weihnachtszug und Briefe an das Christkind.",
+    "website": "https://www.xn--christkindlimrt-willisau-2bc.ch/",
+    "websites": [
+      "https://www.xn--christkindlimrt-willisau-2bc.ch/"
+    ],
+    "lat": 47.1171315,
+    "lng": 7.9903542
+  },
+  {
+    "id": "eu-source-39261619fd20f7ee",
+    "name": "Sankt-Nikolaus-Fest Freiburg mit Markt",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-06",
+    "start": "2026-12-04",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Freiburg",
+    "postcode": "1700",
+    "source": "https://fyndling.de/e/2aa1aea9fef11549",
+    "venue": "Burgquartier, Hof des Kollegiums St. Michael",
+    "info": "Traditionelles Sankt-Nikolaus-Fest am ersten Dezemberwochenende mit Umzug und Ansprache an der Kathedrale. Begleitend gibt es einen Markt mit Süssem und Handwerk, darunter einen Handwerker- und Studentenmarkt im Hof des Kollegiums St. Michael. Das Programm 2026 mit Zeiten war…",
+    "website": "https://st-nicolas.ch/de/",
+    "websites": [
+      "https://st-nicolas.ch/de/"
+    ],
+    "lat": 46.8035384,
+    "lng": 7.1555985
+  },
+  {
     "id": "eu-source-3e44666af3e30267",
     "name": "Mercado Navideño de Chinchon",
     "type": "Markt",
@@ -4822,6 +6385,46 @@
     ],
     "lat": 40.1408293,
     "lng": -3.4231474
+  },
+  {
+    "id": "eu-source-ed40c7149dc3c11e",
+    "name": "Weihnachtsmarkt Saas-Fee",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-05",
+    "start": "2026-12-04",
+    "end": "2026-12-05",
+    "country": "Schweiz",
+    "city": "Saas-Fee",
+    "postcode": "3906",
+    "source": "https://fyndling.de/e/36647c84578f3a2a",
+    "venue": "Dorfplatz",
+    "info": "Weihnachtsmarkt auf dem Dorfplatz von Saas-Fee mit Geschenkideen für die Advents- und Weihnachtszeit.",
+    "website": "https://www.saas-fee.ch/de/erlebnisshop/veranstaltungen/SAA/10af6aab-9724-4e65-9ab7-0f0390eb5c53/weihnachtsmarkt",
+    "websites": [
+      "https://www.saas-fee.ch/de/erlebnisshop/veranstaltungen/SAA/10af6aab-9724-4e65-9ab7-0f0390eb5c53/weihnachtsmarkt"
+    ],
+    "lat": 46.1132879,
+    "lng": 7.9302981
+  },
+  {
+    "id": "eu-source-5f87e9038544c09e",
+    "name": "Briger Chrischchindlimärt",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-08",
+    "start": "2026-12-04",
+    "end": "2026-12-08",
+    "country": "Schweiz",
+    "city": "Brig",
+    "postcode": "3900",
+    "source": "https://fyndling.de/e/483623a53f0a3f30",
+    "venue": "Altstadt Brig",
+    "info": "Weihnachtsmarkt in der Altstadt von Brig mit Ständen für Gewürze, Metallkunst, handgefertigte Krippenfiguren und Backwaren. Für Kinder gibt es Karussell, Puppentheater, Kerzenziehen und einen Märchenzug.",
+    "website": "https://www.gewerbe-brigglis.ch/events/adventszauber",
+    "websites": [
+      "https://www.gewerbe-brigglis.ch/events/adventszauber"
+    ],
+    "lat": 46.3139636,
+    "lng": 7.9836933
   },
   {
     "id": "eu-source-eaff1182d1b9f089",
@@ -4842,6 +6445,46 @@
     ],
     "lat": 49.9707784,
     "lng": 8.058757
+  },
+  {
+    "id": "eu-source-296f88404eaec0fa",
+    "name": "Weihnachtsmarkt Glarus",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-06",
+    "start": "2026-12-04",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Glarus",
+    "postcode": "8750",
+    "source": "https://fyndling.de/e/5e4f3a335b7ac616",
+    "venue": "Volksgarten und Güterschuppen",
+    "info": "Weihnachtsmarkt im Volksgarten und im Güterschuppen mit rund 90 Marktständen mit Glarner Produkten, regionalem Handwerk und Geschenkideen. Am Freitagabend gibt es einen Chlausumzug, der Samichlaus empfängt Kinder in seiner Hütte. Öffnungszeiten und Preise waren noch nicht…",
+    "website": "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/weihnachtsmarkt-glarus/",
+    "websites": [
+      "https://www.myswitzerland.com/de-ch/erlebnisse/veranstaltungen/weihnachtsmarkt-glarus/"
+    ],
+    "lat": 47.0405793,
+    "lng": 9.0520384
+  },
+  {
+    "id": "eu-source-a585ba93205bbe79",
+    "name": "Weihnachtsmarkt Bad Zurzach",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-06",
+    "start": "2026-12-04",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Bad Zurzach",
+    "postcode": "5330",
+    "source": "https://fyndling.de/e/97f3c30dc29366f3",
+    "venue": "Marktflecken rund um das Verenamünster",
+    "info": "Der Marktflecken von Bad Zurzach verwandelt sich in ein Weihnachtsdorf mit dekorierten Holzhäuschen, Handgemachtem, Dekoration, regionalen Spezialitäten und Glühwein.",
+    "website": "http://www.weihnachtsmarkt-zurzach.ch/",
+    "websites": [
+      "http://www.weihnachtsmarkt-zurzach.ch/"
+    ],
+    "lat": 47.5866477,
+    "lng": 8.2940658
   },
   {
     "id": "eu-source-2bc757621518262f",
@@ -4879,6 +6522,65 @@
     "lng": 12.5561393
   },
   {
+    "id": "eu-source-944f39cdf9d994b8",
+    "name": "Chlouser-Märit Aarberg",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-06",
+    "start": "2026-12-04",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Aarberg",
+    "postcode": "3270",
+    "source": "https://fyndling.de/e/ecd108d44a051880",
+    "venue": "Stedtli (Stadtplatz), Töpfermarkt auf der Holzbrücke",
+    "info": "Traditioneller Weihnachtsmarkt im Stedtli von Aarberg mit mehr als 100 Marktteilnehmenden, Fachgeschäften und Gastronomie. Es gibt unter anderem einen Töpfermarkt auf der Holzbrücke, Karussell, Modelleisenbahn, Glasbläser und ein Samichlaus-Erzählzelt.",
+    "website": "https://chlousermaerit-aarberg.ch/",
+    "websites": [
+      "https://chlousermaerit-aarberg.ch/"
+    ],
+    "lat": 47.0450653,
+    "lng": 7.2769477
+  },
+  {
+    "id": "eu-source-a1bf3ed34b510efa",
+    "name": "Wiehnachtsmärt Schloss Wildegg",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-06",
+    "start": "2026-12-04",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Wildegg",
+    "postcode": "5103",
+    "source": "https://fyndling.de/e/f6d519ca6fd5d426",
+    "venue": "Schloss Wildegg, Effingerweg 5",
+    "info": "Über 50 Marktstände mit Geschenkideen, Handwerk und Spezialitäten, dazu Glühwein, Musik und ein nostalgisches Karussell. Es gibt Laternenführungen durch das Schloss, Basteln in der Scheune und am 5./6.12. den Samichlaus.",
+    "website": "https://www.museumaargau.ch/schloss-wildegg/event/wiehnachtsmaert-schloss-wildegg",
+    "websites": [
+      "https://www.museumaargau.ch/schloss-wildegg/event/wiehnachtsmaert-schloss-wildegg"
+    ],
+    "lat": 47.4158187,
+    "lng": 8.1761789
+  },
+  {
+    "id": "eu-source-17f93ae2d8afe2ea",
+    "name": "Adventtreffen Hadres",
+    "type": "Markt",
+    "date": "2026-12-05 bis 2026-12-13",
+    "start": "2026-12-05",
+    "end": "2026-12-13",
+    "country": "Österreich",
+    "city": "Hadres",
+    "postcode": "2061",
+    "source": "https://fyndling.de/e/013411744a305abb",
+    "venue": "Kellergasse Hadres",
+    "website": "https://christkindlmaerkte.com/oesterreich/niederoesterreich/hadres/adventmarkt-hadres/",
+    "websites": [
+      "https://christkindlmaerkte.com/oesterreich/niederoesterreich/hadres/adventmarkt-hadres/"
+    ],
+    "lat": 48.7188312,
+    "lng": 16.0942685
+  },
+  {
     "id": "eu-source-c5f6b3e17838a1e5",
     "name": "Mittelalterlicher Weihnachtsmarkt Hofgeismar",
     "type": "Markt",
@@ -4896,6 +6598,44 @@
     ],
     "lat": 51.4845616,
     "lng": 9.4033474
+  },
+  {
+    "id": "eu-source-738b2e91b195fce1",
+    "name": "Weihnachtsmarkt in Wardenburg 2026",
+    "type": "Markt",
+    "date": "2026-12-05 bis 2026-12-06",
+    "start": "2026-12-05",
+    "end": "2026-12-06",
+    "country": "Deutschland",
+    "city": "Wardenburg",
+    "postcode": "26203",
+    "source": "https://fyndling.de/e/270a5b13440e3fd6",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 53.0528495,
+    "lng": 8.155431
+  },
+  {
+    "id": "eu-source-43091b43bfdbd17d",
+    "name": "Dietliker Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-05 bis 2026-12-05",
+    "start": "2026-12-05",
+    "end": "2026-12-05",
+    "country": "Schweiz",
+    "city": "Dietlikon",
+    "postcode": "8305",
+    "source": "https://fyndling.de/e/27eb1a91ee894217",
+    "venue": "Dorfplatz",
+    "info": "Weihnachtsmarkt am ersten Samstag im Dezember auf dem Dorfplatz in Dietlikon.",
+    "website": "https://www.dietliker-weihnachtsmarkt.ch/",
+    "websites": [
+      "https://www.dietliker-weihnachtsmarkt.ch/"
+    ],
+    "lat": 47.4222079,
+    "lng": 8.6175579
   },
   {
     "id": "eu-source-075d14aa5d9fd05c",
@@ -4916,6 +6656,26 @@
     "lng": 2.363992
   },
   {
+    "id": "eu-source-0a55c6db0d124a1e",
+    "name": "Trogener Adventsmarkt",
+    "type": "Markt",
+    "date": "2026-12-05 bis 2026-12-05",
+    "start": "2026-12-05",
+    "end": "2026-12-05",
+    "country": "Schweiz",
+    "city": "Trogen",
+    "postcode": "9043",
+    "source": "https://fyndling.de/e/4afaa638982d1657",
+    "venue": "Landsgemeindeplatz",
+    "info": "Markt für und von Menschen mit Behinderungen, seit 1986 jeweils am 2. Adventssamstag. Über 40 Stände von Institutionen mit handgefertigten Produkten, dazu Musik, Kunstausstellung und Verpflegung.",
+    "website": "https://adventsmarkt-trogen.ch/",
+    "websites": [
+      "https://adventsmarkt-trogen.ch/"
+    ],
+    "lat": 47.4046617,
+    "lng": 9.4682383
+  },
+  {
     "id": "eu-source-3e6c5a5420cc5e0c",
     "name": "Mittelalterlicher Weihnachtsmarkt zu Schloß Ebelsberg",
     "type": "Markt",
@@ -4929,6 +6689,26 @@
     "venue": "Schloß Ebelsberg",
     "lat": 48.241328,
     "lng": 14.3345284
+  },
+  {
+    "id": "eu-source-b5ff4ed3a0549f05",
+    "name": "Weihnachtsmarkt Saint-Ursanne",
+    "type": "Markt",
+    "date": "2026-12-05 bis 2026-12-06",
+    "start": "2026-12-05",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Saint-Ursanne",
+    "postcode": "2882",
+    "source": "https://fyndling.de/e/53e7008574bcf06a",
+    "venue": "Altstadt Saint-Ursanne",
+    "info": "Weihnachtsmarkt in der mittelalterlichen Stadt Saint-Ursanne mit Kunsthandwerkern, die ihre Produkte selbst herstellen. Es gibt einen kostenlosen Shuttle ab Bahnhof.",
+    "website": "https://www.noelstursanne.ch/",
+    "websites": [
+      "https://www.noelstursanne.ch/"
+    ],
+    "lat": 47.3646034,
+    "lng": 7.1539488
   },
   {
     "id": "eu-source-81630e7899d122b2",
@@ -4969,6 +6749,26 @@
     "lng": 7.8280391
   },
   {
+    "id": "eu-source-7be26caa3e9d1f13",
+    "name": "Chlouse-Märit Spiez",
+    "type": "Markt",
+    "date": "2026-12-05 bis 2026-12-05",
+    "start": "2026-12-05",
+    "end": "2026-12-05",
+    "country": "Schweiz",
+    "city": "Spiez",
+    "postcode": "3700",
+    "source": "https://fyndling.de/e/8a5aaf06a52e00c0",
+    "venue": "Oberlandstrasse zwischen Lötschbergplatz und Kronenkreisel",
+    "info": "Jährlicher Weihnachtsmarkt mit über 100 Marktständen und Geschenkideen, dazu Glühwein, Würste, Weihnachtsguetzli, Kinderprogramm und Musik.",
+    "website": "https://www.spiez.com/en/events/highlights-of-the-year/chlouse-maerit",
+    "websites": [
+      "https://www.spiez.com/en/events/highlights-of-the-year/chlouse-maerit"
+    ],
+    "lat": 46.6863512,
+    "lng": 7.6750389
+  },
+  {
     "id": "eu-source-69e2f8d1dcd89ef1",
     "name": "Weihnachtsmarkt Bennigsen Auf dem Rittergut in Springe",
     "type": "Markt",
@@ -4986,6 +6786,65 @@
     ],
     "lat": 52.1961543,
     "lng": 9.6163901
+  },
+  {
+    "id": "eu-source-4bf9b1db98981b9d",
+    "name": "Christchindlimarkt Appenzell",
+    "type": "Markt",
+    "date": "2026-12-05 bis 2026-12-06",
+    "start": "2026-12-05",
+    "end": "2026-12-06",
+    "country": "Schweiz",
+    "city": "Appenzell",
+    "postcode": "9050",
+    "source": "https://fyndling.de/e/9cfda5970ff73276",
+    "venue": "Postplatz",
+    "info": "Weihnachtsmarkt auf dem Postplatz in Appenzell mit zahlreichen handgefertigten Produkten und vielfältigen Ausstellern am Samstag und Sonntag des ersten Dezemberwochenendes.",
+    "website": "https://www.appenzell.ch/de/footer/aktuelles/veranstaltungen/date/1796425200/event/christchindlimarkt-in-appenzell.html",
+    "websites": [
+      "https://www.appenzell.ch/de/footer/aktuelles/veranstaltungen/date/1796425200/event/christchindlimarkt-in-appenzell.html"
+    ],
+    "lat": 47.3321278,
+    "lng": 9.4168232
+  },
+  {
+    "id": "eu-source-b258d6703563fccf",
+    "name": "Weihnachtsmarkt Villa Boveri – Handwerksmarkt",
+    "type": "Markt",
+    "date": "2026-12-05 bis 2026-12-05",
+    "start": "2026-12-05",
+    "end": "2026-12-05",
+    "country": "Schweiz",
+    "city": "Baden",
+    "postcode": "5400",
+    "source": "https://fyndling.de/e/af25d0b6911b1bb2",
+    "venue": "Villa Boveri, Ländliweg 5",
+    "info": "Weihnachtsmarkt der besonderen Art, bei dem rund dreissig Ausstellerinnen und Aussteller selbst angefertigte Produkte vom Kunsthandwerk bis zu kulinarischen Köstlichkeiten zeigen.",
+    "website": "https://www.villaboveri.ch/veranstaltungen/",
+    "websites": [
+      "https://www.villaboveri.ch/veranstaltungen/"
+    ],
+    "lat": 47.4744754,
+    "lng": 8.3001869
+  },
+  {
+    "id": "eu-source-0efbb28e7a1c599c",
+    "name": "Mittelalterlicher Christkindlmarkt Stadtschlaining",
+    "type": "Markt",
+    "date": "2026-12-06 bis 2026-12-06",
+    "start": "2026-12-06",
+    "end": "2026-12-06",
+    "country": "Österreich",
+    "city": "Stadtschlaining",
+    "postcode": "7461",
+    "source": "https://fyndling.de/e/00314de67ffdbaf0",
+    "venue": "Hauptplatz",
+    "website": "https://christkindlmaerkte.com/oesterreich/burgenland/stadtschlaining/mittelalterlicher-christkindlmarkt-stadtschlaining/",
+    "websites": [
+      "https://christkindlmaerkte.com/oesterreich/burgenland/stadtschlaining/mittelalterlicher-christkindlmarkt-stadtschlaining/"
+    ],
+    "lat": 47.3237255,
+    "lng": 16.2792081
   },
   {
     "id": "eu-source-78bba57aff003509",
@@ -5006,6 +6865,102 @@
     "lng": 14.564819
   },
   {
+    "id": "eu-source-1ceecdc4d666605d",
+    "name": "Klausmarkt Heitersheim",
+    "type": "Markt",
+    "date": "2026-12-07 bis 2026-12-07",
+    "start": "2026-12-07",
+    "end": "2026-12-07",
+    "country": "Deutschland",
+    "city": "Heitersheim",
+    "postcode": "79423",
+    "source": "https://fyndling.de/e/ec726b600e5f3976",
+    "venue": "Innenstadt, Hauptstraße",
+    "website": "https://christkindlmaerkte.com/deutschland/baden-wuerttemberg/heitersheim/klausmarkt-heitersheim/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/baden-wuerttemberg/heitersheim/klausmarkt-heitersheim/"
+    ],
+    "lat": 47.8735052,
+    "lng": 7.6590315
+  },
+  {
+    "id": "eu-source-7b38b7ab26b9df45",
+    "name": "Kinderadvent im Naturpark Hohe Wand",
+    "type": "Markt",
+    "date": "2026-12-08 bis 2026-12-08",
+    "start": "2026-12-08",
+    "end": "2026-12-08",
+    "country": "Österreich",
+    "city": "Hohe Wand",
+    "postcode": "2724",
+    "source": "https://fyndling.de/e/2afa1fd6ecd72b42",
+    "venue": "Naturpark Hohe Wand, Kleine Kanzelstraße 241",
+    "website": "https://christkindlmaerkte.com/oesterreich/niederoesterreich/hohe-wand/kinderadvent-naturpark-hohe-wand/",
+    "websites": [
+      "https://christkindlmaerkte.com/oesterreich/niederoesterreich/hohe-wand/kinderadvent-naturpark-hohe-wand/"
+    ],
+    "lat": 47.8392521,
+    "lng": 16.0371594
+  },
+  {
+    "id": "eu-source-ef2206fceb7fa09a",
+    "name": "Weihnachtsmarkt in Baden",
+    "type": "Markt",
+    "date": "2026-12-09 bis 2026-12-09",
+    "start": "2026-12-09",
+    "end": "2026-12-09",
+    "country": "Schweiz",
+    "city": "Baden",
+    "postcode": "5400",
+    "source": "https://fyndling.de/e/023069e1b8051265",
+    "venue": "Innenstadt: Weite Gasse, Badstrasse, Theaterplatz",
+    "info": "Traditioneller Weihnachtsmarkt in der Badener Innenstadt, jeweils am Mittwoch nach dem zweiten Advent. Kleine Anbieter verkaufen Handgemachtes, kulinarisch gibt es unter anderem Crêpes, Raclette, Rösti und Fondue. Nicht zu verwechseln mit dem Badener WunderDorf.",
+    "website": "https://aargautourismus.ch/de/events/detail-event/weihnachtsmarkt-in-baden--id--eve_wt1_bccjhcijjh.html",
+    "websites": [
+      "https://aargautourismus.ch/de/events/detail-event/weihnachtsmarkt-in-baden--id--eve_wt1_bccjhcijjh.html"
+    ],
+    "lat": 47.4744754,
+    "lng": 8.3001869
+  },
+  {
+    "id": "eu-source-bf564ad24f127621",
+    "name": "Weihnachtsmarkt Mühlhausen",
+    "type": "Markt",
+    "date": "2026-12-09 bis 2026-12-13",
+    "start": "2026-12-09",
+    "end": "2026-12-13",
+    "country": "Deutschland",
+    "city": "Mühlhausen",
+    "postcode": "99974",
+    "source": "https://fyndling.de/e/2f4c5f456ad6ab9c",
+    "venue": "Untermarkt, rund um die Divi-Blasii-Kirche",
+    "website": "https://christkindlmaerkte.com/deutschland/thueringen/muehlhausen/weihnachtsmarkt-muehlhausen/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/thueringen/muehlhausen/weihnachtsmarkt-muehlhausen/"
+    ],
+    "lat": 51.2071817,
+    "lng": 10.4598747
+  },
+  {
+    "id": "eu-source-55d191e09a527f53",
+    "name": "Stendaler Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-10 bis 2026-12-13",
+    "start": "2026-12-10",
+    "end": "2026-12-13",
+    "country": "Deutschland",
+    "city": "Hansestadt Stendal",
+    "postcode": "39576",
+    "source": "https://fyndling.de/e/056e2070b30753d5",
+    "venue": "Marktplatz, Markt 1",
+    "website": "https://christkindlmaerkte.com/deutschland/sachsen-anhalt/hansestadt-stendal/stendaler-weihnachtsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/sachsen-anhalt/hansestadt-stendal/stendaler-weihnachtsmarkt/"
+    ],
+    "lat": 52.60474050000001,
+    "lng": 11.85926440000003
+  },
+  {
     "id": "eu-source-9dd8e26d408ed7ee",
     "name": "WM Augsburg",
     "type": "Markt",
@@ -5022,6 +6977,101 @@
     ],
     "lat": 48.3690341,
     "lng": 10.8979522
+  },
+  {
+    "id": "eu-source-f4a2b5269ec466d9",
+    "name": "Weihnachtsmarkt in Baesweiler 2026",
+    "type": "Markt",
+    "date": "2026-12-10 bis 2026-12-20",
+    "start": "2026-12-10",
+    "end": "2026-12-20",
+    "country": "Deutschland",
+    "city": "Baesweiler",
+    "postcode": "52499",
+    "source": "https://fyndling.de/e/9a80947bede2a60f",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 50.9178794,
+    "lng": 6.1851649
+  },
+  {
+    "id": "eu-source-45338964ec813c48",
+    "name": "Lütetsburger Weihnacht",
+    "type": "Markt",
+    "date": "2026-12-11 bis 2026-12-13",
+    "start": "2026-12-11",
+    "end": "2026-12-13",
+    "country": "Deutschland",
+    "city": "Lütetsburg",
+    "postcode": "26524",
+    "source": "https://fyndling.de/e/038e788555ecf812",
+    "venue": "Vorburg Schloss Lütetsburg, Landstraße 40",
+    "website": "https://christkindlmaerkte.com/deutschland/niedersachsen/luetetsburg/luetetsburger-weihnacht/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/niedersachsen/luetetsburg/luetetsburger-weihnacht/"
+    ],
+    "lat": 53.6006476,
+    "lng": 7.2635942
+  },
+  {
+    "id": "eu-source-e64d4c31c5308549",
+    "name": "Murtner Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-11 bis 2026-12-13",
+    "start": "2026-12-11",
+    "end": "2026-12-13",
+    "country": "Schweiz",
+    "city": "Murten",
+    "postcode": "3280",
+    "source": "https://fyndling.de/e/0c50aa92f48aa971",
+    "venue": "Altstadt Murten",
+    "info": "Weihnachtsmarkt in der Murtner Altstadt mit dekorierten Holzchalets für Kulinarik, Kunsthandwerk und Weihnachtsartikel, dazu Kinderprogramm mit Karussell und Samichlaus sowie Workshops für Kerzen und Guetzli.",
+    "website": "https://fribourg.ch/en/regionmurtensee/events/christmas-market-murten/",
+    "websites": [
+      "https://fribourg.ch/en/regionmurtensee/events/christmas-market-murten/"
+    ],
+    "lat": 46.9261199,
+    "lng": 7.1201212
+  },
+  {
+    "id": "eu-source-1e3b387248c5a49e",
+    "name": "Wiähnachtsdörfli bim Grichtshuus",
+    "type": "Markt",
+    "date": "2026-12-11 bis 2026-12-20",
+    "start": "2026-12-11",
+    "end": "2026-12-20",
+    "country": "Schweiz",
+    "city": "Glarus",
+    "postcode": "8750",
+    "source": "https://fyndling.de/e/0d9ee117c7affed0",
+    "venue": "Gerichtshausgarten",
+    "info": "Erstmals stattfindendes Weihnachtsdörfli im Gerichtshausgarten mit rund 20 Markthüttli für Kunsthandwerk, Selbstgemachtes, Geschenkideen und Dekoration. Es findet nur an zwei Wochenenden statt, 11.–13.12. und 18.–20.12.2026, und ergänzt den Weihnachtsmarkt im Volksgarten.",
+    "website": "https://www.fridolin.ch/zeitung/publizierte-news/3524-weihnachtsdorf-beim-gerichtshaus",
+    "websites": [
+      "https://www.fridolin.ch/zeitung/publizierte-news/3524-weihnachtsdorf-beim-gerichtshaus"
+    ],
+    "lat": 47.0405793,
+    "lng": 9.0520384
+  },
+  {
+    "id": "eu-source-0f7e43ed6f8ac986",
+    "name": "Weihnachtsmarkt in Neubeckum 2026",
+    "type": "Markt",
+    "date": "2026-12-11 bis 2026-12-13",
+    "start": "2026-12-11",
+    "end": "2026-12-13",
+    "country": "Deutschland",
+    "city": "Beckum",
+    "postcode": "59269",
+    "source": "https://fyndling.de/e/0f50a6f88e8f955c",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 51.7606186,
+    "lng": 8.0468774
   },
   {
     "id": "eu-source-63f4dacab05313a0",
@@ -5171,6 +7221,26 @@
     "lng": 8.443226
   },
   {
+    "id": "eu-source-1d51267c122241bd",
+    "name": "\"kleiner aber feiner\" Weihnachtsmarkt Langnau",
+    "type": "Markt",
+    "date": "2026-12-11 bis 2026-12-12",
+    "start": "2026-12-11",
+    "end": "2026-12-12",
+    "country": "Schweiz",
+    "city": "Langnau im Emmental",
+    "postcode": "3550",
+    "source": "https://fyndling.de/e/e78d13c6a5264c81",
+    "venue": "Viehmarktplatz (Zelt)",
+    "info": "Gemütlicher Weihnachtsmarkt unter einem Zelt auf dem Viehmarktplatz mit über 20 Ausstellern und Verpflegungsständen. Das Programm umfasst Auftritte der Musikschule Oberemmental, einer Steelband und einer Alphorngruppe sowie eine lebende Krippe.",
+    "website": "https://www.myfarm.ch/de/veranstaltungen/langnau-im-emmental/kleiner-aber-feiner-weihnachtsmarkt_AxiR5VN",
+    "websites": [
+      "https://www.myfarm.ch/de/veranstaltungen/langnau-im-emmental/kleiner-aber-feiner-weihnachtsmarkt_AxiR5VN"
+    ],
+    "lat": 46.9397014,
+    "lng": 7.7849832
+  },
+  {
     "id": "eu-source-b69921bcbfe9604a",
     "name": "Ingelheimer Weihnachtsmarkt an der Burgkirche",
     "type": "Markt",
@@ -5191,6 +7261,43 @@
     "lng": 8.058757
   },
   {
+    "id": "eu-source-4973b2e189907b1f",
+    "name": "Ilbesheimer Advent",
+    "type": "Markt",
+    "date": "2026-12-12 bis 2026-12-13",
+    "start": "2026-12-12",
+    "end": "2026-12-13",
+    "country": "Deutschland",
+    "city": "Ilbesheim",
+    "postcode": "76831",
+    "source": "https://fyndling.de/e/00d7b27ef794073b",
+    "venue": "Weingüter und Höfe im Ort, Ilbesheim",
+    "website": "https://christkindlmaerkte.com/deutschland/rheinland-pfalz/ilbesheim/ilbesheimer-advent/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/rheinland-pfalz/ilbesheim/ilbesheimer-advent/"
+    ],
+    "lat": 49.1825673,
+    "lng": 8.0541351
+  },
+  {
+    "id": "eu-source-34e4f45f3884c62d",
+    "name": "Weihnachtsmarkt in Wangen im Allgäu 2026",
+    "type": "Markt",
+    "date": "2026-12-12 bis 2026-12-13",
+    "start": "2026-12-12",
+    "end": "2026-12-13",
+    "country": "Deutschland",
+    "city": "Wangen im Allgäu",
+    "postcode": "88239",
+    "source": "https://fyndling.de/e/155f4417961e1efd",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 47.692501,
+    "lng": 9.8061748
+  },
+  {
     "id": "eu-source-f1e3fc464b8cda01",
     "name": "Sinterklaas-Fest",
     "type": "Markt",
@@ -5208,6 +7315,66 @@
     ],
     "lat": 52.4030431,
     "lng": 13.0670995
+  },
+  {
+    "id": "eu-source-923b087b3ec24c62",
+    "name": "Adventsmarkt Tschiertschen",
+    "type": "Markt",
+    "date": "2026-12-12 bis 2026-12-12",
+    "start": "2026-12-12",
+    "end": "2026-12-12",
+    "country": "Schweiz",
+    "city": "Tschiertschen",
+    "postcode": "7064",
+    "source": "https://fyndling.de/e/4dc6da28d7f07846",
+    "venue": "Postauto-Kehrplatz",
+    "info": "Adventsmarkt auf dem Postauto-Kehrplatz mit lokalem Handwerk und Spezialitäten von Wirten, Bauern und örtlichen Vereinen.",
+    "website": "https://www.tschiertschen.ch/de/news/news-adventsmarkt-tschiertschen",
+    "websites": [
+      "https://www.tschiertschen.ch/de/news/news-adventsmarkt-tschiertschen"
+    ],
+    "lat": 46.8173936,
+    "lng": 9.6066499
+  },
+  {
+    "id": "eu-source-3377ed019fe90a3b",
+    "name": "Weinfelder Adventsmarkt",
+    "type": "Markt",
+    "date": "2026-12-12 bis 2026-12-13",
+    "start": "2026-12-12",
+    "end": "2026-12-13",
+    "country": "Schweiz",
+    "city": "Weinfelden",
+    "postcode": "8570",
+    "source": "https://fyndling.de/e/810115e40015c27b",
+    "venue": "Altstadt Weinfelden",
+    "info": "Adventsmarkt in der Altstadt von Weinfelden mit Verkaufsständen von Handwerk, Vereinen und Gewerbe der Region sowie einer Bühne mit Musikdarbietungen.",
+    "website": "https://www.gewerbeweinfelden.ch/adventsmarkt/",
+    "websites": [
+      "https://www.gewerbeweinfelden.ch/adventsmarkt/"
+    ],
+    "lat": 47.5668777,
+    "lng": 9.1112412
+  },
+  {
+    "id": "eu-source-bb543905dc3004af",
+    "name": "Weihnachtsmarkt Samnaun",
+    "type": "Markt",
+    "date": "2026-12-12 bis 2026-12-12",
+    "start": "2026-12-12",
+    "end": "2026-12-12",
+    "country": "Schweiz",
+    "city": "Samnaun",
+    "postcode": "7563",
+    "source": "https://fyndling.de/e/888e0c16f774372e",
+    "venue": "Samnaun Dorf",
+    "info": "Weihnachtsmarkt in Samnaun Dorf mit Weihnachtsständen für Handgemachtes, Dekoration und Festliches, dazu Glühwein, Punsch, Raclette und Fondue, Live-Musik sowie Samichlaus und Schmutzli für die Kinder.",
+    "website": "https://www.samnaun.ch/en/events/winterevents/christmas-market",
+    "websites": [
+      "https://www.samnaun.ch/en/events/winterevents/christmas-market"
+    ],
+    "lat": 46.9513674,
+    "lng": 10.3647992
   },
   {
     "id": "eu-source-e6274d2da88d8e81",
@@ -5286,6 +7453,46 @@
     "lng": 12.1399764
   },
   {
+    "id": "eu-source-0f655a3e33eb9040",
+    "name": "Schaffhauser Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-12 bis 2026-12-13",
+    "start": "2026-12-12",
+    "end": "2026-12-13",
+    "country": "Schweiz",
+    "city": "Schaffhausen",
+    "postcode": "8200",
+    "source": "https://fyndling.de/e/d78092a051c53e4d",
+    "venue": "Altstadt und Klosterareal Allerheiligen",
+    "info": "Der Markt findet im Allerheiligen-Kloster und in der angrenzenden Altstadt statt. Ausstellende bieten Handgemachtes, Gebackenes und Spezialitäten an. Der Markt ist während der Öffnungszeiten autofrei.",
+    "website": "https://weihnachtsmarkt-sh.ch",
+    "websites": [
+      "https://weihnachtsmarkt-sh.ch"
+    ],
+    "lat": 47.70399,
+    "lng": 8.6382002
+  },
+  {
+    "id": "eu-source-19549be1f9a7b770",
+    "name": "Vaduzer Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-12 bis 2026-12-13",
+    "start": "2026-12-12",
+    "end": "2026-12-13",
+    "country": "Liechtenstein",
+    "city": "Vaduz",
+    "postcode": "9490",
+    "source": "https://fyndling.de/e/ed93c063784aeb02",
+    "venue": "Peter-Kaiser-Platz",
+    "info": "Der Peter-Kaiser-Platz wird zu einem festlich beleuchteten Winterdorf. Über 70 Ausstellerinnen und Aussteller zeigen an dekorierten Marktständen handgefertigte Produkte und Geschenkideen, dazu Weihnachtsmusik live sowie warme Speisen und Getränke.",
+    "website": "https://www.vaduz.li/veranstaltungen/vaduzer-weihnachtsmarkt",
+    "websites": [
+      "https://www.vaduz.li/veranstaltungen/vaduzer-weihnachtsmarkt"
+    ],
+    "lat": 47.1420614,
+    "lng": 9.5179219
+  },
+  {
     "id": "eu-source-7655bd22aa12276d",
     "name": "Kirkeler Burgweynacht",
     "type": "Markt",
@@ -5303,6 +7510,25 @@
     ],
     "lat": 49.2972608,
     "lng": 7.2526664
+  },
+  {
+    "id": "eu-source-bc3bb258e4cf840f",
+    "name": "Weihnachtsmarkt Pfronten",
+    "type": "Markt",
+    "date": "2026-12-13 bis 2026-12-13",
+    "start": "2026-12-13",
+    "end": "2026-12-13",
+    "country": "Deutschland",
+    "city": "Pfronten",
+    "postcode": "87459",
+    "source": "https://fyndling.de/e/07d48760479b4647",
+    "venue": "Leonhardsplatz, Tiroler Straße 9-11",
+    "website": "https://christkindlmaerkte.com/deutschland/bayern/pfronten/weihnachtsmarkt-pfronten/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/bayern/pfronten/weihnachtsmarkt-pfronten/"
+    ],
+    "lat": 47.5813782,
+    "lng": 10.5579673
   },
   {
     "id": "eu-source-a0b618b0490e72b4",
@@ -5323,6 +7549,64 @@
     "lng": 12.3747329
   },
   {
+    "id": "eu-source-d2899e8c7a451fdc",
+    "name": "Monatsmarkt: Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-15 bis 2026-12-15",
+    "start": "2026-12-15",
+    "end": "2026-12-15",
+    "country": "Italien",
+    "city": "Klausen",
+    "postcode": "39043",
+    "source": "https://fyndling.de/e/c2a9fb60e890a63e",
+    "venue": "Marktplatz",
+    "website": "https://christkindlmaerkte.com/italien/suedtirol/klausen/monatsmarkt-weihnachtsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/italien/suedtirol/klausen/monatsmarkt-weihnachtsmarkt/"
+    ],
+    "lat": 46.63999938964844,
+    "lng": 11.566200256347656
+  },
+  {
+    "id": "eu-source-dcbd4ee909d7fc44",
+    "name": "Perleberger Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-16 bis 2026-12-20",
+    "start": "2026-12-16",
+    "end": "2026-12-20",
+    "country": "Deutschland",
+    "city": "Perleberg",
+    "postcode": "19348",
+    "source": "https://fyndling.de/e/52bbc4f95cfe7af7",
+    "venue": "Großer Markt",
+    "website": "https://christkindlmaerkte.com/deutschland/brandenburg/perleberg/perleberger-weihnachtsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/brandenburg/perleberg/perleberger-weihnachtsmarkt/"
+    ],
+    "lat": 53.0770089,
+    "lng": 11.8625845
+  },
+  {
+    "id": "eu-source-ef1b26a6682264e2",
+    "name": "Soledurner Wiehnachtsmärt",
+    "type": "Markt",
+    "date": "2026-12-16 bis 2026-12-20",
+    "start": "2026-12-16",
+    "end": "2026-12-20",
+    "country": "Schweiz",
+    "city": "Solothurn",
+    "postcode": "4500",
+    "source": "https://fyndling.de/e/ac4f5dfff0ccacf2",
+    "venue": "Kreuzackerpark, südliche Aare-Promenade",
+    "info": "14. Soledurner Wiehnachtsmärt in dekorierten Holzhüttchen an der südlichen Aare-Promenade. Aussteller aus der Region bieten Weihnachtsprodukte und Handwerk an, dazu Glühwein, Bratwurst, Rösti und Apfelchüechli.",
+    "website": "https://www.provorstadt.ch/",
+    "websites": [
+      "https://www.provorstadt.ch/"
+    ],
+    "lat": 47.2072347,
+    "lng": 7.5332626
+  },
+  {
     "id": "eu-source-8733951b44e31f82",
     "name": "Mercado Navideño de Navalmoral de la Mata",
     "type": "Markt",
@@ -5339,6 +7623,45 @@
     ],
     "lat": 39.8915481,
     "lng": -5.540719
+  },
+  {
+    "id": "eu-source-17987737de9c47c6",
+    "name": "Reichenbacher Sternenweihnacht",
+    "type": "Markt",
+    "date": "2026-12-17 bis 2026-12-20",
+    "start": "2026-12-17",
+    "end": "2026-12-20",
+    "country": "Deutschland",
+    "city": "Reichenbach",
+    "postcode": "",
+    "source": "https://fyndling.de/e/5a289bc3952adb44",
+    "venue": "Postplatz und Innenstadt, Reichenbach im Vogtland",
+    "website": "https://christkindlmaerkte.com/deutschland/sachsen/reichenbach/reichenbach-weihnachtsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/sachsen/reichenbach/reichenbach-weihnachtsmarkt/"
+    ],
+    "lat": 50.6200492,
+    "lng": 12.2992696
+  },
+  {
+    "id": "eu-source-dde580659a05f66b",
+    "name": "Weihnachtsmarkt Payerne",
+    "type": "Markt",
+    "date": "2026-12-17 bis 2026-12-20",
+    "start": "2026-12-17",
+    "end": "2026-12-20",
+    "country": "Schweiz",
+    "city": "Payerne",
+    "postcode": "1530",
+    "source": "https://fyndling.de/e/6e3f1415f05de88c",
+    "venue": "Place du Marché",
+    "info": "Weihnachtsmarkt auf der Place du Marché mit Weihnachtsbuden in den Gassen, Glühwein, regionalen Produkten und Musik; der Weihnachtsmann tritt auf.",
+    "website": "https://fribourg.ch/de/estavayer-payerne/veranstaltungen/weihnachtsmarkt-payerne/",
+    "websites": [
+      "https://fribourg.ch/de/estavayer-payerne/veranstaltungen/weihnachtsmarkt-payerne/"
+    ],
+    "lat": 46.8209042,
+    "lng": 6.935754
   },
   {
     "id": "eu-source-f0dc0f7091de96ff",
@@ -5358,6 +7681,25 @@
     ],
     "lat": 51.00719,
     "lng": 14.5993713
+  },
+  {
+    "id": "eu-source-133f14204a4c3898",
+    "name": "Märchenhafte Altstadtweihnacht Laufenburg",
+    "type": "Markt",
+    "date": "2026-12-18 bis 2026-12-20",
+    "start": "2026-12-18",
+    "end": "2026-12-20",
+    "country": "Deutschland",
+    "city": "Laufenburg (Baden)",
+    "postcode": "79725",
+    "source": "https://fyndling.de/e/36d6447c97528925",
+    "venue": "Rathausplatz und Altstadt",
+    "website": "https://christkindlmaerkte.com/deutschland/baden-wuerttemberg/laufenburg-baden/maerchenhafte-altstadtweihnacht-laufenburg/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/baden-wuerttemberg/laufenburg-baden/maerchenhafte-altstadtweihnacht-laufenburg/"
+    ],
+    "lat": 47.5671976,
+    "lng": 8.0599414
   },
   {
     "id": "eu-source-a478226083a82173",
@@ -5398,6 +7740,26 @@
     "lng": 8.058757
   },
   {
+    "id": "eu-source-d7a7b36e71aeee63",
+    "name": "Hirten + Engelsmarkt (Rhyfall Village)",
+    "type": "Markt",
+    "date": "2026-12-18 bis 2026-12-20",
+    "start": "2026-12-18",
+    "end": "2026-12-20",
+    "country": "Schweiz",
+    "city": "Neuhausen am Rheinfall",
+    "postcode": "8212",
+    "source": "https://fyndling.de/e/c2944ffbf4828772",
+    "venue": "Rhyfall Village, Areal zwischen den Wohntürmen",
+    "info": "Erstmals findet der Hirten- und Engelsmarkt auf dem Areal Rhyfall Village statt. Rund 30 Marktstände bieten Kunsthandwerk, regionale Betriebe und soziale Institutionen, dazu eine Kulinarikzone. Programm unter anderem mit Eröffnungsprozession, Chören, Bläsergruppen und Chlausen.",
+    "website": "https://schaffhausen24.ch/articles/408723-neuer-adventsmarkt-in-neuhausen-am-rheinfall",
+    "websites": [
+      "https://schaffhausen24.ch/articles/408723-neuer-adventsmarkt-in-neuhausen-am-rheinfall"
+    ],
+    "lat": 47.6863715,
+    "lng": 8.6155819
+  },
+  {
     "id": "eu-source-acf15e395ced8912",
     "name": "Mittelterlicher Weihnachtsmarkt zu Linz",
     "type": "Markt",
@@ -5411,6 +7773,25 @@
     "venue": "Alter Markt im Zentrum",
     "lat": 48.2876116,
     "lng": 14.3024774
+  },
+  {
+    "id": "eu-source-635be65a28191425",
+    "name": "Weihnachtsmarkt in Dreieich-Offenthal",
+    "type": "Markt",
+    "date": "2026-12-19 bis 2026-12-20",
+    "start": "2026-12-19",
+    "end": "2026-12-20",
+    "country": "Deutschland",
+    "city": "Dreieich",
+    "postcode": "63303",
+    "source": "https://fyndling.de/e/04806e3cfedd7f7f",
+    "venue": "Kirchgasse und Am Alten Rathaus, rund um die evangelische Kirche",
+    "website": "https://christkindlmaerkte.com/deutschland/hessen/dreieich/weihnachtsmarkt-in-dreieich-offenthal/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/hessen/dreieich/weihnachtsmarkt-in-dreieich-offenthal/"
+    ],
+    "lat": 49.9788466,
+    "lng": 8.7451812
   },
   {
     "id": "eu-source-32e507d1f4f38562",
@@ -5433,6 +7814,26 @@
     "lng": 7.8280391
   },
   {
+    "id": "eu-source-e7075527773b97b5",
+    "name": "Weihnachtsmarkt Avenches",
+    "type": "Markt",
+    "date": "2026-12-19 bis 2026-12-19",
+    "start": "2026-12-19",
+    "end": "2026-12-19",
+    "country": "Schweiz",
+    "city": "Avenches",
+    "postcode": "1580",
+    "source": "https://fyndling.de/e/666152c2e486a6a9",
+    "venue": "Place de l'Église",
+    "info": "Weihnachtsmarkt mit Handwerkern und Produzenten auf der Place de l'Église.",
+    "website": "https://www.avenches.ch/fr/P182525/marche-de-noel-d-avenches",
+    "websites": [
+      "https://www.avenches.ch/fr/P182525/marche-de-noel-d-avenches"
+    ],
+    "lat": 46.8800427,
+    "lng": 7.0402428
+  },
+  {
     "id": "eu-source-c1894078426c6e55",
     "name": "Historische Schlossweihnacht auf Schloss Voigtsberg",
     "type": "Markt",
@@ -5452,6 +7853,24 @@
     "lng": 12.172318
   },
   {
+    "id": "eu-source-ab4f21ad5951bbc3",
+    "name": "Weihnachtsmarkt in Bergkamen-Heil 2026",
+    "type": "Markt",
+    "date": "2026-12-19 bis 2026-12-19",
+    "start": "2026-12-19",
+    "end": "2026-12-19",
+    "country": "Deutschland",
+    "city": "Bergkamen",
+    "postcode": "59192",
+    "source": "https://fyndling.de/e/c6ea158c80593fb3",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 51.6241402,
+    "lng": 7.6318111
+  },
+  {
     "id": "eu-source-441dd84b7ab21fe7",
     "name": "Mittelalterlicher Weihnachtsmarkt",
     "type": "Markt",
@@ -5465,6 +7884,25 @@
     "venue": "Historisches Burgbaugelände",
     "lat": 46.9550411,
     "lng": 14.4146315
+  },
+  {
+    "id": "eu-source-ec3230415df6a671",
+    "name": "Weihnachtsmarkt im Kremmener Scheunenviertel",
+    "type": "Markt",
+    "date": "2026-12-20 bis 2026-12-20",
+    "start": "2026-12-20",
+    "end": "2026-12-20",
+    "country": "Deutschland",
+    "city": "Kremmen",
+    "postcode": "16766",
+    "source": "https://fyndling.de/e/00ecea113b0f8e28",
+    "venue": "Scheunenweg",
+    "website": "https://christkindlmaerkte.com/deutschland/brandenburg/kremmen/weihnachtsmarkt-kremmener-scheunenviertel/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/brandenburg/kremmen/weihnachtsmarkt-kremmener-scheunenviertel/"
+    ],
+    "lat": 52.7572296,
+    "lng": 13.028477599999974
   },
   {
     "id": "eu-source-195d04fa24ef2186",
@@ -5484,6 +7922,138 @@
     ],
     "lat": 50.4195817,
     "lng": 11.6851825
+  },
+  {
+    "id": "eu-source-2bed49b026a66866",
+    "name": "Waldweihnacht Schmillinghausen",
+    "type": "Markt",
+    "date": "2026-12-23 bis 2026-12-23",
+    "start": "2026-12-23",
+    "end": "2026-12-23",
+    "country": "Deutschland",
+    "city": "Bad Arolsen",
+    "postcode": "34454",
+    "source": "https://fyndling.de/e/c54922a16809f96f",
+    "website": "https://christkindlmaerkte.com/deutschland/hessen/bad-arolsen/waldweihnacht-schmillinghausen/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/hessen/bad-arolsen/waldweihnacht-schmillinghausen/"
+    ],
+    "lat": 51.4284036,
+    "lng": 9.0261077
+  },
+  {
+    "id": "eu-source-2224ffe902368ddb",
+    "name": "Grömitzer Wintermarkt",
+    "type": "Markt",
+    "date": "2026-12-25 bis 2027-01-01",
+    "start": "2026-12-25",
+    "end": "2027-01-01",
+    "country": "Deutschland",
+    "city": "Grömitz",
+    "postcode": "23743",
+    "source": "https://fyndling.de/e/24ed9477d97d5532",
+    "venue": "Seebrückenvorplatz, Kurpromenade 56",
+    "website": "https://christkindlmaerkte.com/deutschland/schleswig-holstein/groemitz/groemitzer-wintermarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/schleswig-holstein/groemitz/groemitzer-wintermarkt/"
+    ],
+    "lat": 54.144109,
+    "lng": 10.95885
+  },
+  {
+    "id": "eu-source-494d626903e41f7a",
+    "name": "Ruhpoldinger Rauhnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-27 bis 2026-12-29",
+    "start": "2026-12-27",
+    "end": "2026-12-29",
+    "country": "Deutschland",
+    "city": "Ruhpolding",
+    "postcode": "83324",
+    "source": "https://fyndling.de/e/27a241a34b57872c",
+    "venue": "Kurpark, Kurhausstraße 4",
+    "website": "https://christkindlmaerkte.com/deutschland/bayern/ruhpolding/ruhpoldinger-rauhnachtsmarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/bayern/ruhpolding/ruhpoldinger-rauhnachtsmarkt/"
+    ],
+    "lat": 47.7620099,
+    "lng": 12.6459934
+  },
+  {
+    "id": "eu-source-f15d1c7a7b91e37f",
+    "name": "Weihnachtsmarkt Erster Advent in Wörlitz 2026",
+    "type": "Markt",
+    "date": "2026-12-27 bis 2026-12-27",
+    "start": "2026-12-27",
+    "end": "2026-12-27",
+    "country": "Deutschland",
+    "city": "Wörlitz",
+    "postcode": "06786",
+    "source": "https://fyndling.de/e/522c29ed997166e3",
+    "website": "https://www.weinfeste-in-deutschland.de/",
+    "websites": [
+      "https://www.weinfeste-in-deutschland.de/"
+    ],
+    "lat": 51.8414537,
+    "lng": 12.4199023
+  },
+  {
+    "id": "eu-source-c22817612f0bbec8",
+    "name": "Catrina Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-27 bis 2026-12-27",
+    "start": "2026-12-27",
+    "end": "2026-12-27",
+    "country": "Schweiz",
+    "city": "Disentis",
+    "postcode": "7180",
+    "source": "https://fyndling.de/e/f680a7b6ab012e6a",
+    "venue": "Catrina Experience, Via Acletta 5",
+    "info": "Wintermarkt bei der Catrina Experience mit lokalen Produkten und Souvenirs an Marktständen sowie Winterspezialitäten, Glühwein und Punsch.",
+    "website": "https://www.myfarm.ch/en/events/disentis-muster/catrina-winter-market_Avp7DXj",
+    "websites": [
+      "https://www.myfarm.ch/en/events/disentis-muster/catrina-winter-market_Avp7DXj"
+    ],
+    "lat": 46.7048837,
+    "lng": 8.8516541
+  },
+  {
+    "id": "eu-source-9d42f500f167a5b5",
+    "name": "Schluchsee Wintermarkt",
+    "type": "Markt",
+    "date": "2026-12-28 bis 2026-12-30",
+    "start": "2026-12-28",
+    "end": "2026-12-30",
+    "country": "Deutschland",
+    "city": "Schluchsee",
+    "postcode": "79859",
+    "source": "https://fyndling.de/e/9239024a6909c42c",
+    "venue": "Kirchplatz",
+    "website": "https://christkindlmaerkte.com/deutschland/baden-wuerttemberg/schluchsee/schluchsee-wintermarkt/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/baden-wuerttemberg/schluchsee/schluchsee-wintermarkt/"
+    ],
+    "lat": 47.8179647,
+    "lng": 8.1777868
+  },
+  {
+    "id": "eu-source-511e36d53f880b6c",
+    "name": "Wintermarkt mit Kunsthandwerkermarkt",
+    "type": "Markt",
+    "date": "2026-12-29 bis 2027-01-02",
+    "start": "2026-12-29",
+    "end": "2027-01-02",
+    "country": "Deutschland",
+    "city": "Zinnowitz",
+    "postcode": "17454",
+    "source": "https://fyndling.de/e/588af1387024ae6f",
+    "venue": "Konzertmuschel, Strandpromenade 11 / Seebrückenvorplatz",
+    "website": "https://christkindlmaerkte.com/deutschland/mecklenburg-vorpommern/zinnowitz/wintermarkt-zinnowitz/",
+    "websites": [
+      "https://christkindlmaerkte.com/deutschland/mecklenburg-vorpommern/zinnowitz/wintermarkt-zinnowitz/"
+    ],
+    "lat": 54.0813388,
+    "lng": 13.9154429
   },
   {
     "id": "eu-source-c7d1168796418379",
