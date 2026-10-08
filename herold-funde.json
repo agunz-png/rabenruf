@@ -60,6 +60,18 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
+    "id": "mittelalterkalender-22d6dba3f391a190",
+    "name": "Tage des Mittelalters",
+    "type": "Markt",
+    "date": "2026-10-17 bis 2026-10-18",
+    "start": "2026-10-17",
+    "end": "2026-10-18",
+    "country": "Deutschland",
+    "city": "Dischingen-Katzenstein",
+    "postcode": "89561",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
+  },
+  {
     "id": "mittelalterkalender-e1300f9113172d29",
     "name": "Adventszauber",
     "type": "Markt",
@@ -1764,18 +1776,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-685b77346ce489fa",
-    "name": "Mysterland",
-    "type": "Markt",
-    "date": "2027-04-23 bis 2027-04-25",
-    "start": "2027-04-23",
-    "end": "2027-04-25",
-    "country": "Deutschland",
-    "city": "Legden",
-    "postcode": "48739",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-c8035b905f873b9f",
     "name": "ANNO 1195",
     "type": "Markt",
@@ -2146,6 +2146,78 @@
     "city": "Hölstein",
     "postcode": "4434",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltertermine-in-europa.php"
+  },
+  {
+    "id": "eu-source-adc74694563b481a",
+    "name": "Halloween Spectacle médiéval Winterthur",
+    "type": "Markt",
+    "date": "2026-10-09 bis 2026-10-11",
+    "start": "2026-10-09",
+    "end": "2026-10-11",
+    "country": "Schweiz",
+    "city": "Winterthur",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/halloween-mittelalterspektakel-winterthur-2026/"
+  },
+  {
+    "id": "eu-source-37e2e630a79e5348",
+    "name": "Marché médiéval de Bremgarten",
+    "type": "Markt",
+    "date": "2026-10-23 bis 2026-10-25",
+    "start": "2026-10-23",
+    "end": "2026-10-25",
+    "country": "Schweiz",
+    "city": "Bremgarten",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-bremgarten-2026/"
+  },
+  {
+    "id": "eu-source-7e0ea9fead34f7bd",
+    "name": "Spectacle médiéval d'Halloween à Zurich",
+    "type": "Markt",
+    "date": "2026-10-30 bis 2026-11-01",
+    "start": "2026-10-30",
+    "end": "2026-11-01",
+    "country": "Schweiz",
+    "city": "Zürich",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/halloween-mittelalterspektakel-zuerich-2026/"
+  },
+  {
+    "id": "eu-source-bfe13e1365e120d0",
+    "name": "Marché de Noël médiéval du château de Laufen",
+    "type": "Markt",
+    "date": "2026-11-20 bis 2026-11-22",
+    "start": "2026-11-20",
+    "end": "2026-11-22",
+    "country": "Schweiz",
+    "city": "Schaffhausen",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelalter-weihnachtsmarkt-schloss-laufen-2026/"
+  },
+  {
+    "id": "eu-source-ebf200ba963d27ba",
+    "name": "Marché de Noël Médiéval de Ribeauvillé",
+    "type": "Markt",
+    "date": "2026-12-05 bis 2026-12-13",
+    "start": "2026-12-05",
+    "end": "2026-12-13",
+    "country": "Frankreich",
+    "city": "Ribeauvillé",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/ribeauville-marche-noel-medieval-2026/"
+  },
+  {
+    "id": "eu-source-d23363e2a21e77da",
+    "name": "Marché médiéval d'Enter",
+    "type": "Markt",
+    "date": "2027-06-19 bis 2027-06-20",
+    "start": "2027-06-19",
+    "end": "2027-06-20",
+    "country": "Schweiz",
+    "city": "Derendingen",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-enter-2026/"
   },
   {
     "id": "eu-source-29deb7f636c0c00b",
@@ -3356,25 +3428,6 @@
     ],
     "lat": 53.9621329,
     "lng": -1.0112458
-  },
-  {
-    "id": "eu-source-e86e1180068270c9",
-    "name": "Tag des Mittelalters",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Dischingen",
-    "postcode": "89561",
-    "source": "https://fyndling.de/e/d188b494d8d1d73d",
-    "venue": "Burg Katzenstein",
-    "website": "http://www.burgkatzenstein.de",
-    "websites": [
-      "http://www.burgkatzenstein.de"
-    ],
-    "lat": 48.7006114,
-    "lng": 10.4025651
   },
   {
     "id": "eu-source-05d7a1e48f3c052a",
@@ -8701,6 +8754,25 @@
     ],
     "lat": 52.1583,
     "lng": 11.2047
+  },
+  {
+    "id": "eu-source-9b0212c8bfe5a59d",
+    "name": "Mysterland Markt",
+    "type": "Markt",
+    "date": "2027-04-23 bis 2027-04-25",
+    "start": "2027-04-23",
+    "end": "2027-04-25",
+    "country": "Deutschland",
+    "city": "Legden",
+    "postcode": "48739",
+    "source": "https://fyndling.de/e/a1e32fc2756a182e",
+    "venue": "Dorf Münsterland",
+    "website": "http://www.mysterland.de/",
+    "websites": [
+      "http://www.mysterland.de/"
+    ],
+    "lat": 52.0459949,
+    "lng": 7.1005455
   },
   {
     "id": "eu-source-68ecc3dec49b7051",
