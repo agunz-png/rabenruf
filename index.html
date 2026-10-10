@@ -812,6 +812,18 @@ textarea.contactField{min-height:150px;resize:vertical;}
 .eventFlyer img{display:block;width:100%;max-height:520px;object-fit:contain;border-radius:10px;}
 .eventFlyer a{display:block;color:inherit;}
 .eventFlyer figcaption{padding:8px 2px 0;color:var(--muted);font-size:13px;}
+.weatherPanel h3{margin:0 0 7px;color:var(--gold);}
+.weatherLoading{color:var(--muted);font-size:13px;}
+.weatherDays{display:grid;gap:8px;margin-top:10px;}
+.weatherDay{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:10px 11px;border:1px solid #49372a;border-radius:12px;background:#17120e;}
+.weatherDayName{font-weight:700;color:var(--text);}
+.weatherCondition{font-size:12px;color:var(--muted);margin-top:3px;}
+.weatherValues{text-align:right;white-space:nowrap;font-size:13px;}
+.weatherValues strong{color:var(--gold2);}
+.weatherAttribution{font-size:11px;color:#a99e92;margin-top:10px;}
+.weatherAttribution a{color:var(--gold2);}
+.weatherMessage{font-size:13px;color:var(--muted);line-height:1.5;}
+
 .honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
 </style>
 
@@ -5701,6 +5713,93 @@ function renderEventList(list){
 
    ========================================= */
 
+
+const OPEN_METEO_FORECAST_DAYS = 16;
+
+function weatherCodeInfo(code){
+  const table={0:["☀️","Klar"],1:["🌤️","Überwiegend klar"],2:["⛅","Teilweise bewölkt"],3:["☁️","Bedeckt"],45:["🌫️","Nebel"],48:["🌫️","Nebel mit Reif"],51:["🌦️","Leichter Nieselregen"],53:["🌦️","Nieselregen"],55:["🌧️","Starker Nieselregen"],56:["🌧️","Gefrierender Nieselregen"],57:["🌧️","Starker gefrierender Nieselregen"],61:["🌦️","Leichter Regen"],63:["🌧️","Regen"],65:["🌧️","Starker Regen"],66:["🌧️","Gefrierender Regen"],67:["🌧️","Starker gefrierender Regen"],71:["🌨️","Leichter Schneefall"],73:["❄️","Schneefall"],75:["❄️","Starker Schneefall"],77:["🌨️","Schneegriesel"],80:["🌦️","Regenschauer"],81:["🌧️","Regenschauer"],82:["⛈️","Starke Regenschauer"],85:["🌨️","Schneeschauer"],86:["❄️","Starke Schneeschauer"],95:["⛈️","Gewitter"],96:["⛈️","Gewitter mit Hagel"],99:["⛈️","Starkes Gewitter mit Hagel"]};
+  return table[Number(code)]||["🌡️","Wetter"];
+}
+
+function weatherCountryCode(country){
+  const key=String(country||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ß/g,"ss").toLowerCase().replace(/[^a-z]/g,"");
+  const codes={schweiz:"CH",switzerland:"CH",ch:"CH",deutschland:"DE",germany:"DE",de:"DE",osterreich:"AT",austria:"AT",at:"AT",frankreich:"FR",france:"FR",fr:"FR",italien:"IT",italy:"IT",it:"IT",spanien:"ES",spain:"ES",es:"ES",grossbritannien:"GB",vereinigteskonigreich:"GB",unitedkingdom:"GB",england:"GB",gb:"GB",uk:"GB",niederlande:"NL",netherlands:"NL",holland:"NL",nl:"NL",belgien:"BE",belgium:"BE",be:"BE",luxemburg:"LU",luxembourg:"LU",lu:"LU",polen:"PL",poland:"PL",pl:"PL",tschechien:"CZ",czechia:"CZ",czechrepublic:"CZ",cz:"CZ",danemark:"DK",denmark:"DK",dk:"DK",schweden:"SE",sweden:"SE",se:"SE",norwegen:"NO",norway:"NO",no:"NO",finnland:"FI",finland:"FI",fi:"FI",irland:"IE",ireland:"IE",ie:"IE",portugal:"PT",pt:"PT",ungarn:"HU",hungary:"HU",hu:"HU",kroatien:"HR",croatia:"HR",hr:"HR",slowenien:"SI",slovenia:"SI",si:"SI",slowakei:"SK",slovakia:"SK",sk:"SK",rumanien:"RO",romania:"RO",ro:"RO",bulgarien:"BG",bulgaria:"BG",bg:"BG",griechenland:"GR",greece:"GR",gr:"GR",estland:"EE",estonia:"EE",ee:"EE",lettland:"LV",latvia:"LV",lv:"LV",litauen:"LT",lithuania:"LT",lt:"LT"};
+  return codes[key]||"";
+}
+
+function weatherDate(value){
+  const text=String(value||"");
+  let m=text.match(/\b(\d{4})-(\d{2})-(\d{2})\b/);
+  if(m)return `${m[1]}-${m[2]}-${m[3]}`;
+  m=text.match(/\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b/);
+  return m?`${m[3]}-${m[2].padStart(2,"0")}-${m[1].padStart(2,"0")}`:"";
+}
+
+function weatherEventRange(event){
+  const found=String(event.date||"").match(/\d{4}-\d{2}-\d{2}|\d{1,2}\.\d{1,2}\.\d{4}/g)||[];
+  const start=weatherDate(event.start)||weatherDate(found[0]);
+  const end=weatherDate(event.end)||weatherDate(found[1])||start;
+  return start&&end?{start,end}:null;
+}
+
+async function resolveWeatherCoordinates(event){
+  const lat=Number(event.lat),lng=Number(event.lng);
+  if(Number.isFinite(lat)&&Number.isFinite(lng)&&Math.abs(lat)>0.01&&Math.abs(lng)>0.01&&Math.abs(lat)<=90&&Math.abs(lng)<=180)return{lat,lng,approximate:false};
+  const city=String(event.city||"").trim();
+  if(!city)throw new Error("Für diesen Termin ist kein Ort hinterlegt.");
+  const cacheKey="rabenruf-weather-geocode:"+city.toLowerCase()+":"+String(event.country||"").toLowerCase();
+  try{const c=JSON.parse(localStorage.getItem(cacheKey)||"null");if(c&&Date.now()-c.savedAt<2592000000&&Number.isFinite(c.lat)&&Number.isFinite(c.lng))return{lat:c.lat,lng:c.lng,approximate:true};}catch{}
+  const queries=[city.replace(/\b\d{4,6}\b/g," ").replace(/\s+/g," ").trim(),city.split(",")[0].trim(),city.split("/")[0].trim()].filter((v,i,a)=>v&&a.indexOf(v)===i);
+  const code=weatherCountryCode(event.country);
+  for(const q of queries){
+    const response=await fetch("https://geocoding-api.open-meteo.com/v1/search?name="+encodeURIComponent(q)+"&count=10&language=de&format=json");
+    if(!response.ok)continue;
+    const payload=await response.json(),results=Array.isArray(payload.results)?payload.results:[];
+    if(!results.length)continue;
+    const place=results.find(x=>code&&String(x.country_code||"").toUpperCase()===code)||(results.length===1?results[0]:null);
+    if(!place||!Number.isFinite(Number(place.latitude))||!Number.isFinite(Number(place.longitude)))continue;
+    const coords={lat:Number(place.latitude),lng:Number(place.longitude)};
+    try{localStorage.setItem(cacheKey,JSON.stringify({...coords,savedAt:Date.now()}));}catch{}
+    return{...coords,approximate:true};
+  }
+  throw new Error("Der Veranstaltungsort konnte nicht eindeutig gefunden werden.");
+}
+
+function formatWeatherDate(iso){
+  return new Intl.DateTimeFormat("de-CH",{weekday:"short",day:"2-digit",month:"2-digit"}).format(new Date(iso+"T12:00:00"));
+}
+
+async function loadEventWeather(event){
+  const panel=document.getElementById("eventWeather");
+  if(!panel||panel.dataset.eventId!==String(event.id))return;
+  const range=weatherEventRange(event);
+  if(!range){panel.innerHTML='<h3>🌦️ Wetter am Veranstaltungsort</h3><p class="weatherMessage">Für diesen Termin fehlen gültige Datumsangaben.</p>';return;}
+  try{
+    const coords=await resolveWeatherCoordinates(event),current=document.getElementById("eventWeather");
+    if(!current||current.dataset.eventId!==String(event.id))return;
+    const url="https://api.open-meteo.com/v1/forecast?latitude="+encodeURIComponent(coords.lat)+"&longitude="+encodeURIComponent(coords.lng)+"&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&temperature_unit=celsius&wind_speed_unit=kmh&timezone=auto&forecast_days="+OPEN_METEO_FORECAST_DAYS;
+    const response=await fetch(url,{cache:"no-store"});
+    if(!response.ok)throw new Error("Die Wetterdaten sind gerade nicht erreichbar.");
+    const daily=(await response.json()).daily;
+    if(!daily||!Array.isArray(daily.time)||!daily.time.length)throw new Error("Für diesen Ort ist derzeit keine Wetterprognose verfügbar.");
+    const available=daily.time.map((date,index)=>({date,index})).filter(x=>x.date>=range.start&&x.date<=range.end);
+    const last=daily.time[daily.time.length-1],place=String(event.city||event.country||"dem Veranstaltungsort");
+    const attribution='<div class="weatherAttribution">Quelle: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> · Ortsprognose, kann sich ändern'+(coords.approximate?' · Ort aus Ortsangabe ermittelt':'')+'</div>';
+    if(range.end<daily.time[0]){current.innerHTML='<h3>🌦️ Wetter am Veranstaltungsort</h3><p class="weatherMessage">Die Veranstaltung liegt bereits zurück; eine aktuelle Wetterprognose gibt es dafür nicht.</p>'+attribution;return;}
+    if(!available.length){current.innerHTML='<h3>🌦️ Wetter am Veranstaltungsort</h3><p class="weatherMessage">Für '+escapeHTML(place)+' gibt es noch keine Tagesprognose für diesen Termin. Sie erscheint näher am Veranstaltungsdatum, sobald der Tag innerhalb der nächsten '+OPEN_METEO_FORECAST_DAYS+' Tage liegt.</p>'+attribution;return;}
+    const rows=available.map(({date,index})=>{
+      const[iconText,condition]=weatherCodeInfo(daily.weather_code?.[index]),high=Number(daily.temperature_2m_max?.[index]),low=Number(daily.temperature_2m_min?.[index]),rain=Number(daily.precipitation_probability_max?.[index]),wind=Number(daily.wind_speed_10m_max?.[index]);
+      const temp=Number.isFinite(high)&&Number.isFinite(low)?`<strong>${Math.round(high)}°</strong> / ${Math.round(low)}°C`:"Temperatur –",rainText=Number.isFinite(rain)?` · Regen ${Math.round(rain)}%`:"",windText=Number.isFinite(wind)?` · Wind ${Math.round(wind)} km/h`:"";
+      return `<div class="weatherDay"><div><div class="weatherDayName">${formatWeatherDate(date)}</div><div class="weatherCondition">${iconText} ${condition}</div></div><div class="weatherValues">${temp}<div class="weatherCondition">${rainText}${windText}</div></div></div>`;
+    }).join("");
+    const note=range.end>last?'<p class="weatherMessage">Weitere Veranstaltungstage erscheinen in der Prognose, sobald sie näher rücken.</p>':"";
+    current.innerHTML='<h3>🌦️ Wetter am Veranstaltungsort</h3>'+rows+note+attribution;
+  }catch(error){
+    const current=document.getElementById("eventWeather");
+    if(current&&current.dataset.eventId===String(event.id))current.innerHTML='<h3>🌦️ Wetter am Veranstaltungsort</h3><p class="weatherMessage">'+escapeHTML(error.message||"Die Wetterprognose konnte nicht geladen werden.")+'</p>';
+  }
+}
+
 function openEvent(id){
 
   const event =
@@ -5790,6 +5889,11 @@ function openEvent(id){
       </p>
 
     </div>
+
+    <section id="eventWeather" class="card weatherPanel" data-event-id="${escapeHTML(String(event.id))}" aria-live="polite">
+      <h3>🌦️ Wetter am Veranstaltungsort</h3>
+      <p class="weatherLoading">Wetterprognose wird geladen …</p>
+    </section>
 
     <div class="card detailPlace">
 
@@ -5905,6 +6009,8 @@ function openEvent(id){
   `;
 
   show("detail");
+
+  loadEventWeather(event);
 
 }
 
