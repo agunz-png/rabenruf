@@ -1,5 +1,335 @@
 [
   {
+    "id": "de-18",
+    "name": "Historisches Stadtfest zu Meersburg",
+    "date": "11.10. 2026",
+    "city": "Bad Neustadt an der Saale",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-11",
+    "end": "2026-10-11"
+  },
+  {
+    "id": "de-19",
+    "name": "Glanz der Ritterzeit – Mittelaltermarkt Lautlingen",
+    "date": "09.10. – 11.10. 2026",
+    "city": "Albstadt",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-09",
+    "end": "2026-10-11"
+  },
+  {
+    "id": "de-20",
+    "name": "Großer Mittelaltermarkt mit Ritterturnier",
+    "date": "09.10. – 11.10. 2026",
+    "city": "Düsseldorf-Eller",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-09",
+    "end": "2026-10-11"
+  },
+  {
+    "id": "de-21",
+    "name": "Historisches Quartier zum 372. Weimarer Zwiebelmarkt",
+    "date": "11.10. 2026",
+    "city": "Weimar",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-11",
+    "end": "2026-10-11"
+  },
+  {
+    "id": "de-22",
+    "name": "Herbstfest & Die große Schlacht",
+    "date": "10.10. – 11.10. 2026",
+    "city": "Osterburken",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-10",
+    "end": "2026-10-11"
+  },
+  {
+    "id": "de-23",
+    "name": "Mittelalterlicher Markt in Korbach",
+    "date": "11.10.2026",
+    "city": "Korbach",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-11",
+    "end": "2026-10-11"
+  },
+  {
+    "id": "de-24",
+    "name": "Mittelaltermarkt Schloss Heusenstamm",
+    "date": "10.10. – 11.10. 2026",
+    "city": "Heusenstamm",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-10",
+    "end": "2026-10-11"
+  },
+  {
+    "id": "de-25",
+    "name": "Fantasy- & Mittelaltermarkt Hemhofen",
+    "date": "10.10. – 11.10. 2026",
+    "city": "Hemhofen",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-10",
+    "end": "2026-10-11"
+  },
+  {
+    "id": "de-26",
+    "name": "Mittelalterlicher Wollmarkt",
+    "date": "10.10. – 11.10. 2026",
+    "city": "Beeskow",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-10",
+    "end": "2026-10-11"
+  },
+  {
+    "id": "de-27",
+    "name": "Lebendige Burg auf der Ehrenburg",
+    "date": "11.10. 2026",
+    "city": "Brodenbach",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-11",
+    "end": "2026-10-11"
+  },
+  {
+    "id": "de-28",
+    "name": "Mittelalter zum Katharinenmarkt in Steinau an der Straße",
+    "date": "15.10. – 18.10.2026",
+    "city": "Steinau an der Straße",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-15",
+    "end": "2026-10-18"
+  },
+  {
+    "id": "de-29",
+    "name": "Ritteressen im Wasserschloss Westerburg",
+    "date": "16.10. 2026",
+    "city": "Westerburg",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-16",
+    "end": "2026-10-16"
+  },
+  {
+    "id": "de-30",
+    "name": "Mittelalterspektakel zu Feuchtwangen",
+    "date": "16.10. – 18.10.2026",
+    "city": "Feuchtwagen",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-16",
+    "end": "2026-10-18"
+  },
+  {
+    "id": "de-31",
+    "name": "Mittelalter zum Katharinenmarkt",
+    "date": "16.10. – 18.10.2026",
+    "city": "Steinau an der Straße",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-16",
+    "end": "2026-10-18"
+  },
+  {
+    "id": "de-32",
+    "name": "Historischer Markt zu Bremen",
+    "date": "16.10. – 01.11. 2026",
+    "city": "Bremen",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-16",
+    "end": "2026-11-01"
+  },
+  {
+    "id": "de-33",
+    "name": "Mittelalterliches Markttreiben zum Herbstmarkt",
+    "date": "17.10. – 18.10. 2026",
+    "city": "Dischingen-Katzenstein",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-17",
+    "end": "2026-10-18"
+  },
+  {
+    "id": "de-34",
+    "name": "Historica Festival",
+    "date": "17.10. – 18.10. 2026",
+    "city": "Kassel",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-17",
+    "end": "2026-10-18"
+  },
+  {
+    "id": "de-35",
+    "name": "Düsterherbst – wo Mittelalter auf Gothic trifft",
+    "date": "17.10. – 18.10. 2026",
+    "city": "Meißen",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-17",
+    "end": "2026-10-18"
+  },
+  {
+    "id": "de-36",
+    "name": "Mittelalter-Markttage der Villa Castorpe",
+    "date": "17.10. – 18.10. 2026",
+    "city": "Castrop-Rauxel",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-17",
+    "end": "2026-10-18"
+  },
+  {
+    "id": "de-37",
+    "name": "Herbst- und Mittelaltermarkt Freudenberg",
+    "date": "17.10. – 18.10.2026",
+    "city": "Freudenberg",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-17",
+    "end": "2026-10-18"
+  },
+  {
+    "id": "de-38",
+    "name": "Listopàd – Mittelalterlicher Herbstmarkt",
+    "date": "18.10.2026",
+    "city": "Neustrelitz",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-18",
+    "end": "2026-10-18"
+  },
+  {
+    "id": "de-39",
+    "name": "Lebendige Burg auf der Ehrenburg",
+    "date": "18.10. 2026",
+    "city": "Brodenbach",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-18",
+    "end": "2026-10-18"
+  },
+  {
+    "id": "de-40",
+    "name": "Historische Hansefest in Wesel",
+    "date": "23.10. – 25.10. 2026",
+    "city": "Wesel",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-23",
+    "end": "2026-10-25"
+  },
+  {
+    "id": "de-41",
+    "name": "Halloweenfest",
+    "date": "23.10. – 25.10. 2026",
+    "city": "Haar",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-23",
+    "end": "2026-10-25"
+  },
+  {
+    "id": "de-42",
+    "name": "Halloween auf Burg Satzvey",
+    "date": "24.10. 2026",
+    "city": "Mechernich-Satzvey",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-24",
+    "end": "2026-10-24"
+  },
+  {
+    "id": "de-43",
+    "name": "Der kuriose mittelalterliche Jahrmarkt",
+    "date": "24.10.-25.10. 2026",
+    "city": "Busdorf",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-24",
+    "end": "2026-10-25"
+  },
+  {
+    "id": "de-44",
+    "name": "Lebendige Burg auf der Ehrenburg",
+    "date": "25.10. 2026",
+    "city": "Brodenbach",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-25",
+    "end": "2026-10-25"
+  },
+  {
+    "id": "de-45",
+    "name": "Halloween auf Burg Satzvey",
+    "date": "31.10. 2026",
+    "city": "Mechernich-Satzvey",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-31",
+    "end": "2026-10-31"
+  },
+  {
+    "id": "de-46",
+    "name": "ANNO Halloween Samhain",
+    "date": "30.10. – 01.11. 2026",
+    "city": "Delbrück-Schöning",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-30",
+    "end": "2026-11-01"
+  },
+  {
+    "id": "de-47",
+    "name": "Martinsmarkt und Mittelaltermarkt",
+    "date": "06.11. – 08.11. 2026",
+    "city": "Dieburg",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-11-06",
+    "end": "2026-11-08"
+  },
+  {
+    "id": "de-48",
+    "name": "Historischer Martinsmarkt",
+    "date": "06.11. – 08.11. 2026",
+    "city": "Oberursel (Taunus)",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-11-06",
+    "end": "2026-11-08"
+  },
+  {
+    "id": "de-49",
+    "name": "Schweriner Martensmarkt",
+    "date": "06.11. – 08.11. 2026",
+    "city": "Schwerin. Mecklenburg-Vorpommern",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-11-06",
+    "end": "2026-11-08"
+  },
+  {
+    "id": "de-50",
+    "name": "Mittelaltermarkt und Kunsthandwerk",
+    "date": "07.11. – 08.11. 2026",
+    "city": "Mosbach",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-11-07",
+    "end": "2026-11-08"
+  },
+  {
     "id": "mittelalterkalender-fbfc942ed62279d9",
     "name": "9. Mëttelaltermoart in Remich",
     "type": "Markt",
@@ -573,18 +903,6 @@
     "country": "Deutschland",
     "city": "Recklinghausen",
     "postcode": "45661",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-b6f405a916bce62d",
-    "name": "Bal Renaissance - Danse Medievale",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-10",
-    "start": "2026-10-10",
-    "end": "2026-10-10",
-    "country": "Deutschland",
-    "city": "Bonn",
-    "postcode": "53119",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -3010,22 +3328,6 @@
     "lng": -2.4441081
   },
   {
-    "id": "eu-source-9228d765f2bf4832",
-    "name": "TEXTUR 2026 - «Romane und Romanzen»",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-10",
-    "start": "2026-10-10",
-    "end": "2026-10-10",
-    "country": "Schweiz",
-    "city": "Sonstiges",
-    "postcode": "",
-    "source": "https://fyndling.de/e/496adc91df0cb347",
-    "website": "https://textur-festival.ch",
-    "websites": [
-      "https://textur-festival.ch"
-    ]
-  },
-  {
     "id": "eu-source-baab6cc7acaf5b6f",
     "name": "Krone Ritterturnier Schloss Rosenburg - 2. WE",
     "type": "Markt",
@@ -3080,24 +3382,6 @@
     "lng": 0.4885
   },
   {
-    "id": "eu-source-7a16807d7b856e93",
-    "name": "Mytholon Hoffest",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-10",
-    "start": "2026-10-10",
-    "end": "2026-10-10",
-    "country": "Deutschland",
-    "city": "Leipzig",
-    "postcode": "",
-    "source": "https://fyndling.de/e/ab47537d3b3b0f63",
-    "website": "https://mytholon.com/5vents/index.php",
-    "websites": [
-      "https://mytholon.com/5vents/index.php"
-    ],
-    "lat": 51.3406321,
-    "lng": 12.3747329
-  },
-  {
     "id": "eu-source-c4740d479ec4da0a",
     "name": "Residenzmarkt",
     "type": "Markt",
@@ -3133,20 +3417,6 @@
     ],
     "lat": 39.6036596,
     "lng": -8.4150492
-  },
-  {
-    "id": "eu-source-e8feb23af566ad73",
-    "name": "Finales Turney zu Rümligen Gewertet",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-10",
-    "start": "2026-10-10",
-    "end": "2026-10-10",
-    "country": "Schweiz",
-    "city": "Rümligen BE",
-    "postcode": "3128",
-    "source": "https://fyndling.de/e/df165c6a39120041",
-    "lat": 46.8307674,
-    "lng": 7.4960993
   },
   {
     "id": "eu-source-a87c67aa76e43594",
@@ -10978,20 +11248,6 @@
     ],
     "lat": 50.8346655,
     "lng": 12.921897
-  },
-  {
-    "id": "bi-buhurt-ee43ca8dd83c1892",
-    "name": "V. Veszprém Medieval Day 2026",
-    "type": "Buhurt",
-    "date": "2026-10-10",
-    "start": "2026-10-10",
-    "end": "2026-10-10",
-    "country": "Ungarn",
-    "city": "Veszprém",
-    "postcode": "",
-    "lat": 0.0,
-    "lng": 0.0,
-    "source": "https://www.buhurtinternational.com/tournament/v.-veszpr%C3%A9m-medieval-day"
   },
   {
     "id": "bi-buhurt-77e661fe1ef46de3",
