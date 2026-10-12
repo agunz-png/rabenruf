@@ -1,105 +1,5 @@
 [
   {
-    "id": "de-18",
-    "name": "Historisches Stadtfest zu Meersburg",
-    "date": "11.10. 2026",
-    "city": "Bad Neustadt an der Saale",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-11",
-    "end": "2026-10-11"
-  },
-  {
-    "id": "de-19",
-    "name": "Glanz der Ritterzeit – Mittelaltermarkt Lautlingen",
-    "date": "09.10. – 11.10. 2026",
-    "city": "Albstadt",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-09",
-    "end": "2026-10-11"
-  },
-  {
-    "id": "de-20",
-    "name": "Großer Mittelaltermarkt mit Ritterturnier",
-    "date": "09.10. – 11.10. 2026",
-    "city": "Düsseldorf-Eller",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-09",
-    "end": "2026-10-11"
-  },
-  {
-    "id": "de-21",
-    "name": "Historisches Quartier zum 372. Weimarer Zwiebelmarkt",
-    "date": "11.10. 2026",
-    "city": "Weimar",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-11",
-    "end": "2026-10-11"
-  },
-  {
-    "id": "de-22",
-    "name": "Herbstfest & Die große Schlacht",
-    "date": "10.10. – 11.10. 2026",
-    "city": "Osterburken",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-10",
-    "end": "2026-10-11"
-  },
-  {
-    "id": "de-23",
-    "name": "Mittelalterlicher Markt in Korbach",
-    "date": "11.10.2026",
-    "city": "Korbach",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-11",
-    "end": "2026-10-11"
-  },
-  {
-    "id": "de-24",
-    "name": "Mittelaltermarkt Schloss Heusenstamm",
-    "date": "10.10. – 11.10. 2026",
-    "city": "Heusenstamm",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-10",
-    "end": "2026-10-11"
-  },
-  {
-    "id": "de-25",
-    "name": "Fantasy- & Mittelaltermarkt Hemhofen",
-    "date": "10.10. – 11.10. 2026",
-    "city": "Hemhofen",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-10",
-    "end": "2026-10-11"
-  },
-  {
-    "id": "de-26",
-    "name": "Mittelalterlicher Wollmarkt",
-    "date": "10.10. – 11.10. 2026",
-    "city": "Beeskow",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-10",
-    "end": "2026-10-11"
-  },
-  {
-    "id": "de-27",
-    "name": "Lebendige Burg auf der Ehrenburg",
-    "date": "11.10. 2026",
-    "city": "Brodenbach",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-11",
-    "end": "2026-10-11"
-  },
-  {
     "id": "de-28",
     "name": "Mittelalter zum Katharinenmarkt in Steinau an der Straße",
     "date": "15.10. – 18.10.2026",
@@ -354,18 +254,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltermaerkte-europa.php"
   },
   {
-    "id": "mittelalterkalender-504b57831743bdc4",
-    "name": "1. Wikingerfest Ebensee",
-    "type": "Markt",
-    "date": "2026-10-09 bis 2026-10-11",
-    "start": "2026-10-09",
-    "end": "2026-10-11",
-    "country": "Österreich",
-    "city": "Ebensee am Traunsee",
-    "postcode": "4802",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltermaerkte-europa.php"
-  },
-  {
     "id": "mittelalterkalender-9a520b9c75db9ad9",
     "name": "Halloween Fantasy- und Mittelalterspektakel",
     "type": "Markt",
@@ -376,18 +264,6 @@
     "city": "Zürich",
     "postcode": "8005",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltermaerkte-europa.php"
-  },
-  {
-    "id": "mittelalterkalender-17d9b5eef7f2d85c",
-    "name": "Glanz der Ritterzeit",
-    "type": "Markt",
-    "date": "2026-10-09 bis 2026-10-11",
-    "start": "2026-10-09",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Albstadt",
-    "postcode": "72459",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
     "id": "mittelalterkalender-22d6dba3f391a190",
@@ -486,30 +362,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-a3e4c9302cd740a0",
-    "name": "Salzburg Histories",
-    "type": "Markt",
-    "date": "2026-10-09 bis 2026-10-11",
-    "start": "2026-10-09",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Bad Neustadt an der Saale",
-    "postcode": "97616",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-bc2c2ba9a884f4a2",
-    "name": "Fantasy- & Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Hemhofen",
-    "postcode": "91334",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-28cc775ddb20afd6",
     "name": "Mittelaltermarkt zu Feuchtwangen",
     "type": "Markt",
@@ -591,6 +443,18 @@
     "country": "Deutschland",
     "city": "Traunreut",
     "postcode": "83301",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-5c3493547d638daa",
+    "name": "Mittelalterlicher Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2026-12-04 bis 2026-12-06",
+    "start": "2026-12-04",
+    "end": "2026-12-06",
+    "country": "Deutschland",
+    "city": "Kaufbeuren,Afraberg",
+    "postcode": "87600",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -687,30 +551,6 @@
     "country": "Deutschland",
     "city": "Bremen",
     "postcode": "28199",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-bb8a29ce61f40f2e",
-    "name": "Historischer mittelalterlicher Markt",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Korbach",
-    "postcode": "34497",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-c312bea390d98414",
-    "name": "Traditioneller Weilburger Residenzmarkt",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Weilburg",
-    "postcode": "35781",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -891,18 +731,6 @@
     "country": "Deutschland",
     "city": "Brome",
     "postcode": "38465",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-348eb1ead6c21bef",
-    "name": "Mittelaltermarkt an der Drachenbrücke",
-    "type": "Markt",
-    "date": "2026-10-09 bis 2026-10-11",
-    "start": "2026-10-09",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Recklinghausen",
-    "postcode": "45661",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -1182,18 +1010,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-babbe1d86452a1f5",
-    "name": "Lebendige Burg",
-    "type": "Markt",
-    "date": "2026-10-11 bis 2026-10-11",
-    "start": "2026-10-11",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Brodenbach",
-    "postcode": "56332",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-799b8cd0863006f9",
     "name": "Lebendige Burg",
     "type": "Markt",
@@ -1374,30 +1190,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-182002bf7bc7538f",
-    "name": "6. Burgfest zu Füßen der Burg Wettin",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Wettin-Löbejün",
-    "postcode": "06198",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-dadd9e16beebb11b",
-    "name": "Tierisches Burgfest",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Falkenstein/Harz",
-    "postcode": "06543",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-34c77255234d6d41",
     "name": "Mittelalterliche Tafeley",
     "type": "Markt",
@@ -1491,18 +1283,6 @@
     "country": "Deutschland",
     "city": "Lütjenburg",
     "postcode": "24321",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-522a08a7f4f7a032",
-    "name": "Historisches Quartier zum Zwiebelmarkt",
-    "type": "Markt",
-    "date": "2026-10-09 bis 2026-10-11",
-    "start": "2026-10-09",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Weimar",
-    "postcode": "99423",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -2466,18 +2246,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltertermine-in-europa.php"
   },
   {
-    "id": "eu-source-adc74694563b481a",
-    "name": "Halloween Spectacle médiéval Winterthur",
-    "type": "Markt",
-    "date": "2026-10-09 bis 2026-10-11",
-    "start": "2026-10-09",
-    "end": "2026-10-11",
-    "country": "Schweiz",
-    "city": "Winterthur",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/halloween-mittelalterspektakel-winterthur-2026/"
-  },
-  {
     "id": "eu-source-37e2e630a79e5348",
     "name": "Marché médiéval de Bremgarten",
     "type": "Markt",
@@ -3256,278 +3024,22 @@
     "lng": 3.1558
   },
   {
-    "id": "eu-source-fb5e81a7623e3b02",
-    "name": "Rendez-vous de l’histoire",
+    "id": "eu-source-f2f7c60f421b4bdd",
+    "name": "Mercado Medieval de Lucena",
     "type": "Markt",
-    "date": "2026-10-07 bis 2026-10-11",
-    "start": "2026-10-07",
-    "end": "2026-10-11",
-    "country": "Frankreich",
-    "city": "Blois",
-    "postcode": "41000",
-    "source": "https://fyndling.de/e/002129d8294c3d6d",
-    "website": "https://rdv-histoire.com/",
-    "websites": [
-      "https://rdv-histoire.com/"
-    ],
-    "lat": 47.5860921,
-    "lng": 1.3359475
-  },
-  {
-    "id": "eu-source-37f9970e9c21dd35",
-    "name": "Mercado Medieval de Sagunto",
-    "type": "Markt",
-    "date": "2026-10-08 bis 2026-10-11",
+    "date": "2026-10-08 bis 2026-10-12",
     "start": "2026-10-08",
-    "end": "2026-10-11",
+    "end": "2026-10-12",
     "country": "Spanien",
-    "city": "Sagunto",
+    "city": "Lucena",
     "postcode": "",
-    "source": "https://fyndling.de/e/9f191114019bf4f2",
-    "website": "https://demercadosmedievales.info/mercadomedieval/medieval-de-sagunto-2026/",
+    "source": "https://fyndling.de/e/b0e2ee1748813ca1",
+    "website": "https://demercadosmedievales.info/mercadomedieval/medieval-de-lucena/",
     "websites": [
-      "https://demercadosmedievales.info/mercadomedieval/medieval-de-sagunto-2026/"
+      "https://demercadosmedievales.info/mercadomedieval/medieval-de-lucena/"
     ],
-    "lat": 39.6792916,
-    "lng": -0.2786451
-  },
-  {
-    "id": "eu-source-e97779bf35efdc5d",
-    "name": "373. Zwiebelmarkt",
-    "type": "Markt",
-    "date": "2026-10-09 bis 2026-10-11",
-    "start": "2026-10-09",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Weimar",
-    "postcode": "99423",
-    "source": "https://fyndling.de/e/8f37cd6f645ef960",
-    "website": "https://www.suendenfrei.tv/home",
-    "websites": [
-      "https://www.suendenfrei.tv/home"
-    ],
-    "lat": 50.9829805,
-    "lng": 11.3235477
-  },
-  {
-    "id": "eu-source-0ff095df302e78a8",
-    "name": "Entorïa",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Frankreich",
-    "city": "Plénée-jugon 22640",
-    "postcode": "22640",
-    "source": "https://fyndling.de/e/08ca24ce72517b73",
-    "website": "https://www.facebook.com/events/s/entoria-les-marcheurs-dautomne/1382739493213324/",
-    "websites": [
-      "https://www.facebook.com/events/s/entoria-les-marcheurs-dautomne/1382739493213324/"
-    ],
-    "lat": 48.3625605,
-    "lng": -2.4441081
-  },
-  {
-    "id": "eu-source-baab6cc7acaf5b6f",
-    "name": "Krone Ritterturnier Schloss Rosenburg - 2. WE",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Österreich",
-    "city": "Rosenburg-Mold",
-    "postcode": "3573",
-    "source": "https://fyndling.de/e/62548c8339a7b8f6",
-    "website": "https://vehi-mercatus.de/marktkalender/krone-ritterturnier-rosenburg-2-2026/",
-    "websites": [
-      "https://vehi-mercatus.de/marktkalender/krone-ritterturnier-rosenburg-2-2026/"
-    ],
-    "lat": 48.6277,
-    "lng": 15.591
-  },
-  {
-    "id": "eu-source-9986c4a5abe8ffc7",
-    "name": "29. Burgfest",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Burg Falkenstein",
-    "postcode": "06543",
-    "source": "https://fyndling.de/e/6314a743a3505c27",
-    "website": "https://www.suendenfrei.tv/terminuebersicht",
-    "websites": [
-      "https://www.suendenfrei.tv/terminuebersicht"
-    ],
-    "lat": 51.6818619,
-    "lng": 11.2651445
-  },
-  {
-    "id": "eu-source-c47deefdae888593",
-    "name": "Battle of Hastings Reenactment",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Vereinigtes Königreich",
-    "city": "Battle",
-    "postcode": "TN33 0AD",
-    "source": "https://fyndling.de/e/87169185e3851c4e",
-    "website": "https://vehi-mercatus.co.uk/market-calendar/battle-of-hastings-reenactment-2026/",
-    "websites": [
-      "https://vehi-mercatus.co.uk/market-calendar/battle-of-hastings-reenactment-2026/"
-    ],
-    "lat": 50.9176,
-    "lng": 0.4885
-  },
-  {
-    "id": "eu-source-c4740d479ec4da0a",
-    "name": "Residenzmarkt",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Weilburg",
-    "postcode": "35781",
-    "source": "https://fyndling.de/e/dbf39685b344c520",
-    "venue": "Barck Schlossplatz",
-    "website": "http://www.prohistory.de",
-    "websites": [
-      "http://www.prohistory.de"
-    ],
-    "lat": 50.483378,
-    "lng": 8.2763163
-  },
-  {
-    "id": "eu-source-d2bf58dee8b7f50c",
-    "name": "Dias Templários de Tomar",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Portugal",
-    "city": "Tomar",
-    "postcode": "",
-    "source": "https://fyndling.de/e/dd13e3b3f0c4faa2",
-    "website": "https://feirasmedievais.pt/",
-    "websites": [
-      "https://feirasmedievais.pt/"
-    ],
-    "lat": 39.6036596,
-    "lng": -8.4150492
-  },
-  {
-    "id": "eu-source-a87c67aa76e43594",
-    "name": "Fête médiévale du Figuier",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Frankreich",
-    "city": "Verfeil",
-    "postcode": "31590",
-    "source": "https://fyndling.de/e/e167a9b7568e28c0",
-    "website": "https://www.mairie-verfeil31.fr/manifestations/14eme-fete-medievale-du-figuier-a-verfeil/",
-    "websites": [
-      "https://www.mairie-verfeil31.fr/manifestations/14eme-fete-medievale-du-figuier-a-verfeil/"
-    ],
-    "lat": 43.6567099,
-    "lng": 1.661467
-  },
-  {
-    "id": "eu-source-ff131e1c8cf5ab1e",
-    "name": "Mercado Medieval en Sant Marti Sarroca",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Spanien",
-    "city": "Sant Martí Sarroca",
-    "postcode": "",
-    "source": "https://fyndling.de/e/e962203e4b5a58a0",
-    "website": "https://demercadosmedievales.info/mercadomedieval/medieval-en-sant-marti-sarroca/",
-    "websites": [
-      "https://demercadosmedievales.info/mercadomedieval/medieval-en-sant-marti-sarroca/"
-    ],
-    "lat": 41.3854214,
-    "lng": 1.6108158
-  },
-  {
-    "id": "eu-source-d6bf3e818345709b",
-    "name": "Living History: Hvergelmir und OWL Karolinger",
-    "type": "Markt",
-    "date": "2026-10-10 bis 2026-10-11",
-    "start": "2026-10-10",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Oerlinghausen",
-    "postcode": "33813",
-    "source": "https://fyndling.de/e/f858df81b638142d",
-    "venue": "Freilichtmuseum Oerlinghausen",
-    "info": "Living History - Geschichte hautnah erleben An vielen Wochenenden wird das AFM-Gelände lebendig! Living-History-Darsteller aus verschiedenen Epochen lassen vergangene Zeiten auf eindrucksvolle Weise wiederaufleben. Ob alltägliches Leben, traditionelles Handwerk oder historische…",
-    "website": "https://www.afm-oerlinghausen.de/veranstaltungen/living-history-hvergelmir-und-owl-karolinger/",
-    "websites": [
-      "https://www.afm-oerlinghausen.de/veranstaltungen/living-history-hvergelmir-und-owl-karolinger/"
-    ],
-    "lat": 51.9644,
-    "lng": 8.6669
-  },
-  {
-    "id": "eu-source-edfb7ec6b4f23f65",
-    "name": "Battle of Hastings",
-    "type": "Markt",
-    "date": "2026-10-11 bis 2026-10-11",
-    "start": "2026-10-11",
-    "end": "2026-10-11",
-    "country": "Vereinigtes Königreich",
-    "city": "1066 Battle of Hastings",
-    "postcode": "",
-    "source": "https://fyndling.de/e/388c0cb054abd2a8",
-    "website": "https://www.historic-uk.com/LivingHistory/EventsDiary/",
-    "websites": [
-      "https://www.historic-uk.com/LivingHistory/EventsDiary/"
-    ],
-    "lat": 50.909523,
-    "lng": 0.4797789
-  },
-  {
-    "id": "eu-source-d0f1e0cd2b20631d",
-    "name": "Campeonato de Arco e Besta Históricos de Tomar",
-    "type": "Markt",
-    "date": "2026-10-11 bis 2026-10-11",
-    "start": "2026-10-11",
-    "end": "2026-10-11",
-    "country": "Portugal",
-    "city": "Tomar",
-    "postcode": "",
-    "source": "https://fyndling.de/e/678989de2a8ef621",
-    "website": "https://feirasmedievais.pt/",
-    "websites": [
-      "https://feirasmedievais.pt/"
-    ],
-    "lat": 39.6036596,
-    "lng": -8.4150492
-  },
-  {
-    "id": "eu-source-326263857754e65c",
-    "name": "Weben im Museum - farbige Verbindungen",
-    "type": "Markt",
-    "date": "2026-10-11 bis 2026-10-11",
-    "start": "2026-10-11",
-    "end": "2026-10-11",
-    "country": "Deutschland",
-    "city": "Detmold",
-    "postcode": "32760",
-    "source": "https://fyndling.de/e/d52565244a043b0d",
-    "venue": "LWL-Freilichtmuseum Detmold",
-    "website": "https://www.lwl-freilichtmuseum-detmold.de/de/programm/veranstaltungskalender/?id=1103190",
-    "websites": [
-      "https://www.lwl-freilichtmuseum-detmold.de/de/programm/veranstaltungskalender/?id=1103190"
-    ],
-    "lat": 51.9364,
-    "lng": 8.8738
+    "lat": 37.4091334,
+    "lng": -4.4860128
   },
   {
     "id": "eu-source-7188a88a3abf0f6a",
