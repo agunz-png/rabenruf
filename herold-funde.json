@@ -566,6 +566,18 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
+    "id": "mittelalterkalender-8d9f230f78b3aacd",
+    "name": "Historica - Festival der lebendigen Geschichte",
+    "type": "Markt",
+    "date": "2026-10-17 bis 2026-10-18",
+    "start": "2026-10-17",
+    "end": "2026-10-18",
+    "country": "Deutschland",
+    "city": "Kassel",
+    "postcode": "34121",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
+  },
+  {
     "id": "mittelalterkalender-4adab3cf02bfebcf",
     "name": "Mittelalter- & Fantasy-Martinsmarkt",
     "type": "Markt",
@@ -611,6 +623,30 @@
     "country": "Deutschland",
     "city": "Ronneburg",
     "postcode": "63549",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-402549a539deb57a",
+    "name": "Silvester Feste Feiern",
+    "type": "Markt",
+    "date": "2026-12-30 bis 2027-01-01",
+    "start": "2026-12-30",
+    "end": "2027-01-01",
+    "country": "Deutschland",
+    "city": "Burg Breuberg",
+    "postcode": "64747",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-978373e949335ed4",
+    "name": "Herbst-Thing",
+    "type": "Markt",
+    "date": "2026-10-16 bis 2026-10-17",
+    "start": "2026-10-16",
+    "end": "2026-10-17",
+    "country": "Deutschland",
+    "city": "Eldetal-Wredenhagen",
+    "postcode": "17209",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -1286,6 +1322,18 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
+    "id": "mittelalterkalender-edbbafa481454f14",
+    "name": "Die Tore öffnen sich im Schloss Weitersroda",
+    "type": "Markt",
+    "date": "2026-10-17 bis 2026-10-17",
+    "start": "2026-10-17",
+    "end": "2026-10-17",
+    "country": "Deutschland",
+    "city": "Hildburghausen",
+    "postcode": "98646",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
+  },
+  {
     "id": "mittelalterkalender-cb11834ffe4ba6b3",
     "name": "Halloween-Grusel",
     "type": "Markt",
@@ -1598,8 +1646,8 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-0adca20ff3c173c8",
-    "name": "Mythan",
+    "id": "mittelalterkalender-d34a8001541490b1",
+    "name": "Mythan - Mythologie- und Handwerkermarkt",
     "type": "Markt",
     "date": "2027-07-03 bis 2027-07-04",
     "start": "2027-07-03",
@@ -3024,24 +3072,6 @@
     "lng": 3.1558
   },
   {
-    "id": "eu-source-f2f7c60f421b4bdd",
-    "name": "Mercado Medieval de Lucena",
-    "type": "Markt",
-    "date": "2026-10-08 bis 2026-10-12",
-    "start": "2026-10-08",
-    "end": "2026-10-12",
-    "country": "Spanien",
-    "city": "Lucena",
-    "postcode": "",
-    "source": "https://fyndling.de/e/b0e2ee1748813ca1",
-    "website": "https://demercadosmedievales.info/mercadomedieval/medieval-de-lucena/",
-    "websites": [
-      "https://demercadosmedievales.info/mercadomedieval/medieval-de-lucena/"
-    ],
-    "lat": 37.4091334,
-    "lng": -4.4860128
-  },
-  {
     "id": "eu-source-7188a88a3abf0f6a",
     "name": "Schiffe der Vorzeit: Ein Nachbau-Experiment - Teil 2",
     "type": "Markt",
@@ -3092,19 +3122,6 @@
     ],
     "lat": 40.0440004,
     "lng": -3.9008053
-  },
-  {
-    "id": "eu-source-f0eb97729feb4eed",
-    "name": "Herbst-Thing",
-    "type": "Markt",
-    "date": "2026-10-16 bis 2026-10-17",
-    "start": "2026-10-16",
-    "end": "2026-10-17",
-    "country": "Deutschland",
-    "city": "Eldetal OT Wredenhagen",
-    "postcode": "17209",
-    "source": "https://fyndling.de/e/a87b80dda1e08e02",
-    "venue": "Burg am Burgberg 16"
   },
   {
     "id": "eu-source-82fdabd9e85f2265",
@@ -8143,6 +8160,25 @@
     "lng": 13.0571716
   },
   {
+    "id": "eu-source-38c6b48cd77beaea",
+    "name": "18. Mittelalterlicher Frühjahrsmarkt",
+    "type": "Markt",
+    "date": "2027-03-20 bis 2027-03-21",
+    "start": "2027-03-20",
+    "end": "2027-03-21",
+    "country": "Deutschland",
+    "city": "Gernsheim",
+    "postcode": "64579",
+    "source": "https://fyndling.de/e/469f9fd2d09652c3",
+    "venue": "Schäferwiese - Wormser Straße - Fischerfest",
+    "website": "https://www.heimdalls-erben.de/",
+    "websites": [
+      "https://www.heimdalls-erben.de/"
+    ],
+    "lat": 49.7533849,
+    "lng": 8.5131635
+  },
+  {
     "id": "eu-source-c2c652bb57d572ce",
     "name": "Ritterturnier und Mittelaltermarkt",
     "type": "Markt",
@@ -9741,6 +9777,25 @@
     "lng": 6.2361574166667
   },
   {
+    "id": "eu-source-0946aeac9908c275",
+    "name": "Mythan",
+    "type": "Markt",
+    "date": "2027-07-03 bis 2027-07-04",
+    "start": "2027-07-03",
+    "end": "2027-07-04",
+    "country": "Deutschland",
+    "city": "Woltersdorf",
+    "postcode": "15569",
+    "source": "https://fyndling.de/e/05cc15f1193340d2",
+    "venue": "Maiwiese Woltersdorf",
+    "website": "http://www.mythan.de/",
+    "websites": [
+      "http://www.mythan.de/"
+    ],
+    "lat": 52.4491978,
+    "lng": 13.7614472
+  },
+  {
     "id": "eu-source-aaefdaa90fa8a438",
     "name": "8.Lager für Lagernde Bauma ZH",
     "type": "Markt",
@@ -9906,6 +9961,25 @@
     "lng": 7.5623579
   },
   {
+    "id": "eu-source-cb02f4eb29520988",
+    "name": "29. Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-07-17 bis 2027-07-18",
+    "start": "2027-07-17",
+    "end": "2027-07-18",
+    "country": "Deutschland",
+    "city": "Nohfelden",
+    "postcode": "66625",
+    "source": "https://fyndling.de/e/7466ca6b9503c4b6",
+    "venue": "Ortskern - rund um die Burg",
+    "website": "https://www.facebook.com/MiMa.Nohfelden",
+    "websites": [
+      "https://www.facebook.com/MiMa.Nohfelden"
+    ],
+    "lat": 49.5808818,
+    "lng": 7.1010958
+  },
+  {
     "id": "eu-source-c198af1bd04d3b09",
     "name": "Festival Médiéval de Saint Renan",
     "type": "Markt",
@@ -9996,6 +10070,25 @@
     ],
     "lat": 49.9218201,
     "lng": 7.7508971
+  },
+  {
+    "id": "eu-source-ecc0ef90a51c0ec0",
+    "name": "1. Mittelalterfest",
+    "type": "Markt",
+    "date": "2027-07-23 bis 2027-07-25",
+    "start": "2027-07-23",
+    "end": "2027-07-25",
+    "country": "Österreich",
+    "city": "Wieselburg",
+    "postcode": "3250",
+    "source": "https://fyndling.de/e/a2bb3b4c62c92f11",
+    "venue": "Manker Str. 5 Volksfestgelände",
+    "website": "https://www.facebook.com/events/1419487540316293/1419487546982959/?acontext=%7B%22event_action_history%22%3A",
+    "websites": [
+      "https://www.facebook.com/events/1419487540316293/1419487546982959/?acontext=%7B%22event_action_history%22%3A"
+    ],
+    "lat": 48.1173603,
+    "lng": 15.123969
   },
   {
     "id": "eu-source-326c108a5b7ea86b",
@@ -10214,6 +10307,43 @@
     "lng": 14.0841511
   },
   {
+    "id": "eu-source-9dccbfba7ee3b691",
+    "name": "Gigantisches Mittelalterliches Spektakel",
+    "type": "Markt",
+    "date": "2027-08-21 bis 2027-08-22",
+    "start": "2027-08-21",
+    "end": "2027-08-22",
+    "country": "Deutschland",
+    "city": "Gernsheim",
+    "postcode": "64579",
+    "source": "https://fyndling.de/e/2e99d92b391ea196",
+    "venue": "Schäferwiese - Wormser Straße - Fischerfest",
+    "website": "https://www.heimdalls-erben.de/",
+    "websites": [
+      "https://www.heimdalls-erben.de/"
+    ],
+    "lat": 49.7533849,
+    "lng": 8.5131635
+  },
+  {
+    "id": "eu-source-6115b1624827e63f",
+    "name": "Mittelalter am Meer",
+    "type": "Markt",
+    "date": "2027-08-26 bis 2027-08-29",
+    "start": "2027-08-26",
+    "end": "2027-08-29",
+    "country": "Deutschland",
+    "city": "Varel Dangast",
+    "postcode": "26316",
+    "source": "https://fyndling.de/e/9193fce611e04751",
+    "website": "https://www.facebook.com/events/2102536143953353",
+    "websites": [
+      "https://www.facebook.com/events/2102536143953353"
+    ],
+    "lat": 53.4095976,
+    "lng": 8.1864618
+  },
+  {
     "id": "eu-source-62090318297c1b93",
     "name": "Mittelaltermarkt",
     "type": "Markt",
@@ -10342,6 +10472,25 @@
     "lng": 12.2642101
   },
   {
+    "id": "eu-source-559d33d47c8c4182",
+    "name": "Festival-Mediaval XVIII",
+    "type": "Markt",
+    "date": "2027-09-10 bis 2027-09-12",
+    "start": "2027-09-10",
+    "end": "2027-09-12",
+    "country": "Deutschland",
+    "city": "Selb",
+    "postcode": "95100",
+    "source": "https://fyndling.de/e/06894fccfdaa503c",
+    "venue": "Goldberg",
+    "website": "https://www.festival-mediaval.de/",
+    "websites": [
+      "https://www.festival-mediaval.de/"
+    ],
+    "lat": 50.1683602,
+    "lng": 12.1087865
+  },
+  {
     "id": "eu-source-a9414ead9cb1fe4a",
     "name": "Médiévales de Bouliac",
     "type": "Markt",
@@ -10447,6 +10596,25 @@
     ],
     "lat": 51.6842624,
     "lng": 6.4262592
+  },
+  {
+    "id": "eu-source-f254d133e0d226e3",
+    "name": "1 Mittelalter Spektakel",
+    "type": "Markt",
+    "date": "2027-09-18 bis 2027-09-19",
+    "start": "2027-09-18",
+    "end": "2027-09-19",
+    "country": "Deutschland",
+    "city": "Obernburg",
+    "postcode": "63785",
+    "source": "https://fyndling.de/e/c90ecb4b8a5a2d5c",
+    "venue": "Messegelände",
+    "website": "https://www.heimdalls-erben.de/",
+    "websites": [
+      "https://www.heimdalls-erben.de/"
+    ],
+    "lat": 49.846874,
+    "lng": 9.1493836
   },
   {
     "id": "eu-source-1cc54c004ef71e30",
@@ -10760,6 +10928,38 @@
     ],
     "lat": 50.8346655,
     "lng": 12.921897
+  },
+  {
+    "id": "eu-source-1d62d9920674d0b4",
+    "name": "1",
+    "type": "Markt",
+    "date": "2027-12-11 bis 2027-12-12",
+    "start": "2027-12-11",
+    "end": "2027-12-12",
+    "country": "Deutschland",
+    "city": "Mittelalterlicher Weihnachtsmarkt",
+    "postcode": "",
+    "source": "https://fyndling.de/e/595256f9d1bf6cd2",
+    "venue": "D-63128 Dietzenbach"
+  },
+  {
+    "id": "eu-source-bef890cd0687966f",
+    "name": "19. Romantischer Mittelalterlicher Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2027-12-18 bis 2027-12-19",
+    "start": "2027-12-18",
+    "end": "2027-12-19",
+    "country": "Deutschland",
+    "city": "Gernsheim",
+    "postcode": "64579",
+    "source": "https://fyndling.de/e/75863b8d77844fb6",
+    "venue": "Schäferwiese - Wormser Straße - Fischerfest",
+    "website": "https://www.heimdalls-erben.de/",
+    "websites": [
+      "https://www.heimdalls-erben.de/"
+    ],
+    "lat": 49.7533849,
+    "lng": 8.5131635
   },
   {
     "id": "bi-buhurt-77e661fe1ef46de3",
