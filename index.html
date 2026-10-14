@@ -4881,7 +4881,7 @@ function checkCalendarEventUpdates(){
   const favoriteIds=new Set(getFavorites().map(id=>String(id)));
   const snapshots=readCalendarEventStorage(EVENT_SNAPSHOT_KEY,{});
   const notices=readCalendarEventStorage(EVENT_NOTICE_KEY,[]);
-  const pending=Array.isArray(notices)?notices:[];
+  const pending=Array.isArray(notices)?notices.filter(notice=>favoriteIds.has(String(notice?.id))):[];
   for(const id of Object.keys(snapshots)){
     if(!favoriteIds.has(id)) delete snapshots[id];
   }
