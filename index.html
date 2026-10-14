@@ -6623,75 +6623,45 @@ function applyCalendarFilters(){
    ========================================= */
 
 function showFavorites(){
-
   show("favorites");
 
-  const ids =
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
-    getFavorites();
+  const savedIds = getFavorites();
+  const expiredIds = new Set();
+  const list = events
+    .filter(event => {
+      if(!savedIds.includes(event.id)) return false;
+      const end = dateObject(event.end || event.start);
+      if(Number.isNaN(end.getTime())) return true;
+      if(end < today){
+        expiredIds.add(event.id);
+        return false;
+      }
+      return true;
+    })
+    .sort((a,b) => dateObject(a.start) - dateObject(b.start));
 
-  const list =
-
-    events
-
-      .filter(
-
-        event =>
-
-        ids.includes(event.id)
-
-      )
-
-      .sort(
-
-        (a,b) =>
-
-        dateObject(a.start)
-
-        -
-
-        dateObject(b.start)
-
-      );
-
-  if(!list.length){
-
-    byId("favoriteList")
-
-    .innerHTML = `
-
-      <div class="empty">
-
-        ❤️
-
-        <br><br>
-
-        Noch keine Favoriten.
-
-        <br><br>
-
-        Tippe bei einer Veranstaltung
-
-        auf das Herz.
-
-      </div>
-
-    `;
-
-    return;
-
+  if(expiredIds.size){
+    localStorage.setItem(
+      "rabenrufFavorites",
+      JSON.stringify(savedIds.filter(id => !expiredIds.has(id)))
+    );
   }
 
-  byId("favoriteList")
+  if(!list.length){
+    byId("favoriteList").innerHTML = `
+      <div class="empty">
+        ❤️<br><br>
+        Noch keine aktuellen Favoriten.<br><br>
+        Vergangene Veranstaltungen werden automatisch entfernt.
+      </div>
+    `;
+    return;
+  }
 
-  .innerHTML =
-
-    list
-
-      .map(eventCard)
-
-      .join("");
-
+  byId("favoriteList").innerHTML = list.map(eventCard).join("");
 }
 let heroldFunde = [];
 
