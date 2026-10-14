@@ -852,7 +852,7 @@ textarea.contactField{min-height:150px;resize:vertical;}
 
 </header>
 
-<div id="favoriteEventUpdateNotice" class="hidden" role="status" aria-live="polite"></div>
+<div id="calendarEventUpdateNotice" class="hidden" role="status" aria-live="polite"></div>
 
 <main id="home">
 
@@ -4830,15 +4830,15 @@ async function ladeHeroldEntscheide(){
   return Array.isArray(daten) ? daten : [];
 }
 
-const FAVORITE_EVENT_SNAPSHOT_KEY = "rabenrufFavoriteEventSnapshots";
-const FAVORITE_EVENT_NOTICES_KEY = "rabenrufFavoriteEventNotices";
-const FAVORITE_EVENT_TRACKED_FIELDS = {
+const EVENT_SNAPSHOT_KEY = "rabenrufFavoriteEventSnapshots";
+const EVENT_NOTICE_KEY = "rabenrufFavoriteEventNotices";
+const EVENT_TRACKED_FIELDS = {
   name:"Veranstaltung", date:"Datum", start:"Beginn", end:"Ende",
   hours:"Uhrzeit", city:"Ort", country:"Land", venue:"Veranstaltungsort",
   address:"Adresse", organizer:"Veranstalter", website:"Webseite", info:"Beschreibung"
 };
 
-function readFavoriteEventStorage(key, fallback){
+function readCalendarEventStorage(key, fallback){
   try{
     const value=JSON.parse(localStorage.getItem(key) || "null");
     return value && typeof value === "object" ? value : fallback;
@@ -4847,17 +4847,17 @@ function readFavoriteEventStorage(key, fallback){
   }
 }
 
-function renderFavoriteEventUpdateNotice(){
-  const box=byId("favoriteEventUpdateNotice");
+function renderCalendarEventUpdateNotice(){
+  const box=byId("calendarEventUpdateNotice");
   if(!box) return;
-  const notices=readFavoriteEventStorage(FAVORITE_EVENT_NOTICES_KEY,[]);
+  const notices=readCalendarEventStorage(EVENT_NOTICE_KEY,[]);
   if(!Array.isArray(notices) || !notices.length){
     box.classList.add("hidden");
     box.innerHTML="";
     return;
   }
   box.className="card";
-  box.innerHTML='<strong>🔔 Änderungen bei deinen Favoriten</strong>' +
+  box.innerHTML='<strong>🔔 Änderungen bei Kalendereinträgen</strong>' +
     notices.map(notice=>{
       const changes=(Array.isArray(notice.changes)?notice.changes:[]).map(change=>
         '<div class="meta"><b>'+escapeHTML(change.label)+':</b> '+
@@ -4872,32 +4872,28 @@ function renderFavoriteEventUpdateNotice(){
     button.addEventListener("click",()=>openEvent(button.dataset.updatedEvent))
   );
   byId("dismissFavoriteEventUpdates")?.addEventListener("click",()=>{
-    localStorage.setItem(FAVORITE_EVENT_NOTICES_KEY,"[]");
-    renderFavoriteEventUpdateNotice();
+    localStorage.setItem(EVENT_NOTICE_KEY,"[]");
+    renderCalendarEventUpdateNotice();
   });
 }
 
-function checkFavoriteEventUpdates(){
-  const favoriteIds=new Set(getFavorites().map(id=>String(id)));
-  const snapshots=readFavoriteEventStorage(FAVORITE_EVENT_SNAPSHOT_KEY,{});
-  const notices=readFavoriteEventStorage(FAVORITE_EVENT_NOTICES_KEY,[]);
+function checkCalendarEventUpdates(){
+  const snapshots=readCalendarEventStorage(EVENT_SNAPSHOT_KEY,{});
+  const notices=readCalendarEventStorage(EVENT_NOTICE_KEY,[]);
   const pending=Array.isArray(notices)?notices:[];
-  for(const id of Object.keys(snapshots)){
-    if(!favoriteIds.has(id)) delete snapshots[id];
-  }
   for(const event of events){
     const id=String(event.id || "");
-    if(!id || !favoriteIds.has(id)) continue;
+    if(!id) continue;
     const current={};
-    for(const field of Object.keys(FAVORITE_EVENT_TRACKED_FIELDS)){
+    for(const field of Object.keys(EVENT_TRACKED_FIELDS)){
       current[field]=String(event[field] ?? "");
     }
     const previous=snapshots[id];
     if(previous && typeof previous === "object"){
-      const changes=Object.keys(FAVORITE_EVENT_TRACKED_FIELDS)
+      const changes=Object.keys(EVENT_TRACKED_FIELDS)
         .filter(field=>String(previous[field] ?? "")!==current[field])
         .map(field=>({
-          label:FAVORITE_EVENT_TRACKED_FIELDS[field],
+          label:EVENT_TRACKED_FIELDS[field],
           before:String(previous[field] ?? ""),
           after:current[field]
         }));
@@ -4910,9 +4906,9 @@ function checkFavoriteEventUpdates(){
     }
     snapshots[id]=current;
   }
-  localStorage.setItem(FAVORITE_EVENT_SNAPSHOT_KEY,JSON.stringify(snapshots));
-  localStorage.setItem(FAVORITE_EVENT_NOTICES_KEY,JSON.stringify(pending));
-  renderFavoriteEventUpdateNotice();
+  localStorage.setItem(EVENT_SNAPSHOT_KEY,JSON.stringify(snapshots));
+  localStorage.setItem(EVENT_NOTICE_KEY,JSON.stringify(pending));
+  renderCalendarEventUpdateNotice();
 }
 
 async function ladeFreigegebeneEvents(){
@@ -4957,7 +4953,7 @@ async function ladeFreigegebeneEvents(){
     }
     applyFilters();
     renderCalendar();
-    checkFavoriteEventUpdates();
+    checkCalendarEventUpdates();
     renderMapMarkers();
   }catch(fehler){
     console.error("Freigegebene Veranstaltungen konnten nicht geladen werden:", fehler);  }
