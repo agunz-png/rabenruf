@@ -10971,8 +10971,8 @@
     "country": "Vereinigtes Königreich",
     "city": "Rochdale Mayfield Rugby Club",
     "postcode": "",
-    "lat": 0.0,
-    "lng": 0.0,
+    "lat": 0,
+    "lng": 0,
     "source": "https://www.buhurtinternational.com/tournament/castleton-cup"
   },
   {
@@ -10988,5 +10988,82 @@
     "lat": 47.2580585,
     "lng": 10.7745265,
     "source": "https://www.buhurtinternational.com/tournament/alpine-warrior-2027"
+  },
+  {
+    "id": "curated-dk-danehof-2027",
+    "name": "Danehof – mittelalterliches Festival",
+    "type": "Markt",
+    "date": "2027-07-02 bis 2027-07-04",
+    "start": "2027-07-02",
+    "end": "2027-07-04",
+    "country": "Dänemark",
+    "city": "Nyborg",
+    "source": "https://www.visitdenmark.com/denmark/plan-your-trip/danehof-world-class-medieval-festival-in-nyborg-gdk677349"
+  },
+  {
+    "id": "curated-dk-horsens-2027",
+    "name": "Horsens Middelalderfestival",
+    "type": "Markt",
+    "date": "2027-08-27 bis 2027-08-28",
+    "start": "2027-08-27",
+    "end": "2027-08-28",
+    "country": "Dänemark",
+    "city": "Horsens",
+    "source": "https://www.visitdenmark.com/denmark/plan-your-trip/horsens-medieval-festival-horsens-middelalderfestival-gdk757628"
+  },
+  {
+    "id": "curated-dk-ribe-vikingmarket-2027",
+    "name": "International Vikingmarket in Ribe",
+    "type": "Markt",
+    "date": "2027-04-26 bis 2027-05-02",
+    "start": "2027-04-26",
+    "end": "2027-05-02",
+    "country": "Dänemark",
+    "city": "Ribe",
+    "source": "https://www.ribe-byferie.dk/en/experiences/international-vikingmarket-in-ribe/"
+  },
+  {
+    "id": "curated-dk-als-vikingemarked-2027",
+    "name": "Als Vikingemarked",
+    "type": "Markt",
+    "date": "2027-06-19 bis 2027-06-20",
+    "start": "2027-06-19",
+    "end": "2027-06-20",
+    "country": "Dänemark",
+    "city": "Sønderborg",
+    "source": "https://www.visitdenmark.dk/danmark/explore/als-vikingemarked-gdk1117406"
+  },
+  {
+    "id": "curated-no-avaldsnes-vikingfestival-2027",
+    "name": "The Viking Festival at Avaldsnes",
+    "type": "Markt",
+    "date": "2027-06-11 bis 2027-06-13",
+    "start": "2027-06-11",
+    "end": "2027-06-13",
+    "country": "Norwegen",
+    "city": "Avaldsnes",
+    "source": "https://www.historiskeavaldsnes.no/vikingfestivalen/?sprak=3"
+  },
+  {
+    "id": "curated-se-birka-viking-market-2027",
+    "name": "Birka Historical Tattoo Fest & Viking Market",
+    "type": "Markt",
+    "date": "2027-06-03 bis 2027-06-06",
+    "start": "2027-06-03",
+    "end": "2027-06-06",
+    "country": "Schweden",
+    "city": "Björkö (Birka)",
+    "source": "https://www.visitstockholm.com/events/birka-historical-tattoo-fest-viking-market-2027/2027-06-03/"
+  },
+  {
+    "id": "curated-it-mercato-gaite-2027",
+    "name": "Mercato delle Gaite",
+    "type": "Markt",
+    "date": "2027-06-16 bis 2027-06-27",
+    "start": "2027-06-16",
+    "end": "2027-06-27",
+    "country": "Italien",
+    "city": "Bevagna",
+    "source": "https://www.ilmercatodellegaite.it/mercato-delle-gaite-ecco-le-date-degli-eventi-2027/"
   }
 ]
