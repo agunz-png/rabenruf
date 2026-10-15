@@ -794,6 +794,18 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
+    "id": "mittelalterkalender-45c4e1ef906e684d",
+    "name": "Mittelalterliches Gutsfest",
+    "type": "Markt",
+    "date": "2026-10-24 bis 2026-10-25",
+    "start": "2026-10-24",
+    "end": "2026-10-25",
+    "country": "Deutschland",
+    "city": "Köln",
+    "postcode": "51147",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
+  },
+  {
     "id": "mittelalterkalender-e3a7f02150eb1024",
     "name": "ANNO Halloween Samhain",
     "type": "Markt",
@@ -1562,6 +1574,18 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
+    "id": "mittelalterkalender-46899dadb2a15f69",
+    "name": "Mittelalter-Spectaculum zu Lentingen",
+    "type": "Markt",
+    "date": "2027-05-27 bis 2027-05-30",
+    "start": "2027-05-27",
+    "end": "2027-05-30",
+    "country": "Deutschland",
+    "city": "Lenting",
+    "postcode": "85101",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
     "id": "mittelalterkalender-5648707651f28eae",
     "name": "Neuburger Schloßfest",
     "type": "Markt",
@@ -2210,6 +2234,30 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
+    "id": "mittelalterkalender-4aa370de059e0d16",
+    "name": "Wikingersommer - Das Fest 2027",
+    "type": "Markt",
+    "date": "2027-06-19 bis 2027-06-20",
+    "start": "2027-06-19",
+    "end": "2027-06-20",
+    "country": "Deutschland",
+    "city": "Witzwort",
+    "postcode": "25889",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-708339b7f35ba992",
+    "name": "Schaumburgfest",
+    "type": "Markt",
+    "date": "2027-06-11 bis 2027-06-13",
+    "start": "2027-06-11",
+    "end": "2027-06-13",
+    "country": "Deutschland",
+    "city": "Schalkau",
+    "postcode": "96528",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
     "id": "mittelalterkalender-f1f528fe39d9e262",
     "name": "30 Jahre Burgverein",
     "type": "Markt",
@@ -2231,6 +2279,30 @@
     "country": "Deutschland",
     "city": "Georgenthal",
     "postcode": "99887",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-7be8854a1b813689",
+    "name": "5. Mittelalterfest in Ebeleben",
+    "type": "Markt",
+    "date": "2027-07-10 bis 2027-07-11",
+    "start": "2027-07-10",
+    "end": "2027-07-11",
+    "country": "Deutschland",
+    "city": "Ebeleben",
+    "postcode": "99713",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-0f3478c2a2065475",
+    "name": "Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-09-25 bis 2027-09-26",
+    "start": "2027-09-25",
+    "end": "2027-09-26",
+    "country": "Deutschland",
+    "city": "An der Schmücke - Heldrungen",
+    "postcode": "06577",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
@@ -9302,25 +9374,6 @@
     "lng": 10.7116242
   },
   {
-    "id": "eu-source-9c6d213265cc150e",
-    "name": "Mittelalter Spectaculum zu Lenting",
-    "type": "Markt",
-    "date": "2027-05-27 bis 2027-05-30",
-    "start": "2027-05-27",
-    "end": "2027-05-30",
-    "country": "Deutschland",
-    "city": "Lenting",
-    "postcode": "85101",
-    "source": "https://fyndling.de/e/8c213523186034a1",
-    "venue": "Jurafestplatz",
-    "website": "http://www.mittelalterkulturverein.de/",
-    "websites": [
-      "http://www.mittelalterkulturverein.de/"
-    ],
-    "lat": 48.8098438,
-    "lng": 11.4542612
-  },
-  {
     "id": "eu-source-f94ab254e3baf7b4",
     "name": "Sagenmarkt",
     "type": "Markt",
@@ -9614,25 +9667,6 @@
     "lng": 11.2929572
   },
   {
-    "id": "eu-source-4da4d7cddf82be85",
-    "name": "Schaumburgfest",
-    "type": "Markt",
-    "date": "2027-06-11 bis 2027-06-13",
-    "start": "2027-06-11",
-    "end": "2027-06-13",
-    "country": "Deutschland",
-    "city": "Schalkau",
-    "postcode": "96528",
-    "source": "https://fyndling.de/e/cfbf072232b3d30f",
-    "venue": "Burgruine Schaumberg",
-    "website": "https://www.schaumburgverein-schalkau.de/",
-    "websites": [
-      "https://www.schaumburgverein-schalkau.de/"
-    ],
-    "lat": 50.4005228,
-    "lng": 11.0016423
-  },
-  {
     "id": "eu-source-d8176a926afec5a6",
     "name": "Les Médiévales de Francescas",
     "type": "Markt",
@@ -9683,25 +9717,6 @@
     ],
     "lat": 50.2111045,
     "lng": 7.5920333
-  },
-  {
-    "id": "eu-source-837df104a67b3988",
-    "name": "Wikingersommer",
-    "type": "Markt",
-    "date": "2027-06-19 bis 2027-06-20",
-    "start": "2027-06-19",
-    "end": "2027-06-20",
-    "country": "Deutschland",
-    "city": "Witzwort",
-    "postcode": "25889",
-    "source": "https://fyndling.de/e/aa0e83ea9c3a13d8",
-    "venue": "beim roten Haubarg",
-    "website": "https://www.rattenbaecker.de",
-    "websites": [
-      "https://www.rattenbaecker.de"
-    ],
-    "lat": 54.4053658,
-    "lng": 8.9808248
   },
   {
     "id": "eu-source-5813a698f6656fa8",
@@ -10651,25 +10666,6 @@
     "lng": 11.5129742
   },
   {
-    "id": "eu-source-395c1fdf6db9bfb7",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-09-25 bis 2027-09-26",
-    "start": "2027-09-25",
-    "end": "2027-09-26",
-    "country": "Deutschland",
-    "city": "Bad Liebenzell",
-    "postcode": "75378",
-    "source": "https://fyndling.de/e/4b9c0a5aa2c2e86d",
-    "venue": "Kurpark",
-    "website": "https://www.lorraine-medievale.de",
-    "websites": [
-      "https://www.lorraine-medievale.de"
-    ],
-    "lat": 48.7775207,
-    "lng": 8.7221007
-  },
-  {
     "id": "eu-source-39c2dda2743ac8dd",
     "name": "56. Heidelberger Herbst",
     "type": "Markt",
@@ -10971,8 +10967,8 @@
     "country": "Vereinigtes Königreich",
     "city": "Rochdale Mayfield Rugby Club",
     "postcode": "",
-    "lat": 0,
-    "lng": 0,
+    "lat": 0.0,
+    "lng": 0.0,
     "source": "https://www.buhurtinternational.com/tournament/castleton-cup"
   },
   {
@@ -10988,82 +10984,5 @@
     "lat": 47.2580585,
     "lng": 10.7745265,
     "source": "https://www.buhurtinternational.com/tournament/alpine-warrior-2027"
-  },
-  {
-    "id": "curated-dk-danehof-2027",
-    "name": "Danehof – mittelalterliches Festival",
-    "type": "Markt",
-    "date": "2027-07-02 bis 2027-07-04",
-    "start": "2027-07-02",
-    "end": "2027-07-04",
-    "country": "Dänemark",
-    "city": "Nyborg",
-    "source": "https://www.visitdenmark.com/denmark/plan-your-trip/danehof-world-class-medieval-festival-in-nyborg-gdk677349"
-  },
-  {
-    "id": "curated-dk-horsens-2027",
-    "name": "Horsens Middelalderfestival",
-    "type": "Markt",
-    "date": "2027-08-27 bis 2027-08-28",
-    "start": "2027-08-27",
-    "end": "2027-08-28",
-    "country": "Dänemark",
-    "city": "Horsens",
-    "source": "https://www.visitdenmark.com/denmark/plan-your-trip/horsens-medieval-festival-horsens-middelalderfestival-gdk757628"
-  },
-  {
-    "id": "curated-dk-ribe-vikingmarket-2027",
-    "name": "International Vikingmarket in Ribe",
-    "type": "Markt",
-    "date": "2027-04-26 bis 2027-05-02",
-    "start": "2027-04-26",
-    "end": "2027-05-02",
-    "country": "Dänemark",
-    "city": "Ribe",
-    "source": "https://www.ribe-byferie.dk/en/experiences/international-vikingmarket-in-ribe/"
-  },
-  {
-    "id": "curated-dk-als-vikingemarked-2027",
-    "name": "Als Vikingemarked",
-    "type": "Markt",
-    "date": "2027-06-19 bis 2027-06-20",
-    "start": "2027-06-19",
-    "end": "2027-06-20",
-    "country": "Dänemark",
-    "city": "Sønderborg",
-    "source": "https://www.visitdenmark.dk/danmark/explore/als-vikingemarked-gdk1117406"
-  },
-  {
-    "id": "curated-no-avaldsnes-vikingfestival-2027",
-    "name": "The Viking Festival at Avaldsnes",
-    "type": "Markt",
-    "date": "2027-06-11 bis 2027-06-13",
-    "start": "2027-06-11",
-    "end": "2027-06-13",
-    "country": "Norwegen",
-    "city": "Avaldsnes",
-    "source": "https://www.historiskeavaldsnes.no/vikingfestivalen/?sprak=3"
-  },
-  {
-    "id": "curated-se-birka-viking-market-2027",
-    "name": "Birka Historical Tattoo Fest & Viking Market",
-    "type": "Markt",
-    "date": "2027-06-03 bis 2027-06-06",
-    "start": "2027-06-03",
-    "end": "2027-06-06",
-    "country": "Schweden",
-    "city": "Björkö (Birka)",
-    "source": "https://www.visitstockholm.com/events/birka-historical-tattoo-fest-viking-market-2027/2027-06-03/"
-  },
-  {
-    "id": "curated-it-mercato-gaite-2027",
-    "name": "Mercato delle Gaite",
-    "type": "Markt",
-    "date": "2027-06-16 bis 2027-06-27",
-    "start": "2027-06-16",
-    "end": "2027-06-27",
-    "country": "Italien",
-    "city": "Bevagna",
-    "source": "https://www.ilmercatodellegaite.it/mercato-delle-gaite-ecco-le-date-degli-eventi-2027/"
   }
 ]
