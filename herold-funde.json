@@ -201,9 +201,9 @@
   },
   {
     "id": "de-48",
-    "name": "Historischer Martinsmarkt",
+    "name": "Schweriner Martensmarkt",
     "date": "06.11. – 08.11. 2026",
-    "city": "Oberursel (Taunus)",
+    "city": "Schwerin. Mecklenburg-Vorpommern",
     "country": "Deutschland",
     "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
     "start": "2026-11-06",
@@ -211,12 +211,12 @@
   },
   {
     "id": "de-49",
-    "name": "Schweriner Martensmarkt",
-    "date": "06.11. – 08.11. 2026",
-    "city": "Schwerin. Mecklenburg-Vorpommern",
+    "name": "Historischer Martinsmarkt",
+    "date": "07.11. – 08.11. 2026",
+    "city": "Oberursel (Taunus)",
     "country": "Deutschland",
     "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-11-06",
+    "start": "2026-11-07",
     "end": "2026-11-08"
   },
   {
@@ -298,7 +298,7 @@
     "end": "2026-12-30",
     "country": "Deutschland",
     "city": "Pforzheim",
-    "postcode": "75175",
+    "postcode": "75172",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -1418,6 +1418,18 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
+    "id": "mittelalterkalender-67a1c73c899d5e5b",
+    "name": "Mittelaltermarkt Bad Wildbad",
+    "type": "Markt",
+    "date": "2027-05-08 bis 2027-05-09",
+    "start": "2027-05-08",
+    "end": "2027-05-09",
+    "country": "Deutschland",
+    "city": "Bad Wildbad",
+    "postcode": "75323",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
     "id": "mittelalterkalender-41d218eafea25a46",
     "name": "Burgkurzweyl zu Cullesheym",
     "type": "Markt",
@@ -2234,6 +2246,18 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
+    "id": "mittelalterkalender-ad740181c5efaa9b",
+    "name": "9. Mittelalterlicher Markt zu Munkbrarup",
+    "type": "Markt",
+    "date": "2027-05-16 bis 2027-05-17",
+    "start": "2027-05-16",
+    "end": "2027-05-17",
+    "country": "Deutschland",
+    "city": "Munkbrarup",
+    "postcode": "24960",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
     "id": "mittelalterkalender-4aa370de059e0d16",
     "name": "Wikingersommer - Das Fest 2027",
     "type": "Markt",
@@ -2520,8 +2544,8 @@
     "website": "http://www.turnei.ch"
   },
   {
-    "id": "eu-source-601ac540387b0831",
-    "name": "Viking Rock Festival mit Mittelaltermarkt",
+    "id": "eu-source-22c8979909dca943",
+    "name": "Mittelaltermarkt Allmendingen",
     "type": "Markt",
     "date": "2027-05-21 bis 2027-05-23",
     "start": "2027-05-21",
@@ -2598,11 +2622,11 @@
     "website": "http://www.habermaert.ch"
   },
   {
-    "id": "eu-source-b3988deb40e93fc3",
+    "id": "eu-source-026cfd9f4d795477",
     "name": "19. Historischer Handwerker und Warenmarkt zu Huttwil",
     "type": "Markt",
-    "date": "2027-07-02 bis 2027-07-04",
-    "start": "2027-07-02",
+    "date": "2027-07-03 bis 2027-07-04",
+    "start": "2027-07-03",
     "end": "2027-07-04",
     "country": "Schweiz",
     "city": "Huttwil",
@@ -9302,6 +9326,20 @@
     "lng": 8.7364118
   },
   {
+    "id": "eu-source-7bbaeb7706fd17df",
+    "name": "Viking Rock Festival mit Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-05-21 bis 2027-05-23",
+    "start": "2027-05-21",
+    "end": "2027-05-23",
+    "country": "Schweiz",
+    "city": "Neues OK",
+    "postcode": "",
+    "source": "https://fyndling.de/e/bd4d0e5aca09a15c",
+    "lat": 47.5436323,
+    "lng": 8.5752465
+  },
+  {
     "id": "eu-source-decc98093570f97e",
     "name": "Médiévales du Moulin de Peysoup",
     "type": "Markt",
@@ -9790,6 +9828,24 @@
     ],
     "lat": 49.469030472222,
     "lng": 6.2361574166667
+  },
+  {
+    "id": "eu-source-165bd4c9560ca788",
+    "name": "19. Historischer Handwerker und Warenmarkt zu Huttwil",
+    "type": "Markt",
+    "date": "2027-07-02 bis 2027-07-04",
+    "start": "2027-07-02",
+    "end": "2027-07-04",
+    "country": "Schweiz",
+    "city": "Huttwil",
+    "postcode": "4953",
+    "source": "https://fyndling.de/e/4bb1fc2efa647c51",
+    "website": "http://www.spycher-handwerk.ch",
+    "websites": [
+      "http://www.spycher-handwerk.ch"
+    ],
+    "lat": 47.1028689,
+    "lng": 7.8262768
   },
   {
     "id": "eu-source-0946aeac9908c275",
