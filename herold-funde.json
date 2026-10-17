@@ -10,16 +10,6 @@
     "end": "2026-10-18"
   },
   {
-    "id": "de-29",
-    "name": "Ritteressen im Wasserschloss Westerburg",
-    "date": "16.10. 2026",
-    "city": "Westerburg",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-16",
-    "end": "2026-10-16"
-  },
-  {
     "id": "de-30",
     "name": "Mittelalterspektakel zu Feuchtwangen",
     "date": "16.10. – 18.10.2026",
@@ -1235,18 +1225,6 @@
     "country": "Deutschland",
     "city": "Trebsen",
     "postcode": "04687",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-34c77255234d6d41",
-    "name": "Mittelalterliche Tafeley",
-    "type": "Markt",
-    "date": "2026-10-16 bis 2026-10-16",
-    "start": "2026-10-16",
-    "end": "2026-10-16",
-    "country": "Deutschland",
-    "city": "Huy-Dedeleben",
-    "postcode": "38836",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -3166,21 +3144,6 @@
     ],
     "lat": 47.5847,
     "lng": 3.1558
-  },
-  {
-    "id": "eu-source-7188a88a3abf0f6a",
-    "name": "Schiffe der Vorzeit: Ein Nachbau-Experiment - Teil 2",
-    "type": "Markt",
-    "date": "2026-10-12 bis 2026-10-16",
-    "start": "2026-10-12",
-    "end": "2026-10-16",
-    "country": "Deutschland",
-    "city": "Uhldingen-Mühlhofen",
-    "postcode": "88690",
-    "source": "https://fyndling.de/e/6ffebc827e3ff6dc",
-    "venue": "Pfahlbauten Unteruhldingen",
-    "lat": 47.7667,
-    "lng": 9.2484
   },
   {
     "id": "eu-source-0f59ce6a26beebca",
