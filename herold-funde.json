@@ -628,18 +628,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-978373e949335ed4",
-    "name": "Herbst-Thing",
-    "type": "Markt",
-    "date": "2026-10-16 bis 2026-10-17",
-    "start": "2026-10-16",
-    "end": "2026-10-17",
-    "country": "Deutschland",
-    "city": "Eldetal-Wredenhagen",
-    "postcode": "17209",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-c31458fe8419ee4f",
     "name": "Listopàd - Mittelalterlicher Herbstmarkt",
     "type": "Markt",
@@ -1309,18 +1297,6 @@
     "country": "Deutschland",
     "city": "Lütjenburg",
     "postcode": "24321",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-edbbafa481454f14",
-    "name": "Die Tore öffnen sich im Schloss Weitersroda",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-17",
-    "start": "2026-10-17",
-    "end": "2026-10-17",
-    "country": "Deutschland",
-    "city": "Hildburghausen",
-    "postcode": "98646",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -3306,25 +3282,6 @@
     "lng": -0.95282
   },
   {
-    "id": "eu-source-d7e8086f9288d074",
-    "name": "Herbstmarkt auf Schloss Harra",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-17",
-    "start": "2026-10-17",
-    "end": "2026-10-17",
-    "country": "Deutschland",
-    "city": "Harra",
-    "postcode": "07366",
-    "source": "https://fyndling.de/e/e99e9f30000ab188",
-    "venue": "Schloss Harra",
-    "website": "https://www.gemeinde-hohenwarte.de/",
-    "websites": [
-      "https://www.gemeinde-hohenwarte.de/"
-    ],
-    "lat": 50.4195817,
-    "lng": 11.6851825
-  },
-  {
     "id": "eu-source-5d85ed5a9048ca64",
     "name": "Bourse Militaria et antiquités historiques",
     "type": "Markt",
@@ -3373,6 +3330,7 @@
     "postcode": "88605",
     "source": "https://fyndling.de/e/769bb2dfe10ccc03",
     "venue": "Campus Galli",
+    "info": "Beim Gallus-Markt auf dem Campus Galli präsentieren rund 30 regionale Stände Handwerk und Lebensmittel. Zu den angekündigten Mitmachangeboten gehören Apfelsaftpressen, Filzen, Kerzenziehen und das Flechten von Weidenringen. Für diese Mitmachaktionen ist laut Veranstalter keine…",
     "website": "https://www.campus-galli.de/event/gallus-markt-2026/",
     "websites": [
       "https://www.campus-galli.de/event/gallus-markt-2026/"
@@ -3523,7 +3481,7 @@
     "postcode": "50321",
     "source": "https://fyndling.de/e/60829993924e0b27",
     "venue": "Innenstadt (Fußgängerzone)",
-    "info": "Kunsthandwerkermarkt",
+    "info": "Kunsthandwerkermarkt in der Brühler Fußgängerzone: Die Stände verteilen sich unter anderem auf Markt, Rathausvorplatz, Kölnstraße, Uhlstraße und Steinweg. Am Sonntag öffnen zusätzlich die Geschäfte von 13 bis 18 Uhr. Hunde dürfen angeleint mitgebracht werden. Stand der…",
     "website": "https://gaudium.de/bruehl-hubertusmarkt/",
     "websites": [
       "https://gaudium.de/bruehl-hubertusmarkt/"
@@ -3705,6 +3663,7 @@
     "postcode": "30419",
     "source": "https://fyndling.de/e/225efbf2a2fc0d61",
     "venue": "Herrenhäuser Straße 3",
+    "info": "Mehr als 120 Aussteller präsentieren Kunsthandwerk, Wohnideen und Speisen. Die Illumination im Großen Garten ist im Besuch enthalten. Für Kinder sind ein historisches Karussell und Walking-Acts angekündigt. Hunde dürfen nicht auf das Veranstaltungsgelände. Die Haltestelle…",
     "website": "https://christkindlmaerkte.com/deutschland/niedersachsen/hannover/winterzauber-schloss-herrenhausen-in-hannover/",
     "websites": [
       "https://christkindlmaerkte.com/deutschland/niedersachsen/hannover/winterzauber-schloss-herrenhausen-in-hannover/"
@@ -4047,6 +4006,7 @@
     "postcode": "8330",
     "source": "https://fyndling.de/e/15191cfb2d8b40a4",
     "venue": "Dörfl 2",
+    "info": "Die Weihnachtsausstellung auf Schloss Kornberg zeigt die Arbeiten von rund 150 Kunsthandwerkern. Dazu kommen nostalgischer Weihnachtsschmuck, regionale Speisen von der Vulkanland Route 66 und eine Glühweinhütte im Schlossinnenhof. Stand der Quellenprüfung: 17.–18.10.2026.…",
     "website": "https://christkindlmaerkte.com/oesterreich/steiermark/kornberg-bei-riegersburg/weihnachtsausstellung-schloss-kornberg/",
     "websites": [
       "https://christkindlmaerkte.com/oesterreich/steiermark/kornberg-bei-riegersburg/weihnachtsausstellung-schloss-kornberg/"
@@ -4066,6 +4026,7 @@
     "postcode": "96106",
     "source": "https://fyndling.de/e/42f2e3953a65d3ae",
     "venue": "Schloss Eyrichshof, Schlosshof 7",
+    "info": "Über 140 Aussteller bieten Kunsthandwerk und Geschenkideen in den Stallungen, der Orangerie und im Schlosspark. Angekündigt sind außerdem Livemusik, Feuerdarbietungen und ein Kinderprogramm. Abends gehört die Inszenierung „Schloss in Flammen“ zum Programm. Stand der…",
     "website": "https://christkindlmaerkte.com/deutschland/bayern/ebern/winterszeit-schloss-eyrichshof-hassbergen/",
     "websites": [
       "https://christkindlmaerkte.com/deutschland/bayern/ebern/winterszeit-schloss-eyrichshof-hassbergen/"
@@ -4121,6 +4082,7 @@
     "postcode": "24802",
     "source": "https://fyndling.de/e/560df073c8d41712",
     "venue": "Herrenhaus Emkendorf, Gutshof 3",
+    "info": "Auf Gut Emkendorf bieten Aussteller Kunsthandwerk, Dekoration, Schmuck, Kleidung, Pflanzen und Speisen an. An der Kasse ist keine Kartenzahlung möglich. Hunde dürfen angeleint mitgebracht werden. Das Gut verweist für weitere Marktinformationen auf den Veranstalter COLUMNA…",
     "website": "https://christkindlmaerkte.com/deutschland/schleswig-holstein/kleinvollstedt/emkendorfer-adventsmarkt/",
     "websites": [
       "https://christkindlmaerkte.com/deutschland/schleswig-holstein/kleinvollstedt/emkendorfer-adventsmarkt/"
@@ -6503,6 +6465,7 @@
     "postcode": "34369",
     "source": "https://fyndling.de/e/22a32fef1d8a82ae",
     "venue": "Tierpark Sababurg, Sababurg, Hofgeismar",
+    "info": "Der Markt im Tierpark verbindet traditionelle Handwerksstände mit mittelalterlicher Musik. Für 2026 sind Tarranis und Unvermeydbar, eine Kinderzaubershow, Stelzenfiguren und Feuerdarbietungen angekündigt. Die Weihnachtsfeuershow ist am Samstag um 19:30 Uhr und am Sonntag um…",
     "website": "https://www.tierpark-sababurg.de/news-detail/mittelalterlicher-weihnachtsmarkt/",
     "websites": [
       "https://www.tierpark-sababurg.de/news-detail/mittelalterlicher-weihnachtsmarkt/"
