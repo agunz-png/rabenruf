@@ -1,35 +1,5 @@
 [
   {
-    "id": "de-28",
-    "name": "Mittelalter zum Katharinenmarkt in Steinau an der Straße",
-    "date": "15.10. – 18.10.2026",
-    "city": "Steinau an der Straße",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-15",
-    "end": "2026-10-18"
-  },
-  {
-    "id": "de-30",
-    "name": "Mittelalterspektakel zu Feuchtwangen",
-    "date": "16.10. – 18.10.2026",
-    "city": "Feuchtwagen",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-16",
-    "end": "2026-10-18"
-  },
-  {
-    "id": "de-31",
-    "name": "Mittelalter zum Katharinenmarkt",
-    "date": "16.10. – 18.10.2026",
-    "city": "Steinau an der Straße",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-16",
-    "end": "2026-10-18"
-  },
-  {
     "id": "de-32",
     "name": "Historischer Markt zu Bremen",
     "date": "16.10. – 01.11. 2026",
@@ -38,76 +8,6 @@
     "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
     "start": "2026-10-16",
     "end": "2026-11-01"
-  },
-  {
-    "id": "de-33",
-    "name": "Mittelalterliches Markttreiben zum Herbstmarkt",
-    "date": "17.10. – 18.10. 2026",
-    "city": "Dischingen-Katzenstein",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-17",
-    "end": "2026-10-18"
-  },
-  {
-    "id": "de-34",
-    "name": "Historica Festival",
-    "date": "17.10. – 18.10. 2026",
-    "city": "Kassel",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-17",
-    "end": "2026-10-18"
-  },
-  {
-    "id": "de-35",
-    "name": "Düsterherbst – wo Mittelalter auf Gothic trifft",
-    "date": "17.10. – 18.10. 2026",
-    "city": "Meißen",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-17",
-    "end": "2026-10-18"
-  },
-  {
-    "id": "de-36",
-    "name": "Mittelalter-Markttage der Villa Castorpe",
-    "date": "17.10. – 18.10. 2026",
-    "city": "Castrop-Rauxel",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-17",
-    "end": "2026-10-18"
-  },
-  {
-    "id": "de-37",
-    "name": "Herbst- und Mittelaltermarkt Freudenberg",
-    "date": "17.10. – 18.10.2026",
-    "city": "Freudenberg",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-17",
-    "end": "2026-10-18"
-  },
-  {
-    "id": "de-38",
-    "name": "Listopàd – Mittelalterlicher Herbstmarkt",
-    "date": "18.10.2026",
-    "city": "Neustrelitz",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-18",
-    "end": "2026-10-18"
-  },
-  {
-    "id": "de-39",
-    "name": "Lebendige Burg auf der Ehrenburg",
-    "date": "18.10. 2026",
-    "city": "Brodenbach",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-18",
-    "end": "2026-10-18"
   },
   {
     "id": "de-40",
@@ -220,6 +120,96 @@
     "end": "2026-11-08"
   },
   {
+    "id": "de-40",
+    "name": "Historische Hansefest in Wesel",
+    "date": "23.10. – 25.10. 2026",
+    "city": "Wesel",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-23",
+    "end": "2026-10-25"
+  },
+  {
+    "id": "de-41",
+    "name": "Halloweenfest",
+    "date": "23.10. – 25.10. 2026",
+    "city": "Haar",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-23",
+    "end": "2026-10-25"
+  },
+  {
+    "id": "de-42",
+    "name": "Halloween auf Burg Satzvey",
+    "date": "24.10. 2026",
+    "city": "Mechernich-Satzvey",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-24",
+    "end": "2026-10-24"
+  },
+  {
+    "id": "de-43",
+    "name": "Der kuriose mittelalterliche Jahrmarkt",
+    "date": "24.10.-25.10. 2026",
+    "city": "Busdorf",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-24",
+    "end": "2026-10-25"
+  },
+  {
+    "id": "de-44",
+    "name": "Lebendige Burg auf der Ehrenburg",
+    "date": "25.10. 2026",
+    "city": "Brodenbach",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-25",
+    "end": "2026-10-25"
+  },
+  {
+    "id": "de-45",
+    "name": "Halloween auf Burg Satzvey",
+    "date": "31.10. 2026",
+    "city": "Mechernich-Satzvey",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-31",
+    "end": "2026-10-31"
+  },
+  {
+    "id": "de-46",
+    "name": "ANNO Halloween Samhain",
+    "date": "30.10. – 01.11. 2026",
+    "city": "Delbrück-Schöning",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-10-30",
+    "end": "2026-11-01"
+  },
+  {
+    "id": "de-48",
+    "name": "Schweriner Martensmarkt",
+    "date": "06.11. – 08.11. 2026",
+    "city": "Schwerin. Mecklenburg-Vorpommern",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-11-06",
+    "end": "2026-11-08"
+  },
+  {
+    "id": "de-49",
+    "name": "Historischer Martinsmarkt",
+    "date": "07.11. – 08.11. 2026",
+    "city": "Oberursel (Taunus)",
+    "country": "Deutschland",
+    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+    "start": "2026-11-07",
+    "end": "2026-11-08"
+  },
+  {
     "id": "mittelalterkalender-fbfc942ed62279d9",
     "name": "9. Mëttelaltermoart in Remich",
     "type": "Markt",
@@ -254,18 +244,6 @@
     "city": "Zürich",
     "postcode": "8005",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltermaerkte-europa.php"
-  },
-  {
-    "id": "mittelalterkalender-22d6dba3f391a190",
-    "name": "Tage des Mittelalters",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Dischingen-Katzenstein",
-    "postcode": "89561",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
     "id": "mittelalterkalender-e1300f9113172d29",
@@ -349,18 +327,6 @@
     "country": "Deutschland",
     "city": "Waldburg",
     "postcode": "88289",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-28cc775ddb20afd6",
-    "name": "Mittelaltermarkt zu Feuchtwangen",
-    "type": "Markt",
-    "date": "2026-10-16 bis 2026-10-18",
-    "start": "2026-10-16",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Feuchtwagen",
-    "postcode": "91555",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -544,30 +510,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-82a44d083dc96f54",
-    "name": "Mittelalter zum Katharinenmarkt",
-    "type": "Markt",
-    "date": "2026-10-16 bis 2026-10-18",
-    "start": "2026-10-16",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Steinau an der Straße",
-    "postcode": "36396",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-8d9f230f78b3aacd",
-    "name": "Historica - Festival der lebendigen Geschichte",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Kassel",
-    "postcode": "34121",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-4adab3cf02bfebcf",
     "name": "Mittelalter- & Fantasy-Martinsmarkt",
     "type": "Markt",
@@ -628,18 +570,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-c31458fe8419ee4f",
-    "name": "Listopàd - Mittelalterlicher Herbstmarkt",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Neustrelitz",
-    "postcode": "17235",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-dce2dc3d94648518",
     "name": "Schweriner Martensmarkt",
     "type": "Markt",
@@ -673,18 +603,6 @@
     "country": "Deutschland",
     "city": "Ostseebad Göhren",
     "postcode": "18586",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-f68e990d4772cc03",
-    "name": "Herbstmarkt mit Mittelaltermarkt an der Kirche",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Artlenburg",
-    "postcode": "21380",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -760,18 +678,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-8cfc1002407868b2",
-    "name": "Halloween auf Burg Satzvey",
-    "type": "Markt",
-    "date": "2026-10-24 bis 2026-10-24",
-    "start": "2026-10-24",
-    "end": "2026-10-24",
-    "country": "Deutschland",
-    "city": "Mechernich-Satzvey",
-    "postcode": "53894",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-45c4e1ef906e684d",
     "name": "Mittelalterliches Gutsfest",
     "type": "Markt",
@@ -781,30 +687,6 @@
     "country": "Deutschland",
     "city": "Köln",
     "postcode": "51147",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-e3a7f02150eb1024",
-    "name": "ANNO Halloween Samhain",
-    "type": "Markt",
-    "date": "2026-10-30 bis 2026-11-01",
-    "start": "2026-10-30",
-    "end": "2026-11-01",
-    "country": "Deutschland",
-    "city": "Delbrück-Schöning",
-    "postcode": "33129",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-953ec4dca0772516",
-    "name": "Halloween auf Burg Satzvey",
-    "type": "Markt",
-    "date": "2026-10-31 bis 2026-10-31",
-    "start": "2026-10-31",
-    "end": "2026-10-31",
-    "country": "Deutschland",
-    "city": "Mechernich-Satzvey",
-    "postcode": "53894",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -1036,18 +918,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-799b8cd0863006f9",
-    "name": "Lebendige Burg",
-    "type": "Markt",
-    "date": "2026-10-18 bis 2026-10-18",
-    "start": "2026-10-18",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Brodenbach",
-    "postcode": "56332",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-fe2cf0cfc5cc91c1",
     "name": "Lebendige Burg",
     "type": "Markt",
@@ -1093,18 +963,6 @@
     "country": "Deutschland",
     "city": "Thallichtenberg",
     "postcode": "66871",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-c06095af1e3abcbe",
-    "name": "Steampunk-Fest Saar",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Schiffweiler-Reden",
-    "postcode": "66578",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -2344,66 +2202,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelaltertermine-in-europa.php"
   },
   {
-    "id": "eu-source-37e2e630a79e5348",
-    "name": "Marché médiéval de Bremgarten",
-    "type": "Markt",
-    "date": "2026-10-23 bis 2026-10-25",
-    "start": "2026-10-23",
-    "end": "2026-10-25",
-    "country": "Schweiz",
-    "city": "Bremgarten",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-bremgarten-2026/"
-  },
-  {
-    "id": "eu-source-7e0ea9fead34f7bd",
-    "name": "Spectacle médiéval d'Halloween à Zurich",
-    "type": "Markt",
-    "date": "2026-10-30 bis 2026-11-01",
-    "start": "2026-10-30",
-    "end": "2026-11-01",
-    "country": "Schweiz",
-    "city": "Zürich",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/halloween-mittelalterspektakel-zuerich-2026/"
-  },
-  {
-    "id": "eu-source-bfe13e1365e120d0",
-    "name": "Marché de Noël médiéval du château de Laufen",
-    "type": "Markt",
-    "date": "2026-11-20 bis 2026-11-22",
-    "start": "2026-11-20",
-    "end": "2026-11-22",
-    "country": "Schweiz",
-    "city": "Schaffhausen",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelalter-weihnachtsmarkt-schloss-laufen-2026/"
-  },
-  {
-    "id": "eu-source-ebf200ba963d27ba",
-    "name": "Marché de Noël Médiéval de Ribeauvillé",
-    "type": "Markt",
-    "date": "2026-12-05 bis 2026-12-13",
-    "start": "2026-12-05",
-    "end": "2026-12-13",
-    "country": "Frankreich",
-    "city": "Ribeauvillé",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/ribeauville-marche-noel-medieval-2026/"
-  },
-  {
-    "id": "eu-source-d23363e2a21e77da",
-    "name": "Marché médiéval d'Enter",
-    "type": "Markt",
-    "date": "2027-06-19 bis 2027-06-20",
-    "start": "2027-06-19",
-    "end": "2027-06-20",
-    "country": "Schweiz",
-    "city": "Derendingen",
-    "postcode": "",
-    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-enter-2026/"
-  },
-  {
     "id": "eu-source-29deb7f636c0c00b",
     "name": "Historisches Handwerk Bremgarten am Markt der Vielfalt",
     "type": "Markt",
@@ -3085,6 +2883,171 @@
     "website": "http://www.turnei.ch"
   },
   {
+    "id": "bi-buhurt-77e661fe1ef46de3",
+    "name": "Castleton Cup 2027",
+    "type": "Buhurt",
+    "date": "2027-04-17",
+    "start": "2027-04-17",
+    "end": "2027-04-17",
+    "country": "Vereinigtes Königreich",
+    "city": "Rochdale Mayfield Rugby Club",
+    "postcode": "",
+    "lat": 0,
+    "lng": 0,
+    "source": "https://www.buhurtinternational.com/tournament/castleton-cup"
+  },
+  {
+    "id": "bi-buhurt-89f60acaf094684f",
+    "name": "Alpine Warrior 2027",
+    "type": "Buhurt",
+    "date": "2027-05-01",
+    "start": "2027-05-01",
+    "end": "2027-05-01",
+    "country": "Österreich",
+    "city": "Tarrenz",
+    "postcode": "6464",
+    "lat": 47.2580585,
+    "lng": 10.7745265,
+    "source": "https://www.buhurtinternational.com/tournament/alpine-warrior-2027"
+  },
+  {
+    "id": "curated-dk-danehof-2027",
+    "name": "Danehof – mittelalterliches Festival",
+    "type": "Markt",
+    "date": "2027-07-02 bis 2027-07-04",
+    "start": "2027-07-02",
+    "end": "2027-07-04",
+    "country": "Dänemark",
+    "city": "Nyborg",
+    "source": "https://www.visitdenmark.com/denmark/plan-your-trip/danehof-world-class-medieval-festival-in-nyborg-gdk677349"
+  },
+  {
+    "id": "curated-dk-horsens-2027",
+    "name": "Horsens Middelalderfestival",
+    "type": "Markt",
+    "date": "2027-08-27 bis 2027-08-28",
+    "start": "2027-08-27",
+    "end": "2027-08-28",
+    "country": "Dänemark",
+    "city": "Horsens",
+    "source": "https://www.visitdenmark.com/denmark/plan-your-trip/horsens-medieval-festival-horsens-middelalderfestival-gdk757628"
+  },
+  {
+    "id": "curated-dk-ribe-vikingmarket-2027",
+    "name": "International Vikingmarket in Ribe",
+    "type": "Markt",
+    "date": "2027-04-26 bis 2027-05-02",
+    "start": "2027-04-26",
+    "end": "2027-05-02",
+    "country": "Dänemark",
+    "city": "Ribe",
+    "source": "https://www.ribe-byferie.dk/en/experiences/international-vikingmarket-in-ribe/"
+  },
+  {
+    "id": "curated-dk-als-vikingemarked-2027",
+    "name": "Als Vikingemarked",
+    "type": "Markt",
+    "date": "2027-06-19 bis 2027-06-20",
+    "start": "2027-06-19",
+    "end": "2027-06-20",
+    "country": "Dänemark",
+    "city": "Sønderborg",
+    "source": "https://www.visitdenmark.dk/danmark/explore/als-vikingemarked-gdk1117406"
+  },
+  {
+    "id": "curated-no-avaldsnes-vikingfestival-2027",
+    "name": "The Viking Festival at Avaldsnes",
+    "type": "Markt",
+    "date": "2027-06-11 bis 2027-06-13",
+    "start": "2027-06-11",
+    "end": "2027-06-13",
+    "country": "Norwegen",
+    "city": "Avaldsnes",
+    "source": "https://www.historiskeavaldsnes.no/vikingfestivalen/?sprak=3"
+  },
+  {
+    "id": "curated-se-birka-viking-market-2027",
+    "name": "Birka Historical Tattoo Fest & Viking Market",
+    "type": "Markt",
+    "date": "2027-06-03 bis 2027-06-06",
+    "start": "2027-06-03",
+    "end": "2027-06-06",
+    "country": "Schweden",
+    "city": "Björkö (Birka)",
+    "source": "https://www.visitstockholm.com/events/birka-historical-tattoo-fest-viking-market-2027/2027-06-03/"
+  },
+  {
+    "id": "curated-it-mercato-gaite-2027",
+    "name": "Mercato delle Gaite",
+    "type": "Markt",
+    "date": "2027-06-16 bis 2027-06-27",
+    "start": "2027-06-16",
+    "end": "2027-06-27",
+    "country": "Italien",
+    "city": "Bevagna",
+    "source": "https://www.ilmercatodellegaite.it/mercato-delle-gaite-ecco-le-date-degli-eventi-2027/"
+  },
+  {
+    "id": "eu-source-37e2e630a79e5348",
+    "name": "Marché médiéval de Bremgarten",
+    "type": "Markt",
+    "date": "2026-10-23 bis 2026-10-25",
+    "start": "2026-10-23",
+    "end": "2026-10-25",
+    "country": "Schweiz",
+    "city": "Bremgarten",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-bremgarten-2026/"
+  },
+  {
+    "id": "eu-source-7e0ea9fead34f7bd",
+    "name": "Spectacle médiéval d'Halloween à Zurich",
+    "type": "Markt",
+    "date": "2026-10-30 bis 2026-11-01",
+    "start": "2026-10-30",
+    "end": "2026-11-01",
+    "country": "Schweiz",
+    "city": "Zürich",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/halloween-mittelalterspektakel-zuerich-2026/"
+  },
+  {
+    "id": "eu-source-bfe13e1365e120d0",
+    "name": "Marché de Noël médiéval du château de Laufen",
+    "type": "Markt",
+    "date": "2026-11-20 bis 2026-11-22",
+    "start": "2026-11-20",
+    "end": "2026-11-22",
+    "country": "Schweiz",
+    "city": "Schaffhausen",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelalter-weihnachtsmarkt-schloss-laufen-2026/"
+  },
+  {
+    "id": "eu-source-ebf200ba963d27ba",
+    "name": "Marché de Noël Médiéval de Ribeauvillé",
+    "type": "Markt",
+    "date": "2026-12-05 bis 2026-12-13",
+    "start": "2026-12-05",
+    "end": "2026-12-13",
+    "country": "Frankreich",
+    "city": "Ribeauvillé",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/ribeauville-marche-noel-medieval-2026/"
+  },
+  {
+    "id": "eu-source-d23363e2a21e77da",
+    "name": "Marché médiéval d'Enter",
+    "type": "Markt",
+    "date": "2027-06-19 bis 2027-06-20",
+    "start": "2027-06-19",
+    "end": "2027-06-20",
+    "country": "Schweiz",
+    "city": "Derendingen",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-enter-2026/"
+  },
+  {
     "id": "eu-source-973e1727d4d70450",
     "name": "Le Tournoi de Chevalerie de Cordes-sur-Ciel - Spectacle Equestre",
     "type": "Markt",
@@ -3101,25 +3064,6 @@
     ],
     "lat": 44.063669977954,
     "lng": 1.951219546896
-  },
-  {
-    "id": "eu-source-c5ab5518b385ea98",
-    "name": "Guédelon",
-    "type": "Markt",
-    "date": "2026-09-03 bis 2026-10-18",
-    "start": "2026-09-03",
-    "end": "2026-10-18",
-    "country": "Frankreich",
-    "city": "Treigny",
-    "postcode": "89520",
-    "source": "https://fyndling.de/e/9149601dc055dc50",
-    "venue": "Chantier Médiéval de Guédelon",
-    "website": "https://www.guedelon.fr/",
-    "websites": [
-      "https://www.guedelon.fr/"
-    ],
-    "lat": 47.5847,
-    "lng": 3.1558
   },
   {
     "id": "eu-source-0f59ce6a26beebca",
@@ -3139,204 +3083,6 @@
     ],
     "lat": 50.542892,
     "lng": 8.9916478
-  },
-  {
-    "id": "eu-source-e7a4705a864726f1",
-    "name": "Mercado Medieval de Yuncler",
-    "type": "Markt",
-    "date": "2026-10-16 bis 2026-10-18",
-    "start": "2026-10-16",
-    "end": "2026-10-18",
-    "country": "Spanien",
-    "city": "Yuncler",
-    "postcode": "",
-    "source": "https://fyndling.de/e/195bf76f3e9a170b",
-    "website": "https://demercadosmedievales.info/mercadomedieval/mercado-medieval-en-yuncler-2026/",
-    "websites": [
-      "https://demercadosmedievales.info/mercadomedieval/mercado-medieval-en-yuncler-2026/"
-    ],
-    "lat": 40.0440004,
-    "lng": -3.9008053
-  },
-  {
-    "id": "eu-source-82fdabd9e85f2265",
-    "name": "Halloweenfest Wasserschloss Mitwitz",
-    "type": "Markt",
-    "date": "2026-10-16 bis 2026-10-18",
-    "start": "2026-10-16",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Mitwitz",
-    "postcode": "96268",
-    "source": "https://fyndling.de/e/de73195648edfb48",
-    "venue": "Wasserschloss Mitwitz",
-    "website": "https://www.mitwitz.de/aktuelles/veranstaltungen/",
-    "websites": [
-      "https://www.mitwitz.de/aktuelles/veranstaltungen/"
-    ],
-    "lat": 50.2482715,
-    "lng": 11.2064467
-  },
-  {
-    "id": "eu-source-31b4b75c6d823f31",
-    "name": "Großer Lagerverkauf mit Rabattaktion",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Österreich",
-    "city": "Weiten",
-    "postcode": "3653",
-    "source": "https://fyndling.de/e/2de684ac81101537",
-    "venue": "Beerenweine Österreich Lager Kirchenplatz 2",
-    "lat": 48.2961851,
-    "lng": 15.257812
-  },
-  {
-    "id": "eu-source-3e9e1517f0aedac0",
-    "name": "Terre d’Orient",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Frankreich",
-    "city": "Villeneuve-d'Ascq",
-    "postcode": "59650",
-    "source": "https://fyndling.de/e/3021cb45d4b90002",
-    "website": "https://asnapio.villeneuvedascq.fr/agenda/834/evenement/90604188/terre-dorient",
-    "websites": [
-      "https://asnapio.villeneuvedascq.fr/agenda/834/evenement/90604188/terre-dorient"
-    ],
-    "lat": 50.6381381,
-    "lng": 3.1567109
-  },
-  {
-    "id": "eu-source-451ff48ec72ea8fd",
-    "name": "Internationale Reenactor-Messe",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Kassel",
-    "postcode": "34121",
-    "source": "https://fyndling.de/e/31890f1ee95bb886",
-    "venue": "Messe Kassel Damaschkestraße 55",
-    "website": "https://historica-festival.de/",
-    "websites": [
-      "https://historica-festival.de/"
-    ],
-    "lat": 51.3002063,
-    "lng": 9.4799194
-  },
-  {
-    "id": "eu-source-e34c49db887baee5",
-    "name": "Steampunk Fest Saar 4.0 Erlebnisort Reden 17./18.10.2026",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "12145 2",
-    "postcode": "",
-    "source": "https://fyndling.de/e/8a2010a0deda2170",
-    "website": "https://lorraine-medievale.de/12145-2/",
-    "websites": [
-      "https://lorraine-medievale.de/12145-2/"
-    ]
-  },
-  {
-    "id": "eu-source-33eafd7160c5791b",
-    "name": "Jorfor’s Hall Vikings",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Vereinigtes Königreich",
-    "city": "Murton Park",
-    "postcode": "",
-    "source": "https://fyndling.de/e/ca638aacade060aa",
-    "website": "https://www.historic-uk.com/LivingHistory/EventsDiary/",
-    "websites": [
-      "https://www.historic-uk.com/LivingHistory/EventsDiary/"
-    ],
-    "lat": 53.9621329,
-    "lng": -1.0112458
-  },
-  {
-    "id": "eu-source-05d7a1e48f3c052a",
-    "name": "Les Echoppes des Remparts",
-    "type": "Markt",
-    "date": "2026-10-17 bis 2026-10-18",
-    "start": "2026-10-17",
-    "end": "2026-10-18",
-    "country": "Frankreich",
-    "city": "Mortagne-sur-Sèvre",
-    "postcode": "85290",
-    "source": "https://fyndling.de/e/e7356382d9fc7fc6",
-    "website": "https://www.facebook.com/EperonetTresor",
-    "websites": [
-      "https://www.facebook.com/EperonetTresor"
-    ],
-    "lat": 46.992574,
-    "lng": -0.95282
-  },
-  {
-    "id": "eu-source-5d85ed5a9048ca64",
-    "name": "Bourse Militaria et antiquités historiques",
-    "type": "Markt",
-    "date": "2026-10-18 bis 2026-10-18",
-    "start": "2026-10-18",
-    "end": "2026-10-18",
-    "country": "Frankreich",
-    "city": "Fismes",
-    "postcode": "51170",
-    "source": "https://fyndling.de/e/1e15c53a84df867c",
-    "website": "https://www.facebook.com/events/s/bourse-militaria-et-antiquites/1091820879872622/",
-    "websites": [
-      "https://www.facebook.com/events/s/bourse-militaria-et-antiquites/1091820879872622/"
-    ],
-    "lat": 49.3097027,
-    "lng": 3.6854541
-  },
-  {
-    "id": "eu-source-8aebd983e59d2582",
-    "name": "Vorweihnachtlicher Kunsthandwerkermarkt Ottobrunn",
-    "type": "Markt",
-    "date": "2026-10-18 bis 2026-10-18",
-    "start": "2026-10-18",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Ottobrunn",
-    "postcode": "85521",
-    "source": "https://fyndling.de/e/298fc54a0940563d",
-    "venue": "Wolf-Ferrari-Haus, Rathausplatz 2",
-    "website": "https://christkindlmaerkte.com/deutschland/bayern/ottobrunn/vorweihnachtlicher-kunsthandwerkermarkt-ottobrunn/",
-    "websites": [
-      "https://christkindlmaerkte.com/deutschland/bayern/ottobrunn/vorweihnachtlicher-kunsthandwerkermarkt-ottobrunn/"
-    ],
-    "lat": 48.0648406,
-    "lng": 11.6647814
-  },
-  {
-    "id": "eu-source-f6baf567f3c8b5e7",
-    "name": "Gallus-Markt",
-    "type": "Markt",
-    "date": "2026-10-18 bis 2026-10-18",
-    "start": "2026-10-18",
-    "end": "2026-10-18",
-    "country": "Deutschland",
-    "city": "Meßkirch",
-    "postcode": "88605",
-    "source": "https://fyndling.de/e/769bb2dfe10ccc03",
-    "venue": "Campus Galli",
-    "info": "Beim Gallus-Markt auf dem Campus Galli präsentieren rund 30 regionale Stände Handwerk und Lebensmittel. Zu den angekündigten Mitmachangeboten gehören Apfelsaftpressen, Filzen, Kerzenziehen und das Flechten von Weidenringen. Für diese Mitmachaktionen ist laut Veranstalter keine…",
-    "website": "https://www.campus-galli.de/event/gallus-markt-2026/",
-    "websites": [
-      "https://www.campus-galli.de/event/gallus-markt-2026/"
-    ],
-    "lat": 47.9976,
-    "lng": 9.127
   },
   {
     "id": "eu-source-7474dae3055118b4",
@@ -10940,108 +10686,17 @@
     "lng": 8.5131635
   },
   {
-    "id": "bi-buhurt-77e661fe1ef46de3",
-    "name": "Castleton Cup 2027",
+    "id": "bi-buhurt-a7b11a79741af00b",
+    "name": "Drei Königs Triathlon 2027",
     "type": "Buhurt",
-    "date": "2027-04-17",
-    "start": "2027-04-17",
-    "end": "2027-04-17",
-    "country": "Vereinigtes Königreich",
-    "city": "Rochdale Mayfield Rugby Club",
-    "postcode": "",
-    "lat": 0,
-    "lng": 0,
-    "source": "https://www.buhurtinternational.com/tournament/castleton-cup"
-  },
-  {
-    "id": "bi-buhurt-89f60acaf094684f",
-    "name": "Alpine Warrior 2027",
-    "type": "Buhurt",
-    "date": "2027-05-01",
-    "start": "2027-05-01",
-    "end": "2027-05-01",
-    "country": "Österreich",
-    "city": "Tarrenz",
-    "postcode": "6464",
-    "lat": 47.2580585,
-    "lng": 10.7745265,
-    "source": "https://www.buhurtinternational.com/tournament/alpine-warrior-2027"
-  },
-  {
-    "id": "curated-dk-danehof-2027",
-    "name": "Danehof – mittelalterliches Festival",
-    "type": "Markt",
-    "date": "2027-07-02 bis 2027-07-04",
-    "start": "2027-07-02",
-    "end": "2027-07-04",
-    "country": "Dänemark",
-    "city": "Nyborg",
-    "source": "https://www.visitdenmark.com/denmark/plan-your-trip/danehof-world-class-medieval-festival-in-nyborg-gdk677349"
-  },
-  {
-    "id": "curated-dk-horsens-2027",
-    "name": "Horsens Middelalderfestival",
-    "type": "Markt",
-    "date": "2027-08-27 bis 2027-08-28",
-    "start": "2027-08-27",
-    "end": "2027-08-28",
-    "country": "Dänemark",
-    "city": "Horsens",
-    "source": "https://www.visitdenmark.com/denmark/plan-your-trip/horsens-medieval-festival-horsens-middelalderfestival-gdk757628"
-  },
-  {
-    "id": "curated-dk-ribe-vikingmarket-2027",
-    "name": "International Vikingmarket in Ribe",
-    "type": "Markt",
-    "date": "2027-04-26 bis 2027-05-02",
-    "start": "2027-04-26",
-    "end": "2027-05-02",
-    "country": "Dänemark",
-    "city": "Ribe",
-    "source": "https://www.ribe-byferie.dk/en/experiences/international-vikingmarket-in-ribe/"
-  },
-  {
-    "id": "curated-dk-als-vikingemarked-2027",
-    "name": "Als Vikingemarked",
-    "type": "Markt",
-    "date": "2027-06-19 bis 2027-06-20",
-    "start": "2027-06-19",
-    "end": "2027-06-20",
-    "country": "Dänemark",
-    "city": "Sønderborg",
-    "source": "https://www.visitdenmark.dk/danmark/explore/als-vikingemarked-gdk1117406"
-  },
-  {
-    "id": "curated-no-avaldsnes-vikingfestival-2027",
-    "name": "The Viking Festival at Avaldsnes",
-    "type": "Markt",
-    "date": "2027-06-11 bis 2027-06-13",
-    "start": "2027-06-11",
-    "end": "2027-06-13",
-    "country": "Norwegen",
-    "city": "Avaldsnes",
-    "source": "https://www.historiskeavaldsnes.no/vikingfestivalen/?sprak=3"
-  },
-  {
-    "id": "curated-se-birka-viking-market-2027",
-    "name": "Birka Historical Tattoo Fest & Viking Market",
-    "type": "Markt",
-    "date": "2027-06-03 bis 2027-06-06",
-    "start": "2027-06-03",
-    "end": "2027-06-06",
-    "country": "Schweden",
-    "city": "Björkö (Birka)",
-    "source": "https://www.visitstockholm.com/events/birka-historical-tattoo-fest-viking-market-2027/2027-06-03/"
-  },
-  {
-    "id": "curated-it-mercato-gaite-2027",
-    "name": "Mercato delle Gaite",
-    "type": "Markt",
-    "date": "2027-06-16 bis 2027-06-27",
-    "start": "2027-06-16",
-    "end": "2027-06-27",
-    "country": "Italien",
-    "city": "Bevagna",
-    "source": "https://www.ilmercatodellegaite.it/mercato-delle-gaite-ecco-le-date-degli-eventi-2027/"
+    "date": "2027-01-09",
+    "start": "2027-01-09",
+    "end": "2027-01-09",
+    "country": "Deutschland",
+    "city": "Telgte",
+    "postcode": "48291",
+    "lat": 51.9833814,
+    "lng": 7.7799837,
+    "source": "https://www.buhurtinternational.com/tournament/drei-k%C3%B6nigs-triathlon"
   }
 ]
