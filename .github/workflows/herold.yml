@@ -144,18 +144,18 @@ jobs:
 
           def datumsschluessel(event):
               text = str(event.get("start") or event.get("date") or "")
-              iso = re.search(r"(20\\d{2})-(\\d{2})-(\\d{2})", text)
+              iso = re.search(r"(20\${ch}{2})-(\${ch}{2})-(\${ch}{2})", text)
               if iso:
                   return iso.group(0)
-              deutsch = re.search(r"(\\d{1,2})\\.(\\d{1,2})\\.(20\\d{2})", text)
+              deutsch = re.search(r"(\${ch}{1,2})\${ch}(\${ch}{1,2})\${ch}(20\${ch}{2})", text)
               if deutsch:
                   tag, monat, jahr = deutsch.groups()
                   return f"{jahr}-{monat.zfill(2)}-{tag.zfill(2)}"
               return text.strip().casefold()
 
           def fundschluessel(event):
-              name = re.sub(r"[^\\w]", "", str(event.get("name", "")).casefold())
-              city = re.sub(r"[^\\w]", "", str(event.get("city", "")).casefold())
+              name = re.sub(r"[^\${ch}]", "", str(event.get("name", "")).casefold())
+              city = re.sub(r"[^\${ch}]", "", str(event.get("city", "")).casefold())
               return name, city, datumsschluessel(event)
 
           kombiniert = list(funde[:50])
