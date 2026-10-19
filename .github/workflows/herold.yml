@@ -132,21 +132,47 @@ jobs:
 
               })
 
+          # The Germany importer runs first, so it must merge rather than
+          # replace the shared Herold fund. Keep manual and other-source finds.
+          try:
+              with open("herold-funde.json", "r", encoding="utf-8") as f:
+                  bisherige_funde = json.load(f)
+              if not isinstance(bisherige_funde, list):
+                  bisherige_funde = []
+          except (FileNotFoundError, json.JSONDecodeError):
+              bisherige_funde = []
+
+          def datumsschluessel(event):
+              text = str(event.get("start") or event.get("date") or "")
+              iso = re.search(r"(20\\d{2})-(\\d{2})-(\\d{2})", text)
+              if iso:
+                  return iso.group(0)
+              deutsch = re.search(r"(\\d{1,2})\\.(\\d{1,2})\\.(20\\d{2})", text)
+              if deutsch:
+                  tag, monat, jahr = deutsch.groups()
+                  return f"{jahr}-{monat.zfill(2)}-{tag.zfill(2)}"
+              return text.strip().casefold()
+
+          def fundschluessel(event):
+              name = re.sub(r"[^\\w]", "", str(event.get("name", "")).casefold())
+              city = re.sub(r"[^\\w]", "", str(event.get("city", "")).casefold())
+              return name, city, datumsschluessel(event)
+
+          kombiniert = list(funde[:50])
+          schluessel = {fundschluessel(event) for event in kombiniert}
+          behalten = 0
+          for event in bisherige_funde:
+              key = fundschluessel(event)
+              if key not in schluessel:
+                  kombiniert.append(event)
+                  schluessel.add(key)
+                  behalten += 1
+
           with open("herold-funde.json", "w", encoding="utf-8") as f:
-
-              json.dump(
-
-                  funde[:50],
-
-                  f,
-
-                  ensure_ascii=False,
-
-                  indent=2
-
-              )
+              json.dump(kombiniert, f, ensure_ascii=False, indent=2)
 
           print("Gefundene Kandidaten:", len(funde))
+          print("Vorherige Herold-Funde erhalten:", behalten)
 
           PY
           
