@@ -3002,6 +3002,18 @@
     "source": "https://www.buhurtinternational.com/tournament/drei-k%C3%B6nigs-triathlon"
   },
   {
+    "id": "mittelalterkalender-a3762b7803329cf4",
+    "name": "Historisches Markttreiben zur Weihnacht",
+    "type": "Markt",
+    "date": "2026-12-12 bis 2026-12-13",
+    "start": "2026-12-12",
+    "end": "2026-12-13",
+    "country": "Deutschland",
+    "city": "Bad Salzdetfurth",
+    "postcode": "31162",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
+  },
+  {
     "id": "eu-source-37e2e630a79e5348",
     "name": "Marché médiéval de Bremgarten",
     "type": "Markt",
@@ -3172,25 +3184,6 @@
     ],
     "lat": 38.0572339,
     "lng": -1.2095298
-  },
-  {
-    "id": "eu-source-2f0cecee8822adbf",
-    "name": "Naturbegegnungen",
-    "type": "Markt",
-    "date": "2026-10-22 bis 2026-10-22",
-    "start": "2026-10-22",
-    "end": "2026-10-22",
-    "country": "Deutschland",
-    "city": "Detmold",
-    "postcode": "32760",
-    "source": "https://fyndling.de/e/9bda0774b4acedc6",
-    "venue": "LWL-Freilichtmuseum Detmold",
-    "website": "https://www.lwl-freilichtmuseum-detmold.de/de/programm/veranstaltungskalender/?id=1103176",
-    "websites": [
-      "https://www.lwl-freilichtmuseum-detmold.de/de/programm/veranstaltungskalender/?id=1103176"
-    ],
-    "lat": 51.9364,
-    "lng": 8.8738
   },
   {
     "id": "eu-source-4f2975f3a6e77191",
