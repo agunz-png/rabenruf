@@ -342,18 +342,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-3caa29b1a56849be",
-    "name": "Die Horror Nacht zum kuriosen mittelalterlichen Jahrmarkt",
-    "type": "Markt",
-    "date": "2026-10-23 bis 2026-10-23",
-    "start": "2026-10-23",
-    "end": "2026-10-23",
-    "country": "Deutschland",
-    "city": "Haar",
-    "postcode": "85540",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-6dff42ec94115fd6",
     "name": "Bal Renaissance - Danse Medievale",
     "type": "Markt",
@@ -10752,6 +10740,26 @@
     ],
     "lat": 49.3525958,
     "lng": 7.1189671
+  },
+  {
+    "id": "eu-source-ac93e7ab3dc41023",
+    "name": "Reenactor-Messe Historica",
+    "type": "Markt",
+    "date": "2027-10-16 bis 2027-10-17",
+    "start": "2027-10-16",
+    "end": "2027-10-17",
+    "country": "Deutschland",
+    "city": "Kassel",
+    "postcode": "34121",
+    "source": "https://fyndling.de/e/dd86b8775d079413",
+    "venue": "Messe Kassel, Damaschkestraße 55",
+    "info": "Messe für Reenactment und lebendige Geschichte (früher Internationale Reenactor-Messe Minden). - Händler aus ganz Europa: historische Stoffe, Gewänder und Accessoires bis 1918 - Aussteller zu Reenactment, LARP, Literatur, historischen Brett- und Kartenspielen - Vorträge,…",
+    "website": "https://historica-festival.de/",
+    "websites": [
+      "https://historica-festival.de/"
+    ],
+    "lat": 51.3002063,
+    "lng": 9.4799194
   },
   {
     "id": "eu-source-d352f4f1dbd8dc45",
