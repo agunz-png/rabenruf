@@ -30,16 +30,6 @@
     "end": "2026-10-25"
   },
   {
-    "id": "de-42",
-    "name": "Halloween auf Burg Satzvey",
-    "date": "24.10. 2026",
-    "city": "Mechernich-Satzvey",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-24",
-    "end": "2026-10-24"
-  },
-  {
     "id": "de-43",
     "name": "Der kuriose mittelalterliche Jahrmarkt",
     "date": "24.10.-25.10. 2026",
@@ -138,16 +128,6 @@
     "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
     "start": "2026-10-23",
     "end": "2026-10-25"
-  },
-  {
-    "id": "de-42",
-    "name": "Halloween auf Burg Satzvey",
-    "date": "24.10. 2026",
-    "city": "Mechernich-Satzvey",
-    "country": "Deutschland",
-    "source": "https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
-    "start": "2026-10-24",
-    "end": "2026-10-24"
   },
   {
     "id": "de-43",
@@ -339,18 +319,6 @@
     "country": "Deutschland",
     "city": "Zirndorf",
     "postcode": "90513",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-6dff42ec94115fd6",
-    "name": "Bal Renaissance - Danse Medievale",
-    "type": "Markt",
-    "date": "2026-10-24 bis 2026-10-24",
-    "start": "2026-10-24",
-    "end": "2026-10-24",
-    "country": "Deutschland",
-    "city": "München",
-    "postcode": "81825",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -951,18 +919,6 @@
     "country": "Deutschland",
     "city": "Thallichtenberg",
     "postcode": "66871",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-325a80abb6f8fa65",
-    "name": "213. Jahrestag der Völkerschlacht bei Leipzig",
-    "type": "Markt",
-    "date": "2026-10-23 bis 2026-10-24",
-    "start": "2026-10-23",
-    "end": "2026-10-24",
-    "country": "Deutschland",
-    "city": "Leipzig",
-    "postcode": "04279",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2026-nach-bundesland.php"
   },
   {
@@ -3156,24 +3112,6 @@
     "lng": 7.0158171
   },
   {
-    "id": "eu-source-ccf4f9743668cb64",
-    "name": "Mercado de Las Tradiciones de Molina de Segura",
-    "type": "Markt",
-    "date": "2026-10-22 bis 2026-10-24",
-    "start": "2026-10-22",
-    "end": "2026-10-24",
-    "country": "Spanien",
-    "city": "Molina de Segura",
-    "postcode": "",
-    "source": "https://fyndling.de/e/80bfd95736420368",
-    "website": "https://demercadosmedievales.info/mercadomedieval/mercado-de-las-tradiciones-de-molina-de-segura-2026-murcia/",
-    "websites": [
-      "https://demercadosmedievales.info/mercadomedieval/mercado-de-las-tradiciones-de-molina-de-segura-2026-murcia/"
-    ],
-    "lat": 38.0572339,
-    "lng": -1.2095298
-  },
-  {
     "id": "eu-source-4f2975f3a6e77191",
     "name": "Adventmarkt im Schlüsselamt Krems",
     "type": "Markt",
@@ -3322,24 +3260,6 @@
     ],
     "lat": 49.545179,
     "lng": 6.3703454
-  },
-  {
-    "id": "eu-source-516e7c0b8a87fd75",
-    "name": "Dušičkový jarmark",
-    "type": "Markt",
-    "date": "2026-10-24 bis 2026-10-24",
-    "start": "2026-10-24",
-    "end": "2026-10-24",
-    "country": "Tschechien",
-    "city": "Mělník",
-    "postcode": "",
-    "source": "https://fyndling.de/e/dea91e19662692fc",
-    "website": "https://www.strednicechy.cz/kalendar-akci/dusickovy-jarmark/",
-    "websites": [
-      "https://www.strednicechy.cz/kalendar-akci/dusickovy-jarmark/"
-    ],
-    "lat": 50.3520785,
-    "lng": 14.4748281
   },
   {
     "id": "eu-source-79a756de66bed266",
