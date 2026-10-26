@@ -252,7 +252,12 @@ jobs:
               if not start or not end:
                   invalid_count += 1
                   continue
-              if start < date(2027, 1, 1):
+              accepted = (
+                  event.get("status") == "approved"
+                  or event.get("approved") is True
+                  or event.get("accepted") is True
+              )
+              if start < date(2027, 1, 1) and not accepted:
                   pre_2027_count += 1
                   continue
               if end < today:
