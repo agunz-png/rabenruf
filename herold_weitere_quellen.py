@@ -704,7 +704,10 @@ def scrape_mirimor():
     for item in results:
         unique[(item["name"].lower(), item["city"].lower(), item["start"])] = item
     print(f"Mirimor Schweiz (Märkte/Feste): {len(unique)} Funde")
-    return list(unique.values())
+    final_results = list(unique.values())
+    for item in final_results:
+        item["source_provider"] = "Mirimor"
+    return final_results
 
 
 def event_key(item):
@@ -739,27 +742,97 @@ def load_app_events():
     return events_in_app
 
 
-def already_present(candidate, existing):
-    name = norm(candidate.get("name", ""))
-    city = norm(candidate.get("city", ""))
-    for item in existing:
-        if event_key(candidate) == event_key(item):
-            return True
-        if candidate.get("start") != item.get("start"):
-            continue
-        candidate_domains = {domain(site) for site in candidate.get("websites", []) if domain(site)}
-        candidate_domains.update({domain(candidate.get("website"))} if domain(candidate.get("website")) else set())
-        item_domains = {domain(site) for site in item.get("websites", []) if domain(site)}
-        item_domains.update({domain(item.get("website"))} if domain(item.get("website")) else set())
-        if candidate_domains & item_domains:
-            return True
-        other_name = norm(item.get("name", ""))
-        other_city = norm(item.get("city", ""))
-        if (city == other_city and SequenceMatcher(None, name, other_name).ratio() >= 0.60):
-            return True
-        if SequenceMatcher(None, name, other_name).ratio() >= 0.90:
-            return True
-    return False
+SOURCE_DOMAINS = {
+    domain(MIRIMOR_URL),
+    domain(VEHI_BASE),
+    "fyndling.de",
+    "mittelalterkalender.info",
+    "mittelaltermarkt-info.de",
+}
+
+
+def event_range(item):
+    start_text = parse_iso(item.get("start"))
+    end_text = parse_iso(item.get("end")) or start_text
+    if not start_text:
+        return None, None
+    try:
+        return date.fromisoformat(start_text), date.fromisoformat(end_text)
+    except ValueError:
+        return None, None
+
+
+def organizer_domains(item):
+    urls = [item.get("source", ""), item.get("website", "")]
+    urls.extend(item.get("websites", []) or [])
+    return {
+        domain(url) for url in urls
+        if domain(url) and domain(url) not in SOURCE_DOMAINS
+    }
+
+
+def same_event(left, right):
+    left_name, right_name = norm(left.get("name", "")), norm(right.get("name", ""))
+    left_city, right_city = norm(left.get("city", "")), norm(right.get("city", ""))
+    if not left_name or not right_name or not left_city or not right_city:
+        return False
+
+    name_similarity = SequenceMatcher(None, left_name, right_name).ratio()
+    if left_city != right_city:
+        return False
+
+    left_start, left_end = event_range(left)
+    right_start, right_end = event_range(right)
+    same_year = bool(left_start and right_start and left_start.year == right_start.year)
+    overlapping_dates = bool(
+        left_start and left_end and right_start and right_end
+        and left_start <= right_end and right_start <= left_end
+    )
+    same_official_site = bool(organizer_domains(left) & organizer_domains(right))
+
+    if name_similarity >= 0.90 and overlapping_dates:
+        return True
+
+    return name_similarity >= 0.86 and same_year and same_official_site
+
+
+def source_priority(item):
+    provider = norm(item.get("source_provider", ""))
+    if provider == "mirimor" or domain(item.get("source", "")) == domain(MIRIMOR_URL):
+        return 0
+    if domain(item.get("source", "")) in SOURCE_DOMAINS:
+        return 10
+    return -10
+
+
+def detail_score(item):
+    return sum(bool(item.get(field)) for field in (
+        "website", "websites", "venue", "postcode", "info", "lat", "lng"
+    ))
+
+
+def deduplicate_events(events):
+    kept = []
+    removed = 0
+    ordered = sorted(
+        enumerate(events),
+        key=lambda pair: (
+            source_priority(pair[1]),
+            -detail_score(pair[1]),
+            pair[0],
+        ),
+    )
+    for _, candidate in ordered:
+        match_index = next(
+            (index for index, current in enumerate(kept)
+             if same_event(candidate, current)),
+            None,
+        )
+        if match_index is None:
+            kept.append(candidate)
+        else:
+            removed += 1
+    return kept, removed
 
 
 def main():
@@ -776,28 +849,34 @@ def main():
         item for item in existing
         if not (
             item.get("source") == MIRIMOR_URL
-            and re.search(r"(?i)\b(?:kalender|termine|veranstaltungen)\b", item.get("name", ""))
-        )
-        and not (
-            item.get("source") == MIRIMOR_URL
-            and re.search(r"(?i)\b(?:kein mittelaltermarkt|kein markt)\b", item.get("name", ""))
+            and any(word in norm(item.get("name", "")) for word in (
+                "kalender", "termine", "veranstaltungen",
+                "kein mittelaltermarkt", "kein markt",
+            ))
         )
         and not str(item.get("source", "")).startswith(VEHI_BASE)
         and "fyndling.de" not in domain(item.get("source", ""))
     ]
 
-    new_events = []
-    for candidate in scrape_vehi() + scrape_mirimor() + scrape_fyndling():
-        if (candidate.get("end") or candidate.get("start") or "9999-12-31") < date.today().isoformat():
-            continue
-        if not already_present(candidate, existing + new_events + app_events):
-            new_events.append(candidate)
+    # Mirimor is the preferred calendar for Swiss findings. Other sources
+    # remain active for European events outside Mirimor's coverage.
+    scraped = scrape_mirimor() + scrape_vehi() + scrape_fyndling()
+    fresh = [
+        candidate for candidate in scraped
+        if (candidate.get("end") or candidate.get("start") or "9999-12-31")
+        >= date.today().isoformat()
+        and not any(same_event(candidate, approved) for approved in app_events)
+    ]
 
-    existing.extend(new_events)
+    combined, removed = deduplicate_events(fresh + existing)
     with open("herold-funde.json", "w", encoding="utf-8") as handle:
-        json.dump(existing, handle, ensure_ascii=False, indent=2)
+        json.dump(combined, handle, ensure_ascii=False, indent=2)
 
-    print("Neue Funde aus Vehi Mercatus, Mirimor und Fyndling:", len(new_events))
+    print("Neue Funde aus Mirimor, Vehi Mercatus und Fyndling:", len(fresh))
+    print("Doppelte Herold-Funde zusammengeführt:", removed)
+    print("Herold-Funde insgesamt:", len(combined))
+
+
 
 
 if __name__ == "__main__":
