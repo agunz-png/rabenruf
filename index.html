@@ -1100,6 +1100,17 @@ textarea.contactField{min-height:150px;resize:vertical;}
     <input class="contactField" id="contactName" name="name" type="text" maxlength="80" autocomplete="name" required>
     <label for="contactEmail">Deine E-Mail-Adresse</label>
     <input class="contactField" id="contactEmail" name="email" type="email" maxlength="254" autocomplete="email" required>
+    <fieldset class="contactField" style="border:0;padding:0;margin:18px 0">
+      <legend style="margin-bottom:10px">Art der Veranstaltung (Mehrfachauswahl)</legend>
+      <div class="categoryChoices" id="contactTypeChoices">
+        <label><input type="checkbox" name="eventType" value="Markt"> Markt</label>
+        <label><input type="checkbox" name="eventType" value="Lager"> Lager</label>
+        <label><input type="checkbox" name="eventType" value="MPS"> MPS</label>
+        <label><input type="checkbox" name="eventType" value="Reenactment"> Reenactment</label>
+        <label><input type="checkbox" name="eventType" value="Buhurt"> Buhurt</label>
+        <label><input type="checkbox" name="eventType" value="Sonstiges"> Sonstiges</label>
+      </div>
+    </fieldset>
     <label for="contactMessage">Deine Nachricht</label>
     <textarea class="contactField" id="contactMessage" name="message" maxlength="4000" required></textarea>
     <div class="honeypot" aria-hidden="true">
@@ -7211,6 +7222,7 @@ async function sendContactMessage(event){
     name:String(data.get("name") || "").trim(),
     email:String(data.get("email") || "").trim(),
     message:String(data.get("message") || "").trim(),
+    eventTypes:data.getAll("eventType").map(value=>String(value)),
     website:String(data.get("website") || "")
   };
   status.textContent="";
