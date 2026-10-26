@@ -1111,6 +1111,19 @@ textarea.contactField{min-height:150px;resize:vertical;}
         <label><input type="checkbox" name="eventType" value="Sonstiges"> Sonstiges</label>
       </div>
     </fieldset>
+    <fieldset style="border:0;padding:0;margin:18px 0">
+      <legend style="margin-bottom:8px;color:var(--muted);font-size:13px;font-weight:650">Für Veranstalter: Was bietest du an? (Mehrfachauswahl, optional)</legend>
+      <div class="categoryChoices" id="contactTypeChoices">
+        <label><input type="checkbox" name="eventType" value="Markt"> Markt</label>
+        <label><input type="checkbox" name="eventType" value="Lager"> Lager</label>
+        <label><input type="checkbox" name="eventType" value="MPS"> MPS</label>
+        <label><input type="checkbox" name="eventType" value="Reenactment"> Reenactment</label>
+        <label><input type="checkbox" name="eventType" value="Buhurt"> Buhurt</label>
+        <label><input type="checkbox" name="eventType" value="Sonstiges"> Sonstiges</label>
+      </div>
+    </fieldset>
+    <label for="contactFlyer">Flyer als PDF (optional, max. 8 MB)</label>
+    <input class="contactField" id="contactFlyer" name="flyer" type="file" accept="application/pdf,.pdf">
     <label for="contactMessage">Deine Nachricht</label>
     <textarea class="contactField" id="contactMessage" name="message" maxlength="4000" required></textarea>
     <div class="honeypot" aria-hidden="true">
@@ -7218,10 +7231,22 @@ async function sendContactMessage(event){
   const status=byId("contactStatus");
   const submit=byId("contactSubmit");
   const data=new FormData(form);
+  const flyerFile=data.get("flyer");
+  if(flyerFile instanceof File && flyerFile.size > 8*1024*1024){
+    status.textContent="Der PDF-Flyer darf höchstens 8 MB gross sein.";
+    return;
+  }
+  const flyer=flyerFile instanceof File && flyerFile.size ? await new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve({filename:flyerFile.name,content:String(reader.result).split(",")[1] || ""});
+    reader.onerror=()=>reject(new Error("Der Flyer konnte nicht gelesen werden."));
+    reader.readAsDataURL(flyerFile);
+  }) : null;
   const message={
     name:String(data.get("name") || "").trim(),
     email:String(data.get("email") || "").trim(),
     message:String(data.get("message") || "").trim(),
+    flyer,
     website:String(data.get("website") || "")
   };
   const eventTypes=data.getAll("eventType").map(value=>String(value));
