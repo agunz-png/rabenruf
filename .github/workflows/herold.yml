@@ -188,6 +188,27 @@ jobs:
         run: |
           python3 herold_buhurt.py
 
+      - name: Herold-Funde quellenübergreifend deduplizieren
+        run: |
+          python3 - <<'PY'
+          import json
+          from herold_weitere_quellen import deduplicate_events
+
+          path = "herold-funde.json"
+          try:
+              with open(path, encoding="utf-8") as handle:
+                  events = json.load(handle)
+          except (FileNotFoundError, json.JSONDecodeError):
+              events = []
+
+          unique, removed = deduplicate_events(events)
+          with open(path, "w", encoding="utf-8") as handle:
+              json.dump(unique, handle, ensure_ascii=False, indent=2)
+
+          print("Quellenübergreifend doppelte Herold-Einträge entfernt:", removed)
+          print("Eindeutige Herold-Einträge:", len(unique))
+          PY
+
       - name: Funddatei prüfen
 
         run: |
