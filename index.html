@@ -6793,6 +6793,31 @@ function showFavorites(){
 }
 let heroldFunde = [];
 
+function heroldNorm(value){
+  return String(value||"").normalize("NFKD").replace(/[\\u0300-\\u036f]/g,"").toLowerCase()
+    .replace(/\\b(?:an|der|a)\\b/g," ").replace(/[^a-z0-9]+/g," ").trim().replace(/\\s+/g," ");
+}
+function heroldDateRange(event){
+  const dateText=[event?.start,event?.end,event?.date].filter(Boolean).join(" ");
+  const dates=[...dateText.matchAll(/20\\d{2}-\\d{2}-\\d{2}/g)].map(match=>match[0]);
+  if(!dates.length) return null;
+  const start=event?.start&&/^20\\d{2}-\\d{2}-\\d{2}$/.test(String(event.start))?String(event.start):dates[0];
+  const end=event?.end&&/^20\\d{2}-\\d{2}-\\d{2}$/.test(String(event.end))?String(event.end):dates[dates.length-1];
+  return {start,end};
+}
+function heroldSameEvent(a,b){
+  const nameA=heroldNorm(a?.name), nameB=heroldNorm(b?.name);
+  const cityA=heroldNorm(a?.city), cityB=heroldNorm(b?.city);
+  if(!nameA||!nameB||!cityA||!cityB) return false;
+  const nameEqual=nameA===nameB || nameA.includes(nameB) || nameB.includes(nameA);
+  if(!nameEqual) return false;
+  const cityEqual=cityA===cityB || cityA.includes(cityB) || cityB.includes(cityA);
+  if(!cityEqual) return false;
+  const datesA=heroldDateRange(a), datesB=heroldDateRange(b);
+  if(!datesA||!datesB) return false;
+  return datesA.start<=datesB.end && datesB.start<=datesA.end;
+}
+
 async function ladeHeroldFunde(){
   try{
     const antwort = await fetch("herold-funde.json?zeit=" + Date.now());
@@ -6801,9 +6826,11 @@ async function ladeHeroldFunde(){
     if(!Array.isArray(funde)) funde = [];
 
     let entschiedeneIds = new Set();
+    let bereitsBestaetigt=[...events];
     try{
       const entscheidungen = await ladeHeroldEntscheide();
       entschiedeneIds = new Set(entscheidungen.map(e => String(e.event_id || "")));
+      bereitsBestaetigt.push(...entscheidungen.filter(e=>e.status==="approved"&&e.event).map(e=>e.event));
     }catch(fehler){
       console.warn("Herold-Entscheide konnten nicht geladen werden:", fehler);
       const [verworfenAntwort, bestaetigtAntwort] = await Promise.all([
@@ -6815,14 +6842,18 @@ async function ladeHeroldFunde(){
         if(Array.isArray(ids)) ids.forEach(id => entschiedeneIds.add(String(id)));
       }
       if(bestaetigtAntwort.ok){
-        const events = await bestaetigtAntwort.json();
-        if(Array.isArray(events)){
-          events.forEach(event => entschiedeneIds.add(String(event.id || "").replace(/^herold-/,"")));
+        const listed = await bestaetigtAntwort.json();
+        if(Array.isArray(listed)){
+          bereitsBestaetigt.push(...listed);
+          listed.forEach(event => entschiedeneIds.add(String(event.id || "").replace(/^herold-/,"")));
         }
       }
     }
 
-    heroldFunde = funde.filter(fund => !entschiedeneIds.has(String(fund.id || "")));
+    heroldFunde = funde.filter(fund =>
+      !entschiedeneIds.has(String(fund.id || "")) &&
+      !bereitsBestaetigt.some(event=>heroldSameEvent(fund,event))
+    );
     renderHerold();
   }catch(fehler){
     console.error("Herold-Funde konnten nicht geladen werden:", fehler);
