@@ -6794,15 +6794,15 @@ function showFavorites(){
 let heroldFunde = [];
 
 function heroldNorm(value){
-  return String(value||"").normalize("NFKD").replace(/[\\u0300-\\u036f]/g,"").toLowerCase()
-    .replace(/\\b(?:an|der|a)\\b/g," ").replace(/[^a-z0-9]+/g," ").trim().replace(/\\s+/g," ");
+  return String(value||"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").toLowerCase()
+    .replace(/\b(?:an|der|a)\b/g," ").replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
 }
 function heroldDateRange(event){
   const dateText=[event?.start,event?.end,event?.date].filter(Boolean).join(" ");
-  const dates=[...dateText.matchAll(/20\\d{2}-\\d{2}-\\d{2}/g)].map(match=>match[0]);
+  const dates=[...dateText.matchAll(/20\d{2}-\d{2}-\d{2}/g)].map(match=>match[0]);
   if(!dates.length) return null;
-  const start=event?.start&&/^20\\d{2}-\\d{2}-\\d{2}$/.test(String(event.start))?String(event.start):dates[0];
-  const end=event?.end&&/^20\\d{2}-\\d{2}-\\d{2}$/.test(String(event.end))?String(event.end):dates[dates.length-1];
+  const start=event?.start&&/^20\d{2}-\d{2}-\d{2}$/.test(String(event.start))?String(event.start):dates[0];
+  const end=event?.end&&/^20\d{2}-\d{2}-\d{2}$/.test(String(event.end))?String(event.end):dates[dates.length-1];
   return {start,end};
 }
 function heroldSameEvent(a,b){
