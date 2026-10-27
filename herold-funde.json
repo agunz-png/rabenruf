@@ -510,23 +510,6 @@
     "source_provider": "Mirimor"
   },
   {
-    "id": "eu-source-52b59bc55930de36",
-    "name": "Historischer Herbstmarkt Wangen a. Aare",
-    "type": "Markt",
-    "date": "2027-10-09 bis 2027-10-10",
-    "start": "2027-10-09",
-    "end": "2027-10-10",
-    "country": "Schweiz",
-    "city": "Wangen a.d.Aare",
-    "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/",
-    "websites": [
-      "http://www.marktzunft.ch"
-    ],
-    "website": "http://www.marktzunft.ch",
-    "source_provider": "Mirimor"
-  },
-  {
     "id": "eu-source-848d320d0be4584f",
     "name": "Midgard am Hero Fest",
     "type": "Markt",
