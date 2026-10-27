@@ -209,6 +209,94 @@ jobs:
           print("Eindeutige Herold-Einträge:", len(unique))
           PY
 
+      - name: Bereits bestätigte Veranstaltungen aus dem Herold entfernen
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          import unicodedata
+          import urllib.parse
+          import urllib.request
+          from datetime import date
+          from difflib import SequenceMatcher
+
+          supabase_url = "https://xsrcdvtavnftwkndcfsr.supabase.co"
+          publishable_key = "sb_publishable_YeEqizrxcYL2mRZQai9HUw__Z8GlkPD"
+          query = urllib.parse.urlencode({
+              "select": "event_id,status,event",
+              "status": "eq.approved",
+          })
+          request = urllib.request.Request(
+              f"{supabase_url}/rest/v1/herold_decisions?{query}",
+              headers={
+                  "apikey": publishable_key,
+                  "Authorization": f"Bearer {publishable_key}",
+                  "Accept": "application/json",
+              },
+          )
+          with urllib.request.urlopen(request, timeout=30) as response:
+              approved = json.loads(response.read().decode("utf-8"))
+
+          approved_ids = {
+              str(row.get("event_id") or "")
+              for row in approved
+              if row.get("event_id")
+          }
+
+          def normalized(value):
+              value = unicodedata.normalize("NFKD", str(value or "")).casefold()
+              value = "".join(char for char in value if not unicodedata.combining(char))
+              value = re.sub(r"[^a-z0-9]+", " ", value)
+              return re.sub(r"\s+", " ", value).strip()
+
+          def date_range(event):
+              start = str(event.get("start") or "")
+              end = str(event.get("end") or start)
+              if not re.fullmatch(r"20\d{2}-\d{2}-\d{2}", start):
+                  return None
+              if not re.fullmatch(r"20\d{2}-\d{2}-\d{2}", end):
+                  end = start
+              return start, end
+
+          approved_events = [
+              row.get("event") for row in approved
+              if isinstance(row.get("event"), dict)
+          ]
+
+          def matches_approved(candidate):
+              candidate_id = str(candidate.get("id") or "")
+              if candidate_id in approved_ids:
+                  return True
+              candidate_name = normalized(candidate.get("name"))
+              candidate_city = normalized(candidate.get("city"))
+              candidate_dates = date_range(candidate)
+              if not candidate_name or not candidate_city or not candidate_dates:
+                  return False
+              for event in approved_events:
+                  name = normalized(event.get("name"))
+                  city = normalized(event.get("city"))
+                  dates = date_range(event)
+                  if not name or not city or not dates:
+                      continue
+                  similar_name = SequenceMatcher(None, candidate_name, name).ratio() >= 0.90
+                  same_city = candidate_city == city or candidate_city in city or city in candidate_city
+                  overlaps = candidate_dates[0] <= dates[1] and dates[0] <= candidate_dates[1]
+                  if similar_name and same_city and overlaps:
+                      return True
+              return False
+
+          path = "herold-funde.json"
+          with open(path, encoding="utf-8") as handle:
+              candidates = json.load(handle)
+          kept = [event for event in candidates if not matches_approved(event)]
+          removed = len(candidates) - len(kept)
+          with open(path, "w", encoding="utf-8") as handle:
+              json.dump(kept, handle, ensure_ascii=False, indent=2)
+
+          print("Bereits bestätigte Kandidaten entfernt:", removed)
+          print("Bestätigte Entscheidungen geladen:", len(approved))
+          PY
+
       - name: Funddatei prüfen
 
         run: |
