@@ -6329,17 +6329,5 @@
     "city": "Derendingen",
     "postcode": "",
     "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-enter-2026/"
-  },
-  {
-    "id": "eu-source-80d77336404b0224",
-    "name": "Mittelaltermarkt Schloss",
-    "type": "Markt",
-    "date": "2027-04-16 bis 2027-04-18",
-    "start": "2027-04-16",
-    "end": "2027-04-18",
-    "country": "Schweiz",
-    "city": "Laupen BE Neues OK",
-    "postcode": "",
-    "source": "https://fyndling.de/e/8ee9268213454553"
   }
 ]
