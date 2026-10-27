@@ -6054,6 +6054,10 @@ function openEvent(id){
       ? `<a class="btn btnLink" href="${escapeHTML(sourceUrl)}">🔎 Fundquelle öffnen</a>`
       : ""}
 
+    <button class="btn" onclick="teileVeranstaltung('${updateId}')">
+      📤 Veranstaltung teilen
+    </button>
+
     <button
 
       class="btn"
@@ -6094,6 +6098,30 @@ function openEvent(id){
 
   loadEventWeather(event);
 
+}
+
+async function teileVeranstaltung(id){
+  const event=events.find(item=>String(item.id)===String(id));
+  if(!event) return;
+  const title=String(event.name||"Mittelalter-Veranstaltung").trim();
+  const place=[event.city,event.country].filter(Boolean).join(", ");
+  const dateText=String(event.date||"");
+  const url=window.location.origin+window.location.pathname;
+  const text=[title,dateText,place].filter(Boolean).join(" · ");
+  if(navigator.share){
+    try{
+      await navigator.share({title:"Veranstaltung teilen: "+title,text,url});
+      return;
+    }catch(error){
+      if(error?.name==="AbortError") return;
+    }
+  }
+  try{
+    await navigator.clipboard.writeText(text+"\n"+url);
+    alert("Veranstaltungsdaten und Rabenruf-Link wurden kopiert. Du kannst sie jetzt in WhatsApp einfügen.");
+  }catch(_error){
+    prompt("Kopiere diese Nachricht zum Teilen:",text+"\n"+url);
+  }
 }
 
 function heroldIsAdmin(){
