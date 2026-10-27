@@ -7100,81 +7100,46 @@ async function entscheideTerminAenderung(requestId,action){
 
 let heroldFilter = "alle";
 function renderHerold(){
-
-  const box = byId("heroldList");
-
-  if(heroldFunde.length === 0){
-
-    box.innerHTML = `
-
-      <div class="card">
-
-        <b>🐦‍⬛ Keine neuen Meldungen</b>
-
-        <p>Der Herold hat momentan keine neuen Veranstaltungen zu prüfen.</p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-  const sichtbareFunde = heroldFunde
-
-  .map((fund, index) => ({ fund, index }))
-
-  .filter(({ fund }) =>
-
-    heroldFilter === "alle" ||
-
-    (heroldFilter === "maerkte" && fund.type !== "Buhurt") ||
-
-    (heroldFilter === "buhurt" && fund.type === "Buhurt")
-
+  const box=byId("heroldList");
+  if(!box) return;
+  const visible=heroldFunde.map((fund,index)=>({fund,index})).filter(({fund})=>
+    heroldFilter==="alle" ||
+    (heroldFilter==="maerkte" && fund.type!=="Buhurt") ||
+    (heroldFilter==="buhurt" && fund.type==="Buhurt")
   );
-box.innerHTML = `
-
-  <div style="display:flex; gap:8px; margin-bottom:16px;">
-
-    <button onclick="heroldFilter='alle'; renderHerold()">Alle</button>
-
-    <button onclick="heroldFilter='maerkte'; renderHerold()">🏰 Märkte</button>
-
-    <button onclick="heroldFilter='buhurt'; renderHerold()">⚔️ Buhurt</button>
-
-  </div>
-
-` +
- sichtbareFunde.map(({ fund, index }) => `in
-
-    <div class="card">
-
-      <h3>🐦‍⬛ ${escapeHTML(fund.name)}</h3>
-
-      <p>📅 ${escapeHTML(fund.date)}</p>
-
-    <p>📍 ${escapeHTML((fund.city ? fund.city + ", " : "") + (fund.country || ""))}</p>
-
-      <p>🔎 Quelle: ${escapeHTML(fund.source)}</p>
-
-      <button onclick="heroldUebernehmen(${index})">
-
-        ✅ Übernehmen
-
-      </button>
-
-      <button onclick="heroldVerwerfen(${index})">
-
-        ❌ Verwerfen
-
-      </button>
-
-    </div>
-
-  `).join("");
-
+  const filters='<div style="display:flex;gap:8px;margin-bottom:16px">'+
+    '<button onclick="heroldFilter=\'alle\';renderHerold()">Alle</button>'+
+    '<button onclick="heroldFilter=\'maerkte\';renderHerold()">🏰 Märkte</button>'+
+    '<button onclick="heroldFilter=\'buhurt\';renderHerold()">⚔️ Buhurt</button></div>';
+  if(!heroldFunde.length){
+    box.innerHTML=filters+'<div class="card"><b>🐦‍⬛ Keine neuen Meldungen</b><p>Der Herold hat momentan keine neuen Veranstaltungen zu prüfen.</p></div>';
+    return;
+  }
+  const field=(index,key,label,value,type="text")=>
+    '<label>'+label+'<input class="eventEditField" id="herold-edit-'+index+'-'+key+'" type="'+type+'" value="'+escapeHTML(value||"")+'"></label>';
+  box.innerHTML=filters+visible.map(({fund,index})=>{
+    const tags=Array.isArray(fund.tags)?fund.tags:[fund.type||"Markt"];
+    const categories=["Markt","MPS","Lager","Reenactment","Buhurt","Spezialevent"];
+    const choices=categories.map(type=>'<label><input type="checkbox" class="herold-edit-'+index+'-tag" value="'+type+'" '+(tags.includes(type)?"checked":"")+'> '+type+'</label>').join("");
+    return '<div class="card"><h3>'+escapeHTML(fund.name||"Veranstaltung")+'</h3>'+
+      '<p>📅 '+escapeHTML(fund.date||"")+'<br>📍 '+escapeHTML((fund.city?fund.city+", ":"")+(fund.country||""))+'</p>'+
+      '<button type="button" onclick="document.getElementById(\'herold-details-'+index+'\').open=true;document.getElementById(\'herold-details-'+index+'\').scrollIntoView({behavior:\'smooth\',block:\'start\'})">🔎 Details ansehen / korrigieren</button>'+
+      '<details id="herold-details-'+index+'" style="margin-top:12px"><summary>Alle Angaben prüfen und korrigieren</summary>'+
+      '<div class="eventEditForm" style="margin-top:12px">'+
+      field(index,"name","Veranstaltungsname",fund.name)+
+      '<label>Art / Kategorien (Mehrfachauswahl)<div class="categoryChoices">'+choices+'</div></label>'+
+      field(index,"start","Beginn",""+(fund.start||""),"date")+
+      field(index,"end","Ende",""+(fund.end||fund.start||""),"date")+
+      field(index,"city","Ort / Stadt",fund.city)+field(index,"country","Land",fund.country)+
+      field(index,"venue","Veranstaltungsort",fund.venue)+field(index,"address","Adresse",fund.address)+
+      field(index,"organizer","Veranstalter",fund.organizer)+field(index,"website","Veranstalter-Webseite",fund.website||fund.organizer_url)+
+      field(index,"flyer","Flyer-Adresse",fund.flyer)+
+      '<label>Beschreibung<textarea class="eventEditField" id="herold-edit-'+index+'-info">'+escapeHTML(fund.info||"")+'</textarea></label>'+
+      field(index,"hours","Zeiten",fund.hours)+
+      '<p class="muted">Quelle: '+escapeHTML(fund.source||"keine Quelle angegeben")+'</p></div></details>'+
+      '<div class="buttonRow"><button onclick="heroldUebernehmen('+index+')">✅ Übernehmen</button>'+
+      '<button onclick="heroldVerwerfen('+index+')">❌ Verwerfen</button></div></div>';
+  }).join("");
 }
 
 async function starteHeroldAktion(index, aktion){
@@ -7195,7 +7160,7 @@ async function starteHeroldAktion(index, aktion){
     const data=await heroldApi("functions/v1/herold-decision",{
       method:"POST",
       token:heroldSession.access_token,
-      body:{action:aktion,event_id:eventId}
+      body:{action:aktion,event_id:eventId,...(aktion==="approve"?{overrides:heroldKorrekturen(index)}:{})}
     });
     if(!data?.ok) throw new Error(data?.error || "Die Herold-Aktion ist fehlgeschlagen.");
     await ladeHeroldFunde();
@@ -7206,6 +7171,16 @@ async function starteHeroldAktion(index, aktion){
   }
 }
 
+function heroldKorrekturen(index){
+  const read=key=>document.getElementById("herold-edit-"+index+"-"+key)?.value?.trim() || "";
+  const tags=[...document.querySelectorAll(".herold-edit-"+index+"-tag:checked")].map(input=>input.value);
+  return {
+    name:read("name"),type:tags[0]||"Markt",tags,
+    start:read("start"),end:read("end"),city:read("city"),country:read("country"),
+    venue:read("venue"),address:read("address"),organizer:read("organizer"),
+    website:read("website"),flyer:read("flyer"),info:read("info"),hours:read("hours")
+  };
+}
 function heroldUebernehmen(index){
   starteHeroldAktion(index,"approve");
 }
