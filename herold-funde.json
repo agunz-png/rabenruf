@@ -5442,22 +5442,6 @@
     ]
   },
   {
-    "id": "eu-source-a290b66685c44f19",
-    "name": "Historischer Herbstmarkt Wangen a. Aare",
-    "type": "Markt",
-    "date": "2027-10-09 bis 2027-10-10",
-    "start": "2027-10-09",
-    "end": "2027-10-10",
-    "country": "Schweiz",
-    "city": "Historischer Herbstmarkt Wangen a. Aare",
-    "postcode": "",
-    "source": "https://fyndling.de/e/66c938e086022fed",
-    "website": "http://www.marktzunft.ch",
-    "websites": [
-      "http://www.marktzunft.ch"
-    ]
-  },
-  {
     "id": "eu-source-1d62d9920674d0b4",
     "name": "1",
     "type": "Markt",
