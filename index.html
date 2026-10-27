@@ -7313,19 +7313,19 @@ renderCalendar();
 
 initialisiereHeroldAnmeldung();
 
-ladeFreigegebeneEvents();
+ladeFreigegebeneEvents().then(() => {
+  if(heroldSession) ladeHeroldFunde();
+});
 
-if(heroldSession) ladeHeroldFunde();
-
-setInterval(() => {
-  ladeFreigegebeneEvents();
-  ladeHeroldFunde();
+setInterval(async () => {
+  await ladeFreigegebeneEvents();
+  await ladeHeroldFunde();
   if(heroldIsAdmin()) ladeHeroldUpdates();
 }, 5 * 60 * 1000);
 
-window.addEventListener('focus', () => {
-  ladeFreigegebeneEvents();
-  ladeHeroldFunde();
+window.addEventListener('focus', async () => {
+  await ladeFreigegebeneEvents();
+  await ladeHeroldFunde();
   if(heroldIsAdmin()) ladeHeroldUpdates();
 });
 
