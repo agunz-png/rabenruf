@@ -278,10 +278,14 @@ jobs:
                   dates = date_range(event)
                   if not name or not city or not dates:
                       continue
-                  similar_name = SequenceMatcher(None, candidate_name, name).ratio() >= 0.90
-                  same_city = candidate_city == city or candidate_city in city or city in candidate_city
+                  similarity = SequenceMatcher(None, candidate_name, name).ratio()
+                  same_city = candidate_city and city and (
+                      candidate_city == city or candidate_city in city or city in candidate_city
+                  )
                   overlaps = candidate_dates[0] <= dates[1] and dates[0] <= candidate_dates[1]
-                  if similar_name and same_city and overlaps:
+                  # Exact or near-exact titles with overlapping dates still match
+                  # when a source has put the event title into its city field.
+                  if overlaps and (similarity >= 0.98 or (similarity >= 0.90 and same_city)):
                       return True
               return False
 
