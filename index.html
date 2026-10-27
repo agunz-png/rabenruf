@@ -6808,14 +6808,19 @@ function heroldDateRange(event){
 function heroldSameEvent(a,b){
   const nameA=heroldNorm(a?.name), nameB=heroldNorm(b?.name);
   const cityA=heroldNorm(a?.city), cityB=heroldNorm(b?.city);
-  if(!nameA||!nameB||!cityA||!cityB) return false;
-  const nameEqual=nameA===nameB || nameA.includes(nameB) || nameB.includes(nameA);
-  if(!nameEqual) return false;
-  const cityEqual=cityA===cityB || cityA.includes(cityB) || cityB.includes(cityA);
-  if(!cityEqual) return false;
+  if(!nameA||!nameB) return false;
+  const exactName=nameA===nameB;
+  const similarName=exactName || nameA.includes(nameB) || nameB.includes(nameA);
+  if(!similarName) return false;
   const datesA=heroldDateRange(a), datesB=heroldDateRange(b);
   if(!datesA||!datesB) return false;
-  return datesA.start<=datesB.end && datesB.start<=datesA.end;
+  const datesOverlap=datesA.start<=datesB.end && datesB.start<=datesA.end;
+  if(!datesOverlap) return false;
+  // Exact title + overlapping dates is stronger evidence than a source's
+  // unreliable city field (some imports put the event title in city).
+  if(exactName) return true;
+  const cityEqual=cityA&&cityB&&(cityA===cityB || cityA.includes(cityB) || cityB.includes(cityA));
+  return Boolean(cityEqual);
 }
 
 async function ladeHeroldFunde(){
