@@ -6844,7 +6844,12 @@ let heroldFunde = [];
 
 function heroldNorm(value){
   return String(value||"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").toLowerCase()
-    .replace(/\b(?:an|der|a)\b/g," ").replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
+    .replace(/\b(?:im|in|am|an|der|die|das|dem|den|a)\b/g," ")
+    .replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
+}
+function heroldNameTokens(value){
+  const normalized=heroldNorm(value).replace(/\bmittelalter markt\b/g,"mittelaltermarkt");
+  return normalized.split(" ").filter(Boolean);
 }
 function heroldDateRange(event){
   const dateText=[event?.start,event?.end,event?.date].filter(Boolean).join(" ");
@@ -6862,12 +6867,12 @@ function heroldSameEvent(a,b){
   if(countryA && countryB && countryA!==countryB) return false;
   const cityA=heroldNorm(a.city), cityB=heroldNorm(b.city);
   if(cityA && cityB && cityA!==cityB) return false;
-  const nameA=heroldNorm(a.name), nameB=heroldNorm(b.name);
+  const tokensA=heroldNameTokens(a.name),tokensB=heroldNameTokens(b.name);
+  const nameA=tokensA.join(" "),nameB=tokensB.join(" ");
   if(!nameA || !nameB) return false;
   // Names alone are insufficient: missing locations require manual review.
   if(!cityA || !cityB || !countryA || !countryB) return false;
   if(nameA===nameB) return true;
-  const tokensA=nameA.split(" "),tokensB=nameB.split(" ");
   const common=tokensA.filter(token=>tokensB.includes(token));
   return common.length>=2 && common.length/Math.max(tokensA.length,tokensB.length)>=0.8;
 }
