@@ -1,0 +1,7357 @@
+<!doctype html>
+
+<html lang="de">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta name="theme-color" content="#15110d">
+
+<title>Rabenruf</title>
+
+<link rel="stylesheet"
+
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+<style>
+
+*{
+
+  box-sizing:border-box;
+
+}
+
+:root{
+
+  --bg:#0c0b09;
+
+  --panel:#1c1813;
+
+  --panel2:#281f18;
+
+  --gold:#d6ad62;
+
+  --gold2:#f0d18c;
+
+  --text:#f5ecdf;
+
+  --muted:#b9aa96;
+
+  --red:#963e30;
+
+  --line:#49372a;
+
+  --green:#536c49;
+
+}
+
+html,body{
+
+  margin:0;
+
+  padding:0;
+
+  background:var(--bg);
+
+  color:var(--text);
+
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+}
+
+body{
+
+  min-height:100vh;
+
+}
+
+button,input,select{
+
+  font:inherit;
+
+}
+
+.app{
+
+  max-width:520px;
+
+  margin:auto;
+
+  min-height:100vh;
+
+  background:
+
+    radial-gradient(circle at top,#2b1b10 0,#17120e 25%,#0c0b09 65%);
+
+  padding-bottom:95px;
+
+}
+
+header{
+
+  padding:18px 17px 12px;
+
+  position:sticky;
+
+  top:0;
+
+  background:#15110df2;
+
+  backdrop-filter:blur(12px);
+
+  -webkit-backdrop-filter:blur(12px);
+
+  z-index:900;
+
+  border-bottom:1px solid #211a15;
+
+}
+
+.logo{
+
+  font:700 29px Georgia,serif;
+
+  color:var(--gold);
+
+  letter-spacing:.3px;
+
+}
+
+.subtitle{
+
+  margin-top:3px;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+}
+
+.search{
+
+  margin-top:14px;
+
+  background:var(--panel2);
+
+  border:1px solid var(--line);
+
+  border-radius:15px;
+
+  padding:12px 13px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+
+}
+
+.search input{
+
+  width:100%;
+
+  border:0;
+
+  outline:0;
+
+  background:transparent;
+
+  color:white;
+
+  font-size:16px;
+
+}
+
+.search input::placeholder{
+
+  color:#a99e92;
+
+}
+
+main{
+
+  padding:10px 16px 15px;
+
+}
+
+.hidden{
+
+  display:none !important;
+
+}
+
+.hero{
+
+  padding:19px;
+
+  border:1px solid #63472d;
+
+  border-radius:20px;
+
+  background:
+
+    linear-gradient(135deg,#4a2a19,#251812 55%,#16110d);
+
+  margin:8px 0 18px;
+
+  box-shadow:0 8px 25px #0005;
+
+}
+
+.heroSmall{
+
+  font-size:11px;
+
+  letter-spacing:2px;
+
+  color:var(--gold2);
+
+  font-weight:800;
+
+}
+
+h1,h2,h3{
+
+  font-family:Georgia,serif;
+
+}
+
+h1{
+
+  font-size:29px;
+
+  line-height:1.05;
+
+  margin:8px 0 10px;
+
+}
+
+h2{
+
+  margin:20px 0 10px;
+
+  font-size:25px;
+
+}
+
+h3{
+
+  margin-top:4px;
+
+}
+
+.gold{
+
+  color:var(--gold);
+
+}
+
+.muted{
+
+  color:var(--muted);
+
+  line-height:1.5;
+
+}
+
+.btn{
+
+  width:100%;
+
+  border:1px solid var(--line);
+
+  border-radius:13px;
+
+  padding:13px 12px;
+
+  margin-top:9px;
+
+  background:#2b2119;
+
+  color:white;
+
+  font-weight:700;
+
+  font-size:14px;
+
+}
+
+.btn:active{
+
+  transform:scale(.98);
+
+}
+
+.btnLink{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+}
+
+.primary{
+
+  background:var(--red);
+
+  border-color:#b05945;
+}
+
+.green{
+
+  background:var(--green);
+
+}
+
+.chips{
+
+  display:flex;
+
+  gap:8px;
+
+  overflow-x:auto;
+
+  scrollbar-width:none;
+
+  padding:3px 0 8px;
+
+}
+
+.chips::-webkit-scrollbar{
+
+  display:none;
+
+}
+
+.chip{
+
+  flex:none;
+
+  padding:9px 13px;
+
+  border-radius:30px;
+
+  border:1px solid var(--line);
+
+  background:#211b16;
+
+  color:var(--text);
+
+  font-size:13px;
+
+  white-space:nowrap;
+
+}
+
+.chip.active{
+
+  background:var(--gold);
+
+  color:#21160e;
+
+  border-color:var(--gold);
+
+  font-weight:800;
+
+}
+
+.filterBox{
+
+  display:flex;
+
+  gap:9px;
+
+  margin:8px 0 13px;
+
+}
+
+.filterBox select{
+
+  flex:1;
+
+  min-width:0;
+
+  background:var(--panel2);
+
+  color:white;
+
+  border:1px solid var(--line);
+
+  border-radius:12px;
+
+  padding:11px 9px;
+
+}
+
+.sectionTitle{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+}
+
+.count{
+
+  font-size:12px;
+
+  color:var(--gold);
+
+  background:#2d221a;
+
+  padding:6px 9px;
+
+  border-radius:20px;
+
+}
+
+.card{
+
+  background:linear-gradient(145deg,#211b16,#191510);
+
+  border:1px solid var(--line);
+
+  border-radius:17px;
+
+  padding:15px;
+
+  margin:11px 0;
+
+  box-shadow:0 7px 18px #0003;
+
+}
+
+.card:active{
+
+  transform:scale(.99);
+
+}
+
+.cardTitle{
+
+  font-weight:800;
+
+  font-size:17px;
+
+  padding-right:36px;
+
+  line-height:1.25;
+
+}
+
+.meta{
+
+  font-size:13px;
+
+  color:var(--muted);
+
+  margin-top:7px;
+
+  line-height:1.55;
+
+}
+
+.badges{
+
+  margin-top:8px;
+
+}
+
+.badge{
+
+  display:inline-block;
+
+  padding:5px 8px;
+
+  border-radius:20px;
+
+  background:#33261d;
+
+  color:var(--gold);
+
+  font-size:11px;
+
+  margin-right:4px;
+
+}
+
+.status{
+
+  display:inline-block;
+
+  padding:5px 8px;
+
+  border-radius:20px;
+
+  font-size:11px;
+
+  background:#33442f;
+
+  color:#d5edcb;
+
+}
+
+.heart{
+
+  float:right;
+
+  border:0;
+
+  background:none;
+
+  color:white;
+
+  font-size:25px;
+
+  padding:0 0 5px 10px;
+
+}
+
+.distance{
+
+  display:block;
+
+  margin-top:8px;
+
+  color:#d3c38d;
+
+  font-size:12px;
+
+}
+
+#map{
+
+  height:57vh;
+
+  min-height:390px;
+
+  border-radius:18px;
+
+  border:1px solid var(--line);
+
+  overflow:hidden;
+
+  background:#171717;
+
+}
+
+.mapTools{
+
+  display:flex;
+
+  gap:8px;
+
+  margin-bottom:10px;
+
+}
+
+.mapTools .btn{
+
+  margin:0;
+
+}
+
+.back{
+
+  display:inline-block;
+
+  color:var(--gold);
+
+  padding:10px 0;
+
+  font-weight:700;
+
+}
+
+.detailPlace{
+
+  font-size:14px;
+
+  line-height:1.6;
+
+}
+
+.infoLine{
+
+  padding:10px 0;
+
+  border-bottom:1px solid #382b21;
+
+}
+
+.infoLine:last-child{
+
+  border-bottom:0;
+
+}
+
+.empty{
+
+  text-align:center;
+
+  color:var(--muted);
+  padding:45px 15px;
+
+  line-height:1.6;
+
+}
+
+.notice{
+
+  background:#201b16;
+
+  color:var(--muted);
+
+  border-left:3px solid var(--gold);
+
+  padding:11px 12px;
+
+  border-radius:8px;
+
+  font-size:12px;
+
+  margin:12px 0;
+
+  line-height:1.5;
+
+}
+
+.calendarMonth{
+
+  color:var(--gold);
+
+  font:bold 20px Georgia,serif;
+
+  margin:20px 0 7px;
+
+}
+
+.bottom{
+
+  position:fixed;
+
+  bottom:0;
+
+  left:0;
+
+  right:0;
+
+  max-width:520px;
+
+  margin:auto;
+
+  display:flex;
+
+  justify-content:space-around;
+
+  background:#15110df5;
+
+  backdrop-filter:blur(12px);
+
+  -webkit-backdrop-filter:blur(12px);
+
+  border-top:1px solid var(--line);
+
+  padding:9px 2px calc(9px + env(safe-area-inset-bottom));
+
+  z-index:1000;
+
+}
+
+.nav{
+
+  width:16.666%;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:11px;
+
+}
+
+.nav b{
+
+  font-size:21px;
+
+  display:block;
+
+  margin-bottom:2px;
+
+}
+
+.nav.active{
+
+  color:var(--gold);
+
+}
+
+.leaflet-popup-content-wrapper,
+
+.leaflet-popup-tip{
+
+  background:#201a15;
+
+  color:#eee;
+
+}
+
+.popupButton{
+
+  background:#963e30;
+
+  color:white;
+
+  border:0;
+
+  padding:7px 10px;
+
+  border-radius:7px;
+
+  margin-top:8px;
+
+  font-weight:700;
+
+}
+
+.countryFlag{
+
+  font-size:18px;
+
+}
+
+.buhurtMapMarker{
+  width:36px;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#c92f32;
+  color:#fff;
+  border:2px solid #fff4e8;
+  box-shadow:0 2px 8px #000b,0 0 0 2px #7f1d1d;
+  font-size:20px;
+  line-height:1;
+}
+
+.sourceNote{
+
+  font-size:11px;
+
+  color:#8f8376;
+
+  margin-top:10px;
+
+}
+
+@media (min-width:700px){
+
+  .app{
+
+    box-shadow:0 0 50px #000;
+
+  }
+
+}
+
+
+.contactField{
+  display:block;width:100%;margin:7px 0 13px;padding:12px;
+  background:#1c1813;color:var(--text);border:1px solid var(--line);border-radius:10px;
+}
+.contactField:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+textarea.contactField{min-height:150px;resize:vertical;}
+.contactStatus{min-height:24px;margin-top:10px;color:var(--gold2);}
+.eventEditField{display:block;width:100%;margin:7px 0 13px;padding:12px;background:#1c1813;color:var(--text);border:1px solid var(--line);border-radius:10px;}
+.eventEditField:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+.eventEditForm label{display:block;color:var(--muted);font-size:13px;}
+.categoryChoices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:7px 0 10px;}
+.categoryChoices label{display:flex;align-items:center;gap:7px;padding:10px;background:#211b16;border:1px solid var(--line);border-radius:10px;color:var(--text);}
+.categoryChoices input{accent-color:var(--gold);width:18px;height:18px;}
+
+#heroldManualForm{margin-top:16px;}
+#heroldManualForm label{display:block;margin:14px 0 6px;color:var(--muted);font-size:13px;font-weight:650;line-height:1.35;}
+#heroldManualForm input:not([type="checkbox"]):not([type="hidden"]),
+#heroldManualForm textarea,
+#heroldManualForm select{
+  display:block;width:100%;min-width:0;min-height:46px;margin:0 0 4px;padding:11px 12px;
+  border:1px solid var(--line);border-radius:12px;background:#15110d;color:var(--text);
+  color-scheme:dark;box-shadow:inset 0 1px 2px #0005;
+}
+#heroldManualForm input::placeholder,
+#heroldManualForm textarea::placeholder{color:#968777;opacity:1;}
+#heroldManualForm input:focus,
+#heroldManualForm textarea:focus,
+#heroldManualForm select:focus{outline:2px solid #d6ad6280;border-color:var(--gold);}
+#heroldManualForm textarea{min-height:100px;resize:vertical;}
+#heroldManualForm .formGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px;}
+#heroldManualForm .formGrid>div{min-width:0;}
+#heroldManualForm .categoryChoices{margin:8px 0 10px;}
+#heroldManualForm .categoryChoices label{
+  display:flex;align-items:center;gap:9px;min-height:48px;margin:0;padding:10px 12px;
+  border:1px solid var(--line);border-radius:12px;background:#211b16;color:var(--text);
+  font-size:14px;font-weight:600;cursor:pointer;transition:border-color .15s,background .15s;
+}
+#heroldManualForm .categoryChoices label:has(input:checked){border-color:var(--gold);background:#342719;}
+#heroldManualForm .categoryChoices input{flex:none;margin:0;}
+#manualCategoryStatus{margin:8px 0 12px;font-size:13px;}
+#manualSubmit{margin-top:16px;}
+@media(max-width:380px){
+  #heroldManualForm .formGrid{grid-template-columns:1fr;}
+}
+
+.eventEditForm textarea{min-height:95px;resize:vertical;}
+.eventFlyer{padding:10px;margin:8px 0 18px;border:1px solid #63472d;border-radius:16px;background:#17120e;text-align:center;}
+.eventFlyer img{display:block;width:100%;max-height:520px;object-fit:contain;border-radius:10px;}
+.eventFlyer a{display:block;color:inherit;}
+.eventFlyer figcaption{padding:8px 2px 0;color:var(--muted);font-size:13px;}
+.weatherPanel h3{margin:0 0 7px;color:var(--gold);}
+.weatherLoading{color:var(--muted);font-size:13px;}
+.weatherDays{display:grid;gap:8px;margin-top:10px;}
+.weatherDay{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:10px 11px;border:1px solid #49372a;border-radius:12px;background:#17120e;}
+.weatherDayName{font-weight:700;color:var(--text);}
+.weatherCondition{font-size:12px;color:var(--muted);margin-top:3px;}
+.weatherValues{text-align:right;white-space:nowrap;font-size:13px;}
+.weatherValues strong{color:var(--gold2);}
+.weatherAttribution{font-size:11px;color:#a99e92;margin-top:10px;}
+.weatherAttribution a{color:var(--gold2);}
+.weatherMessage{font-size:13px;color:var(--muted);line-height:1.5;}
+
+.honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
+
+/* Desktop-Erweiterung: Original-App auf kleinen Bildschirmen beibehalten */
+.desktopNav{display:none}
+@media(min-width:1000px){
+.app{max-width:1440px!important;width:calc(100% - 64px);margin:24px auto 60px;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 24px 80px #0008;padding-bottom:30px}
+.app header{padding:22px 38px!important;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.desktopNav{display:flex;gap:8px;flex-wrap:wrap;order:2}
+.desktopNav button{background:transparent;border:1px solid transparent;border-radius:8px;padding:10px 13px;color:var(--text);font:inherit;cursor:pointer}
+.desktopNav button:hover,.desktopNav button:focus-visible{border-color:var(--gold);color:var(--gold)}
+.app main{padding:32px 38px 65px!important;min-height:550px}
+.app .hero{padding:48px!important}
+.app .bottom{display:none!important}
+#map{min-height:560px}
+}
+</style>
+
+
+<link rel="icon" type="image/png" sizes="512x512" href="assets/rabenruf-icon.png">
+<link rel="apple-touch-icon" sizes="512x512" href="assets/rabenruf-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Rabenruf">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+<div class="desktopNav" aria-label="Desktop-Navigation"><button onclick="show('home')">Startseite</button><button onclick="show('calendar')">Kalender</button><button onclick="showMap()">Europakarte</button><button onclick="showFavorites()">Favoriten</button><button onclick="show('contact')">Kontakt</button><button onclick="showHerold()">Herold</button></div>
+
+  <div class="logo">🐦‍⬛ Rabenruf</div>
+
+  <div class="subtitle">
+
+    Mittelalterfeste • Lager • Reenactment in Europa
+
+  </div>
+
+</header>
+
+<div id="calendarEventUpdateNotice" class="hidden" role="status" aria-live="polite"></div>
+
+<main id="home">
+
+  <div class="hero">
+
+    <div class="heroSmall">
+
+      DER HEROLD RUFT
+
+    </div>
+
+    <h1>
+
+      Dein Weg ins
+
+      <span class="gold">Mittelalter</span>
+
+    </h1>
+
+    <p class="muted">
+
+      Märkte, MPS, Heerlager und Reenactment.
+
+      Finde Termine, Route und Veranstalter direkt in Rabenruf.
+
+    </p>
+
+    </div>
+
+  <div class="chips" id="homeTypeFilters">
+
+    <button
+
+      id="chipAlle"
+
+      class="chip active"
+
+      onclick="setType('Alle')">
+
+      🔥 Alle
+
+    </button>
+
+    <button
+
+      id="chipMPS"
+
+      class="chip"
+
+      onclick="setType('MPS')">
+
+      ⚔️ MPS
+
+    </button>
+
+    <button
+
+      id="chipMarkt"
+
+      class="chip"
+
+      onclick="setType('Markt')">
+
+      🏰 Märkte
+
+    </button>
+
+    <button
+
+      id="chipLager"
+
+      class="chip"
+
+      onclick="setType('Lager')">
+
+      🏕️ Lager
+
+    </button>
+
+    <button
+
+      id="chipReenactment"
+
+      class="chip"
+      onclick="setType('Reenactment')">
+
+      🛡️ Reenactment
+
+    </button>
+
+    <button
+
+      id="chipBuhurt"
+
+      class="chip"
+
+      onclick="setType('Buhurt')">
+
+      ⚔️ Buhurt
+
+    </button>
+
+  </div>
+
+  <div class="filterBox">
+
+    <select id="countryFilter" onchange="applyFilters()">
+
+      <option value="Alle">🌍 Alle Länder</option>
+
+    </select>
+    <select id="timeFilter" onchange="applyFilters()">
+
+      <option value="Alle">📅 Alle Termine</option>
+
+      <option value="September">September</option>
+
+      <option value="Oktober">Oktober</option>
+
+      <option value="November">November</option>
+
+    </select>
+
+  </div>
+
+  <div class="sectionTitle">
+
+    <h2>Demnächst</h2>
+
+    <span id="eventCount" class="count"></span>
+
+  </div>
+
+  <div id="eventList"></div>
+
+</main>
+
+<main id="mapPage" class="hidden">
+
+  <h2>🗺️ Europa-Karte</h2>
+
+  <div class="mapTools">
+
+    <select id="mapYearFilter" class="btn" aria-label="Jahr auf der Karte auswählen" onchange="setEventYear(this.value)">
+
+      <option value="Alle">📅 Alle Jahre</option>
+
+    </select>
+
+    <button class="btn" onclick="findMe()">
+
+      📍 Mein Standort
+
+    </button>
+
+    <button class="btn" onclick="resetMap()">
+
+      🌍 Europa
+
+    </button>
+
+  </div>
+
+  <div id="map"></div>
+
+  <div class="notice">
+
+    🔴 ⚔️ Rote Markierung = Buhurt-Turnier. Tippe auf einen Marker, um die Veranstaltung zu öffnen.
+
+  </div>
+
+</main>
+
+<main id="calendar" class="hidden">
+
+  <h2>📅 Kalender</h2>
+
+  <div class="search">
+    🔎
+    <input
+      id="calendarSearchInput"
+      placeholder="Fest, Ort oder Land suchen..."
+      autocomplete="off"
+      oninput="applyCalendarFilters()">
+  </div>
+
+  <div class="chips" id="calendarTypeFilters">
+    <button class="chip active" data-type="Alle" onclick="setCalendarType('Alle')">🔥 Alle</button>
+    <button class="chip" data-type="MPS" onclick="setCalendarType('MPS')">⚔️ MPS</button>
+    <button class="chip" data-type="Markt" onclick="setCalendarType('Markt')">🏰 Märkte</button>
+    <button class="chip" data-type="Lager" onclick="setCalendarType('Lager')">🏕️ Lager</button>
+    <button class="chip" data-type="Reenactment" onclick="setCalendarType('Reenactment')">🛡️ Reenactment</button>
+    <button class="chip" data-type="Buhurt" onclick="setCalendarType('Buhurt')">⚔️ Buhurt</button>
+  </div>
+
+  <div class="filterBox">
+    <select id="calendarCountryFilter" onchange="applyCalendarFilters()">
+      <option value="Alle">🌍 Alle Länder</option>
+    </select>
+    <select id="calendarYearFilter" onchange="setEventYear(this.value)" aria-label="Kalenderjahr auswählen">
+      <option value="Alle">📅 Alle Jahre</option>
+    </select>
+    <select id="calendarMonthFilter" onchange="applyCalendarFilters()">
+      <option value="Alle">📅 Alle Monate</option>
+    </select>
+  </div>
+
+  <div class="sectionTitle">
+    <span id="calendarEventCount" class="count"></span>
+  </div>
+  <div id="calendarList"></div>
+
+</main>
+
+<main id="favorites" class="hidden">
+
+  <h2>❤️ Meine Favoriten</h2>
+
+  <div id="favoriteList"></div>
+
+</main>
+
+<main id="detail" class="hidden">
+
+  <div class="back" onclick="goBack()">
+
+    ‹ Zurück
+
+  </div>
+
+  <div id="detailContent"></div>
+
+</main>
+
+<main id="eventUpdate" class="hidden">
+  <div class="back" onclick="openEvent(eventEditId)">‹ Zurück zum Termin</div>
+  <div id="eventUpdateForm"></div>
+</main>
+
+<main id="contact" class="hidden">
+  <h2>✉️ Kontakt</h2>
+  <p class="muted">Schreib mir direkt eine Nachricht. Ich bekomme sie per E-Mail und kann dir antworten.</p>
+  <form id="contactForm" class="card" onsubmit="sendContactMessage(event)">
+    <label for="contactName">Dein Name</label>
+    <input class="contactField" id="contactName" name="name" type="text" maxlength="80" autocomplete="name" required>
+    <label for="contactEmail">Deine E-Mail-Adresse</label>
+    <input class="contactField" id="contactEmail" name="email" type="email" maxlength="254" autocomplete="email" required>
+    <fieldset style="border:0;padding:0;margin:18px 0">
+      <legend style="margin-bottom:8px;color:var(--muted);font-size:13px;font-weight:650">Für Veranstalter: Was bietest du an? (Mehrfachauswahl, optional)</legend>
+      <div class="categoryChoices" id="contactTypeChoices">
+        <label><input type="checkbox" name="eventType" value="Markt"> Markt</label>
+        <label><input type="checkbox" name="eventType" value="Lager"> Lager</label>
+        <label><input type="checkbox" name="eventType" value="MPS"> MPS</label>
+        <label><input type="checkbox" name="eventType" value="Reenactment"> Reenactment</label>
+        <label><input type="checkbox" name="eventType" value="Buhurt"> Buhurt</label>
+        <label><input type="checkbox" name="eventType" value="Sonstiges"> Sonstiges</label>
+      </div>
+    </fieldset>
+    <label for="contactFlyer">Flyer als PDF (optional, max. 8 MB)</label>
+    <input class="contactField" id="contactFlyer" name="flyer" type="file" accept="application/pdf,.pdf">
+    <label for="contactMessage">Deine Nachricht</label>
+    <textarea class="contactField" id="contactMessage" name="message" maxlength="4000" required></textarea>
+    <div class="honeypot" aria-hidden="true">
+      <label for="contactWebsite">Website</label>
+      <input id="contactWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+    </div>
+    <button id="contactSubmit" class="btn primary" type="submit">Nachricht senden</button>
+    <p id="contactStatus" class="contactStatus" role="status" aria-live="polite"></p>
+    <p class="sourceNote">Deine Angaben werden über den E-Mail-Dienst übermittelt und genutzt, damit ich dir antworten kann.</p>
+  </form>
+</main>
+
+<main id="herold" class="hidden">
+
+  <h2>🐦‍⬛ Der Herold</h2>
+
+  <div id="heroldAuth"></div>
+
+  <div id="heroldContent" class="hidden">
+    <p>
+      Der Herold sucht nach neuen Mittelalterfesten,
+      Lagern, Reenactment-Veranstaltungen und Buhurt-Turnieren.
+    </p>
+
+    <div class="card">
+      <h3>➕ Veranstaltung manuell eintragen</h3>
+      <p class="muted">Dein Eintrag wird zuerst als Vorschlag gespeichert. Er erscheint erst nach deiner Freigabe im Kalender und auf der Karte.</p>
+      <form id="heroldManualForm" onsubmit="sendeManuellenTermin(event)">
+        <label for="manualName">Veranstaltungsname *</label>
+        <input id="manualName" name="name" required maxlength="180" placeholder="z. B. Mittelaltermarkt am Schloss">
+        <label>Art / Kategorien * (Mehrfachauswahl)</label>
+        <div id="manualTypeChoices" class="categoryChoices">
+          <label><input type="checkbox" value="Markt" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> Markt</label>
+          <label><input type="checkbox" value="MPS" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> MPS</label>
+          <label><input type="checkbox" value="Lager" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> Lager</label>
+          <label><input type="checkbox" value="Reenactment" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> Reenactment</label>
+          <label><input type="checkbox" value="Buhurt" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> Buhurt</label>
+          <label><input type="checkbox" value="Spezialevent" onchange="kategorienGeaendert('manualType','manualCategoryStatus')"> Spezialevent</label>
+        </div>
+        <input id="manualType" type="hidden" name="type" required>
+        <p id="manualCategoryStatus" class="muted" role="status">Du kannst mehrere Arten anklicken.</p>
+        <div class="formGrid">
+          <div><label for="manualStart">Beginn *</label><input id="manualStart" name="start" type="date" required></div>
+          <div><label for="manualEnd">Ende</label><input id="manualEnd" name="end" type="date"></div>
+        </div>
+        <div class="formGrid">
+          <div><label for="manualCity">Ort / Stadt *</label><input id="manualCity" name="city" required maxlength="100" placeholder="z. B. Mühlhausen"></div>
+          <div><label for="manualCountry">Land *</label><input id="manualCountry" name="country" required maxlength="100" placeholder="z. B. Deutschland"></div>
+        </div>
+        <label for="manualVenue">Veranstaltungsort</label><input id="manualVenue" name="venue" maxlength="180" placeholder="z. B. Schloss, Marktgelände">
+        <label for="manualOrganizer">Veranstalter</label><input id="manualOrganizer" name="organizer" maxlength="160">
+        <label for="manualWebsite">Veranstalter-Webseite</label><input id="manualWebsite" name="website" type="url" maxlength="500" placeholder="https://…">
+        <label for="manualSource">Quelle / Fundlink</label><input id="manualSource" name="source" type="url" maxlength="500" placeholder="https://…">
+        <label for="manualInfo">Beschreibung</label><textarea id="manualInfo" name="info" maxlength="1200" rows="3"></textarea>
+        <label for="manualHours">Öffnungszeiten</label><input id="manualHours" name="hours" maxlength="240">
+        <button class="btn primary" type="submit" id="manualSubmit">Vorschlag speichern</button>
+        <p id="manualEventStatus" class="contactStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>⚔️ Buhurt-Quellen</h3>
+      <p><a style="color:#f0d18c" href="https://www.buhurtinternational.com/tournaments" target="_blank" rel="noopener noreferrer">Buhurt International – offizieller Turnierkalender</a><br><span class="muted">Europaweite Hauptquelle für genehmigte Turniere.</span></p>
+      <p><a style="color:#f0d18c" href="https://linktr.ee/eisenliga" target="_blank" rel="noopener noreferrer">Eisenliga – deutsche Ergänzungsquelle</a><br><span class="muted">Linktree mit Website und Facebook.</span></p>
+      <p><a style="color:#f0d18c" href="https://linktr.ee/eiserne.loewen" target="_blank" rel="noopener noreferrer">Eiserne Löwen – Facebook und Instagram</a><br><span class="muted">Beispiel für Vereinsmeldungen aus der Buhurt-Szene.</span></p>
+      <div class="notice">Facebook- und Instagram-Meldungen dienen zum Entdecken neuer Termine. Der Herold übernimmt einen Termin erst nach Bestätigung durch Veranstalter oder Buhurt International. Beiträge, Bilder und längere Texte werden nicht automatisch kopiert.</div>
+    </div>
+
+    <div id="heroldAccount"></div>
+    <div id="heroldList"></div>
+    <div id="heroldUpdateList"></div>
+  </div>
+</main>
+
+<nav class="bottom">
+
+  <div
+
+    id="navHome"
+
+    class="nav active"
+
+    onclick="show('home')">
+
+    <b>🏰</b>
+
+    Start
+
+  </div>
+
+  <div
+
+    id="navMap"
+
+    class="nav"
+
+    onclick="showMap()">
+
+    <b>🗺️</b>
+
+    Karte
+
+  </div>
+
+  <div
+
+    id="navCalendar"
+
+    class="nav"
+
+    onclick="show('calendar')">
+
+    <b>📅</b>
+
+    Kalender
+
+  </div>
+
+  <div
+
+    id="navFavorites"
+
+    class="nav"
+
+    onclick="showFavorites()">
+
+    <b>❤️</b>
+
+    Favoriten
+
+  </div>
+
+<div
+
+  id="navContact"
+  class="nav"
+  onclick="show('contact')">
+  <b>✉️</b>
+  Kontakt
+</div>
+
+<div
+  id="navHerold"
+
+  class="nav"
+
+  onclick="showHerold()">
+
+  <b>🐦‍⬛</b>
+
+  Herold
+
+</div>
+
+</nav>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+<script>
+
+/* =========================================
+
+   RABENRUF – VERANSTALTUNGSDATEN
+
+   ========================================= */
+
+const events = [
+
+{
+
+  id:"lenzburg2026",
+  name:"Mittelaltermarkt Schloss Lenzburg",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-09-11",
+
+  end:"2026-09-13",
+
+  date:"11.–13. September 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Lenzburg",
+
+  venue:"Schloss Lenzburg",
+
+  address:"Schloss, 5600 Lenzburg",
+
+  lat:47.3871,
+
+  lng:8.1854,
+
+  website:"https://www.museumaargau.ch/schloss-lenzburg/event/mittelaltermarkt",
+
+  organizer:"Museum Aargau",
+
+  info:"Historische Marktstände, Handwerk, Falknerei, Musik, Schwertkampf und mittelalterliche Speisen auf Schloss Lenzburg.",
+
+  hours:"Fr 10–17 Uhr • Sa 10–20 Uhr • So 10–17 Uhr"
+
+},
+
+{
+  id:"estavayer2026",
+
+  name:"Fête Médiévale Estavayer",
+
+  type:"Reenactment",
+
+  tags:["Markt","Reenactment","Kampf","Musik"],
+
+  start:"2026-09-19",
+
+  end:"2026-09-20",
+
+  date:"19.–20. September 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Estavayer-le-Lac",
+
+  venue:"Château de Chenaux",
+
+  address:"1470 Estavayer-le-Lac",
+
+  lat:46.8490,
+
+  lng:6.8466,
+
+  website:"https://www.estavayer1470.ch/",
+
+  organizer:"Estavayer1470",
+
+  info:"Mittelalterfest mit Handwerkern, Musikern, Kampfvorführungen, Armbrust, Kanonen und historischem Lager. Am Freitag, 18. September, gibt es ab 18 Uhr ein kostenloses Vorabendprogramm mit Taverne und Feuershow.",
+
+  hours:"Sa 10–18 Uhr • So 10–17 Uhr • Fr ab 18 Uhr kostenloses Vorabendprogramm"
+
+},
+
+{
+  id:"bielnidau2026",
+
+  name:"Mittelalterspektakel Biel/Nidau",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Handwerk","Musik"],
+
+  start:"2026-09-18",
+
+  end:"2026-09-20",
+
+  date:"18.–20. September 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Nidau",
+
+  venue:"Strandbad Biel",
+
+  address:"Uferweg 40, 2560 Nidau",
+
+  lat:47.1296,
+
+  lng:7.2385,
+
+  website:"https://www.nidau.ch/de/veranstaltungen/38_mittelalterspektakel",
+
+  organizer:"Caligatus-Feleus GmbH",
+
+  info:"Mittelalterspektakel am Bielersee mit historischem Markttreiben und mittelalterlichem Rahmenprogramm.",
+
+  hours:"Fr ab 17 Uhr • Ende So 18 Uhr"
+
+},
+
+{
+  id:"zug2026",
+
+  name:"Mittelalterfest Zug",
+
+  type:"Lager",
+
+  tags:["Lager","Handwerk","Markt"],
+
+  start:"2026-09-19",
+
+  end:"2026-09-20",
+
+  date:"19.–20. September 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Zug",
+
+  venue:"Museum Burg Zug",
+
+  address:"Kirchenstrasse 11, 6300 Zug",
+
+  lat:47.1647,
+
+  lng:8.5163,
+
+  website:"https://www.burgzug.ch/page/de/veranstaltungen/kalender",
+
+  organizer:"Museum Burg Zug",
+
+  info:"Historisches Handwerk und Heerlager im Burghof mit Marktständen, Lagerleben, Gauklern und Musik.",
+
+  hours:"Sa 10–19 Uhr • So 10–17 Uhr"
+
+},
+
+{
+
+  id:"luhmuehlen2026",
+
+  name:"MPS Luhmühlen",
+
+  type:"MPS",
+
+  tags:["MPS","Markt","Musik"],
+
+  start:"2026-09-04",
+
+  end:"2026-09-06",
+
+  date:"04.–06. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Luhmühlen",
+
+  venue:"Turniergelände Luhmühlen",
+
+  address:"Westergellerser Heide 1, 21394 Westergellersen",
+
+  lat:53.1938,
+
+  lng:10.1309,
+
+  website:"https://www.spectaculum.de/termine/luhmuehlen/",
+
+  organizer:"Mittelalterlich Phantasie Spectaculum",
+
+  info:"Großes Mittelalterlich Phantasie Spectaculum mit Markt, Musik, Shows und Lagerleben.",
+
+  hours:"Veranstaltungszeiten siehe MPS-Webseite"
+
+},
+
+{
+
+  id:"borken2026",
+
+  name:"Retro-MPS Borken",
+
+  type:"MPS",
+
+  tags:["MPS","Markt","Musik"],
+
+  start:"2026-09-26",
+
+  end:"2026-09-27",
+
+  date:"26.–27. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Borken",
+
+  venue:"Borken",
+
+  address:"Borken, Nordrhein-Westfalen",
+
+  lat:51.8438,
+
+  lng:6.8577,
+
+  website:"https://www.spectaculum.de/termine/borken/",
+
+  organizer:"Mittelalterlich Phantasie Spectaculum",
+
+  info:"Retro-MPS mit mittelalterlichem Markt, Musik und Spectaculum-Atmosphäre.",
+
+  hours:"Sa 11–23 Uhr • So 11–18 Uhr"
+
+},
+
+{
+
+  id:"eggenburg2026",
+
+  name:"Mittelalterfest Eggenburg",
+
+  type:"Markt",
+
+  tags:["Markt","Ritter","Gaukler","Handwerk"],
+
+  start:"2026-09-12",
+
+  end:"2026-09-13",
+
+  date:"12.–13. September 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Eggenburg",
+
+  venue:"Historische Altstadt Eggenburg",
+
+  address:"Eggenburg, Niederösterreich",
+
+  lat:48.6428,
+
+  lng:15.8159,
+
+  website:"https://www.eggenburg.gv.at/tourismus",
+
+  organizer:"Tourismus-Information Eggenburg",
+
+  info:"Eine der großen Mittelalterveranstaltungen Österreichs mit Händlern, Handwerk, Gauklern, Rittern und Akrobatik innerhalb der historischen Stadtmauern.",
+
+  hours:"Sa 10–22 Uhr • So 9–18 Uhr"
+
+},
+
+{
+  id:"bubikon2026",
+
+  name:"Mittelaltermarkt Bubikon",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Handwerk"],
+
+  start:"2026-09-25",
+
+  end:"2026-09-27",
+
+  date:"25.–27. September 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Bubikon",
+
+  venue:"Ritterhaus Bubikon",
+
+  address:"Ritterhausstrasse 35, 8608 Bubikon",
+
+  lat:47.2667,
+  lng:8.8180,
+
+  website:"https://www.turnei.ch/",
+
+  organizer:"Turnei",
+
+  info:"Mittelalterliches Markttreiben rund um das historische Ritterhaus Bubikon.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+},
+
+{
+
+  id:"winterthur2026",
+
+  name:"Mittelaltermarkt Winterthur",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-10-09",
+
+  end:"2026-10-11",
+
+  date:"09.–11. Oktober 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Winterthur",
+
+  venue:"Winterthur",
+
+  address:"Winterthur, Schweiz",
+
+  lat:47.4988,
+
+  lng:8.7241,
+
+  website:"https://www.turnei.ch/",
+
+  organizer:"Turnei",
+
+  info:"Mittelaltermarkt mit Händlern, Handwerk, Speis und Trank sowie mittelalterlichem Rahmenprogramm.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+},
+
+{
+
+  id:"bremgarten2026",
+
+  name:"Mittelaltermarkt Bremgarten",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik","Lager"],
+
+  start:"2026-10-23",
+
+  end:"2026-10-25",
+
+  date:"23.–25. Oktober 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Bremgarten",
+
+  venue:"Altstadt Bremgarten",
+
+  address:"5620 Bremgarten AG",
+
+  lat:47.3512,
+
+  lng:8.3421,
+
+  website:"https://www.mittelalter-bremgarten.ch/",
+
+  organizer:"Mittelaltermarkt Bremgarten",
+
+  info:"Mittelalterliches Markttreiben in Bremgarten mit Händlern, Handwerk, Musik und Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+},
+
+{
+
+  id:"zuerich2026",
+
+  name:"Mittelaltermarkt Zürich",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-10-30",
+
+  end:"2026-11-01",
+
+  date:"30. Oktober–01. November 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Zürich",
+
+  venue:"Zürich",
+
+  address:"Zürich, Schweiz",
+
+  lat:47.3769,
+
+  lng:8.5417,
+
+  website:"https://www.turnei.ch/",
+
+  organizer:"Turnei",
+
+  info:"Mittelaltermarkt mit Marktständen, Handwerk, Speis und Trank und mittelalterlicher Atmosphäre.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+},
+
+{
+
+  id:"rheinfall2026",
+
+  name:"Mittelalterlicher Weihnachtsmarkt am Rheinfall",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-11-20",
+
+  end:"2026-11-22",
+
+  date:"20.–22. November 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Dachsen",
+
+  venue:"Schloss Laufen am Rheinfall",
+
+  address:"8447 Dachsen",
+
+  lat:47.6768,
+
+  lng:8.6156,
+
+  website:"https://www.turnei.ch/",
+
+  organizer:"Turnei",
+
+  info:"Mittelalterlicher Weihnachtsmarkt in eindrucksvoller Kulisse beim Rheinfall.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+},
+
+{
+
+  id:"heromidgard2026",
+
+  name:"Hero Midgard – Mittelaltermarkt",
+
+  type:"Markt",
+
+  tags:["Markt","Musik","Kampf","Fantasy"],
+
+  start:"2026-10-02",
+
+  end:"2026-10-04",
+
+  date:"02.–04. Oktober 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Bern",
+
+  venue:"BERNEXPO",
+
+  address:"Mingerstrasse 6, 3014 Bern",
+
+  lat:46.9582,
+
+  lng:7.4681,
+
+  website:"https://herofest.ch/de/hero-midgard",
+
+  organizer:"HeroFest / BERNEXPO",
+
+  info:"Hero Midgard ist der Mittelaltermarkt des HeroFest mit Musik, Feuershows, Showkämpfen, Axtwerfen und weiteren mittelalterlichen und fantastischen Erlebnissen.",
+
+  hours:"Fr 14–22 Uhr • Sa 10–22 Uhr • So 10–18 Uhr"
+
+},
+
+{
+  id:"windisch2026",
+
+  name:"Habsburger- und Römerfest",
+
+  type:"Reenactment",
+
+  tags:["Reenactment","Mittelalter","Römer","Handwerk"],
+
+  start:"2026-10-11",
+
+  end:"2026-10-11",
+
+  date:"11. Oktober 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Windisch / Brugg",
+
+  venue:"Legionärspfad Vindonissa und weitere historische Schauplätze",
+
+  address:"5210 Windisch",
+
+  lat:47.4804,
+
+  lng:8.2165,
+
+  website:"https://www.museumaargau.ch/legionaerspfad/event/habsburger-und-roemerfest",
+
+  organizer:"Museum Aargau",
+
+  info:"Zeitreise durch Mittelalter und römische Antike mit historischen Vorführungen, mittelalterlicher Musik, Mitmachangeboten und Spezialführungen. Das Fest findet an vier historischen Schauplätzen in Windisch und Brugg statt.",
+
+  hours:"So 10–17 Uhr"
+},
+
+{
+  id:"fischingen2026",
+
+  name:"Mittelalterlicher Handwerker- und Warenmarkt Fischingen",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-10-11",
+
+  end:"2026-10-12",
+
+  date:"11.–12. Oktober 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Fischingen",
+
+  venue:"Kloster Fischingen",
+
+  address:"8376 Fischingen",
+
+  lat:47.4118,
+
+  lng:8.9684,
+
+  website:"https://www.turnei.ch/",
+
+  organizer:"Turnei",
+
+  info:"Mittelalterlicher Handwerker- und Warenmarkt im historischen Kloster Fischingen mit Marktständen, Handwerk und mittelalterlichem Ambiente.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+  id:"herrendingen2026",
+
+  name:"Mittelaltermarkt Herrendingen",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Handwerk","Musik"],
+
+  start:"2026-10-17",
+
+  end:"2026-10-18",
+
+  date:"17.–18. Oktober 2026",
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Eschenbach LU",
+
+  venue:"Hof Herrendingen",
+
+  address:"6274 Eschenbach LU",
+
+  lat:47.1219,
+
+  lng:8.2963,
+
+  website:"https://www.arbor-noctuarum.ch/",
+
+  organizer:"Arbor Noctuarum",
+
+  info:"Mittelaltermarkt mit über 50 Händlern und Ausstellern, Wikinger-Heerlager, traditionellem Handwerk, Musik, Gauklern und mittelalterlicher Küche. Der Eintritt ist kostenlos.",
+
+  hours:"Sa 10–22 Uhr • So 10–17 Uhr"
+},
+
+{
+  id:"zofingen2026",
+
+  name:"Mittelaltermarkt am Weihnachtsmarkt der Sinne",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk","Musik"],
+
+  start:"2026-12-04",
+
+  end:"2026-12-06",
+
+  date:"04.–06. Dezember 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Zofingen",
+
+  venue:"Altstadt Zofingen",
+
+  address:"4800 Zofingen",
+
+  lat:47.2888,
+
+  lng:7.9458,
+
+  website:"https://www.weihnachtsmarkt-der-sinne.ch/",
+
+  organizer:"Weihnachtsmarkt der Sinne",
+
+  info:"Weihnachtsmarkt in der historischen Altstadt von Zofingen mit eigenem Mittelaltermarkt, rund 30 mittelalterlichen Ständen, Handwerk, Speis und Trank sowie passendem Rahmenprogramm.",
+
+  hours:"04.–06. Dezember 2026 • genaue Öffnungszeiten siehe Veranstaltungsseite"
+},
+
+{
+  id:"redde2026",
+
+  name:"Festa di Redde",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Handwerk","Musik"],
+
+  start:"2026-09-12",
+
+  end:"2026-09-12",
+
+  date:"12. September 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Tesserete",
+
+  venue:"Redde",
+
+  address:"6950 Tesserete",
+
+  lat:46.0695,
+
+  lng:8.9650,
+
+  website:"https://www.reddevive.ch/",
+
+  organizer:"Associazione Redde Vive",
+
+  info:"Mittelalterfest in den Wäldern bei Redde mit Mittelaltermarkt, historischen Lagern, Bogenschiessen, Axtwerfen, mittelalterlichen Spielen, Musik und Vorführungen.",
+
+  hours:"Sa 10–21 Uhr"
+
+},
+
+{
+  id:"lelanderon2026",
+
+  name:"Béhourd Le Landeron",
+
+  type:"Reenactment",
+
+  tags:["Reenactment","Ritter","Kampf","Mittelalter"],
+
+  start:"2026-10-10",
+
+  end:"2026-10-11",
+
+  date:"10.–11. Oktober 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Le Landeron",
+
+  venue:"Le Landeron",
+
+  address:"2525 Le Landeron",
+
+  lat:47.0550,
+
+  lng:7.0650,
+
+  website:"https://www.lahorde-des2lacs.ch/",
+
+  organizer:"La Horde des Deux Lacs",
+
+  info:"Mittelalterliches Béhourd-Turnier mit historisch gerüsteten Kämpfern und Vollkontakt-Ritterkämpfen.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+  id:"steinrhein2026",
+
+  name:"Mittelaltermarkt Stein am Rhein",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-12-11",
+
+  end:"2026-12-13",
+
+  date:"11.–13. Dezember 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Stein am Rhein",
+
+  venue:"Kloster St. Georgen / Altstadt",
+
+  address:"8260 Stein am Rhein",
+
+  lat:47.6593,
+
+  lng:8.8594,
+
+  website:"https://maerlistadt.ch/",
+
+  organizer:"Märlistadt Stein am Rhein",
+
+  info:"Mittelaltermarkt im historischen Kloster St. Georgen im Rahmen der Märlistadt. Handel, altes Handwerk und mittelalterliche Weihnachtsbräuche lassen die Zeit vor über 500 Jahren wieder lebendig werden.",
+
+  hours:"Fr 14–20 Uhr • Sa 11–20 Uhr • So 11–18 Uhr"
+
+},
+
+{
+  id:"freudentafel2026",
+
+  name:"Freudentafel – Mittelalter erleben",
+
+  type:"Spezialevent",
+
+  tags:["Mittelalter","Essen","Musik","Gaukelei"],
+
+  start:"2026-12-04",
+
+  end:"2026-12-19",
+
+  date:"04., 05., 11., 12., 18. & 19. Dezember 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Eschenz",
+
+  venue:"Schloss Freudenfels",
+
+  address:"Schlossweg, 8264 Eschenz",
+
+  lat:47.63897,
+
+  lng:8.89004,
+
+  website:"https://www.freudentafel.ch/",
+
+  organizer:"Schloss Freudenfels AG",
+
+  info:"Mittelalterliches Erlebnis-Dinner im Schloss Freudenfels mit Schauspiel, Musik, Gaukelei und gemeinsamem Abendessen. Termine im Dezember 2026: 4., 5., 11., 12., 18. und 19. Dezember. Reservation erforderlich.",
+
+  hours:"Toröffnung 18:45 Uhr • Programm 19:00–22:30 Uhr"
+
+},
+
+{
+  id:"laupenSilvester2026",
+
+  name:"Mittelalter-Fantasy-LARP-Silvester",
+
+  type:"Spezialevent",
+
+  tags:["Mittelalter","Fantasy","LARP","Silvester"],
+
+  start:"2026-12-31",
+
+  end:"2026-12-31",
+
+  date:"31. Dezember 2026",
+
+  country:"Schweiz",
+
+  flag:"🇨🇭",
+
+  city:"Laupen",
+
+  venue:"Schloss Laupen",
+
+  address:"Schloss, 3177 Laupen BE",
+
+  lat:46.90213,
+
+  lng:7.24141,
+
+  website:"https://viaanimenti.ch/",
+
+  organizer:"viaanimenti",
+
+  info:"Mittelalter-Fantasy-LARP-Silvester auf Schloss Laupen mit gemeinsamem Festprogramm, Schlemmerbuffet, Musik und mittelalterlich-fantastischem Ambiente. Gewandungen aus Mittelalter, Wikinger, Kelten und Fantasy sind willkommen.",
+
+  hours:"Silvesterabend • genaue Zeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"barsinghausen2026",
+
+  name:"ANNO 1225",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Handwerk"],
+
+  start:"2026-09-11",
+
+  end:"2026-09-13",
+
+  date:"11.–13. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Barsinghausen",
+
+  venue:"Barsinghausen",
+
+  address:"30890 Barsinghausen",
+
+  lat:52.3003,
+
+  lng:9.4604,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterveranstaltung mit historischem Markttreiben, Lagerleben und Handwerk.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"aichach2026",
+  name:"Historische Markttage Aichach",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-09-11",
+
+  end:"2026-09-13",
+
+  date:"11.–13. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Aichach",
+
+  venue:"Stadtplatz",
+
+  address:"86551 Aichach",
+
+  lat:48.4576,
+
+  lng:11.1341,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historische Markttage mit Handwerk, Handel, Musik und historischem Stadtbild.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"sigmaringen2026",
+
+  name:"Mittelalterspektakel Sigmaringen",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Handwerk","Musik"],
+
+  start:"2026-09-11",
+
+  end:"2026-09-13",
+
+  date:"11.–13. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Sigmaringen",
+
+  venue:"Prinzenpark / Schloss Sigmaringen",
+
+  address:"72488 Sigmaringen",
+
+  lat:48.0877,
+
+  lng:9.2160,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Großer Händler- und Handwerkermarkt mit Musik, Gauklern, Feuershows und Lagerleben.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"haynerburgfest2026",
+
+  name:"Hayner Burgfest",
+
+  type:"Markt",
+
+  tags:["Markt","Ritter","Musik","Handwerk"],
+
+  start:"2026-09-11",
+
+  end:"2026-09-13",
+
+  date:"11.–13. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Dreieich",
+
+  venue:"Burg Hayn",
+
+  address:"63303 Dreieich-Dreieichenhain",
+
+  lat:50.0015,
+
+  lng:8.7160,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historisches Burgfest mit Mittelaltermarkt, Musik, Handwerk und Ritterdarstellungen.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"festivalmediaval2026",
+
+  name:"Festival-Mediaval",
+
+  type:"Spezialevent",
+
+  tags:["Musik","Markt","Mittelalter"],
+
+  start:"2026-09-11",
+
+  end:"2026-09-13",
+
+  date:"11.–13. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Selb",
+
+  venue:"Goldberg",
+
+  address:"95100 Selb",
+
+  lat:50.1706,
+
+  lng:12.1305,
+
+  website:"https://www.festival-mediaval.com/",
+
+  organizer:"Festival-Mediaval",
+
+  info:"Großes Mittelalter-Musikfestival mit Markt, Fantasy, historischen Elementen und umfangreichem Bühnenprogramm.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"satzveyherbst2026",
+
+  name:"Ritterfestspiele Herbst auf Burg Satzvey",
+
+  type:"Reenactment",
+
+  tags:["Ritter","Kampf","Markt"],
+
+  start:"2026-09-12",
+
+  end:"2026-09-13",
+
+  date:"12.–13. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Mechernich-Satzvey",
+
+  venue:"Burg Satzvey",
+
+  address:"53894 Mechernich-Satzvey",
+
+  lat:50.6212,
+
+  lng:6.7068,
+
+  website:"https://www.burgsatzvey.de/",
+
+  organizer:"Burg Satzvey",
+
+  info:"Ritterfestspiele mit mittelalterlichem Markt, historischen Darstellern und Ritterkämpfen.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"lichtenberg2026",
+
+  name:"Großes Burgfest zu Lichtenberg",
+
+  type:"Markt",
+
+  tags:["Burgfest","Markt","Ritter"],
+
+  start:"2026-09-12",
+
+  end:"2026-09-13",
+
+  date:"12.–13. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Lichtenberg",
+
+  venue:"Lichtenberg",
+
+  address:"95192 Lichtenberg",
+
+  lat:50.3839,
+
+  lng:11.6769,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Burgfest mit mittelalterlichem Markt, Ritterdarstellungen und historischem Rahmenprogramm.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"gernsbach2026",
+
+  name:"Mittelaltermeile zum Altstadtfest",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-09-18",
+
+  end:"2026-09-20",
+
+  date:"18.–20. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Gernsbach",
+
+  venue:"Altstadt",
+
+  address:"76593 Gernsbach",
+
+  lat:48.7705,
+
+  lng:8.3436,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterbereich des Altstadtfestes mit historischen Händlern, Handwerk und Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"staufen2026",
+
+  name:"STAdtGESchichten – Staufener Zeitreise",
+
+  type:"Reenactment",
+
+  tags:["Reenactment","Markt","Handwerk"],
+
+  start:"2026-09-18",
+
+  end:"2026-09-20",
+
+  date:"18.–20. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Staufen im Breisgau",
+
+  venue:"Altstadt",
+  address:"79219 Staufen im Breisgau",
+
+  lat:47.8804,
+
+  lng:7.7313,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historische Zeitreise mit lebendiger Geschichte, Handwerk und Markttreiben.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"moelln2026",
+
+  name:"Spektakulum Mulne",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Musik"],
+
+  start:"2026-09-18",
+
+  end:"2026-09-20",
+
+  date:"18.–20. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Mölln",
+
+  venue:"Mölln",
+
+  address:"23879 Mölln",
+
+  lat:53.6280,
+
+  lng:10.6876,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterspektakel mit Markt, Lagerleben, Musik und historischem Programm.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"sindelfingen2026",
+
+  name:"Mittelaltermarkt Sindelfingen",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-09-25",
+
+  end:"2026-09-27",
+
+  date:"25.–27. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Sindelfingen",
+
+  venue:"Sindelfingen",
+
+  address:"71063 Sindelfingen",
+
+  lat:48.7075,
+
+  lng:9.0044,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelaltermarkt mit Händlern, Handwerk, Musik und Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"tannenburg2026",
+
+  name:"Burgfest & Mittelaltermarkt Tannenburg",
+
+  type:"Markt",
+
+  tags:["Burgfest","Markt","Lager"],
+
+  start:"2026-09-26",
+
+  end:"2026-09-27",
+
+  date:"26.–27. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Nentershausen",
+
+  venue:"Tannenburg",
+
+  address:"36214 Nentershausen",
+
+  lat:51.0167,
+
+  lng:9.9333,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Burgfest und Mittelaltermarkt mit historischen Lagern, Händlern und Handwerk.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"vechta2026",
+
+  name:"Burgmannen-Tage",
+
+  type:"Reenactment",
+
+  tags:["Reenactment","Markt","Lager"],
+
+  start:"2026-09-26",
+
+  end:"2026-09-27",
+
+  date:"26.–27. September 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Vechta",
+
+  venue:"Castrum Vechtense",
+
+  address:"49377 Vechta",
+
+  lat:52.7265,
+
+  lng:8.2856,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historische Veranstaltung mit Reenactment, Lagerleben, Markt und Handwerk.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"kaiserslautern2026",
+
+  name:"Mittelaltermarkt am Gelterswoog",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Musik"],
+
+  start:"2026-10-02",
+
+  end:"2026-10-04",
+
+  date:"02.–04. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Kaiserslautern",
+
+  venue:"Gelterswoog",
+
+  address:"67663 Kaiserslautern",
+
+  lat:49.4077,
+
+  lng:7.6946,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelaltermarkt am Gelterswoog mit Händlern, Lagern und mittelalterlicher Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"haltern2026",
+
+  name:"SEErenade – Wikingermarkt und Lagertage",
+
+  type:"Lager",
+
+  tags:["Wikinger","Lager","Markt"],
+
+  start:"2026-10-02",
+
+  end:"2026-10-04",
+
+  date:"02.–04. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Haltern am See",
+
+  venue:"Haltern am See",
+
+  address:"45721 Haltern am See",
+
+  lat:51.7424,
+
+  lng:7.1816,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Wikingermarkt und historische Lagertage mit Handel, Handwerk und Lagerleben.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"badwindsheim2026",
+
+  name:"Mittelaltertage im Freilandmuseum",
+
+  type:"Reenactment",
+
+  tags:["Reenactment","Handwerk","Lager"],
+
+  start:"2026-10-02",
+
+  end:"2026-10-04",
+
+  date:"02.–04. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Bad Windsheim",
+
+  venue:"Fränkisches Freilandmuseum",
+
+  address:"91438 Bad Windsheim",
+
+  lat:49.5033,
+
+  lng:10.4156,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historisches Mittelalterwochenende im Freilandmuseum mit Handwerk, Alltag und lebendiger Geschichte.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"grafing2026",
+  name:"Mittelaltermarkt Grafing",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-10-02",
+
+  end:"2026-10-04",
+
+  date:"02.–04. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Grafing bei München",
+
+  venue:"Grafing",
+
+  address:"85567 Grafing bei München",
+
+  lat:48.0453,
+
+  lng:11.9674,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelaltermarkt mit historischem Handel, Handwerk, Musik und Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"goslar2026",
+
+  name:"ANNO 1340 – Kaisermarkt",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Historisch"],
+
+  start:"2026-10-02",
+
+  end:"2026-10-04",
+
+  date:"02.–04. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Goslar",
+
+  venue:"Goslar",
+
+  address:"38640 Goslar",
+
+  lat:51.9050,
+
+  lng:10.4280,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historischer Kaisermarkt mit mittelalterlichem Markttreiben und Handwerk.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"kranichfeld2026",
+
+  name:"Thüringer Ritterturnier auf der Niederburg",
+
+  type:"Reenactment",
+
+  tags:["Ritter","Turnier","Markt"],
+
+  start:"2026-10-03",
+
+  end:"2026-10-04",
+
+  date:"03.–04. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Kranichfeld",
+
+  venue:"Niederburg Kranichfeld",
+
+  address:"99448 Kranichfeld",
+
+  lat:50.8538,
+
+  lng:11.2000,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Ritterturnier auf der Niederburg mit Mittelaltermarkt und historischem Programm.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"loreley2026",
+
+  name:"Mittelalter- und Fantasytage mit Drachen",
+
+  type:"Markt",
+
+  tags:["Markt","Fantasy","Musik"],
+
+  start:"2026-10-03",
+
+  end:"2026-10-04",
+
+  date:"03.–04. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"St. Goarshausen",
+
+  venue:"Loreley",
+
+  address:"56346 St. Goarshausen",
+
+  lat:50.1396,
+
+  lng:7.7292,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalter- und Fantasyveranstaltung auf der Loreley mit Markt, Shows und Drachen.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"meersburg2026",
+
+  name:"Historisches Stadtfest Meersburg",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Historisch"],
+
+  start:"2026-10-09",
+
+  end:"2026-10-11",
+
+  date:"09.–11. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Meersburg",
+
+  venue:"Altstadt",
+
+  address:"88709 Meersburg",
+
+  lat:47.6942,
+
+  lng:9.2711,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historisches Stadtfest in Meersburg mit Markt, Handwerk und lebendiger Geschichte.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"duesseldorf2026",
+
+  name:"Großer Mittelaltermarkt mit Ritterturnier",
+
+  type:"Reenactment",
+
+  tags:["Markt","Ritter","Turnier"],
+
+  start:"2026-10-09",
+
+  end:"2026-10-11",
+
+  date:"09.–11. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Düsseldorf-Eller",
+
+  venue:"Schloss Eller",
+
+  address:"40229 Düsseldorf",
+
+  lat:51.1996,
+
+  lng:6.8462,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Großer Mittelaltermarkt mit Ritterturnier, Händlern, Handwerk und Lagerleben.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"heusenstamm2026",
+
+  name:"Mittelaltermarkt Schloss Heusenstamm",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-10-10",
+
+  end:"2026-10-11",
+
+  date:"10.–11. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Heusenstamm",
+
+  venue:"Schloss Heusenstamm",
+
+  address:"63150 Heusenstamm",
+
+  lat:50.0554,
+
+  lng:8.8003,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelaltermarkt am Schloss mit Handel, Handwerk, Musik und Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"beeskow2026",
+
+  name:"Mittelalterlicher Wollmarkt",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Wolle"],
+
+  start:"2026-10-10",
+
+  end:"2026-10-11",
+
+  date:"10.–11. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Beeskow",
+
+  venue:"Burg Beeskow",
+  address:"15848 Beeskow",
+
+  lat:52.1724,
+
+  lng:14.2450,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historischer Woll- und Handwerkermarkt auf und rund um Burg Beeskow.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"feuchtwangen2026",
+
+  name:"Mittelalterspektakel zu Feuchtwangen",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Musik"],
+
+  start:"2026-10-16",
+
+  end:"2026-10-18",
+
+  date:"16.–18. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Feuchtwangen",
+
+  venue:"Feuchtwangen",
+
+  address:"91555 Feuchtwangen",
+
+  lat:49.1687,
+
+  lng:10.3296,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterspektakel mit Markttreiben, Lagerleben, Musik und Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"bremen2026",
+
+  name:"Historischer Markt zu Bremen",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Historisch"],
+
+  start:"2026-10-16",
+
+  end:"2026-11-01",
+
+  date:"16. Oktober–01. November 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Bremen",
+
+  venue:"Innenstadt",
+
+  address:"28195 Bremen",
+
+  lat:53.0758,
+
+  lng:8.8072,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historischer Markt in Bremen mit Handwerk, Handel und mittelalterlichem Ambiente.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"castrop2026",
+
+  name:"Mittelalter-Markttage der Villa Castorpe",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-10-17",
+
+  end:"2026-10-18",
+
+  date:"17.–18. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Castrop-Rauxel",
+
+  venue:"Castrop-Rauxel",
+
+  address:"44575 Castrop-Rauxel",
+
+  lat:51.5500,
+
+  lng:7.3110,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterliche Markttage mit Händlern, Handwerk und Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"freudenberg2026",
+
+  name:"Herbst- und Mittelaltermarkt Freudenberg",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Herbstmarkt"],
+
+  start:"2026-10-17",
+
+  end:"2026-10-18",
+
+  date:"17.–18. Oktober 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Freudenberg",
+
+  venue:"Altstadt",
+
+  address:"57258 Freudenberg",
+
+  lat:50.8974,
+
+  lng:7.8740,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Herbst- und Mittelaltermarkt mit historischem Handwerk und Markttreiben.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"dieburg2026",
+
+  name:"Martinsmarkt und Mittelaltermarkt",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-11-06",
+
+  end:"2026-11-08",
+
+  date:"06.–08. November 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Dieburg",
+
+  venue:"Innenstadt",
+
+  address:"64807 Dieburg",
+
+  lat:49.8974,
+
+  lng:8.8461,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Martinsmarkt mit eigenem mittelalterlichem Marktbereich.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"mosbach2026",
+
+  name:"Mittelaltermarkt und Kunsthandwerk Mosbach",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk"],
+
+  start:"2026-11-07",
+
+  end:"2026-11-08",
+
+  date:"07.–08. November 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Mosbach",
+
+  venue:"Marktplatz",
+
+  address:"74821 Mosbach",
+
+  lat:49.3521,
+
+  lng:9.1465,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelaltermarkt und Kunsthandwerk auf dem historischen Marktplatz.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"essenwinter2026",
+
+  name:"Mittelalterlicher Weihnachtsmarkt Essen",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-11-13",
+
+  end:"2026-12-23",
+
+  date:"13. November–23. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Essen",
+
+  venue:"Flachsmarkt",
+
+  address:"45127 Essen",
+
+  lat:51.4566,
+
+  lng:7.0123,
+
+  website:"https://www.essen-tourismus.de/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterlicher Weihnachtsmarkt mit historischen Buden, Handwerk, Speis und Trank.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"bochumwinter2026",
+  name:"Mittelalter auf dem Bochumer Weihnachtsmarkt",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-11-19",
+
+  end:"2026-12-23",
+
+  date:"19. November–23. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Bochum",
+
+  venue:"Innenstadt",
+
+  address:"44787 Bochum",
+
+  lat:51.4818,
+
+  lng:7.2162,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterlicher Bereich des Bochumer Weihnachtsmarktes mit historischem Markttreiben.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"fuldawinter2026",
+
+  name:"Mittelalterliches Weihnachtsdorf Fulda",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-11-20",
+
+  end:"2026-12-23",
+
+  date:"20. November–23. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Fulda",
+
+  venue:"Innenstadt",
+
+  address:"36037 Fulda",
+
+  lat:50.5558,
+
+  lng:9.6808,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterliches Weihnachtsdorf im Rahmen des Fuldaer Weihnachtsmarktes.",
+
+  hours:"22. November geschlossen • weitere Zeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"muenchenwinter2026",
+
+  name:"Münchner Adventsspektakel & Mittelaltermarkt",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Mittelalter"],
+
+  start:"2026-11-20",
+
+  end:"2026-12-23",
+
+  date:"20. November–23. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"München",
+
+  venue:"Wittelsbacherplatz",
+
+  address:"Wittelsbacherplatz, 80333 München",
+
+  lat:48.1440,
+
+  lng:11.5682,
+
+  website:"https://www.mittelaltermarkt-muenchen.de/",
+
+  organizer:"Mittelaltermarkt München",
+
+  info:"Adventsspektakel und mittelalterlicher Weihnachtsmarkt mitten in München.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"siegburgwinter2026",
+
+  name:"Mittelalterlicher Markt zur Weihnachtszeit Siegburg",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-11-20",
+
+  end:"2026-12-22",
+
+  date:"20. November–22. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Siegburg",
+
+  venue:"Marktplatz",
+
+  address:"53721 Siegburg",
+
+  lat:50.8009,
+
+  lng:7.2074,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Großer mittelalterlicher Markt zur Weihnachtszeit auf dem Siegburger Marktplatz.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"erlangenwinter2026",
+
+  name:"Historischer Weihnachtsmarkt Erlangen",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Historisch"],
+
+  start:"2026-11-23",
+
+  end:"2026-12-23",
+
+  date:"23. November–23. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Erlangen",
+
+  venue:"Neustädter Kirchenplatz",
+
+  address:"91054 Erlangen",
+
+  lat:49.5981,
+
+  lng:11.0037,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historischer Weihnachtsmarkt mit traditionellem Handwerk und Marktständen.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"luebeckwinter2026",
+
+  name:"Historischer Weihnachtsmarkt St. Marien",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Historisch"],
+
+  start:"2026-11-23",
+
+  end:"2026-12-23",
+
+  date:"23. November–23. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Lübeck",
+
+  venue:"Kirchhof St. Marien",
+
+  address:"23552 Lübeck",
+
+  lat:53.8676,
+
+  lng:10.6840,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historischer Weihnachtsmarkt am Kirchhof von St. Marien.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"schlachtezauber2026",
+
+  name:"Schlachte-Zauber Bremen",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Historisch"],
+
+  start:"2026-11-23",
+
+  end:"2026-12-23",
+
+  date:"23. November–23. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Bremen",
+
+  venue:"Schlachte",
+
+  address:"28195 Bremen",
+
+  lat:53.0785,
+
+  lng:8.8032,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historisch-maritime Weihnachtswelt an der Bremer Schlachte.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"esslingenwinter2026",
+
+  name:"Esslinger Mittelaltermarkt & Weihnachtsmarkt",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-11-24",
+
+  end:"2026-12-22",
+
+  date:"24. November–22. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Esslingen am Neckar",
+
+  venue:"Altstadt",
+  address:"73728 Esslingen am Neckar",
+
+  lat:48.7421,
+
+  lng:9.3072,
+
+  website:"https://www.esslingen-info.com/",
+
+  organizer:"Esslinger Stadtmarketing",
+
+  info:"Großer Mittelalter- und Weihnachtsmarkt in der historischen Esslinger Altstadt.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"dresdenwinter2026",
+
+  name:"Mittelalter-Weihnacht im Stallhof",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-11-25",
+
+  end:"2026-12-23",
+
+  date:"25. November–23. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Dresden",
+
+  venue:"Stallhof",
+
+  address:"Schlossstraße, 01067 Dresden",
+
+  lat:51.0532,
+
+  lng:13.7366,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterliche Weihnachtswelt im historischen Stallhof des Dresdner Residenzschlosses.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"fuerthwinter2026",
+
+  name:"Fürther Mittelaltermarkt",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-11-26",
+
+  end:"2026-12-23",
+
+  date:"26. November–23. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Fürth",
+
+  venue:"Innenstadt",
+
+  address:"90762 Fürth",
+
+  lat:49.4771,
+
+  lng:10.9887,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelaltermarkt in der Fürther Weihnachtszeit mit Handel, Handwerk und Gastronomie.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"jena2026",
+
+  name:"Historischer Weihnachtsmarkt am Johannistor",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Historisch"],
+
+  start:"2026-11-27",
+
+  end:"2026-12-13",
+
+  date:"27. November–13. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Jena",
+
+  venue:"Johannistor",
+
+  address:"07743 Jena",
+
+  lat:50.9280,
+
+  lng:11.5879,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historischer Weihnachtsmarkt am Johannistor mit Handwerk und mittelalterlichem Ambiente.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"neuulm2026",
+
+  name:"Mittelalterlicher Weihnachtsmarkt Neu-Ulm",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-11-27",
+
+  end:"2026-12-20",
+
+  date:"27. November–20. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Neu-Ulm",
+
+  venue:"Neu-Ulm",
+
+  address:"89231 Neu-Ulm",
+
+  lat:48.3925,
+
+  lng:10.0118,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterlicher Weihnachtsmarkt mit Handel, Handwerk, Speisen und Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"stwendel2026",
+
+  name:"St. Wendeler Weihnachts- & Mittelaltermarkt",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Mittelalter"],
+
+  start:"2026-12-04",
+
+  end:"2026-12-13",
+
+  date:"04.–13. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"St. Wendel",
+
+  venue:"Altstadt",
+
+  address:"66606 St. Wendel",
+
+  lat:49.4663,
+
+  lng:7.1681,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Weihnachts- und Mittelaltermarkt in der historischen Innenstadt von St. Wendel.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"wertheim2026",
+
+  name:"Mittelalter-Weihnachtsmarkt Wertheim",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-12-12",
+
+  end:"2026-12-20",
+
+  date:"12.–20. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Wertheim",
+
+  venue:"Altstadt",
+
+  address:"97877 Wertheim",
+
+  lat:49.7596,
+
+  lng:9.5157,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterlicher Weihnachtsmarkt mit historischem Markttreiben in Wertheim.",
+
+  hours:"An den Veranstaltungswochenenden • Zeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"gernsheimwinter2026",
+
+  name:"Mittelalterlicher Weihnachtsmarkt Gernsheim",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Handwerk"],
+
+  start:"2026-12-19",
+
+  end:"2026-12-20",
+
+  date:"19.–20. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Gernsheim",
+
+  venue:"Gernsheim",
+
+  address:"64579 Gernsheim",
+
+  lat:49.7538,
+
+  lng:8.4886,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Mittelalterlicher Weihnachtsmarkt mit Händlern, Handwerk und winterlichem Markttreiben.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"dresdenrauhnaechte2026",
+  name:"Dresdner Rauhnächte",
+
+  type:"Spezialevent",
+
+  tags:["Mittelalter","Winter","Markt"],
+
+  start:"2026-12-27",
+
+  end:"2026-12-30",
+
+  date:"27.–30. Dezember 2026",
+
+  country:"Deutschland",
+
+  flag:"🇩🇪",
+
+  city:"Dresden",
+
+  venue:"Dresden",
+
+  address:"01067 Dresden",
+
+  lat:51.0504,
+
+  lng:13.7373,
+
+  website:"https://mittelaltermarkt-info.de/mittelaltermaerkte-in-deutschland/",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historisch-mittelalterliches Winterspektakel zwischen Weihnachten und Neujahr.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"hard2026",
+
+  name:"Mittelaltermarkt Hard am Bodensee",
+
+  type:"Markt",
+
+  tags:["Markt","Handwerk","Musik"],
+
+  start:"2026-09-04",
+
+  end:"2026-09-06",
+
+  date:"04.–06. September 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Hard",
+
+  venue:"Hard am Bodensee",
+
+  address:"6971 Hard",
+
+  lat:47.4868,
+
+  lng:9.6837,
+
+  website:"https://mittelaltermarkt-kalender.de/mittelaltermaerkte/oesterreich",
+
+  organizer:"Marktgemeinde Hard",
+
+  info:"Mittelaltermarkt am Bodensee mit historischem Markttreiben, Handwerk und Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"hohenwerfenSep2026",
+
+  name:"Mittelalterliches Treiben auf Burg Hohenwerfen",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Handwerk","Burg"],
+
+  start:"2026-09-05",
+
+  end:"2026-09-06",
+
+  date:"05.–06. September 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Werfen",
+
+  venue:"Erlebnisburg Hohenwerfen",
+
+  address:"Burgstrasse 2, 5450 Werfen",
+
+  lat:47.48272,
+
+  lng:13.18821,
+
+  website:"https://www.salzburg-burgen.at/de/burg-hohenwerfen/",
+
+  organizer:"Erlebnisburg Hohenwerfen",
+
+  info:"Mittelalterliches Treiben auf der Festung Hohenwerfen mit historischem Lager, Handwerk und mittelalterlichem Rahmenprogramm.",
+
+  hours:"Sa–So 10–17 Uhr"
+
+},
+
+{
+
+  id:"judenburg2026",
+
+  name:"Mittelalter-Spektakel Schloss Liechtenstein",
+
+  type:"Markt",
+
+  tags:["Markt","Ritter","Turnier","Lager"],
+
+  start:"2026-09-25",
+
+  end:"2026-09-27",
+
+  date:"25.–27. September 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Judenburg",
+
+  venue:"Schloss Liechtenstein",
+
+  address:"8750 Judenburg",
+
+  lat:47.16892,
+
+  lng:14.67305,
+
+  website:"https://mittelaltermarkt-kalender.de/mittelaltermaerkte/oesterreich",
+
+  organizer:"Schloss Liechtenstein",
+
+  info:"Mittelalter-Spektakel mit Markt, Ritterturnier, historischem Lager und Unterhaltung.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"laxenburg2026",
+
+  name:"Ritterturnier zu Pferde Laxenburg",
+
+  type:"Reenactment",
+
+  tags:["Ritter","Turnier","Markt"],
+
+  start:"2026-09-26",
+
+  end:"2026-09-27",
+
+  date:"26.–27. September 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Laxenburg",
+
+  venue:"Schlosspark Laxenburg",
+
+  address:"2361 Laxenburg",
+
+  lat:48.05812,
+
+  lng:16.35847,
+
+  website:"https://www.schloss-laxenburg.at/",
+
+  organizer:"Schlosspark Laxenburg",
+
+  info:"Ritterturnier zu Pferde im Schlosspark mit mittelalterlichem Markttreiben und historischem Rahmenprogramm.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"schallaburg2026",
+
+  name:"Mittelalterfest Schallaburg",
+
+  type:"Markt",
+
+  tags:["Markt","Ritter","Handwerk","Lager"],
+
+  start:"2026-09-26",
+
+  end:"2026-09-27",
+
+  date:"26.–27. September 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Schallaburg",
+
+  venue:"Schallaburg",
+
+  address:"Schallaburg 1, 3382 Schallaburg",
+
+  lat:48.18899,
+
+  lng:15.35594,
+
+  website:"https://www.schallaburg.at/",
+
+  organizer:"Schallaburg",
+
+  info:"Zwei Tage mit Rittern, mittelalterlicher Handwerkskunst, historischen Darbietungen und authentischer Atmosphäre.",
+
+  hours:"Sa–So 10–19 Uhr"
+
+},
+
+{
+
+  id:"halltirol2026",
+
+  name:"Haller Freudenfeuer",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Musik","Mittelalter"],
+
+  start:"2026-10-02",
+
+  end:"2026-10-04",
+
+  date:"02.–04. Oktober 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Hall in Tirol",
+
+  venue:"Hall in Tirol",
+
+  address:"6060 Hall in Tirol",
+
+  lat:47.2832,
+
+  lng:11.5074,
+
+  website:"https://mittelaltermarkt-kalender.de/mittelaltermaerkte/oesterreich",
+
+  organizer:"siehe Veranstaltungsseite",
+
+  info:"Historisches Mittelalterfest mit Markt, Lagerleben und Rahmenprogramm in Hall in Tirol.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"rosenburg1_2026",
+
+  name:"Krone Ritterturnier Rosenburg",
+
+  type:"Reenactment",
+
+  tags:["Ritter","Turnier","Markt"],
+
+  start:"2026-10-03",
+
+  end:"2026-10-04",
+
+  date:"03.–04. Oktober 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Rosenburg",
+
+  venue:"Schloss Rosenburg",
+  address:"3573 Rosenburg",
+
+  lat:48.62823,
+
+  lng:15.63517,
+
+  website:"https://www.rosenburg.at/",
+
+  organizer:"Schloss Rosenburg",
+
+  info:"Großes Ritterturnier mit mittelalterlichem Markt und historischen Vorführungen auf der Rosenburg.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"hohenwerfenOkt2026",
+
+  name:"Mittelalterliches Treiben auf Burg Hohenwerfen",
+
+  type:"Markt",
+
+  tags:["Markt","Lager","Handwerk","Burg"],
+
+  start:"2026-10-10",
+
+  end:"2026-10-11",
+
+  date:"10.–11. Oktober 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Werfen",
+
+  venue:"Erlebnisburg Hohenwerfen",
+
+  address:"Burgstrasse 2, 5450 Werfen",
+
+  lat:47.48272,
+
+  lng:13.18821,
+
+  website:"https://www.salzburg-burgen.at/de/burg-hohenwerfen/",
+
+  organizer:"Erlebnisburg Hohenwerfen",
+
+  info:"Mittelalterliches Treiben auf der Festung Hohenwerfen mit Lagerleben, Handwerk und historischen Darstellungen.",
+
+  hours:"Sa–So 10–17 Uhr"
+
+},
+
+{
+
+  id:"keltischefeuer2026",
+
+  name:"Nacht der keltischen Feuer",
+
+  type:"Spezialevent",
+
+  tags:["Kelten","Reenactment","Feuer","Historisch"],
+
+  start:"2026-10-10",
+
+  end:"2026-10-10",
+
+  date:"10. Oktober 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Asparn an der Zaya",
+
+  venue:"MAMUZ Schloss Asparn/Zaya",
+
+  address:"Schlossgasse 1, 2151 Asparn/Zaya",
+
+  lat:48.58897,
+
+  lng:16.49123,
+
+  website:"https://www.mamuz.at/",
+
+  organizer:"MAMUZ",
+
+  info:"Historische Spezialveranstaltung rund um keltische Kultur, Feuer und lebendige Geschichte.",
+
+  hours:"Zeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"rosenburg2_2026",
+
+  name:"Krone Ritterturnier Rosenburg",
+
+  type:"Reenactment",
+
+  tags:["Ritter","Turnier","Markt"],
+
+  start:"2026-10-10",
+
+  end:"2026-10-11",
+
+  date:"10.–11. Oktober 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Rosenburg",
+
+  venue:"Schloss Rosenburg",
+
+  address:"3573 Rosenburg",
+
+  lat:48.62823,
+
+  lng:15.63517,
+
+  website:"https://www.rosenburg.at/",
+
+  organizer:"Schloss Rosenburg",
+
+  info:"Zweites Ritterturnier-Wochenende auf der Rosenburg mit Turnier, mittelalterlichem Markt und historischen Vorführungen.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"aggsteinAdvent2026",
+
+  name:"Burgadvent auf der Burgruine Aggstein",
+
+  type:"Markt",
+
+  tags:["Markt","Advent","Handwerk","Burg"],
+
+  start:"2026-11-06",
+
+  end:"2026-11-08",
+
+  date:"06.–08. November 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Aggsbach Dorf",
+
+  venue:"Burgruine Aggstein",
+
+  address:"Kuenringerstraße 13, 3394 Aggstein",
+
+  lat:48.313905,
+
+  lng:15.421774,
+
+  website:"https://www.ruineaggstein.at/",
+
+  organizer:"Burgruine Aggstein",
+
+  info:"Historischer Burgadvent in mittelalterlicher Kulisse mit Handwerk, Marktständen und winterlicher Burgatmosphäre.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"wikingertage2026",
+
+  name:"Wikingertage im MAMUZ",
+
+  type:"Lager",
+
+  tags:["Wikinger","Lager","Handwerk","Reenactment"],
+
+  start:"2026-11-07",
+
+  end:"2026-11-08",
+
+  date:"07.–08. November 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Asparn an der Zaya",
+
+  venue:"MAMUZ Schloss Asparn/Zaya",
+
+  address:"Schlossgasse 1, 2151 Asparn/Zaya",
+
+  lat:48.58897,
+
+  lng:16.49123,
+
+  website:"https://www.mamuz.at/",
+
+  organizer:"MAMUZ",
+
+  info:"Wikingersippen schlagen ihre Lager auf und zeigen Handwerkskunst, Geschichten, Musik und nordische Lebensart.",
+
+  hours:"Sa–So 10–17 Uhr"
+
+},
+
+{
+
+  id:"clamWeihnacht2026",
+
+  name:"Mittelalterlicher Weihnachtsmarkt Burg Clam",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Lager","Burg"],
+
+  start:"2026-11-14",
+
+  end:"2026-11-15",
+
+  date:"14.–15. November 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Klam",
+
+  venue:"Burg Clam",
+
+  address:"Sperken 2, 4352 Klam",
+
+  lat:48.22091,
+
+  lng:14.77865,
+
+  website:"https://www.burgclam.com/",
+
+  organizer:"Burg Clam",
+
+  info:"Mittelalterlicher Weihnachtsmarkt auf Burg Clam mit historischem Markt- und Lagerambiente.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"hohenwerfenAdvent1_2026",
+
+  name:"Romantischer Adventmarkt Burg Hohenwerfen",
+
+  type:"Markt",
+
+  tags:["Markt","Advent","Burg","Handwerk"],
+
+  start:"2026-11-28",
+
+  end:"2026-11-29",
+
+  date:"28.–29. November 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Werfen",
+
+  venue:"Erlebnisburg Hohenwerfen",
+
+  address:"Burgstrasse 2, 5450 Werfen",
+
+  lat:47.48272,
+
+  lng:13.18821,
+
+  website:"https://www.salzburg-burgen.at/de/burg-hohenwerfen/",
+
+  organizer:"Erlebnisburg Hohenwerfen",
+
+  info:"Romantischer Adventmarkt in der historischen Festung Hohenwerfen.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"plankensteinAdvent1_2026",
+  name:"Adventmarkt auf Burg Plankenstein",
+
+  type:"Markt",
+
+  tags:["Markt","Advent","Burg"],
+
+  start:"2026-12-05",
+
+  end:"2026-12-06",
+
+  date:"05.–06. Dezember 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Texingtal",
+
+  venue:"Burg Plankenstein",
+
+  address:"Plankenstein 1, 3242 Texing",
+
+  lat:48.02524,
+
+  lng:15.27889,
+
+  website:"https://www.burgplankenstein.at/",
+
+  organizer:"Burg Plankenstein",
+
+  info:"Adventmarkt auf der mittelalterlichen Burg Plankenstein mit Marktständen und historischer Burgatmosphäre.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"hohenwerfenAdvent2_2026",
+
+  name:"Romantischer Adventmarkt Burg Hohenwerfen",
+
+  type:"Markt",
+
+  tags:["Markt","Advent","Burg","Handwerk"],
+
+  start:"2026-12-05",
+
+  end:"2026-12-06",
+
+  date:"05.–06. Dezember 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Werfen",
+
+  venue:"Erlebnisburg Hohenwerfen",
+
+  address:"Burgstrasse 2, 5450 Werfen",
+
+  lat:47.48272,
+
+  lng:13.18821,
+
+  website:"https://www.salzburg-burgen.at/de/burg-hohenwerfen/",
+
+  organizer:"Erlebnisburg Hohenwerfen",
+
+  info:"Zweites Adventwochenende auf der Erlebnisburg Hohenwerfen.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"hohenwerfenAdvent3_2026",
+
+  name:"Romantischer Adventmarkt Burg Hohenwerfen",
+
+  type:"Markt",
+
+  tags:["Markt","Advent","Burg"],
+
+  start:"2026-12-08",
+
+  end:"2026-12-08",
+
+  date:"08. Dezember 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Werfen",
+
+  venue:"Erlebnisburg Hohenwerfen",
+
+  address:"Burgstrasse 2, 5450 Werfen",
+
+  lat:47.48272,
+
+  lng:13.18821,
+
+  website:"https://www.salzburg-burgen.at/de/burg-hohenwerfen/",
+
+  organizer:"Erlebnisburg Hohenwerfen",
+
+  info:"Zusätzlicher Adventmarkttag auf der historischen Festung Hohenwerfen.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"plankensteinAdvent2_2026",
+
+  name:"Adventmarkt auf Burg Plankenstein",
+
+  type:"Markt",
+
+  tags:["Markt","Advent","Burg"],
+
+  start:"2026-12-12",
+
+  end:"2026-12-13",
+
+  date:"12.–13. Dezember 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Texingtal",
+
+  venue:"Burg Plankenstein",
+
+  address:"Plankenstein 1, 3242 Texing",
+
+  lat:48.02524,
+
+  lng:15.27889,
+
+  website:"https://www.burgplankenstein.at/",
+
+  organizer:"Burg Plankenstein",
+
+  info:"Zweites Adventwochenende auf Burg Plankenstein mit historischem Burgambiente.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+
+},
+
+{
+
+  id:"mariaenzersdorf2026",
+
+  name:"Mittelalterlicher Weihnachtsmarkt Burg Liechtenstein",
+
+  type:"Markt",
+
+  tags:["Markt","Weihnachtsmarkt","Lager","Burg"],
+
+  start:"2026-12-12",
+
+  end:"2026-12-13",
+
+  date:"12.–13. Dezember 2026",
+
+  country:"Österreich",
+
+  flag:"🇦🇹",
+
+  city:"Maria Enzersdorf",
+
+  venue:"Burg Liechtenstein",
+
+  address:"Am Hausberg 2, 2344 Maria Enzersdorf",
+
+  lat:48.09269,
+
+  lng:16.27035,
+
+  website:"https://www.burgliechtenstein.eu/",
+
+  organizer:"Burg Liechtenstein",
+
+  info:"Mittelalterlicher Weihnachtsmarkt an der Burg Liechtenstein mit historischem Markt- und Lagerleben.",
+
+  hours:"Öffnungszeiten siehe Veranstaltungsseite"
+}
+
+];
+const gespeicherteHeroldEvents =
+  JSON.parse(localStorage.getItem("rabenrufHeroldEvents") || "[]")
+    .filter(event => String(event.id || "").startsWith("herold-"));
+
+events.push(...gespeicherteHeroldEvents);
+
+localStorage.setItem(
+  "rabenrufHeroldEvents",
+  JSON.stringify(gespeicherteHeroldEvents)
+);
+const RABENRUF_SUPABASE_URL = "https://xsrcdvtavnftwkndcfsr.supabase.co";
+const RABENRUF_SUPABASE_KEY = "sb_publishable_YeEqizrxcYL2mRZQai9HUw__Z8GlkPD";
+let heroldSession = null;
+let heroldUpdates = [];
+let requestedEditEventId = "";
+let eventEditId = "";
+let eventEditSnapshot = null;
+let gelöschteHeroldEventIds = new Set();
+
+function heroldEventIstGeloescht(event, ids=gelöschteHeroldEventIds){
+  const id=String(event?.id || "");
+  return ids.has(id) || (id.startsWith("herold-") && ids.has(id.slice("herold-".length)));
+}
+
+async function heroldApi(pfad, optionen = {}){
+  const headers = {
+    "apikey": RABENRUF_SUPABASE_KEY,
+    "Authorization": "Bearer " + (optionen.token || RABENRUF_SUPABASE_KEY)
+  };
+  if(optionen.body !== undefined) headers["Content-Type"] = "application/json";
+  const antwort = await fetch(RABENRUF_SUPABASE_URL + "/" + pfad, {
+    method: optionen.method || "GET",
+    headers,
+    body: optionen.body === undefined ? undefined : JSON.stringify(optionen.body)
+  });
+  const text = await antwort.text();
+  let daten = null;
+  try{ daten = text ? JSON.parse(text) : null; }catch(_fehler){}
+  if(!antwort.ok){
+    const meldung = daten?.msg || daten?.message || daten?.error_description || daten?.error;
+    throw new Error(meldung || "Supabase antwortet mit Fehler " + antwort.status + ".");
+  }
+  return daten;
+}
+
+function heroldSessionSpeichern(daten){
+  if(!daten?.access_token || !daten?.user) return null;
+  heroldSession = {
+    access_token: daten.access_token,
+    refresh_token: daten.refresh_token,
+    token_type: daten.token_type || "bearer",
+    user: daten.user,
+    expires_at: Math.floor(Date.now()/1000) + Number(daten.expires_in || 3600)
+  };
+  return heroldSession;
+}
+
+async function heroldSessionErneuern(){
+  if(!heroldSession?.refresh_token) throw new Error("Bitte melde dich erneut an.");
+  if(Number(heroldSession.expires_at || 0) > Math.floor(Date.now()/1000) + 60) return;
+  const erneuert = await heroldApi("auth/v1/token?grant_type=refresh_token", {
+    method:"POST",
+    body:{refresh_token:heroldSession.refresh_token}
+  });
+  if(!heroldSessionSpeichern(erneuert)) throw new Error("Bitte melde dich erneut an.");
+}
+
+async function ladeHeroldEntscheide(){
+  const daten = await heroldApi("rest/v1/herold_decisions?select=event_id,status,event");
+  return Array.isArray(daten) ? daten : [];
+}
+
+const EVENT_SNAPSHOT_KEY = "rabenrufFavoriteEventSnapshots";
+const EVENT_NOTICE_KEY = "rabenrufFavoriteEventNotices";
+const EVENT_TRACKED_FIELDS = {
+  name:"Veranstaltung", date:"Datum", start:"Beginn", end:"Ende",
+  hours:"Uhrzeit", city:"Ort", country:"Land", venue:"Veranstaltungsort",
+  address:"Adresse", organizer:"Veranstalter", website:"Webseite", info:"Beschreibung"
+};
+
+function readCalendarEventStorage(key, fallback){
+  try{
+    const value=JSON.parse(localStorage.getItem(key) || "null");
+    return value && typeof value === "object" ? value : fallback;
+  }catch(_error){
+    return fallback;
+  }
+}
+
+function renderCalendarEventUpdateNotice(){
+  const box=byId("calendarEventUpdateNotice");
+  if(!box) return;
+  const notices=readCalendarEventStorage(EVENT_NOTICE_KEY,[]);
+  if(!Array.isArray(notices) || !notices.length){
+    box.classList.add("hidden");
+    box.innerHTML="";
+    return;
+  }
+  box.className="card";
+  box.innerHTML='<strong>🔔 Änderungen bei Kalendereinträgen</strong>' +
+    notices.map(notice=>{
+      const changes=(Array.isArray(notice.changes)?notice.changes:[]).map(change=>
+        '<div class="meta"><b>'+escapeHTML(change.label)+':</b> '+
+        escapeHTML(change.before || "—")+' → '+escapeHTML(change.after || "—")+'</div>'
+      ).join("");
+      return '<div class="infoLine"><b>'+escapeHTML(notice.name || "Veranstaltung")+
+        '</b>'+changes+'<button class="btn" type="button" data-updated-event="'+
+        escapeHTML(notice.id)+'">Termin ansehen</button></div>';
+    }).join("")+
+    '<button class="btn" type="button" id="dismissFavoriteEventUpdates">Hinweis schliessen</button>';
+  box.querySelectorAll("[data-updated-event]").forEach(button=>
+    button.addEventListener("click",()=>openEvent(button.dataset.updatedEvent))
+  );
+  byId("dismissFavoriteEventUpdates")?.addEventListener("click",()=>{
+    localStorage.setItem(EVENT_NOTICE_KEY,"[]");
+    renderCalendarEventUpdateNotice();
+  });
+}
+
+function checkCalendarEventUpdates(){
+  const favoriteIds=new Set(getFavorites().map(id=>String(id)));
+  const snapshots=readCalendarEventStorage(EVENT_SNAPSHOT_KEY,{});
+  const notices=readCalendarEventStorage(EVENT_NOTICE_KEY,[]);
+  const pending=Array.isArray(notices)?notices.filter(notice=>favoriteIds.has(String(notice?.id))):[];
+  for(const id of Object.keys(snapshots)){
+    if(!favoriteIds.has(id)) delete snapshots[id];
+  }
+  for(const event of events){
+    const id=String(event.id || "");
+    if(!id || !favoriteIds.has(id)) continue;
+    const current={};
+    for(const field of Object.keys(EVENT_TRACKED_FIELDS)){
+      current[field]=String(event[field] ?? "");
+    }
+    const previous=snapshots[id];
+    if(previous && typeof previous === "object"){
+      const changes=Object.keys(EVENT_TRACKED_FIELDS)
+        .filter(field=>String(previous[field] ?? "")!==current[field])
+        .map(field=>({
+          label:EVENT_TRACKED_FIELDS[field],
+          before:String(previous[field] ?? ""),
+          after:current[field]
+        }));
+      if(changes.length){
+        const existing=pending.findIndex(notice=>String(notice.id)===id);
+        const notice={id,name:event.name,changes};
+        if(existing>=0) pending[existing]=notice;
+        else pending.push(notice);
+      }
+    }
+    snapshots[id]=current;
+  }
+  localStorage.setItem(EVENT_SNAPSHOT_KEY,JSON.stringify(snapshots));
+  localStorage.setItem(EVENT_NOTICE_KEY,JSON.stringify(pending));
+  renderCalendarEventUpdateNotice();
+}
+
+async function ladeFreigegebeneEvents(){
+  try{
+    let freigegebeneEvents = [];
+    const antwort = await fetch("events-approved.json?zeit=" + Date.now());
+    if(antwort.ok){
+      const liste = await antwort.json();
+      if(Array.isArray(liste)) freigegebeneEvents = liste;
+    }
+
+    try{
+      const entscheidungen = await ladeHeroldEntscheide();
+      gelöschteHeroldEventIds = new Set(entscheidungen
+        .filter(e => e.status === "rejected")
+        .map(e => String(e.event_id || ""))
+        .filter(Boolean));
+      const ausDatenbank = entscheidungen
+        .filter(e => e.status === "approved" && e.event)
+        .map(e => e.event);
+      freigegebeneEvents = [...freigegebeneEvents, ...ausDatenbank];
+    }catch(fehler){
+      console.warn("Herold-Entscheide konnten nicht geladen werden:", fehler);
+    }
+
+    freigegebeneEvents = freigegebeneEvents.filter(event => !heroldEventIstGeloescht(event));
+    events.splice(0, events.length, ...events.filter(event => !heroldEventIstGeloescht(event)));
+
+    const eventIndexNachId = new Map(
+      events.map((event, index) => [String(event.id || ""), index])
+    );
+    for(const event of freigegebeneEvents){
+      const id = String(event.id || "");
+      if(!id) continue;
+      if(eventIndexNachId.has(id)){
+        const index = eventIndexNachId.get(id);
+        events[index] = { ...events[index], ...event };
+      }else{
+        events.push(event);
+        eventIndexNachId.set(id, events.length - 1);
+      }
+    }
+    applyFilters();
+    renderCalendar();
+    checkCalendarEventUpdates();
+    renderMapMarkers();
+  }catch(fehler){
+    console.error("Freigegebene Veranstaltungen konnten nicht geladen werden:", fehler);  }
+}
+
+/* =========================================
+
+   APP-ZUSTAND
+
+   ========================================= */
+
+let currentType = "Alle";
+
+let lastPage = "home";
+
+let map = null;
+
+let mapMarkers = [];
+
+let selectedEventYear = "Alle";
+
+let userMarker = null;
+
+let userLocation = null;
+
+/* =========================================
+
+   HILFSFUNKTIONEN
+
+   ========================================= */
+
+function byId(id){
+
+  return document.getElementById(id);
+
+}
+
+function icon(type){
+
+  if(type === "Buhurt"){
+
+    return "⚔️";
+
+  }
+
+  if(type === "MPS"){
+
+    return "⚔️";
+
+  }
+
+  if(type === "Lager"){
+
+    return "🏕️";
+
+  }
+
+  if(type === "Reenactment"){
+
+    return "🛡️";
+
+  }
+
+  return "🏰";
+
+}
+
+function escapeHTML(text){
+
+  return String(text)
+
+    .replaceAll("&","&amp;")
+
+    .replaceAll("<","&lt;")
+
+    .replaceAll(">","&gt;")
+
+    .replaceAll('"',"&quot;")
+
+    .replaceAll("'","&#039;");
+
+}
+
+function dateObject(dateString){
+
+  return new Date(
+
+    dateString + "T12:00:00"
+
+  );
+
+}
+
+function eventStatus(event){
+
+  const today = new Date();
+
+  today.setHours(0,0,0,0);
+
+  const start = dateObject(event.start);
+
+  const end = dateObject(event.end);
+
+  if(today >= start && today <= end){
+
+    return "🔥 Heute";
+
+  }
+
+  if(today > end){
+
+    return "Vergangen";
+
+  }
+
+  const diff =
+
+    Math.ceil(
+
+      (start - today) /
+
+      (1000 * 60 * 60 * 24)
+
+    );
+
+  if(diff === 1){
+
+    return "Morgen";
+
+  }
+
+  if(diff <= 7){
+
+    return "In " + diff + " Tagen";
+
+  }
+
+  return "Demnächst";
+
+}
+
+function monthName(dateString){
+
+  const d = dateObject(dateString);
+
+  if (Number.isNaN(d.getTime())) return "";
+
+  return d.toLocaleDateString(
+
+    "de-CH",
+
+    {
+
+      month:"long",
+
+      year:"numeric"
+
+    }
+
+  );
+
+}
+
+/* =========================================
+
+   SEITENWECHSEL
+
+   ========================================= */
+
+function show(id){
+
+  document
+
+    .querySelectorAll("main")
+
+    .forEach(
+
+      page => page.classList.add("hidden")
+
+    );
+
+  byId(id).classList.remove("hidden");
+
+  if(id !== "detail"){
+
+    lastPage = id;
+
+  }
+
+  setActiveNav(id);
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"instant"
+
+  });
+
+}
+
+function setActiveNav(page){
+
+  document
+
+    .querySelectorAll(".nav")
+
+    .forEach(
+
+      nav => nav.classList.remove("active")
+
+    );
+
+  if(page === "home"){
+
+    byId("navHome").classList.add("active");
+
+  }
+
+  if(page === "mapPage"){
+
+    byId("navMap").classList.add("active");
+
+  }
+
+  if(page === "calendar"){
+
+    byId("navCalendar").classList.add("active");
+
+  }
+
+  if(page === "favorites"){
+    byId("navFavorites").classList.add("active");
+  }
+
+  if(page === "contact"){
+    byId("navContact").classList.add("active");
+  }
+
+}
+
+function goBack(){
+
+  show(lastPage);
+
+}
+
+/* =========================================
+
+   FAVORITEN
+
+   ========================================= */
+
+function getFavorites(){
+
+  try{
+
+    return JSON.parse(
+
+      localStorage.getItem("rabenrufFavorites")
+
+      || "[]"
+
+    );
+
+  }
+
+  catch{
+
+    return [];
+
+  }
+
+}
+
+function isFavorite(id){
+
+  return getFavorites().includes(id);
+
+}
+
+function toggleFavorite(id){
+
+  let favorites = getFavorites();
+
+  if(favorites.includes(id)){
+
+    favorites =
+
+      favorites.filter(
+
+        item => item !== id
+
+      );
+
+  }
+
+  else{
+
+    favorites.push(id);
+
+  }
+
+  localStorage.setItem(
+    "rabenrufFavorites",
+
+    JSON.stringify(favorites)
+
+  );
+
+  applyFilters();
+
+}
+
+/* =========================================
+
+   ENTFERNUNG
+
+   ========================================= */
+
+function distanceKm(
+
+  lat1,
+
+  lon1,
+
+  lat2,
+
+  lon2
+
+){
+
+  const earth = 6371;
+
+  const dLat =
+
+    (lat2-lat1) *
+
+    Math.PI/180;
+
+  const dLon =
+
+    (lon2-lon1) *
+
+    Math.PI/180;
+
+  const a =
+
+    Math.sin(dLat/2) *
+
+    Math.sin(dLat/2)
+
+    +
+
+    Math.cos(
+
+      lat1*Math.PI/180
+
+    )
+
+    *
+
+    Math.cos(
+
+      lat2*Math.PI/180
+
+    )
+
+    *
+
+    Math.sin(dLon/2)
+
+    *
+
+    Math.sin(dLon/2);
+
+  const c =
+
+    2 *
+
+    Math.atan2(
+
+      Math.sqrt(a),
+
+      Math.sqrt(1-a)
+
+    );
+
+  return earth*c;
+
+}
+
+/* =========================================
+
+   VERANSTALTUNGSKARTE
+
+   ========================================= */
+
+function eventCard(event){
+
+  let distanceHTML = "";
+
+  if(userLocation){
+
+    const distance =
+
+      distanceKm(
+
+        userLocation.lat,
+
+        userLocation.lng,
+
+        event.lat,
+
+        event.lng
+
+      );
+
+    distanceHTML =
+
+      `<span class="distance">
+
+        📍 ca. ${Math.round(distance)} km von dir
+
+      </span>`;
+
+  }
+
+  const tagHTML =
+
+    event.tags
+
+      .slice(0,3)
+
+      .map(
+
+        tag =>
+
+        `<span class="badge">
+
+          ${escapeHTML(tag)}
+
+        </span>`
+
+      )
+
+      .join("");
+
+  return `
+
+  <div
+
+    class="card"
+
+    onclick="openEvent('${event.id}')">
+
+    <button
+
+      class="heart"
+
+      aria-label="Favorit"
+
+      onclick="
+
+        event.stopPropagation();
+
+        toggleFavorite('${event.id}');
+
+      ">
+
+      ${isFavorite(event.id) ? "❤️" : "🤍"}
+
+    </button>
+
+    <div class="cardTitle">
+
+      ${icon(event.type)}
+
+      ${escapeHTML(event.name)}
+
+    </div>
+
+    <div class="meta">
+
+      📅 ${escapeHTML(event.date)}
+
+      <br>
+
+      <span class="countryFlag">
+
+        ${event.flag}
+
+      </span>
+
+      ${escapeHTML(event.city)},
+
+      ${escapeHTML(event.country)}
+
+    </div>
+
+    <div class="badges">
+
+      <span class="status">
+
+        ${eventStatus(event)}
+
+      </span>
+
+      ${tagHTML}
+
+    </div>
+
+    ${distanceHTML}
+
+  </div>
+
+  `;
+
+}
+
+/* =========================================
+
+   FILTER & SUCHE
+
+   ========================================= */
+
+function setType(type){
+
+  currentType = type;
+
+  document
+
+    .querySelectorAll("#homeTypeFilters .chip")
+
+    .forEach(
+
+      chip =>
+
+      chip.classList.remove("active")
+
+    );
+
+  if(type === "Alle"){
+
+    byId("chipAlle").classList.add("active");
+
+  }
+
+  if(type === "MPS"){
+
+    byId("chipMPS").classList.add("active");
+
+  }
+
+  if(type === "Markt"){
+
+    byId("chipMarkt").classList.add("active");
+
+  }
+
+  if(type === "Lager"){
+
+    byId("chipLager").classList.add("active");
+
+  }
+
+  if(type === "Reenactment"){
+
+    byId("chipReenactment").classList.add("active");
+
+  }
+
+  if(type === "Buhurt"){
+
+    byId("chipBuhurt").classList.add("active");
+
+  }
+
+  applyFilters();
+
+}
+
+function eventIsCurrent(event){
+  const dateString = event.end || event.start;
+  if(!dateString) return false;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const endDate = new Date(dateString + "T23:59:59");
+  return !Number.isNaN(endDate.getTime()) && endDate >= today;
+}
+
+function getCurrentEvents(){
+  return events.filter(eventIsCurrent);
+}
+
+function flaggeFuerLand(land){
+  const flaggen = {
+    "Deutschland":"🇩🇪",
+    "Frankreich":"🇫🇷",
+    "Italien":"🇮🇹",
+    "Luxemburg":"🇱🇺",    "Niederlande":"🇳🇱",
+    "Österreich":"🇦🇹",
+    "Schweiz":"🇨🇭",
+    "Ungarn":"🇭🇺",
+    "Vereinigtes Königreich":"🇬🇧"
+  };
+  return flaggen[land] || "";
+}
+
+function aktualisiereLaenderFilter(veranstaltungen = getCurrentEvents()){
+  const select = byId("countryFilter");
+  if(!select) return;
+
+  const ausgewaehlt = select.value || "Alle";
+  const laender = [...new Set(
+    veranstaltungen
+      .filter(event => event.start && !Number.isNaN(dateObject(event.start).getTime()))
+      .map(event => event.country)
+      .filter(Boolean)
+  )].sort((a, b) => a.localeCompare(b, "de-CH"));
+
+  select.innerHTML = '<option value="Alle">🌍 Alle Länder</option>' +
+    laender.map(land => {
+      const event = veranstaltungen.find(e => e.country === land);
+      const flagge = event?.flag || flaggeFuerLand(land);
+      return '<option value="' + escapeHTML(land) + '">' +
+        (flagge ? flagge + " " : "") + escapeHTML(land) + '</option>';
+    }).join("");
+
+  select.value = laender.includes(ausgewaehlt) ? ausgewaehlt : "Alle";
+}
+
+function applyFilters(){
+  aktualisiereLaenderFilter();
+
+  const country = byId("countryFilter").value;
+
+  const time =
+
+    byId("timeFilter").value;
+
+  let list = getCurrentEvents();
+
+  const heute = new Date();
+  heute.setHours(0, 0, 0, 0);
+  const grenze = new Date(heute);
+  grenze.setDate(grenze.getDate() + 14);
+  grenze.setHours(23, 59, 59, 999);
+
+  list = list.filter(event => {
+    const beginn = dateObject(event.start);
+    return !Number.isNaN(beginn.getTime()) && beginn <= grenze;
+  });
+
+  if(currentType !== "Alle"){
+
+    list =
+
+      list.filter(
+
+        event =>
+
+        event.type === currentType
+
+        ||
+
+        event.tags.includes(currentType)
+
+      );
+
+  }
+
+  if(country !== "Alle"){
+
+    list =
+
+      list.filter(
+
+        event =>
+
+        event.country === country
+
+      );
+
+  }
+
+  if(time !== "Alle"){
+
+    list =
+
+      list.filter(
+
+        event =>
+
+        monthName(event.start)
+
+          .toLowerCase()
+
+          .includes(
+
+            time.toLowerCase()
+
+          )
+
+      );
+
+  }
+
+  if(userLocation){
+
+  list.sort((a,b) =>
+
+    distanceKm(
+
+      userLocation.lat,
+
+      userLocation.lng,
+
+      a.lat,
+
+      a.lng
+
+    )
+
+    -
+
+    distanceKm(
+
+      userLocation.lat,
+
+      userLocation.lng,
+
+      b.lat,
+
+      b.lng
+
+    )
+
+  );
+
+}else{
+
+  list.sort(
+
+    (a,b) =>
+
+      dateObject(a.start)
+
+      -
+
+      dateObject(b.start)
+
+  );
+
+}
+
+renderEventList(list);
+
+}
+
+/* =========================================
+
+   STARTSEITE
+
+   ========================================= */
+
+function renderEventList(list){
+
+  const container =
+
+    byId("eventList");
+
+  byId("eventCount").textContent =
+
+    list.length +
+
+    (list.length === 1
+
+      ? " Termin"
+
+      : " Termine"
+
+    );
+
+  if(!list.length){
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        🐦‍⬛
+
+        <br><br>
+
+        Der Herold hat mit diesen
+
+        Filtern keine Veranstaltung gefunden.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  container.innerHTML =
+
+    list
+
+      .map(eventCard)
+
+      .join("");
+
+}
+
+/* =========================================
+
+   DETAILSEITE
+
+   ========================================= */
+
+
+const OPEN_METEO_FORECAST_DAYS = 16;
+
+function weatherCodeInfo(code){
+  const table={0:["☀️","Klar"],1:["🌤️","Überwiegend klar"],2:["⛅","Teilweise bewölkt"],3:["☁️","Bedeckt"],45:["🌫️","Nebel"],48:["🌫️","Nebel mit Reif"],51:["🌦️","Leichter Nieselregen"],53:["🌦️","Nieselregen"],55:["🌧️","Starker Nieselregen"],56:["🌧️","Gefrierender Nieselregen"],57:["🌧️","Starker gefrierender Nieselregen"],61:["🌦️","Leichter Regen"],63:["🌧️","Regen"],65:["🌧️","Starker Regen"],66:["🌧️","Gefrierender Regen"],67:["🌧️","Starker gefrierender Regen"],71:["🌨️","Leichter Schneefall"],73:["❄️","Schneefall"],75:["❄️","Starker Schneefall"],77:["🌨️","Schneegriesel"],80:["🌦️","Regenschauer"],81:["🌧️","Regenschauer"],82:["⛈️","Starke Regenschauer"],85:["🌨️","Schneeschauer"],86:["❄️","Starke Schneeschauer"],95:["⛈️","Gewitter"],96:["⛈️","Gewitter mit Hagel"],99:["⛈️","Starkes Gewitter mit Hagel"]};
+  return table[Number(code)]||["🌡️","Wetter"];
+}
+
+function weatherCountryCode(country){
+  const key=String(country||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ß/g,"ss").toLowerCase().replace(/[^a-z]/g,"");
+  const codes={schweiz:"CH",switzerland:"CH",ch:"CH",deutschland:"DE",germany:"DE",de:"DE",osterreich:"AT",austria:"AT",at:"AT",frankreich:"FR",france:"FR",fr:"FR",italien:"IT",italy:"IT",it:"IT",spanien:"ES",spain:"ES",es:"ES",grossbritannien:"GB",vereinigteskonigreich:"GB",unitedkingdom:"GB",england:"GB",gb:"GB",uk:"GB",niederlande:"NL",netherlands:"NL",holland:"NL",nl:"NL",belgien:"BE",belgium:"BE",be:"BE",luxemburg:"LU",luxembourg:"LU",lu:"LU",polen:"PL",poland:"PL",pl:"PL",tschechien:"CZ",czechia:"CZ",czechrepublic:"CZ",cz:"CZ",danemark:"DK",denmark:"DK",dk:"DK",schweden:"SE",sweden:"SE",se:"SE",norwegen:"NO",norway:"NO",no:"NO",finnland:"FI",finland:"FI",fi:"FI",irland:"IE",ireland:"IE",ie:"IE",portugal:"PT",pt:"PT",ungarn:"HU",hungary:"HU",hu:"HU",kroatien:"HR",croatia:"HR",hr:"HR",slowenien:"SI",slovenia:"SI",si:"SI",slowakei:"SK",slovakia:"SK",sk:"SK",rumanien:"RO",romania:"RO",ro:"RO",bulgarien:"BG",bulgaria:"BG",bg:"BG",griechenland:"GR",greece:"GR",gr:"GR",estland:"EE",estonia:"EE",ee:"EE",lettland:"LV",latvia:"LV",lv:"LV",litauen:"LT",lithuania:"LT",lt:"LT"};
+  return codes[key]||"";
+}
+
+function weatherDate(value){
+  const text=String(value||"");
+  let m=text.match(/\b(\d{4})-(\d{2})-(\d{2})\b/);
+  if(m)return `${m[1]}-${m[2]}-${m[3]}`;
+  m=text.match(/\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b/);
+  return m?`${m[3]}-${m[2].padStart(2,"0")}-${m[1].padStart(2,"0")}`:"";
+}
+
+function weatherEventRange(event){
+  const found=String(event.date||"").match(/\d{4}-\d{2}-\d{2}|\d{1,2}\.\d{1,2}\.\d{4}/g)||[];
+  const start=weatherDate(event.start)||weatherDate(found[0]);
+  const end=weatherDate(event.end)||weatherDate(found[1])||start;
+  return start&&end?{start,end}:null;
+}
+
+async function resolveWeatherCoordinates(event){
+  const lat=Number(event.lat),lng=Number(event.lng);
+  if(Number.isFinite(lat)&&Number.isFinite(lng)&&Math.abs(lat)>0.01&&Math.abs(lng)>0.01&&Math.abs(lat)<=90&&Math.abs(lng)<=180)return{lat,lng,approximate:false};
+  const city=String(event.city||"").trim();
+  if(!city)throw new Error("Für diesen Termin ist kein Ort hinterlegt.");
+  const cacheKey="rabenruf-weather-geocode:"+city.toLowerCase()+":"+String(event.country||"").toLowerCase();
+  try{const c=JSON.parse(localStorage.getItem(cacheKey)||"null");if(c&&Date.now()-c.savedAt<2592000000&&Number.isFinite(c.lat)&&Number.isFinite(c.lng))return{lat:c.lat,lng:c.lng,approximate:true};}catch{}
+  const queries=[city.replace(/\b\d{4,6}\b/g," ").replace(/\s+/g," ").trim(),city.split(",")[0].trim(),city.split("/")[0].trim()].filter((v,i,a)=>v&&a.indexOf(v)===i);
+  const code=weatherCountryCode(event.country);
+  for(const q of queries){
+    const response=await fetch("https://geocoding-api.open-meteo.com/v1/search?name="+encodeURIComponent(q)+"&count=10&language=de&format=json");
+    if(!response.ok)continue;
+    const payload=await response.json(),results=Array.isArray(payload.results)?payload.results:[];
+    if(!results.length)continue;
+    const place=results.find(x=>code&&String(x.country_code||"").toUpperCase()===code)||(results.length===1?results[0]:null);
+    if(!place||!Number.isFinite(Number(place.latitude))||!Number.isFinite(Number(place.longitude)))continue;
+    const coords={lat:Number(place.latitude),lng:Number(place.longitude)};
+    try{localStorage.setItem(cacheKey,JSON.stringify({...coords,savedAt:Date.now()}));}catch{}
+    return{...coords,approximate:true};
+  }
+  throw new Error("Der Veranstaltungsort konnte nicht eindeutig gefunden werden.");
+}
+
+function formatWeatherDate(iso){
+  return new Intl.DateTimeFormat("de-CH",{weekday:"short",day:"2-digit",month:"2-digit"}).format(new Date(iso+"T12:00:00"));
+}
+
+async function loadEventWeather(event){
+  const panel=document.getElementById("eventWeather");
+  if(!panel||panel.dataset.eventId!==String(event.id))return;
+  const range=weatherEventRange(event);
+  if(!range){panel.innerHTML='<h3>🌦️ Wetter am Veranstaltungsort</h3><p class="weatherMessage">Für diesen Termin fehlen gültige Datumsangaben.</p>';return;}
+  try{
+    const coords=await resolveWeatherCoordinates(event),current=document.getElementById("eventWeather");
+    if(!current||current.dataset.eventId!==String(event.id))return;
+    const url="https://api.open-meteo.com/v1/forecast?latitude="+encodeURIComponent(coords.lat)+"&longitude="+encodeURIComponent(coords.lng)+"&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&temperature_unit=celsius&wind_speed_unit=kmh&timezone=auto&forecast_days="+OPEN_METEO_FORECAST_DAYS;
+    const response=await fetch(url,{cache:"no-store"});
+    if(!response.ok)throw new Error("Die Wetterdaten sind gerade nicht erreichbar.");
+    const daily=(await response.json()).daily;
+    if(!daily||!Array.isArray(daily.time)||!daily.time.length)throw new Error("Für diesen Ort ist derzeit keine Wetterprognose verfügbar.");
+    const available=daily.time.map((date,index)=>({date,index})).filter(x=>x.date>=range.start&&x.date<=range.end);
+    const last=daily.time[daily.time.length-1],place=String(event.city||event.country||"dem Veranstaltungsort");
+    const attribution='<div class="weatherAttribution">Quelle: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> · Ortsprognose, kann sich ändern'+(coords.approximate?' · Ort aus Ortsangabe ermittelt':'')+'</div>';
+    if(range.end<daily.time[0]){current.innerHTML='<h3>🌦️ Wetter am Veranstaltungsort</h3><p class="weatherMessage">Die Veranstaltung liegt bereits zurück; eine aktuelle Wetterprognose gibt es dafür nicht.</p>'+attribution;return;}
+    if(!available.length){current.innerHTML='<h3>🌦️ Wetter am Veranstaltungsort</h3><p class="weatherMessage">Für '+escapeHTML(place)+' gibt es noch keine Tagesprognose für diesen Termin. Sie erscheint näher am Veranstaltungsdatum, sobald der Tag innerhalb der nächsten '+OPEN_METEO_FORECAST_DAYS+' Tage liegt.</p>'+attribution;return;}
+    const rows=available.map(({date,index})=>{
+      const[iconText,condition]=weatherCodeInfo(daily.weather_code?.[index]),high=Number(daily.temperature_2m_max?.[index]),low=Number(daily.temperature_2m_min?.[index]),rain=Number(daily.precipitation_probability_max?.[index]),wind=Number(daily.wind_speed_10m_max?.[index]);
+      const temp=Number.isFinite(high)&&Number.isFinite(low)?`<strong>${Math.round(high)}°</strong> / ${Math.round(low)}°C`:"Temperatur –",rainText=Number.isFinite(rain)?` · Regen ${Math.round(rain)}%`:"",windText=Number.isFinite(wind)?` · Wind ${Math.round(wind)} km/h`:"";
+      return `<div class="weatherDay"><div><div class="weatherDayName">${formatWeatherDate(date)}</div><div class="weatherCondition">${iconText} ${condition}</div></div><div class="weatherValues">${temp}<div class="weatherCondition">${rainText}${windText}</div></div></div>`;
+    }).join("");
+    const note=range.end>last?'<p class="weatherMessage">Weitere Veranstaltungstage erscheinen in der Prognose, sobald sie näher rücken.</p>':"";
+    current.innerHTML='<h3>🌦️ Wetter am Veranstaltungsort</h3>'+rows+note+attribution;
+  }catch(error){
+    const current=document.getElementById("eventWeather");
+    if(current&&current.dataset.eventId===String(event.id))current.innerHTML='<h3>🌦️ Wetter am Veranstaltungsort</h3><p class="weatherMessage">'+escapeHTML(error.message||"Die Wetterprognose konnte nicht geladen werden.")+'</p>';
+  }
+}
+
+function openEvent(id){
+
+  const event =
+
+    events.find(
+
+      item => item.id === id
+
+    );
+
+  if(!event){
+
+    return;
+
+  }
+
+  const favoriteText =
+
+    isFavorite(id)
+
+    ? "❤️ Favorit entfernen"
+
+    : "🤍 Als Favorit speichern";
+
+  const linkUrl = value => {
+    const url = String(value || "").trim();
+    return /^https?:\/\//i.test(url) ? url : "";
+  };
+  const organizerUrl = linkUrl(event.website);
+  const sourceUrl = linkUrl(event.source);
+  const flyerUrl = linkUrl(event.flyer || event.flyerUrl || event.image || event.image_url || event.imageUrl || event.poster || event.bild);
+  const updateId = String(event.id || "").replace(/[^A-Za-z0-9_-]/g, "");
+
+  byId("detailContent").innerHTML = `
+
+    <div class="hero">
+
+      <div class="heroSmall">
+
+        ${escapeHTML(event.type)}
+
+      </div>
+
+      <h1>
+
+        ${icon(event.type)}
+
+        ${escapeHTML(event.name)}
+
+      </h1>
+
+      <p class="muted">
+
+        📅 ${escapeHTML(event.date)}
+
+        <br>
+
+        ${event.flag}
+
+        ${escapeHTML(event.city)},
+
+        ${escapeHTML(event.country)}
+
+      </p>
+
+      <span class="status">
+
+        ${eventStatus(event)}
+
+      </span>
+
+    </div>
+
+    ${flyerUrl ? `<figure class="eventFlyer"><a href="${escapeHTML(flyerUrl)}" target="_blank" rel="noopener noreferrer"><img src="${escapeHTML(flyerUrl)}" alt="Flyer zu ${escapeHTML(event.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').hidden=true"></a><figcaption>📄 Veranstaltungsflyer · antippen zum Vergrößern</figcaption></figure>` : ""}
+
+    <div class="card">
+
+      <h3>
+
+        ⚔️ Veranstaltung
+      </h3>
+
+      <p class="muted">
+
+        ${escapeHTML(event.info)}
+
+      </p>
+
+    </div>
+
+    <section id="eventWeather" class="card weatherPanel" data-event-id="${escapeHTML(String(event.id))}" aria-live="polite">
+      <h3>🌦️ Wetter am Veranstaltungsort</h3>
+      <p class="weatherLoading">Wetterprognose wird geladen …</p>
+    </section>
+
+    <div class="card detailPlace">
+
+      <div class="infoLine">
+
+        <strong>📍 Ort</strong>
+
+        <br>
+
+        ${escapeHTML(event.venue)}
+
+        <br>
+
+        <span class="muted">
+
+          ${escapeHTML(event.address)}
+
+        </span>
+
+      </div>
+
+      <div class="infoLine">
+
+        <strong>🕰️ Zeiten</strong>
+
+        <br>
+
+        <span class="muted">
+
+          ${escapeHTML(event.hours)}
+
+        </span>
+
+      </div>
+
+      <div class="infoLine">
+
+        <strong>👑 Veranstalter</strong>
+
+        <br>
+
+        <span class="muted">
+
+          ${escapeHTML(event.organizer || "Noch nicht ermittelt")}
+
+        </span>
+
+      </div>
+
+    </div>
+
+    <button
+
+      class="btn primary"
+
+      onclick="
+
+        openRoute(
+
+          ${event.lat},
+
+          ${event.lng}
+
+        )
+
+      ">
+
+      🧭 Route mit Google Maps
+
+    </button>
+
+    ${organizerUrl
+      ? `<a class="btn green btnLink" href="${escapeHTML(organizerUrl)}">🌐 Veranstalterseite öffnen</a>`
+      : `<div class="notice">Für diesen Termin ist noch keine offizielle Veranstalterseite hinterlegt.</div>`}
+    ${sourceUrl
+      ? `<a class="btn btnLink" href="${escapeHTML(sourceUrl)}">🔎 Fundquelle öffnen</a>`
+      : ""}
+
+    <button class="btn" onclick="teileVeranstaltung('${updateId}')">
+      📤 Veranstaltung teilen
+    </button>
+
+    <button
+
+      class="btn"
+
+      onclick="
+
+        toggleFavorite('${event.id}');
+
+        openEvent('${event.id}');
+
+      ">
+
+      ${favoriteText}
+
+    </button>
+
+    <button class="btn" onclick="starteTerminAenderung('${updateId}')">
+      ${heroldIsAdmin() ? "✏️ Terminangaben ergänzen oder korrigieren" : "🔒 Änderung mit Herold-Passwort vorschlagen"}
+    </button>
+
+    <div class="sourceNote">
+
+      Veranstaltungsdaten wurden aus
+
+      öffentlich verfügbaren Veranstaltungs-
+
+      und Tourismusseiten übernommen.
+
+      Vor der Anreise bitte Zeiten beim
+
+      Veranstalter kontrollieren.
+
+    </div>
+
+  `;
+
+  show("detail");
+
+  loadEventWeather(event);
+
+}
+
+async function teileVeranstaltung(id){
+  const event=events.find(item=>String(item.id)===String(id));
+  if(!event) return;
+  const title=String(event.name||"Mittelalter-Veranstaltung").trim();
+  const place=[event.city,event.country].filter(Boolean).join(", ");
+  const dateText=String(event.date||"");
+  const text=[title,dateText,place].filter(Boolean).join("\n");
+  if(navigator.share){
+    try{
+      await navigator.share({title,text});
+      return;
+    }catch(error){
+      if(error?.name==="AbortError") return;
+    }
+  }
+  try{
+    await navigator.clipboard.writeText(text);
+    alert("Die Veranstaltungsangaben wurden kopiert. Du kannst sie jetzt in WhatsApp einfügen.");
+  }catch(_error){
+    prompt("Kopiere die Veranstaltungsangaben zum Teilen:",text);
+  }
+}
+
+function heroldIsAdmin(){
+  return heroldSession?.user?.email?.toLowerCase() === "agunz@bluewin.ch" &&
+    Boolean(heroldSession.user?.email_confirmed_at);
+}
+
+function starteTerminAenderung(id){
+  const eventId=String(id || "");
+  if(!/^[A-Za-z0-9_-]{1,120}$/.test(eventId)) return;
+  if(!heroldIsAdmin()){
+    requestedEditEventId=eventId;
+    showHerold();
+    zeigeHeroldAnmeldung("Bitte melde dich mit deinem bestätigten Herold-Konto an. Danach öffnet sich das Änderungsformular.");
+    return;
+  }
+  requestedEditEventId="";
+  bearbeiteTermin(eventId);
+}
+
+function bearbeiteTermin(id){
+  const event=events.find(item => String(item.id) === String(id));
+  if(!event) return;
+  if(!heroldIsAdmin()){
+    starteTerminAenderung(id);
+    return;
+  }
+  eventEditId=String(event.id);
+  eventEditSnapshot=JSON.parse(JSON.stringify(event));
+  const box=byId("eventUpdateForm");
+  const field=(name,label,value,type="text",required=false,maxlength=240) =>
+    '<label for="edit-' + name + '">' + label + '</label>' +
+    '<input class="eventEditField" id="edit-' + name + '" name="' + name + '" type="' + type +
+    '" maxlength="' + maxlength + '"' + (required ? " required" : "") +
+    ' value="' + escapeHTML(value || "") + '">';
+  const area=(name,label,value,rows=3,maxlength=1200) =>
+    '<label for="edit-' + name + '">' + label + '</label>' +
+    '<textarea class="eventEditField" id="edit-' + name + '" name="' + name +
+    '" maxlength="' + maxlength + '" rows="' + rows + '">' + escapeHTML(value || "") + '</textarea>';
+  const category=() => {
+    const types=["Markt","MPS","Lager","Reenactment","Buhurt","Spezialevent"];
+    const selected=Array.isArray(event.tags)?event.tags.filter(tag=>types.includes(tag)):[];
+    if(types.includes(event.type) && !selected.includes(event.type)) selected.unshift(event.type);
+    const checks=types.map((type,index)=>'<label><input type="checkbox" value="'+type+'"'+(selected.includes(type)?' checked':'')+
+      ' onchange="kategorienGeaendert(\'edit-type\',\'editCategoryStatus\')"> '+type+'</label>').join("");
+    const extraTags=(Array.isArray(event.tags)?event.tags:[]).filter(tag=>!types.includes(tag));
+    return '<label>Art / Kategorien * (Mehrfachauswahl)</label><div id="editTypeChoices" class="categoryChoices">'+checks+'</div>'+
+      '<input type="hidden" id="edit-type" value="'+escapeHTML(selected[0]||"")+'" data-categories="'+escapeHTML(JSON.stringify(selected))+'" data-extra-tags="'+escapeHTML(JSON.stringify(extraTags))+'" data-confirmed="'+(selected.length?'true':'false')+'">'+
+      '<p id="editCategoryStatus" class="muted" role="status">'+(selected.length?'✅ Ausgewählt: '+escapeHTML(selected.join(", ")):'Bitte eine oder mehrere Arten anklicken.')+'</p>';
+  };
+  box.innerHTML=
+    '<div class="card eventEditForm"><h2>✏️ Termin ergänzen oder korrigieren</h2>' +
+    '<p class="muted">Änderungen werden zuerst im Herold geprüft. Im Kalender bleibt der bisherige Eintrag stehen, bis du den Vorschlag freigibst.</p>' +
+    field("name","Veranstaltung",event.name,"text",true,180) +
+    category() +
+    field("start","Beginn",event.start,"date",true) +
+    field("end","Ende",event.end || event.start,"date",true) +
+    field("city","Ort / Stadt",event.city,"text",true,100) +
+    field("country","Land",event.country,"text",true,100) +
+    field("venue","Veranstaltungsort",event.venue,"text",false,180) +
+    field("address","Adresse",event.address,"text",false,240) +
+    field("organizer","Veranstalter",event.organizer,"text",false,160) +
+    field("website","Veranstalter-Webseite",event.website,"url",false,500) +
+    field("flyer","Flyer-Bildadresse (optional)",event.flyer || event.flyerUrl || event.image || event.image_url || event.imageUrl || event.poster || event.bild,"url",false,1000) +
+    area("info","Beschreibung",event.info,4,1200) +
+    field("hours","Öffnungszeiten / Zeiten",event.hours,"text",false,240) +
+    '<button class="btn primary" type="button" onclick="sendeTerminAenderung()">🔒 Änderung an den Herold senden</button>' +
+    '<button class="btn" id="eventDeleteButton" type="button" style="border-color:#963e30;color:#f0a096" onclick="loescheTerminDauerhaft()">🗑️ Termin dauerhaft löschen</button>' +
+    '<p id="eventEditStatus" class="contactStatus" role="status" aria-live="polite"></p></div>';
+  show("eventUpdate");
+}
+
+async function loescheTerminDauerhaft(){
+  if(!heroldIsAdmin() || !heroldSession?.access_token || !eventEditId) return;
+  if(!window.confirm("Diesen Termin dauerhaft aus Kalender, Karte und Herold entfernen? Er soll auch nach einem neuen Suchlauf nicht wieder erscheinen.")) return;
+  const status=byId("eventEditStatus");
+  const button=byId("eventDeleteButton");
+  if(button){button.disabled=true;button.textContent="Wird dauerhaft gelöscht …";}
+  if(status) status.textContent="";
+  try{
+    await heroldSessionErneuern();
+    const result=await heroldApi("functions/v1/herold-event-update",{
+      method:"POST",token:heroldSession.access_token,
+      body:{action:"delete",event_id:eventEditId}
+    });
+    if(!result?.ok) throw new Error(result?.error || "Der Termin konnte nicht gelöscht werden.");
+
+    const ids=new Set([eventEditId]);
+    if(eventEditId.startsWith("herold-")) ids.add(eventEditId.slice("herold-".length));
+    ids.forEach(id=>gelöschteHeroldEventIds.add(id));
+    events.splice(0,events.length,...events.filter(event=>!heroldEventIstGeloescht(event,ids)));
+    const gespeicherte=JSON.parse(localStorage.getItem("rabenrufHeroldEvents") || "[]")
+      .filter(event=>!heroldEventIstGeloescht(event,ids));
+    localStorage.setItem("rabenrufHeroldEvents",JSON.stringify(gespeicherte));
+    heroldFunde=heroldFunde.filter(fund=>!ids.has(String(fund.id || "")));
+    applyFilters();
+    renderCalendar();
+    renderMapMarkers();
+    renderHerold();
+    byId("eventUpdateForm").innerHTML=
+      '<div class="card"><h2>🗑️ Termin gelöscht</h2><p class="muted">Der Termin wurde aus Kalender und Karte entfernt und im Herold dauerhaft als verworfen markiert. Auch ein späterer Suchlauf blendet ihn aus.</p><button class="btn" type="button" onclick="show(\'calendar\')">Zum Kalender</button></div>';
+  }catch(error){
+    if(status) status.textContent=error.message || "Das Löschen hat nicht funktioniert.";
+    if(button){button.disabled=false;button.textContent="🗑️ Termin dauerhaft löschen";}
+  }
+}
+
+async function sendeTerminAenderung(){
+  const status=byId("eventEditStatus");
+  const button=document.querySelector("#eventUpdateForm .primary");
+  if(!heroldIsAdmin() || !heroldSession?.access_token){
+    if(status) status.textContent="Bitte melde dich zuerst mit dem Herold-Passwort an.";
+    return;
+  }
+  const value=name=>byId("edit-"+name)?.value.trim() || "";
+  const categoryField=byId("edit-type");
+  const categories=JSON.parse(categoryField?.dataset.categories||"[]");
+  if(!categoryField?.dataset.confirmed || !categories.length){
+    if(status) status.textContent="Bitte wähle mindestens eine Art aus.";
+    return;
+  }
+  const proposed={
+    ...eventEditSnapshot,
+    id:eventEditId,
+    name:value("name"),type:categories[0],tags:[...categories,...JSON.parse(categoryField.dataset.extraTags||"[]")],start:value("start"),end:value("end"),
+    city:value("city"),country:value("country"),venue:value("venue"),
+    address:value("address"),organizer:value("organizer"),website:value("website"),
+    flyer:value("flyer"),
+    info:value("info"),hours:value("hours")
+  };
+  if(!proposed.name || !proposed.type || !proposed.start || !proposed.end || !proposed.city || !proposed.country){
+    if(status) status.textContent="Bitte fülle Titel, Art, Zeitraum, Ort und Land aus.";
+    return;
+  }
+  if(button){button.disabled=true;button.textContent="Wird an den Herold gesendet …";}
+  if(status) status.textContent="";
+  try{
+    await heroldSessionErneuern();
+    const result=await heroldApi("functions/v1/herold-event-update",{
+      method:"POST",token:heroldSession.access_token,
+      body:{action:"submit",event_id:eventEditId,old_event:eventEditSnapshot,proposed_event:proposed}
+    });
+    if(!result?.ok) throw new Error(result?.error || "Der Änderungsvorschlag konnte nicht gespeichert werden.");
+    byId("eventUpdateForm").innerHTML=
+      '<div class="card"><h2>✅ Vorschlag im Herold</h2><p class="muted">Deine Änderungen sind eingegangen. Der aktuelle Kalendereintrag bleibt bestehen, bis der Vorschlag geprüft und freigegeben wurde.</p><button class="btn" onclick="openEvent(\''+eventEditId+'\')">Zurück zum Termin</button></div>';
+    ladeHeroldUpdates();
+  }catch(error){
+    if(status) status.textContent=error.message || "Das Senden hat nicht funktioniert.";
+    if(button){button.disabled=false;button.textContent="🔒 Änderung an den Herold senden";}
+  }
+}
+
+/* =========================================
+
+   GOOGLE MAPS ROUTE
+
+   ========================================= */
+
+function openRoute(
+
+  lat,
+
+  lng
+
+){
+
+  const url =
+
+    "https://www.google.com/maps/dir/?api=1"
+
+    +
+
+    "&destination="
+
+    +
+
+    lat
+
+    +
+
+    ","
+
+    +
+
+    lng;
+
+  window.open(
+
+    url,
+
+    "_blank"
+
+  );
+
+}
+
+/* =========================================
+
+   KARTE
+
+   ========================================= */
+
+function initMap(){
+
+  if(map){
+
+    return;
+
+  }
+
+  map =
+
+    L.map(
+
+      "map",
+
+      {
+
+        zoomControl:true
+
+      }
+
+    )
+
+    .setView(
+
+      [49.8,9.5],
+
+      5
+
+    );
+  L.tileLayer(
+
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+    {
+
+      maxZoom:19,
+
+      attribution:
+
+        "&copy; OpenStreetMap"
+
+    }
+
+  )
+
+  .addTo(map);
+
+  renderMapMarkers();
+
+}
+
+function renderMapMarkers(){
+
+  if(!map){
+
+    return;
+
+  }
+
+  mapMarkers.forEach(
+    marker => map.removeLayer(marker)
+  );
+
+  mapMarkers = [];
+
+  aktualisiereJahresFilter(getCurrentEvents());
+  getEventsForSelectedYear(getCurrentEvents()).forEach(event => {
+    const lat = Number(event.lat);
+    const lng = Number(event.lng);
+
+    if(!Number.isFinite(lat) || !Number.isFinite(lng) || (lat === 0 && lng === 0)){
+      return;
+    }
+
+    const isBuhurt = event.type === "Buhurt" ||
+      (Array.isArray(event.tags) && event.tags.includes("Buhurt"));
+    const markerOptions = isBuhurt ? {
+      icon: L.divIcon({
+        className: "",
+        html: '<div class="buhurtMapMarker" aria-label="Buhurt-Ort">⚔️</div>',
+        iconSize: [36, 36],
+        iconAnchor: [18, 18]
+      })
+    } : {};
+    const marker = L.marker([lat, lng], markerOptions).addTo(map);
+
+    marker.bindPopup(`
+      <div style="min-width:180px;line-height:1.4">
+        <strong>${icon(event.type)} ${escapeHTML(event.name)}</strong>
+        <br>
+        ${escapeHTML(event.date)}
+        <br>
+        ${event.flag} ${escapeHTML(event.city)}
+        <br>
+        <button class="popupButton" onclick="openEvent('${event.id}')">
+          Details öffnen
+        </button>
+      </div>
+    `);
+
+    mapMarkers.push(marker);
+  });
+}
+
+function showMap(){
+
+  show("mapPage");
+
+  setTimeout(
+
+    () => {
+
+      initMap();
+
+      map.invalidateSize();
+
+    },
+
+    120
+
+  );
+
+}
+
+function resetMap(){
+
+  if(!map){
+
+    return;
+
+  }
+
+  map.setView(
+
+    [49.8,9.5],
+
+    5
+
+  );
+
+}
+
+/* =========================================
+
+   STANDORT
+
+   ========================================= */
+
+function findMe(){
+
+  showMap();
+
+  if(
+
+    !navigator.geolocation
+
+  ){
+
+    alert(
+
+      "Dein Gerät unterstützt die Standortfunktion leider nicht."
+
+    );
+
+    return;
+
+  }
+
+  navigator.geolocation
+
+  .getCurrentPosition(
+
+    position => {
+
+      userLocation = {
+
+        lat:
+
+          position.coords.latitude,
+
+        lng:
+
+          position.coords.longitude
+
+      };
+
+      if(userMarker){
+
+        map.removeLayer(
+
+          userMarker
+
+        );
+
+      }
+
+      userMarker =
+
+        L.circleMarker(
+
+          [
+
+            userLocation.lat,
+
+            userLocation.lng
+
+          ],
+
+          {
+
+            radius:9,
+
+            weight:3,
+
+            color:"#ffffff",
+
+            fillColor:"#357bd8",
+
+            fillOpacity:1
+
+          }
+
+        )
+
+        .addTo(map)
+
+        .bindPopup(
+
+          "📍 Dein Standort"
+
+        );
+
+      map.setView(
+
+        [
+
+          userLocation.lat,
+
+          userLocation.lng
+
+        ],
+
+        8
+
+      );
+
+      userMarker.openPopup();
+
+      applyFilters();
+
+    },
+
+    error => {
+
+      let message =
+
+        "Standort konnte nicht ermittelt werden.";
+
+      if(
+
+        error.code === 1
+
+      ){
+
+        message =
+
+          "Bitte erlaube Rabenruf den Zugriff auf deinen Standort.";
+
+      }
+
+      alert(message);
+
+    },
+
+    {
+
+      enableHighAccuracy:true,
+
+      timeout:10000,
+
+      maximumAge:60000
+
+    }
+
+  );
+
+}
+
+/* =========================================
+
+   KALENDER
+
+   ========================================= */
+
+let calendarType = "Alle";
+
+function getEventsForSelectedYear(events){
+  if(selectedEventYear === "Alle") return events;
+  return events.filter(event => event.start && event.start.slice(0, 4) === selectedEventYear);
+}
+
+function aktualisiereJahresFilter(events){
+  const years = [...new Set(events
+    .map(event => String(event.start || "").slice(0, 4))
+    .filter(year => /^\d{4}$/.test(year)))]
+    .sort();
+  [byId("calendarYearFilter"), byId("mapYearFilter")].forEach(select => {
+    if(!select) return;
+    select.innerHTML = '<option value="Alle">📅 Alle Jahre</option>' +
+      years.map(year => '<option value="' + year + '">' + year + '</option>').join("");
+    select.value = years.includes(selectedEventYear) ? selectedEventYear : "Alle";
+  });
+  if(!years.includes(selectedEventYear)) selectedEventYear = "Alle";
+}
+
+function setEventYear(year){
+  selectedEventYear = year || "Alle";
+  aktualisiereJahresFilter(getCurrentEvents());
+  applyCalendarFilters();
+  renderMapMarkers();
+}
+
+function setCalendarType(type){
+  calendarType = type;
+  document.querySelectorAll("#calendarTypeFilters .chip").forEach(button => {
+    button.classList.toggle("active", button.dataset.type === type);
+  });
+  applyCalendarFilters();
+}
+
+function renderCalendar(){
+  applyCalendarFilters();
+}
+
+function applyCalendarFilters(){
+  const search = (byId("calendarSearchInput")?.value || "").trim().toLocaleLowerCase("de-CH");
+  const countrySelect = byId("calendarCountryFilter");
+  const monthSelect = byId("calendarMonthFilter");
+  let allEvents = getCurrentEvents().filter(event =>
+    event.start && !Number.isNaN(dateObject(event.start).getTime())
+  );
+  aktualisiereJahresFilter(allEvents);
+  aktualisiereLaenderFilter(allEvents);
+  allEvents = getEventsForSelectedYear(allEvents);
+
+  const selectedCountry = countrySelect.value || "Alle";
+  const selectedMonth = monthSelect.value || "Alle";
+  const countries = [...new Set(allEvents.map(event => event.country).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, "de-CH"));
+  countrySelect.innerHTML = '<option value="Alle">🌍 Alle Länder</option>' +
+    countries.map(country => {
+      const event = allEvents.find(e => e.country === country);
+      const flagge = event?.flag || flaggeFuerLand(country);
+      return '<option value="' + escapeHTML(country) + '">' +
+        (flagge ? flagge + " " : "") + escapeHTML(country) + '</option>';
+    }).join("");
+  countrySelect.value = countries.includes(selectedCountry) ? selectedCountry : "Alle";
+  const months = [...new Set(allEvents.map(event => event.start.slice(0, 7)))].sort();
+  monthSelect.innerHTML = '<option value="Alle">📅 Alle Monate</option>' +
+    months.map(month =>
+      '<option value="' + escapeHTML(month) + '">' +
+      escapeHTML(monthName(month + "-01")) +
+      '</option>'
+    ).join("");
+  monthSelect.value = months.includes(selectedMonth) ? selectedMonth : "Alle";
+
+  if(calendarType !== "Alle"){
+    allEvents = allEvents.filter(event =>
+      event.type === calendarType ||
+      (Array.isArray(event.tags) && event.tags.includes(calendarType))
+    );
+  }
+
+  if(countrySelect.value !== "Alle"){
+    allEvents = allEvents.filter(event => event.country === countrySelect.value);
+  }
+
+  if(monthSelect.value !== "Alle"){
+    allEvents = allEvents.filter(event => event.start.slice(0, 7) === monthSelect.value);
+  }
+
+  if(search){
+    allEvents = allEvents.filter(event => {
+      const tags = Array.isArray(event.tags) ? event.tags : [];
+      const text = [
+        event.name,
+        event.city,
+        event.country,
+        event.type,
+        event.organizer,
+        event.venue,
+        ...tags
+      ].join(" ").toLocaleLowerCase("de-CH");
+      return text.includes(search);
+    });
+  }
+
+  allEvents.sort((a, b) => dateObject(a.start) - dateObject(b.start));
+  const count = allEvents.length;
+  byId("calendarEventCount").textContent =
+    count + (count === 1 ? " Termin" : " Termine");
+
+  if(!count){
+    byId("calendarList").innerHTML =
+      '<div class="empty">Mit diesen Filtern wurde kein Termin gefunden.</div>';
+    return;
+  }
+
+  const groups = {};
+  allEvents.forEach(event => {
+    const month = monthName(event.start);
+    if(!groups[month]) groups[month] = [];
+    groups[month].push(event);
+  });
+
+  byId("calendarList").innerHTML = Object.entries(groups).map(([month, list]) =>
+    '<div class="calendarMonth">' + escapeHTML(month) + '</div>' +
+    list.map(eventCard).join("")
+  ).join("");
+}
+
+/* =========================================
+
+   FAVORITEN-SEITE
+
+   ========================================= */
+
+function showFavorites(){
+  show("favorites");
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const savedIds = getFavorites();
+  const expiredIds = new Set();
+  const list = events
+    .filter(event => {
+      if(!savedIds.includes(event.id)) return false;
+      const end = dateObject(event.end || event.start);
+      if(Number.isNaN(end.getTime())) return true;
+      if(end < today){
+        expiredIds.add(event.id);
+        return false;
+      }
+      return true;
+    })
+    .sort((a,b) => dateObject(a.start) - dateObject(b.start));
+
+  if(expiredIds.size){
+    localStorage.setItem(
+      "rabenrufFavorites",
+      JSON.stringify(savedIds.filter(id => !expiredIds.has(id)))
+    );
+  }
+
+  if(!list.length){
+    byId("favoriteList").innerHTML = `
+      <div class="empty">
+        ❤️<br><br>
+        Noch keine aktuellen Favoriten.<br><br>
+        Vergangene Veranstaltungen werden automatisch entfernt.
+      </div>
+    `;
+    return;
+  }
+
+  byId("favoriteList").innerHTML = list.map(eventCard).join("");
+}
+let heroldFunde = [];
+
+function heroldNorm(value){
+  return String(value||"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").toLowerCase()
+    .replace(/\b(?:an|der|a)\b/g," ").replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
+}
+function heroldDateRange(event){
+  const dateText=[event?.start,event?.end,event?.date].filter(Boolean).join(" ");
+  const dates=[...dateText.matchAll(/20\d{2}-\d{2}-\d{2}/g)].map(match=>match[0]);
+  if(!dates.length) return null;
+  const start=event?.start&&/^20\d{2}-\d{2}-\d{2}$/.test(String(event.start))?String(event.start):dates[0];
+  const end=event?.end&&/^20\d{2}-\d{2}-\d{2}$/.test(String(event.end))?String(event.end):dates[dates.length-1];
+  return {start,end};
+}
+function heroldSameEvent(a,b){
+  const nameA=heroldNorm(a?.name), nameB=heroldNorm(b?.name);
+  const cityA=heroldNorm(a?.city), cityB=heroldNorm(b?.city);
+  if(!nameA||!nameB) return false;
+  const exactName=nameA===nameB;
+  const similarName=exactName || nameA.includes(nameB) || nameB.includes(nameA);
+  if(!similarName) return false;
+  const datesA=heroldDateRange(a), datesB=heroldDateRange(b);
+  if(!datesA||!datesB) return false;
+  const datesOverlap=datesA.start<=datesB.end && datesB.start<=datesA.end;
+  if(!datesOverlap) return false;
+  // Exact title + overlapping dates is stronger evidence than a source's
+  // unreliable city field (some imports put the event title in city).
+  if(exactName) return true;
+  const cityEqual=cityA&&cityB&&(cityA===cityB || cityA.includes(cityB) || cityB.includes(cityA));
+  return Boolean(cityEqual);
+}
+
+async function ladeHeroldFunde(){
+  try{
+    const antwort = await fetch("herold-funde.json?zeit=" + Date.now());
+    if(!antwort.ok) throw new Error("Die Fundliste konnte nicht geladen werden.");
+    let funde = await antwort.json();
+    if(!Array.isArray(funde)) funde = [];
+
+    let entschiedeneIds = new Set();
+    let bereitsBestaetigt=[...events];
+    try{
+      const entscheidungen = await ladeHeroldEntscheide();
+      entschiedeneIds = new Set(entscheidungen.map(e => String(e.event_id || "")));
+      bereitsBestaetigt.push(...entscheidungen.filter(e=>e.status==="approved"&&e.event).map(e=>e.event));
+    }catch(fehler){
+      console.warn("Herold-Entscheide konnten nicht geladen werden:", fehler);
+      const [verworfenAntwort, bestaetigtAntwort] = await Promise.all([
+        fetch("events-rejected.json?zeit=" + Date.now()),
+        fetch("events-approved.json?zeit=" + Date.now())
+      ]);
+      if(verworfenAntwort.ok){
+        const ids = await verworfenAntwort.json();
+        if(Array.isArray(ids)) ids.forEach(id => entschiedeneIds.add(String(id)));
+      }
+      if(bestaetigtAntwort.ok){
+        const listed = await bestaetigtAntwort.json();
+        if(Array.isArray(listed)){
+          bereitsBestaetigt.push(...listed);
+          listed.forEach(event => entschiedeneIds.add(String(event.id || "").replace(/^herold-/,"")));
+        }
+      }
+    }
+
+    heroldFunde = funde.filter(fund =>
+      !entschiedeneIds.has(String(fund.id || "")) &&
+      !bereitsBestaetigt.some(event=>heroldSameEvent(fund,event))
+    );
+    renderHerold();
+  }catch(fehler){
+    console.error("Herold-Funde konnten nicht geladen werden:", fehler);
+    const box = document.getElementById("heroldList");
+    if(box) box.innerHTML = '<div class="card">Die Meldungen konnten gerade nicht geladen werden.</div>';
+  }
+}
+
+function zeigeHeroldAnmeldung(nachricht = ""){
+  const auth = document.getElementById("heroldAuth");
+  const inhalt = document.getElementById("heroldContent");
+  if(!auth || !inhalt) return;
+  inhalt.classList.add("hidden");
+  auth.innerHTML = `
+    <div class="card">
+      <h3>🔒 Herold-Anmeldung</h3>
+      <p>Der Herold ist passwortgeschützt. Beim ersten Besuch: <b>Konto erstellen</b> wählen.</p>
+      <p>Für den Herold ist nur die freigeschaltete E-Mail-Adresse zugelassen. Das Passwort muss mindestens 8 Zeichen haben.</p>
+      <label for="heroldEmail">E-Mail</label>
+      <input id="heroldEmail" type="email" placeholder="E-Mail-Adresse" autocomplete="off" required
+        style="display:block;width:100%;margin:6px 0 12px;padding:12px;background:#1c1813;color:#f5ecdf;border:1px solid #49372a;border-radius:8px;">
+      <label for="heroldPassword">Passwort</label>
+      <input id="heroldPassword" type="password" autocomplete="current-password" required
+        style="display:block;width:100%;margin:6px 0 12px;padding:12px;background:#1c1813;color:#f5ecdf;border:1px solid #49372a;border-radius:8px;">
+      <button onclick="heroldAnmelden()">Anmelden</button>
+      <button onclick="heroldKontoErstellen()">Konto erstellen</button>
+      <p id="heroldAuthStatus" role="status">${heroldHtmlEsc(nachricht)}</p>
+    </div>`;
+}
+
+function heroldHtmlEsc(value){
+  return String(value || "").replace(/[&<>"']/g, zeichen => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[zeichen]);
+}
+
+function heroldAuthMeldung(text){
+  const feld = document.getElementById("heroldAuthStatus");
+  if(feld) feld.textContent = text;
+}
+
+function heroldLoginWerte(){
+  return {
+    email: document.getElementById("heroldEmail")?.value.trim() || "",
+    password: document.getElementById("heroldPassword")?.value || ""
+  };
+}
+
+async function heroldAnmelden(){
+  const {email,password}=heroldLoginWerte();
+  try{
+    const daten=await heroldApi("auth/v1/token?grant_type=password",{
+      method:"POST",
+      body:{email,password}
+    });
+    if(!heroldSessionSpeichern(daten)) throw new Error("Anmeldung unvollständig.");
+    aktualisiereHeroldAnmeldung(heroldSession);
+    nachHeroldAnmeldung();
+  }catch(fehler){
+    heroldAuthMeldung(fehler.message || "Anmeldung fehlgeschlagen. Prüfe E-Mail und Passwort.");
+  }
+}
+
+async function heroldKontoErstellen(){
+  const {email,password}=heroldLoginWerte();
+  if(email.toLowerCase()!=="agunz@bluewin.ch"){
+    heroldAuthMeldung("Für den Herold ist nur die freigeschaltete E-Mail-Adresse zugelassen.");
+    return;
+  }
+  if(password.length<8){
+    heroldAuthMeldung("Das Passwort muss mindestens 8 Zeichen haben.");
+    return;
+  }
+  try{
+    const daten=await heroldApi("auth/v1/signup",{
+      method:"POST",
+      body:{email,password}
+    });
+    if(daten?.access_token){
+      heroldSessionSpeichern(daten);
+      aktualisiereHeroldAnmeldung(heroldSession);
+      nachHeroldAnmeldung();
+    }else{
+      heroldAuthMeldung("Konto angelegt. Bestätige zuerst die E-Mail und melde dich danach hier an.");
+    }
+  }catch(fehler){
+    const meldung=String(fehler.message || "");
+    if(/already registered|already exists|users_email_partial_key/i.test(meldung)){
+      heroldAuthMeldung("Für diese E-Mail gibt es bereits ein Konto. Tippe auf „Anmelden“ und verwende dein bestehendes Passwort.");
+    }else{
+      heroldAuthMeldung(meldung || "Konto konnte nicht erstellt werden.");
+    }
+  }
+}
+
+async function heroldAbmelden(){
+  const token=heroldSession?.access_token;
+  try{
+    if(token) await heroldApi("auth/v1/logout",{method:"POST",token});
+  }catch(_fehler){}
+  heroldSession=null;
+  aktualisiereHeroldAnmeldung(null);
+}
+
+function aktualisiereHeroldAnmeldung(session){
+  heroldSession=session;
+  const auth=document.getElementById("heroldAuth");
+  const inhalt=document.getElementById("heroldContent");
+  if(!auth || !inhalt) return;
+  if(!session){
+    zeigeHeroldAnmeldung();
+    return;
+  }
+  const istHeroldAdmin =
+    session.user?.email?.toLowerCase()==="agunz@bluewin.ch" &&
+    Boolean(session.user?.email_confirmed_at);
+  if(!istHeroldAdmin){
+    inhalt.classList.add("hidden");
+    auth.innerHTML='<div class="card"><h3>🔒 Kein Herold-Zugang</h3><p>Dieses Konto ist nicht freigeschaltet. Melde dich mit dem bestätigten Herold-Konto an.</p><button onclick="heroldAbmelden()">Abmelden</button></div>';
+    const liste=document.getElementById("heroldList");
+    if(liste) liste.innerHTML="";
+    return;
+  }
+  auth.innerHTML="";
+  inhalt.classList.remove("hidden");
+  const account=document.getElementById("heroldAccount");  if(account){
+    account.innerHTML='<div style="text-align:right;margin:8px 0;"><span class="muted">Angemeldet: '
+      +heroldHtmlEsc(session.user?.email)
+      +' </span><button onclick="heroldAbmelden()">Abmelden</button></div>';
+  }
+}
+
+async function initialisiereHeroldAnmeldung(){
+  aktualisiereHeroldAnmeldung(null);
+}
+
+function showHerold(){
+  show("herold");
+  if(heroldIsAdmin()){
+    ladeHeroldFunde();
+    ladeHeroldUpdates();
+  }else{
+    zeigeHeroldAnmeldung();
+  }
+}
+
+function nachHeroldAnmeldung(){
+  if(!heroldIsAdmin()) return;
+  ladeHeroldFunde();
+  ladeHeroldUpdates();
+  if(requestedEditEventId){
+    const id=requestedEditEventId;
+    requestedEditEventId="";
+    bearbeiteTermin(id);
+  }
+}
+
+async function ladeHeroldUpdates(){
+  const box=byId("heroldUpdateList");
+  if(!box) return;
+  if(!heroldIsAdmin() || !heroldSession?.access_token){
+    heroldUpdates=[];
+    box.innerHTML="";
+    return;
+  }
+  try{
+    await heroldSessionErneuern();
+    const data=await heroldApi("functions/v1/herold-event-update",{
+      method:"POST",token:heroldSession.access_token,body:{action:"list"}
+    });
+    heroldUpdates=Array.isArray(data?.updates) ? data.updates : [];
+    renderHeroldUpdates();
+  }catch(error){
+    box.innerHTML='<div class="card">Änderungsvorschläge konnten nicht geladen werden: ' +
+      escapeHTML(error.message || "Bitte später erneut versuchen.") + '</div>';
+  }
+}
+
+function renderHeroldUpdates(){
+  const box=byId("heroldUpdateList");
+  if(!box) return;
+  if(!heroldUpdates.length){
+    box.innerHTML='<div class="card"><h3>✏️ Keine offenen Vorschläge</h3><p class="muted">Manuell eingetragene Termine und Änderungen erscheinen hier zur Prüfung.</p></div>';
+    return;
+  }
+  const fieldLabels={
+    name:"Veranstaltung",type:"Art / Kategorie",date:"Datum",city:"Ort",country:"Land",venue:"Veranstaltungsort",
+    address:"Adresse",organizer:"Veranstalter",website:"Webseite",source:"Quelle",flyer:"Flyer-Bildadresse",info:"Beschreibung",hours:"Zeiten"
+  };
+  box.innerHTML='<h2>✏️ Vorschläge zur Prüfung</h2>' + heroldUpdates.map(request=>{
+    const oldEvent=request.old_event || {};
+    const event=request.proposed_event || {};
+    const isNew=!Object.keys(oldEvent).length;
+    const fields=Object.keys(fieldLabels).filter(key=>String(event[key]||""));
+    const categoryText=value=>{
+      const chosen=Array.isArray(value.tags)?value.tags.filter(tag=>HEROLD_EVENT_TYPES.includes(tag)):[];
+      return chosen.length?chosen.join(", "):String(value.type||"");
+    };
+    const changes=fields.map(key=>{
+      const shown=key==="type"?categoryText(event):String(event[key]||"");
+      const oldShown=key==="type"?categoryText(oldEvent):String(oldEvent[key]||"—");
+      return '<p><b>'+fieldLabels[key]+':</b><br><span class="muted">'+
+        (isNew?escapeHTML(shown):escapeHTML(oldShown)+' → '+escapeHTML(shown))+'</span></p>';
+    }).join("");
+    const id=String(request.id||"");
+    return '<div class="card"><h3>'+escapeHTML(event.name||"Terminänderung")+(isNew?' <span class="muted">· Neuer Termin</span>':'')+'</h3>'+
+      '<p class="muted">📅 '+escapeHTML(event.date||"")+'<br>📍 '+escapeHTML((event.city||"")+", "+(event.country||""))+'</p>'+
+      '<details><summary>'+(isNew?'Termindaten prüfen':'Änderungen prüfen')+'</summary>'+changes+'</details>'+
+      '<button class="btn green" onclick="entscheideTerminAenderung(\''+id+'\',\'approve\')">'+(isNew?'✅ Termin freigeben':'✅ Änderung freigeben')+'</button>'+
+      '<button class="btn" onclick="entscheideTerminAenderung(\''+id+'\',\'reject\')">❌ Vorschlag verwerfen</button></div>';
+  }).join("");
+}
+
+const HEROLD_EVENT_TYPES=["Markt","MPS","Lager","Reenactment","Buhurt","Spezialevent"];
+
+function kategorienGeaendert(hiddenId,statusId){
+  const hidden=byId(hiddenId);
+  const choicesId=hiddenId==="manualType"?"manualTypeChoices":"editTypeChoices";
+  const choices=byId(choicesId);
+  const selected=Array.from(choices?.querySelectorAll('input[type="checkbox"]:checked')||[]).map(input=>input.value);
+  if(hidden){
+    hidden.value=selected[0]||"";
+    hidden.dataset.categories=JSON.stringify(selected);
+    hidden.dataset.confirmed=String(selected.length>0);
+  }
+  const status=byId(statusId);
+  if(status) status.textContent=selected.length
+    ?"✅ Ausgewählt: "+selected.join(", ")
+    :"Bitte mindestens eine Art anklicken.";
+}
+
+async function sendeManuellenTermin(event){
+  event.preventDefault();
+  const form=byId("heroldManualForm");
+  const status=byId("manualEventStatus");
+  const button=byId("manualSubmit");
+  if(!heroldIsAdmin() || !heroldSession?.access_token){
+    if(status) status.textContent="Bitte melde dich zuerst mit dem Herold-Passwort an.";
+    return;
+  }
+  const data=new FormData(form);
+  const start=String(data.get("start")||"").trim();
+  const end=String(data.get("end")||"").trim() || start;
+  const eventId="manual-"+crypto.randomUUID().replaceAll("-","");
+  const city=String(data.get("city")||"").trim();
+  const country=String(data.get("country")||"").trim();
+  const typeField=byId("manualType");
+  const categories=JSON.parse(typeField?.dataset.categories||"[]");
+  if(!typeField?.dataset.confirmed || !categories.length){if(status) status.textContent="Bitte wähle mindestens eine Art aus.";return;}
+  const type=categories[0];
+  const proposed_event={
+    id:eventId,name:String(data.get("name")||"").trim(),type,
+    tags:[...categories,...(categories.includes("Buhurt")?["Turnier"]:[]),"Herold"],
+    start,end,date:start===end?start:start+" bis "+end,
+    city,country,address:city+", "+country,
+    venue:String(data.get("venue")||"").trim(),
+    organizer:String(data.get("organizer")||"").trim(),
+    website:String(data.get("website")||"").trim(),
+    source:String(data.get("source")||"").trim(),
+    info:String(data.get("info")||"").trim(),
+    hours:String(data.get("hours")||"").trim()
+  };
+  if(status) status.textContent="";
+  if(button){button.disabled=true;button.textContent="Wird gespeichert …";}
+  try{
+    await heroldSessionErneuern();
+    const result=await heroldApi("functions/v1/herold-event-update",{
+      method:"POST",token:heroldSession.access_token,
+      body:{action:"create",event_id:eventId,proposed_event}
+    });
+    if(!result?.ok) throw new Error(result?.error || "Der Vorschlag konnte nicht gespeichert werden.");
+    form.reset();
+    const categoryField=byId("manualType");
+    if(categoryField){categoryField.value="";categoryField.dataset.categories="[]";categoryField.dataset.confirmed="false";}
+    if(status) status.textContent="Vorschlag gespeichert. Du findest ihn unten bei „Vorschläge zur Prüfung“. Er erscheint erst nach Freigabe im Kalender.";
+    await ladeHeroldUpdates();
+  }catch(error){
+    if(status) status.textContent=error.message || "Speichern hat nicht funktioniert. Bitte versuche es erneut.";
+  }finally{
+    if(button){button.disabled=false;button.textContent="Vorschlag speichern";}
+  }
+}
+
+async function entscheideTerminAenderung(requestId,action){
+  if(!heroldIsAdmin() || !heroldSession?.access_token){
+    showHerold();
+    return;
+  }
+  if(!["approve","reject"].includes(action)) return;
+  try{
+    await heroldSessionErneuern();
+    const result=await heroldApi("functions/v1/herold-event-update",{
+      method:"POST",token:heroldSession.access_token,body:{action,request_id:requestId}
+    });
+    if(!result?.ok) throw new Error(result?.error || "Die Herold-Aktion ist fehlgeschlagen.");
+    await ladeHeroldUpdates();
+    if(action==="approve") await ladeFreigegebeneEvents();
+  }catch(error){
+    alert(error.message || "Die Herold-Aktion ist fehlgeschlagen.");
+  }
+}
+
+let heroldFilter = "alle";
+function renderHerold(){
+  const box=byId("heroldList");
+  if(!box) return;
+  const visible=heroldFunde.map((fund,index)=>({fund,index})).filter(({fund})=>
+    heroldFilter==="alle" ||
+    (heroldFilter==="maerkte" && fund.type!=="Buhurt") ||
+    (heroldFilter==="buhurt" && fund.type==="Buhurt")
+  );
+  const filters='<div style="display:flex;gap:8px;margin-bottom:16px">'+
+    '<button onclick="heroldFilter=\'alle\';renderHerold()">Alle</button>'+
+    '<button onclick="heroldFilter=\'maerkte\';renderHerold()">🏰 Märkte</button>'+
+    '<button onclick="heroldFilter=\'buhurt\';renderHerold()">⚔️ Buhurt</button></div>';
+  if(!heroldFunde.length){
+    box.innerHTML=filters+'<div class="card"><b>🐦‍⬛ Keine neuen Meldungen</b><p>Der Herold hat momentan keine neuen Veranstaltungen zu prüfen.</p></div>';
+    return;
+  }
+  const field=(index,key,label,value,type="text")=>
+    '<label>'+label+'<input class="eventEditField" id="herold-edit-'+index+'-'+key+'" type="'+type+'" value="'+escapeHTML(value||"")+'"></label>';
+  box.innerHTML=filters+visible.map(({fund,index})=>{
+    const tags=Array.isArray(fund.tags)?fund.tags:[fund.type||"Markt"];
+    const categories=["Markt","MPS","Lager","Reenactment","Buhurt","Spezialevent"];
+    const choices=categories.map(type=>'<label><input type="checkbox" class="herold-edit-'+index+'-tag" value="'+type+'" '+(tags.includes(type)?"checked":"")+'> '+type+'</label>').join("");
+    return '<div class="card"><h3>'+escapeHTML(fund.name||"Veranstaltung")+'</h3>'+
+      '<p>📅 '+escapeHTML(fund.date||"")+'<br>📍 '+escapeHTML((fund.city?fund.city+", ":"")+(fund.country||""))+'</p>'+
+      '<button type="button" onclick="document.getElementById(\'herold-details-'+index+'\').open=true;document.getElementById(\'herold-details-'+index+'\').scrollIntoView({behavior:\'smooth\',block:\'start\'})">🔎 Details ansehen / korrigieren</button>'+
+      '<details id="herold-details-'+index+'" style="margin-top:12px"><summary>Alle Angaben prüfen und korrigieren</summary>'+
+      '<div class="eventEditForm" style="margin-top:12px">'+
+      field(index,"name","Veranstaltungsname",fund.name)+
+      '<label>Art / Kategorien (Mehrfachauswahl)<div class="categoryChoices">'+choices+'</div></label>'+
+      field(index,"start","Beginn",""+(fund.start||""),"date")+
+      field(index,"end","Ende",""+(fund.end||fund.start||""),"date")+
+      field(index,"city","Ort / Stadt",fund.city)+field(index,"country","Land",fund.country)+
+      field(index,"venue","Veranstaltungsort",fund.venue)+field(index,"address","Adresse",fund.address)+
+      field(index,"organizer","Veranstalter",fund.organizer)+field(index,"website","Veranstalter-Webseite",fund.website||fund.organizer_url)+
+      field(index,"flyer","Flyer-Adresse",fund.flyer)+
+      '<label>Beschreibung<textarea class="eventEditField" id="herold-edit-'+index+'-info">'+escapeHTML(fund.info||"")+'</textarea></label>'+
+      field(index,"hours","Zeiten",fund.hours)+
+      '<p class="muted">Quelle: '+escapeHTML(fund.source||"keine Quelle angegeben")+'</p></div></details>'+
+      '<div class="buttonRow"><button onclick="heroldUebernehmen('+index+')">✅ Übernehmen</button>'+
+      '<button onclick="heroldVerwerfen('+index+')">❌ Verwerfen</button></div></div>';
+  }).join("");
+}
+
+async function starteHeroldAktion(index, aktion){
+  const fund=heroldFunde[index];
+  const eventId=String(fund?.id || "").trim();
+  if(!fund || !/^[A-Za-z0-9_-]{1,120}$/.test(eventId)){
+    alert("Diese Herold-Meldung hat keine gültige ID.");
+    return;
+  }
+  if(!heroldSession){
+    zeigeHeroldAnmeldung("Bitte zuerst anmelden.");
+    return;
+  }
+  const knopf=document.activeElement;
+  if(knopf) knopf.disabled=true;
+  try{
+    await heroldSessionErneuern();
+    const data=await heroldApi("functions/v1/herold-decision",{
+      method:"POST",
+      token:heroldSession.access_token,
+      body:{action:aktion,event_id:eventId,...(aktion==="approve"?{overrides:heroldKorrekturen(index)}:{})}
+    });
+    if(!data?.ok) throw new Error(data?.error || "Die Herold-Aktion ist fehlgeschlagen.");
+    await ladeHeroldFunde();
+    if(aktion==="approve") await ladeFreigegebeneEvents();
+  }catch(fehler){
+    if(knopf) knopf.disabled=false;
+    alert(fehler.message || "Die Herold-Aktion ist fehlgeschlagen.");
+  }
+}
+
+function heroldKorrekturen(index){
+  const read=key=>document.getElementById("herold-edit-"+index+"-"+key)?.value?.trim() || "";
+  const tags=[...document.querySelectorAll(".herold-edit-"+index+"-tag:checked")].map(input=>input.value);
+  return {
+    name:read("name"),type:tags[0]||"Markt",tags,
+    start:read("start"),end:read("end"),city:read("city"),country:read("country"),
+    venue:read("venue"),address:read("address"),organizer:read("organizer"),
+    website:read("website"),flyer:read("flyer"),info:read("info"),hours:read("hours")
+  };
+}
+function heroldUebernehmen(index){
+  starteHeroldAktion(index,"approve");
+}
+
+function heroldVerwerfen(index){
+  starteHeroldAktion(index,"reject");
+}
+
+async function sendContactMessage(event){
+  event.preventDefault();
+  const form=byId("contactForm");
+  const status=byId("contactStatus");
+  const submit=byId("contactSubmit");
+  const data=new FormData(form);
+  const flyerFile=data.get("flyer");
+  if(flyerFile instanceof File && flyerFile.size > 8*1024*1024){
+    status.textContent="Der PDF-Flyer darf höchstens 8 MB gross sein.";
+    return;
+  }
+  const flyer=flyerFile instanceof File && flyerFile.size ? await new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve({filename:flyerFile.name,content:String(reader.result).split(",")[1] || ""});
+    reader.onerror=()=>reject(new Error("Der Flyer konnte nicht gelesen werden."));
+    reader.readAsDataURL(flyerFile);
+  }) : null;
+  const message={
+    name:String(data.get("name") || "").trim(),
+    email:String(data.get("email") || "").trim(),
+    message:String(data.get("message") || "").trim(),
+    flyer,
+    website:String(data.get("website") || "")
+  };
+  const eventTypes=data.getAll("eventType").map(value=>String(value));
+  if(eventTypes.length){
+    message.message += "\\n\\nAngebotene Veranstaltungsarten: " + eventTypes.join(", ");
+  }
+  status.textContent="";
+  submit.disabled=true;
+  submit.textContent="Wird gesendet …";
+  try{
+    const response=await fetch(RABENRUF_SUPABASE_URL + "/functions/v1/rabenruf-contact",{
+      method:"POST",
+      headers:{
+        "apikey":RABENRUF_SUPABASE_KEY,
+        "Authorization":"Bearer " + RABENRUF_SUPABASE_KEY,
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(message)
+    });
+    let result={};
+    try{ result=await response.json(); }catch(_error){}
+    if(!response.ok) throw new Error(result.error || "Die Nachricht konnte nicht gesendet werden.");
+    form.reset();
+    status.textContent="Danke! Deine Nachricht wurde gesendet.";
+  }catch(error){
+    status.textContent=error.message || "Das Senden hat nicht funktioniert. Bitte versuche es später erneut.";
+  }finally{
+    submit.disabled=false;
+    submit.textContent="Nachricht senden";
+  }
+}
+
+/* =========================================
+
+   START DER APP
+
+   ========================================= */
+
+applyFilters();
+
+renderCalendar();
+
+initialisiereHeroldAnmeldung();
+
+ladeFreigegebeneEvents().then(() => {
+  if(heroldSession) ladeHeroldFunde();
+});
+
+setInterval(async () => {
+  await ladeFreigegebeneEvents();
+  await ladeHeroldFunde();
+  if(heroldIsAdmin()) ladeHeroldUpdates();
+}, 5 * 60 * 1000);
+
+window.addEventListener('focus', async () => {
+  await ladeFreigegebeneEvents();
+  await ladeHeroldFunde();
+  if(heroldIsAdmin()) ladeHeroldUpdates();
+});
+
+</script>
+
+</body>
+
+</html>
+
