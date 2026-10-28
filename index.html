@@ -5126,7 +5126,11 @@ function eventStatus(event){
 
   }
 
-  return "Demnächst";
+  if(diff <= 14){
+    return "In " + diff + " Tagen";
+  }
+
+  return "";
 
 }
 
@@ -5491,11 +5495,7 @@ function eventCard(event){
 
     <div class="badges">
 
-      <span class="status">
-
-        ${eventStatus(event)}
-
-      </span>
+      ${eventStatus(event) ? `<span class="status">${escapeHTML(eventStatus(event))}</span>` : ""}
 
       ${tagHTML}
 
@@ -5965,11 +5965,7 @@ function openEvent(id){
 
       </p>
 
-      <span class="status">
-
-        ${eventStatus(event)}
-
-      </span>
+      ${eventStatus(event) ? `<span class="status">${escapeHTML(eventStatus(event))}</span>` : ""}
 
     </div>
 
