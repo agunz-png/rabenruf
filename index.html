@@ -825,6 +825,12 @@ textarea.contactField{min-height:150px;resize:vertical;}
 .weatherMessage{font-size:13px;color:var(--muted);line-height:1.5;}
 
 .honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
+
+.mapCompactFilters{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 9px}
+.mapCompactFilters select{min-width:0;padding:11px 8px;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:12px}
+.mapCount{font-size:12px;color:var(--gold);margin:0 0 9px}
+.mapPin{width:34px;height:34px;border:2px solid #fff3e0;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:18px;box-shadow:0 2px 9px #0009}
+.mapCluster{width:44px;height:44px;border:3px solid #f5e4c5;border-radius:50%;display:grid;place-items:center;background:#55402c;color:#fff;font-weight:800;box-shadow:0 2px 12px #000a}
 </style>
 
 
@@ -1016,11 +1022,13 @@ textarea.contactField{min-height:150px;resize:vertical;}
 
   </div>
 
+  <div class="mapCompactFilters"><select id="mapCountryFilter" aria-label="Land filtern" onchange="renderMapMarkers()"><option value="Alle">🌍 Alle Länder</option></select><select id="mapTypeFilter" aria-label="Kategorie filtern" onchange="renderMapMarkers()"><option value="Alle">Alle Kategorien</option><option value="Buhurt">⚔️ Buhurt</option><option value="Markt">🏰 Markt</option><option value="Lager">🏕️ Lager</option><option value="MPS">🎭 MPS</option><option value="Reenactment">🛡️ Reenactment</option></select></div>
+  <div id="mapCount" class="mapCount" aria-live="polite"></div>
   <div id="map"></div>
 
   <div class="notice">
 
-    🔴 ⚔️ Rote Markierung = Buhurt-Turnier. Tippe auf einen Marker, um die Veranstaltung zu öffnen.
+    🔴 Buhurt · 🟠 Markt · 🔵 Lager · 🟣 MPS · 🟢 Reenactment. Zahlen zeigen gruppierte Veranstaltungen. Hineinzoomen für einzelne Termine.
 
   </div>
 
@@ -1271,7 +1279,10 @@ textarea.contactField{min-height:150px;resize:vertical;}
 
 </div>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 
 <script>
@@ -4989,6 +5000,7 @@ let lastPage = "home";
 let map = null;
 
 let mapMarkers = [];
+let mapClusterLayer = null;
 
 let selectedEventYear = "Alle";
 
@@ -6389,56 +6401,77 @@ function initMap(){
 }
 
 function renderMapMarkers(){
-
-  if(!map){
-
-    return;
-
-  }
-
-  mapMarkers.forEach(
-    marker => map.removeLayer(marker)
-  );
-
+  if(!map) return;
+  if(mapClusterLayer){ map.removeLayer(mapClusterLayer); mapClusterLayer = null; }
+  mapMarkers.forEach(marker => map.removeLayer(marker));
   mapMarkers = [];
-
-  aktualisiereJahresFilter(getCurrentEvents());
-  getEventsForSelectedYear(getCurrentEvents()).forEach(event => {
-    const lat = Number(event.lat);
-    const lng = Number(event.lng);
-
-    if(!Number.isFinite(lat) || !Number.isFinite(lng) || (lat === 0 && lng === 0)){
-      return;
-    }
-
-    const isBuhurt = event.type === "Buhurt" ||
-      (Array.isArray(event.tags) && event.tags.includes("Buhurt"));
-    const markerOptions = isBuhurt ? {
-      icon: L.divIcon({
-        className: "",
-        html: '<div class="buhurtMapMarker" aria-label="Buhurt-Ort">⚔️</div>',
-        iconSize: [36, 36],
-        iconAnchor: [18, 18]
+  const current = getEventsForSelectedYear(getCurrentEvents());
+  const countrySelect = byId("mapCountryFilter");
+  const typeSelect = byId("mapTypeFilter");
+  const countries = [...new Set(current.map(e => e.country).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"de-CH"));
+  const previousCountry = countrySelect.value;
+  countrySelect.innerHTML = '<option value="Alle">🌍 Alle Länder</option>';
+  countries.forEach(country => {
+    const option = document.createElement("option");
+    option.value = country;
+    option.textContent = (flaggeFuerLand(country) || "🌍") + " " + country;
+    countrySelect.appendChild(option);
+  });
+  countrySelect.value = countries.includes(previousCountry) ? previousCountry : "Alle";
+  const selectedType = typeSelect.value;
+  const visible = current.filter(e => {
+    if(countrySelect.value !== "Alle" && e.country !== countrySelect.value) return false;
+    if(selectedType !== "Alle" && e.type !== selectedType && !(Array.isArray(e.tags) && e.tags.includes(selectedType))) return false;
+    const lat = Number(e.lat), lng = Number(e.lng);
+    return Number.isFinite(lat) && Number.isFinite(lng) && !(lat === 0 && lng === 0);
+  });
+  const unique = new Set();
+  const deduped = visible.filter(e => {
+    const key = String(e.id || [e.name,e.start,e.city].join("|"));
+    if(unique.has(key)) return false;
+    unique.add(key);
+    return true;
+  });
+  byId("mapCount").textContent = deduped.length + (deduped.length === 1 ? " Veranstaltung auf der Karte" : " Veranstaltungen auf der Karte");
+  mapClusterLayer = typeof L.markerClusterGroup === "function"
+    ? L.markerClusterGroup({
+        showCoverageOnHover:false,
+        maxClusterRadius:55,
+        spiderfyOnMaxZoom:true,
+        iconCreateFunction: cluster => L.divIcon({
+          className:"",
+          html:'<div class="mapCluster">'+cluster.getChildCount()+'</div>',
+          iconSize:[44,44],iconAnchor:[22,22]
+        })
       })
-    } : {};
-    const marker = L.marker([lat, lng], markerOptions).addTo(map);
-
-    marker.bindPopup(`
-      <div style="min-width:180px;line-height:1.4">
-        <strong>${icon(event.type)} ${escapeHTML(event.name)}</strong>
-        <br>
-        ${escapeHTML(prettyEventDate(event))}
-        <br>
-        ${event.flag} ${escapeHTML(event.city)}
-        <br>
-        <button class="popupButton" onclick="openEvent('${event.id}')">
-          Details öffnen
-        </button>
-      </div>
-    `);
-
+    : L.layerGroup();
+  const palette = {
+    Buhurt:["#c92f32","⚔️"], Markt:["#ce782c","🏰"],
+    Lager:["#377db6","🏕️"], MPS:["#8146a6","🎭"],
+    Reenactment:["#428357","🛡️"]
+  };
+  deduped.forEach(event => {
+    const categories = [event.type,...(Array.isArray(event.tags)?event.tags:[])];
+    const category = ["Buhurt","MPS","Markt","Lager","Reenactment"].find(t=>categories.includes(t)) || "Markt";
+    const [color,symbol] = palette[category];
+    const marker = L.marker([Number(event.lat),Number(event.lng)],{
+      icon:L.divIcon({
+        className:"",
+        html:'<div class="mapPin" style="background:'+color+'">'+symbol+'</div>',
+        iconSize:[34,34],iconAnchor:[17,17]
+      })
+    });
+    const detailId = JSON.stringify(String(event.id)).replace(/&/g,"\\u0026").replace(/</g,"\\u003c").replace(/>/g,"\\u003e").replace(/'/g,"\\u0027");
+    marker.bindPopup(
+      '<div style="min-width:190px;line-height:1.5"><strong>'+symbol+' '+escapeHTML(event.name)+'</strong><br>'+
+      escapeHTML(prettyEventDate(event))+'<br>'+
+      escapeHTML((event.flag || flaggeFuerLand(event.country) || "")+" "+(event.city || ""))+
+      '<br><button class="popupButton" onclick=\'openEvent('+detailId+')\'>Details öffnen</button></div>'
+    );
+    mapClusterLayer.addLayer(marker);
     mapMarkers.push(marker);
   });
+  map.addLayer(mapClusterLayer);
 }
 
 function showMap(){
