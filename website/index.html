@@ -5079,6 +5079,23 @@ function dateObject(dateString){
 
 }
 
+function prettyEventDate(event){
+  const iso = value => {
+    const m=String(value||"").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return m?new Date(Number(m[1]),Number(m[2])-1,Number(m[3]),12):null;
+  };
+  const short=d=>new Intl.DateTimeFormat("de-CH",{day:"numeric",month:"long",year:"numeric"}).format(d);
+  const start=iso(event.start), end=iso(event.end);
+  if(start && !Number.isNaN(start.getTime())){
+    if(!end || Number.isNaN(end.getTime()) || start.getTime()===end.getTime())return short(start);
+    const a=new Intl.DateTimeFormat("de-CH",{day:"numeric"}).format(start);
+    const sameMonth=start.getMonth()===end.getMonth()&&start.getFullYear()===end.getFullYear();
+    const sameYear=start.getFullYear()===end.getFullYear();
+    return sameMonth?a+".–"+short(end):sameYear?new Intl.DateTimeFormat("de-CH",{day:"numeric",month:"long"}).format(start)+" – "+short(end):short(start)+" – "+short(end);
+  }
+  return String(event.date||"").replace(/\b(\d{4})-(\d{2})-(\d{2})\b/g,(_,y,m,d)=>short(new Date(Number(y),Number(m)-1,Number(d),12)));
+}
+
 function eventStatus(event){
 
   const today = new Date();
@@ -5123,7 +5140,7 @@ function eventStatus(event){
 
   }
 
-  return "Demnächst";
+  return diff <= 14 ? "Demnächst" : "";
 
 }
 
@@ -5470,7 +5487,7 @@ function eventCard(event){
 
     <div class="meta">
 
-      📅 ${escapeHTML(event.date)}
+      📅 ${escapeHTML(prettyEventDate(event))}
 
       <br>
 
@@ -5950,7 +5967,7 @@ function openEvent(id){
 
       <p class="muted">
 
-        📅 ${escapeHTML(event.date)}
+        📅 ${escapeHTML(prettyEventDate(event))}
 
         <br>
 
@@ -6120,7 +6137,7 @@ async function teileVeranstaltung(id){
   if(!event) return;
   const title=String(event.name||"Mittelalter-Veranstaltung").trim();
   const place=[event.city,event.country].filter(Boolean).join(", ");
-  const dateText=String(event.date||"");
+  const dateText=prettyEventDate(event);
   const text=[title,dateText,place].filter(Boolean).join("\n");
   if(navigator.share){
     try{
@@ -6428,7 +6445,7 @@ function renderMapMarkers(){
       <div style="min-width:180px;line-height:1.4">
         <strong>${icon(event.type)} ${escapeHTML(event.name)}</strong>
         <br>
-        ${escapeHTML(event.date)}
+        ${escapeHTML(prettyEventDate(event))}
         <br>
         ${event.flag} ${escapeHTML(event.city)}
         <br>
