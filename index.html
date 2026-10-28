@@ -6856,7 +6856,6 @@ function heroldDateRange(event){
 }
 function heroldSameEvent(a,b){
   if(!a || !b) return false;
-  if(a.id && b.id && String(a.id)===String(b.id)) return true;
   const datesA=heroldDateRange(a), datesB=heroldDateRange(b);
   if(!datesA || !datesB || datesA.start>datesB.end || datesB.start>datesA.end) return false;
   const countryA=heroldNorm(a.country), countryB=heroldNorm(b.country);
@@ -6865,14 +6864,12 @@ function heroldSameEvent(a,b){
   if(cityA && cityB && cityA!==cityB) return false;
   const nameA=heroldNorm(a.name), nameB=heroldNorm(b.name);
   if(!nameA || !nameB) return false;
-  if(nameA===nameB) return Boolean(cityA && cityB || countryA && countryB);
-  // Reject substring-only matches such as "Burgfest" vs "Burgfestspiele".
-  // Only accept near-identical names with matching city and country.
+  // Names alone are insufficient: missing locations require manual review.
   if(!cityA || !cityB || !countryA || !countryB) return false;
+  if(nameA===nameB) return true;
   const tokensA=nameA.split(" "),tokensB=nameB.split(" ");
   const common=tokensA.filter(token=>tokensB.includes(token));
-  const overlap=common.length/Math.max(tokensA.length,tokensB.length);
-  return overlap>=0.8 && common.length>=2;
+  return common.length>=2 && common.length/Math.max(tokensA.length,tokensB.length)>=0.8;
 }
 function heroldDeduplicate(list,existing=[]){
   const kept=[];
