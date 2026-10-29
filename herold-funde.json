@@ -256,6 +256,1226 @@
     "source_provider": "Mirimor"
   },
   {
+    "id": "eu-source-b85436abe16649a0",
+    "name": "Sound of Warburgum Konzert",
+    "type": "Markt",
+    "date": "2027-02-20 bis 2027-02-20",
+    "start": "2027-02-20",
+    "end": "2027-02-20",
+    "country": "Deutschland",
+    "city": "Warburg",
+    "postcode": "34414",
+    "source": "https://fyndling.de/e/756e13b6894fefee",
+    "venue": "Stadthalle",
+    "website": "https://www.facebook.com/profile.php?id=100057388611006",
+    "websites": [
+      "https://www.facebook.com/profile.php?id=100057388611006"
+    ],
+    "lat": 51.5134977,
+    "lng": 9.0922768
+  },
+  {
+    "id": "eu-source-fc16baf8b19184a7",
+    "name": "Frühlings Erwachen",
+    "type": "Markt",
+    "date": "2027-03-12 bis 2027-03-14",
+    "start": "2027-03-12",
+    "end": "2027-03-14",
+    "country": "Deutschland",
+    "city": "Bad Harzburg",
+    "postcode": "38667",
+    "source": "https://fyndling.de/e/289b193db897e9ba",
+    "venue": "Gestüt Bad Harzburg",
+    "website": "http://www.das-nordische-marktvolk.de/",
+    "websites": [
+      "http://www.das-nordische-marktvolk.de/"
+    ],
+    "lat": 51.8595087,
+    "lng": 10.5450612
+  },
+  {
+    "id": "eu-source-6ae7f4827b6ef55d",
+    "name": "Mittelalterlicher Jahrmarkt",
+    "type": "Markt",
+    "date": "2027-03-12 bis 2027-03-14",
+    "start": "2027-03-12",
+    "end": "2027-03-14",
+    "country": "Deutschland",
+    "city": "Mannheim",
+    "postcode": "68169",
+    "source": "https://fyndling.de/e/d0a5ee7e8c839382",
+    "venue": "Herzogenriedpark",
+    "website": "https://www.luisenpark.de/veranstaltungen/highlights/mittelaltermarkt-im-herzogenriedpark/2027/03/12/1500",
+    "websites": [
+      "https://www.luisenpark.de/veranstaltungen/highlights/mittelaltermarkt-im-herzogenriedpark/2027/03/12/1500"
+    ],
+    "lat": 49.5166615,
+    "lng": 8.4564164
+  },
+  {
+    "id": "eu-source-81990f6323e4a8e8",
+    "name": "Oster-Spektakel",
+    "type": "Markt",
+    "date": "2027-03-27 bis 2027-03-29",
+    "start": "2027-03-27",
+    "end": "2027-03-29",
+    "country": "Deutschland",
+    "city": "St. Goarshausen",
+    "postcode": "56346",
+    "source": "https://fyndling.de/e/9c803fda8dee684c",
+    "venue": "auf der Loreley",
+    "website": "https://www.suendenfrei.tv/home",
+    "websites": [
+      "https://www.suendenfrei.tv/home"
+    ],
+    "lat": 50.1798569,
+    "lng": 7.6943306
+  },
+  {
+    "id": "eu-source-60b6a014c4864749",
+    "name": "21. Wikinger auf Burg Regenstein",
+    "type": "Markt",
+    "date": "2027-03-27 bis 2027-03-29",
+    "start": "2027-03-27",
+    "end": "2027-03-29",
+    "country": "Deutschland",
+    "city": "Blankenburg",
+    "postcode": "38889",
+    "source": "https://fyndling.de/e/9ffd220417dce0a6",
+    "venue": "Burg Regenstein",
+    "website": "https://coex-gmbh.de/index.php/historische-feste-2027/",
+    "websites": [
+      "https://coex-gmbh.de/index.php/historische-feste-2027/"
+    ],
+    "lat": 51.7815182,
+    "lng": 10.922548
+  },
+  {
+    "id": "eu-source-322e0372942f6005",
+    "name": "20. Oster-Ritterfest auf der Zitadelle Spandau",
+    "type": "Markt",
+    "date": "2027-03-27 bis 2027-03-29",
+    "start": "2027-03-27",
+    "end": "2027-03-29",
+    "country": "Deutschland",
+    "city": "Berlin",
+    "postcode": "13599",
+    "source": "https://fyndling.de/e/d7c16e1a8df040a1",
+    "venue": "Zitadelle Spandau",
+    "website": "https://www.carnica-spectaculi.de/veranstaltung/oster-ritterfest/",
+    "websites": [
+      "https://www.carnica-spectaculi.de/veranstaltung/oster-ritterfest/"
+    ],
+    "lat": 52.5475313,
+    "lng": 13.2359564
+  },
+  {
+    "id": "eu-source-5801bef8d305fc11",
+    "name": "22. Ritterspektakel",
+    "type": "Markt",
+    "date": "2027-04-10 bis 2027-04-11",
+    "start": "2027-04-10",
+    "end": "2027-04-11",
+    "country": "Deutschland",
+    "city": "Leisnig",
+    "postcode": "04703",
+    "source": "https://fyndling.de/e/6d845dd58f4544e1",
+    "venue": "Mildenstein",
+    "website": "http://www.coex-gmbh.de/",
+    "websites": [
+      "http://www.coex-gmbh.de/"
+    ],
+    "lat": 51.1762336,
+    "lng": 12.936335
+  },
+  {
+    "id": "eu-source-f2621056e7eb91df",
+    "name": "Landgrafentage",
+    "type": "Markt",
+    "date": "2027-04-10 bis 2027-04-11",
+    "start": "2027-04-10",
+    "end": "2027-04-11",
+    "country": "Deutschland",
+    "city": "Pirmasens",
+    "postcode": "66954",
+    "source": "https://fyndling.de/e/981d075480d72ca9",
+    "venue": "Schloßplatz",
+    "website": "https://www.lorraine-medievale.de",
+    "websites": [
+      "https://www.lorraine-medievale.de"
+    ],
+    "lat": 49.2039933,
+    "lng": 7.5623579
+  },
+  {
+    "id": "eu-source-830412c87fe0b078",
+    "name": "10. Ritterturnier",
+    "type": "Markt",
+    "date": "2027-04-10 bis 2027-04-11",
+    "start": "2027-04-10",
+    "end": "2027-04-11",
+    "country": "Deutschland",
+    "city": "Diedersdorf",
+    "postcode": "15831",
+    "source": "https://fyndling.de/e/e5b5eec656bc62c5",
+    "venue": "Schloss Diedersdorf",
+    "website": "http://www.carnica-spectaculi.de",
+    "websites": [
+      "http://www.carnica-spectaculi.de"
+    ],
+    "lat": 52.5108903,
+    "lng": 14.3286407
+  },
+  {
+    "id": "eu-source-9b0212c8bfe5a59d",
+    "name": "Mysterland Markt",
+    "type": "Markt",
+    "date": "2027-04-23 bis 2027-04-25",
+    "start": "2027-04-23",
+    "end": "2027-04-25",
+    "country": "Deutschland",
+    "city": "Legden",
+    "postcode": "48739",
+    "source": "https://fyndling.de/e/a1e32fc2756a182e",
+    "venue": "Dorf Münsterland",
+    "website": "http://www.mysterland.de/",
+    "websites": [
+      "http://www.mysterland.de/"
+    ],
+    "lat": 52.0459949,
+    "lng": 7.1005455
+  },
+  {
+    "id": "eu-source-22d03d94c20c1457",
+    "name": "Hexentanz im Mittelalter",
+    "type": "Markt",
+    "date": "2027-04-30 bis 2027-05-02",
+    "start": "2027-04-30",
+    "end": "2027-05-02",
+    "country": "Deutschland",
+    "city": "Thale",
+    "postcode": "06502",
+    "source": "https://fyndling.de/e/0d97280026c34b6e",
+    "venue": "Kurpark Thale",
+    "website": "http://www.das-nordische-marktvolk.de/",
+    "websites": [
+      "http://www.das-nordische-marktvolk.de/"
+    ],
+    "lat": 51.7370045,
+    "lng": 11.0156479
+  },
+  {
+    "id": "eu-source-b539e91c3c6b5b35",
+    "name": "6. Mittelalterspektakel",
+    "type": "Markt",
+    "date": "2027-04-30 bis 2027-05-02",
+    "start": "2027-04-30",
+    "end": "2027-05-02",
+    "country": "Deutschland",
+    "city": "Roßlau",
+    "postcode": "06862",
+    "source": "https://fyndling.de/e/7a3f5ac9ed2a2ed2",
+    "venue": "Wasserburg",
+    "website": "https://coex-gmbh.de/index.php/historische-feste-2027/",
+    "websites": [
+      "https://coex-gmbh.de/index.php/historische-feste-2027/"
+    ],
+    "lat": 51.9139462,
+    "lng": 12.2773985
+  },
+  {
+    "id": "eu-source-ad230e06c181242f",
+    "name": "Frühlingsmarkt zu Freisen",
+    "type": "Markt",
+    "date": "2027-05-01 bis 2027-05-02",
+    "start": "2027-05-01",
+    "end": "2027-05-02",
+    "country": "Deutschland",
+    "city": "Freisen",
+    "postcode": "66629",
+    "source": "https://fyndling.de/e/6692bdda15867995",
+    "venue": "Naturwildpark Freisen",
+    "website": "https://www.mittelaltermarkt-freisen.de/",
+    "websites": [
+      "https://www.mittelaltermarkt-freisen.de/"
+    ],
+    "lat": 49.5422946,
+    "lng": 7.2266124
+  },
+  {
+    "id": "eu-source-fcb7b6badc399503",
+    "name": "34. Burgfest",
+    "type": "Markt",
+    "date": "2027-05-06 bis 2027-05-09",
+    "start": "2027-05-06",
+    "end": "2027-05-09",
+    "country": "Deutschland",
+    "city": "Wolkenstein",
+    "postcode": "09429",
+    "source": "https://fyndling.de/e/977d3875575284c7",
+    "venue": "Burg",
+    "website": "https://coex-gmbh.de/index.php/historische-feste-2027/",
+    "websites": [
+      "https://coex-gmbh.de/index.php/historische-feste-2027/"
+    ],
+    "lat": 50.656641,
+    "lng": 13.0752637
+  },
+  {
+    "id": "eu-source-74e1f3a92c5e700d",
+    "name": "Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-05-08 bis 2027-05-09",
+    "start": "2027-05-08",
+    "end": "2027-05-09",
+    "country": "Deutschland",
+    "city": "Bad Wildbad",
+    "postcode": "75323",
+    "source": "https://fyndling.de/e/cd04112c1b326f10",
+    "venue": "Kurpark",
+    "website": "https://www.freieritterschaftbaden.de/",
+    "websites": [
+      "https://www.freieritterschaftbaden.de/"
+    ],
+    "lat": 48.7210023,
+    "lng": 8.5177956
+  },
+  {
+    "id": "eu-source-38b8b10da50d0c62",
+    "name": "17. Mittelalterspektakel",
+    "type": "Markt",
+    "date": "2027-05-15 bis 2027-05-17",
+    "start": "2027-05-15",
+    "end": "2027-05-17",
+    "country": "Deutschland",
+    "city": "Blankenburg",
+    "postcode": "38889",
+    "source": "https://fyndling.de/e/2156e4dcec946735",
+    "venue": "Burg Regenstein",
+    "website": "https://coex-gmbh.de/index.php/historische-feste-2027/",
+    "websites": [
+      "https://coex-gmbh.de/index.php/historische-feste-2027/"
+    ],
+    "lat": 51.7815182,
+    "lng": 10.922548
+  },
+  {
+    "id": "eu-source-6e0bf0df2db5fc54",
+    "name": "Pfingst-Spectaculum (Konzertarena) im Schlosspark",
+    "type": "Markt",
+    "date": "2027-05-15 bis 2027-05-17",
+    "start": "2027-05-15",
+    "end": "2027-05-17",
+    "country": "Deutschland",
+    "city": "Oranienburg",
+    "postcode": "16515",
+    "source": "https://fyndling.de/e/47d47eed7dd751c1",
+    "venue": "Schlosspark Oranienburg",
+    "website": "https://www.carnica-spectaculi.de/veranstaltung/pfingstspectaculum/",
+    "websites": [
+      "https://www.carnica-spectaculi.de/veranstaltung/pfingstspectaculum/"
+    ],
+    "lat": 52.7711793,
+    "lng": 13.2878028
+  },
+  {
+    "id": "eu-source-7a48a0d9db0f3692",
+    "name": "Münzenberg",
+    "type": "Markt",
+    "date": "2027-05-15 bis 2027-05-17",
+    "start": "2027-05-15",
+    "end": "2027-05-17",
+    "country": "Deutschland",
+    "city": "Münzenberg",
+    "postcode": "35516",
+    "source": "https://fyndling.de/e/e84aff1761769b22",
+    "venue": "Unterhalb der Burg Münzenberg",
+    "website": "http://www.freie-ritterschaft-zu-muenzenberg.de/markt",
+    "websites": [
+      "http://www.freie-ritterschaft-zu-muenzenberg.de/markt"
+    ],
+    "lat": 50.4598574,
+    "lng": 8.7364118
+  },
+  {
+    "id": "eu-source-b50f9abb0bb09e24",
+    "name": "Zeitreise Isen",
+    "type": "Markt",
+    "date": "2027-05-21 bis 2027-05-23",
+    "start": "2027-05-21",
+    "end": "2027-05-23",
+    "country": "Deutschland",
+    "city": "Isen",
+    "postcode": "84424",
+    "source": "https://fyndling.de/e/81b9be42c8eff940",
+    "venue": "Volksfestplatz und Meindlpark",
+    "website": "https://www.kulturschock-isen.com/about-1-2",
+    "websites": [
+      "https://www.kulturschock-isen.com/about-1-2"
+    ],
+    "lat": 48.1876769,
+    "lng": 12.0634523
+  },
+  {
+    "id": "eu-source-53aa662bd0620fb3",
+    "name": "Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-05-27 bis 2027-05-30",
+    "start": "2027-05-27",
+    "end": "2027-05-30",
+    "country": "Deutschland",
+    "city": "Hockenheim",
+    "postcode": "68766",
+    "source": "https://fyndling.de/e/25e170f4bdea3174",
+    "venue": "Gartenschaupark - Eisenbahnstraße",
+    "website": "https://www.mittelaltermarkt-freisen.de/",
+    "websites": [
+      "https://www.mittelaltermarkt-freisen.de/"
+    ],
+    "lat": 49.3312783,
+    "lng": 8.5300545
+  },
+  {
+    "id": "eu-source-c5afc73b61ba934c",
+    "name": "13. Burgfest an der alten Burg zu Rotenhain",
+    "type": "Markt",
+    "date": "2027-06-05 bis 2027-06-06",
+    "start": "2027-06-05",
+    "end": "2027-06-06",
+    "country": "Deutschland",
+    "city": "Rotenhain",
+    "postcode": "56459",
+    "source": "https://fyndling.de/e/4cd552656598eacf",
+    "venue": "Alte Burg",
+    "website": "http://www.historica-rotenhain.de/",
+    "websites": [
+      "http://www.historica-rotenhain.de/"
+    ],
+    "lat": 50.6015771,
+    "lng": 7.8933197
+  },
+  {
+    "id": "eu-source-c0215bcd3e8fe25a",
+    "name": "Lichterfest Halle im Mittelalter",
+    "type": "Markt",
+    "date": "2027-08-27 bis 2027-08-29",
+    "start": "2027-08-27",
+    "end": "2027-08-29",
+    "country": "Deutschland",
+    "city": "Halle Saale",
+    "postcode": "06108",
+    "source": "https://fyndling.de/e/8a22589c93311d04",
+    "venue": "Innenstadt",
+    "website": "http://www.das-nordische-marktvolk.de/",
+    "websites": [
+      "http://www.das-nordische-marktvolk.de/"
+    ],
+    "lat": 51.4904352,
+    "lng": 11.9628501
+  },
+  {
+    "id": "eu-source-61d60e519706a509",
+    "name": "14. Mittelalterspektakel",
+    "type": "Markt",
+    "date": "2027-09-18 bis 2027-09-19",
+    "start": "2027-09-18",
+    "end": "2027-09-19",
+    "country": "Deutschland",
+    "city": "Egeln",
+    "postcode": "39435",
+    "source": "https://fyndling.de/e/d840914183f24f3b",
+    "venue": "Wasserburg",
+    "website": "https://coex-gmbh.de/index.php/historische-feste-2027/",
+    "websites": [
+      "https://coex-gmbh.de/index.php/historische-feste-2027/"
+    ],
+    "lat": 51.937928,
+    "lng": 11.423325
+  },
+  {
+    "id": "eu-source-b91a1c65f353e50a",
+    "name": "FaRK",
+    "type": "Markt",
+    "date": "2027-10-16 bis 2027-10-17",
+    "start": "2027-10-16",
+    "end": "2027-10-17",
+    "country": "Deutschland",
+    "city": "Schiffweiler / Reden",
+    "postcode": "66578",
+    "source": "https://fyndling.de/e/b9ced33eb45f9ad0",
+    "venue": "OT Landsweiler-Reden",
+    "website": "https://www.lorraine-medievale.de",
+    "websites": [
+      "https://www.lorraine-medievale.de"
+    ],
+    "lat": 49.3525958,
+    "lng": 7.1189671
+  },
+  {
+    "id": "eu-source-9e93a93a9e4d08dd",
+    "name": "Mittelalterliche Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2027-12-10 bis 2027-12-12",
+    "start": "2027-12-10",
+    "end": "2027-12-12",
+    "country": "Deutschland",
+    "city": "Wildeshausen",
+    "postcode": "27793",
+    "source": "https://fyndling.de/e/9f40547b9af73115",
+    "venue": "Alexanderkirche",
+    "website": "http://www.das-nordische-marktvolk.de/",
+    "websites": [
+      "http://www.das-nordische-marktvolk.de/"
+    ],
+    "lat": 52.8797198,
+    "lng": 8.4035231
+  },
+  {
+    "id": "eu-source-1e009e8295417a8a",
+    "name": "1. Mittelalterlicher Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2027-12-11 bis 2027-12-12",
+    "start": "2027-12-11",
+    "end": "2027-12-12",
+    "country": "Deutschland",
+    "city": "Dietzenbach",
+    "postcode": "63128",
+    "source": "https://fyndling.de/e/695619ba68b5c82d",
+    "venue": "Innenstadt Europaplatz",
+    "website": "https://www.heimdalls-erben.de/",
+    "websites": [
+      "https://www.heimdalls-erben.de/"
+    ],
+    "lat": 50.0111694,
+    "lng": 8.7844558
+  },
+  {
+    "id": "eu-source-dc661f220fd14865",
+    "name": "mittelalterlicher Adventsmarkt",
+    "type": "Markt",
+    "date": "2027-12-18 bis 2027-12-19",
+    "start": "2027-12-18",
+    "end": "2027-12-19",
+    "country": "Deutschland",
+    "city": "Untergruppenbach",
+    "postcode": "74199",
+    "source": "https://fyndling.de/e/064fad08bab3f1d1",
+    "venue": "Burg Stettenfels",
+    "website": "https://www.mittelalterfest.net/",
+    "websites": [
+      "https://www.mittelalterfest.net/"
+    ],
+    "lat": 49.0941936,
+    "lng": 9.3070634
+  },
+  {
+    "id": "eu-source-c7d1168796418379",
+    "name": "Rauhnächte",
+    "type": "Markt",
+    "date": "2027-01-02 bis 2027-01-06",
+    "start": "2027-01-02",
+    "end": "2027-01-06",
+    "country": "Deutschland",
+    "city": "Dresden",
+    "postcode": "01067",
+    "source": "https://fyndling.de/e/84157071e44fb2a6",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.0601936,
+    "lng": 13.7111692
+  },
+  {
+    "id": "eu-source-8b48c20a08320cdc",
+    "name": "Members' Event: The Battle of Great Torrington (1646)",
+    "type": "Markt",
+    "date": "2027-02-16 bis 2027-02-16",
+    "start": "2027-02-16",
+    "end": "2027-02-16",
+    "country": "Vereinigtes Königreich",
+    "city": "Sydney House (South Street) Car Park, Great Torrington, Devon, EX38 8AA",
+    "postcode": "",
+    "source": "https://fyndling.de/e/c5b6e12922b188ea",
+    "venue": "Sydney House (South Street) Car Park, Great Torrington, Devon, EX38 8AA",
+    "website": "https://www.english-heritage.org.uk/visit/whats-on/me-the-battle-of-great-torrington-guided-walk-feb-27/",
+    "websites": [
+      "https://www.english-heritage.org.uk/visit/whats-on/me-the-battle-of-great-torrington-guided-walk-feb-27/"
+    ],
+    "lat": 50.951389,
+    "lng": -4.143106
+  },
+  {
+    "id": "eu-source-26894782c94492a2",
+    "name": "18. Leipziger Umschlag",
+    "type": "Markt",
+    "date": "2027-03-06 bis 2027-03-07",
+    "start": "2027-03-06",
+    "end": "2027-03-07",
+    "country": "Deutschland",
+    "city": "Leipzig",
+    "postcode": "04107",
+    "source": "https://fyndling.de/e/97ba9c3b8b6d4d00",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.3300698,
+    "lng": 12.3669758
+  },
+  {
+    "id": "eu-source-d6ea45d97441e3f5",
+    "name": "Kunst Kultur Ostertage Jagdschloss Grünau",
+    "type": "Markt",
+    "date": "2027-03-27 bis 2027-03-29",
+    "start": "2027-03-27",
+    "end": "2027-03-29",
+    "country": "Deutschland",
+    "city": "Neuburg a.d.D.",
+    "postcode": "86633",
+    "source": "https://fyndling.de/e/1b86dcab5e9d2d16",
+    "website": "https://vehi-mercatus.de/marktkalender/kunst-kultur-ostertage-jagdschloss-gruenau-2026/",
+    "websites": [
+      "https://vehi-mercatus.de/marktkalender/kunst-kultur-ostertage-jagdschloss-gruenau-2026/"
+    ],
+    "lat": 48.733,
+    "lng": 11.259
+  },
+  {
+    "id": "eu-source-2cd772add9fc9c38",
+    "name": "Oster- Ritterturnier",
+    "type": "Markt",
+    "date": "2027-03-27 bis 2027-03-29",
+    "start": "2027-03-27",
+    "end": "2027-03-29",
+    "country": "Deutschland",
+    "city": "Dorsten",
+    "postcode": "44286",
+    "source": "https://fyndling.de/e/b8c19d30e76b1cae",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.6604071,
+    "lng": 6.9647431
+  },
+  {
+    "id": "eu-source-0c926776eef362fa",
+    "name": "Die Wikinger kommen!",
+    "type": "Markt",
+    "date": "2027-04-10 bis 2027-04-11",
+    "start": "2027-04-10",
+    "end": "2027-04-11",
+    "country": "Deutschland",
+    "city": "Saalburg",
+    "postcode": "07929",
+    "source": "https://fyndling.de/e/6893faf2c03857d6",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 50.4890584,
+    "lng": 11.6936627
+  },
+  {
+    "id": "eu-source-680b136d481d33ba",
+    "name": "Mittealterspektakel",
+    "type": "Markt",
+    "date": "2027-04-17 bis 2027-04-18",
+    "start": "2027-04-17",
+    "end": "2027-04-18",
+    "country": "Deutschland",
+    "city": "Rackwitz",
+    "postcode": "04519",
+    "source": "https://fyndling.de/e/82d152c4536af3ef",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.4543136,
+    "lng": 12.3604683
+  },
+  {
+    "id": "eu-source-f9579844488120dc",
+    "name": "Mittelalterfest Löwenburg",
+    "type": "Markt",
+    "date": "2027-04-24 bis 2027-04-25",
+    "start": "2027-04-24",
+    "end": "2027-04-25",
+    "country": "Deutschland",
+    "city": "Kassel",
+    "postcode": "34131",
+    "source": "https://fyndling.de/e/48afdb08ced120b4",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.3116202,
+    "lng": 9.4017318
+  },
+  {
+    "id": "eu-source-31e136471f2be73d",
+    "name": "Frühlingsmarkt Sandizell",
+    "type": "Markt",
+    "date": "2027-05-01 bis 2027-05-02",
+    "start": "2027-05-01",
+    "end": "2027-05-02",
+    "country": "Deutschland",
+    "city": "Hilgertshausen-Tandern",
+    "postcode": "85423",
+    "source": "https://fyndling.de/e/b3b7776ec41b2437",
+    "website": "https://vehi-mercatus.de/marktkalender/fruehlingsmarkt-sandizell-2027/",
+    "websites": [
+      "https://vehi-mercatus.de/marktkalender/fruehlingsmarkt-sandizell-2027/"
+    ],
+    "lat": 48.409,
+    "lng": 11.323
+  },
+  {
+    "id": "eu-source-2b6d19186b228fe8",
+    "name": "23. Siegfriedspektakel",
+    "type": "Markt",
+    "date": "2027-05-06 bis 2027-05-09",
+    "start": "2027-05-06",
+    "end": "2027-05-09",
+    "country": "Deutschland",
+    "city": "Xanten",
+    "postcode": "46509",
+    "source": "https://fyndling.de/e/d5d74fec9729cc72",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.6842624,
+    "lng": 6.4262592
+  },
+  {
+    "id": "eu-source-09f80a682251904b",
+    "name": "Wikingerfest",
+    "type": "Markt",
+    "date": "2027-05-15 bis 2027-05-17",
+    "start": "2027-05-15",
+    "end": "2027-05-17",
+    "country": "Deutschland",
+    "city": "Weißensee",
+    "postcode": "99885",
+    "source": "https://fyndling.de/e/c460f5f020200827",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.2003022,
+    "lng": 11.0667507
+  },
+  {
+    "id": "eu-source-889b309a1d955211",
+    "name": "Mittelalterspektakel",
+    "type": "Markt",
+    "date": "2027-05-22 bis 2027-05-23",
+    "start": "2027-05-22",
+    "end": "2027-05-23",
+    "country": "Deutschland",
+    "city": "Witten",
+    "postcode": "58455",
+    "source": "https://fyndling.de/e/dd9b78e84aa5cc73",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.4441066,
+    "lng": 7.3154137
+  },
+  {
+    "id": "eu-source-f94ab254e3baf7b4",
+    "name": "Sagenmarkt",
+    "type": "Markt",
+    "date": "2027-05-27 bis 2027-05-30",
+    "start": "2027-05-27",
+    "end": "2027-05-30",
+    "country": "Deutschland",
+    "city": "Kierspe-Rönsahl",
+    "postcode": "58566",
+    "source": "https://fyndling.de/e/a9b9bda089f75916",
+    "website": "http://www.hellpeak.de/",
+    "websites": [
+      "http://www.hellpeak.de/"
+    ],
+    "lat": 51.1126898,
+    "lng": 7.5041514
+  },
+  {
+    "id": "eu-source-88927d59c6d82b12",
+    "name": "Gaudium Schloss Horst*",
+    "type": "Markt",
+    "date": "2027-05-27 bis 2027-05-30",
+    "start": "2027-05-27",
+    "end": "2027-05-30",
+    "country": "Deutschland",
+    "city": "Gelsenkirchen*",
+    "postcode": "45899",
+    "source": "https://fyndling.de/e/eb04507839810d50",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.5376805,
+    "lng": 7.0323864
+  },
+  {
+    "id": "eu-source-0c893b7b45f84663",
+    "name": "Geschichte erleben im Naturpark auf Schloss Wellenberg",
+    "type": "Markt",
+    "date": "2027-05-29 bis 2027-05-30",
+    "start": "2027-05-29",
+    "end": "2027-05-30",
+    "country": "Schweiz",
+    "city": "Frauenfeld TG",
+    "postcode": "8500",
+    "source": "https://fyndling.de/e/1061cb24e634102c",
+    "website": "http://www.schlosswellenberg.ch",
+    "websites": [
+      "http://www.schlosswellenberg.ch"
+    ],
+    "lat": 47.5568009,
+    "lng": 8.8916242
+  },
+  {
+    "id": "eu-source-49fbe9c66817cf21",
+    "name": "Mittelalterspektakel",
+    "type": "Markt",
+    "date": "2027-05-29 bis 2027-05-30",
+    "start": "2027-05-29",
+    "end": "2027-05-30",
+    "country": "Deutschland",
+    "city": "Königshain",
+    "postcode": "02829",
+    "source": "https://fyndling.de/e/ca5aacdb26b5e70e",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.1882907,
+    "lng": 14.8911957
+  },
+  {
+    "id": "eu-source-d0897d29876c31b0",
+    "name": "Annamarkt und Stadtfest",
+    "type": "Markt",
+    "date": "2027-06-11 bis 2027-06-13",
+    "start": "2027-06-11",
+    "end": "2027-06-13",
+    "country": "Deutschland",
+    "city": "Düren",
+    "postcode": "52349",
+    "source": "https://fyndling.de/e/02a6237e97fece17",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 50.8006843,
+    "lng": 6.4710158
+  },
+  {
+    "id": "eu-source-8ea65c5ccbf589fd",
+    "name": "Historisches Burgfest",
+    "type": "Markt",
+    "date": "2027-07-09 bis 2027-07-11",
+    "start": "2027-07-09",
+    "end": "2027-07-11",
+    "country": "Deutschland",
+    "city": "Burghausen",
+    "postcode": "84489",
+    "source": "https://fyndling.de/e/f57e67be447f3ced",
+    "website": "https://vehi-mercatus.de/marktkalender/burgfest-burghausen-historisch-2027/",
+    "websites": [
+      "https://vehi-mercatus.de/marktkalender/burgfest-burghausen-historisch-2027/"
+    ],
+    "lat": 48.1682,
+    "lng": 12.8332
+  },
+  {
+    "id": "eu-source-123b95587088890a",
+    "name": "Historisches Schlossfest Sandersdorf",
+    "type": "Markt",
+    "date": "2027-09-03 bis 2027-09-05",
+    "start": "2027-09-03",
+    "end": "2027-09-05",
+    "country": "Deutschland",
+    "city": "Altmannstein",
+    "postcode": "93336",
+    "source": "https://fyndling.de/e/1d3497b64bbfb1f6",
+    "website": "https://vehi-mercatus.de/marktkalender/schlossfest-sandersdorf-2027/",
+    "websites": [
+      "https://vehi-mercatus.de/marktkalender/schlossfest-sandersdorf-2027/"
+    ],
+    "lat": 48.9017,
+    "lng": 11.6088
+  },
+  {
+    "id": "eu-source-b9c418b9bad08156",
+    "name": "20. Mittelalterspektakel",
+    "type": "Markt",
+    "date": "2027-09-03 bis 2027-09-05",
+    "start": "2027-09-03",
+    "end": "2027-09-05",
+    "country": "Deutschland",
+    "city": "Herne",
+    "postcode": "44629",
+    "source": "https://fyndling.de/e/a0978a834e5ba4df",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.5495541,
+    "lng": 7.2099072
+  },
+  {
+    "id": "eu-source-6aafa2282df4724d",
+    "name": "Ritterturnier und Mittelalterspektakel",
+    "type": "Markt",
+    "date": "2027-09-18 bis 2027-09-19",
+    "start": "2027-09-18",
+    "end": "2027-09-19",
+    "country": "Deutschland",
+    "city": "Adlersberg",
+    "postcode": "93186",
+    "source": "https://fyndling.de/e/ac87c63df14bafbb",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 49.0441599,
+    "lng": 12.0119908
+  },
+  {
+    "id": "eu-source-59e1f6187b98cc0e",
+    "name": "Zwiebelmarkt Apolda",
+    "type": "Markt",
+    "date": "2027-09-24 bis 2027-09-26",
+    "start": "2027-09-24",
+    "end": "2027-09-26",
+    "country": "Deutschland",
+    "city": "Apolda",
+    "postcode": "99510",
+    "source": "https://fyndling.de/e/4b88c3f4c7a0f1fb",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.0227878,
+    "lng": 11.5129742
+  },
+  {
+    "id": "eu-source-6149af2d10344222",
+    "name": "Thüringer Ritterturnier",
+    "type": "Markt",
+    "date": "2027-10-02 bis 2027-10-03",
+    "start": "2027-10-02",
+    "end": "2027-10-03",
+    "country": "Deutschland",
+    "city": "Kranichfeld*",
+    "postcode": "99448",
+    "source": "https://fyndling.de/e/c32969c1e66d85e4",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 50.8497632,
+    "lng": 11.1915
+  },
+  {
+    "id": "eu-source-e05dc884fd4681aa",
+    "name": "374. Zwiebelmarkt",
+    "type": "Markt",
+    "date": "2027-10-08 bis 2027-10-10",
+    "start": "2027-10-08",
+    "end": "2027-10-10",
+    "country": "Deutschland",
+    "city": "Weimar",
+    "postcode": "99423",
+    "source": "https://fyndling.de/e/16459aee382e714a",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 50.9829805,
+    "lng": 11.3235477
+  },
+  {
+    "id": "eu-source-52246ac9038349d3",
+    "name": "Mittelalter- Weihnacht",
+    "type": "Markt",
+    "date": "2027-12-11 bis 2027-12-23",
+    "start": "2027-12-11",
+    "end": "2027-12-23",
+    "country": "Deutschland",
+    "city": "Dresden",
+    "postcode": "01067",
+    "source": "https://fyndling.de/e/37969dff32eb7927",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.0601936,
+    "lng": 13.7111692
+  },
+  {
+    "id": "eu-source-c1dd6509193eb965",
+    "name": "Felsenkeller- Weihnachtsmarkt",
+    "type": "Markt",
+    "date": "2027-12-11 bis 2027-12-30",
+    "start": "2027-12-11",
+    "end": "2027-12-30",
+    "country": "Deutschland",
+    "city": "Leipzig",
+    "postcode": "04229",
+    "source": "https://fyndling.de/e/400aa6d47bf10a3c",
+    "website": "https://www.suendenfrei.tv/terminuebersicht",
+    "websites": [
+      "https://www.suendenfrei.tv/terminuebersicht"
+    ],
+    "lat": 51.3229111,
+    "lng": 12.3385298
+  },
+  {
+    "id": "eu-source-38fd76c868447c52",
+    "name": "Mittelaltermarkt Guteneck",
+    "type": "Markt",
+    "date": "2027-04-30 bis 2027-05-02",
+    "start": "2027-04-30",
+    "end": "2027-05-02",
+    "country": "Deutschland",
+    "city": "Guteneck",
+    "postcode": "",
+    "source": "https://fyndling.de/e/fa653d7b99a007ae",
+    "website": "https://www.turbaevents.de/termine/guteneck/",
+    "websites": [
+      "https://www.turbaevents.de/termine/guteneck/"
+    ],
+    "lat": 49.4436545,
+    "lng": 12.2733994
+  },
+  {
+    "id": "eu-source-9e76c27640ebf4e4",
+    "name": "Mittelaltermarkt Harburg",
+    "type": "Markt",
+    "date": "2027-05-06 bis 2027-05-09",
+    "start": "2027-05-06",
+    "end": "2027-05-09",
+    "country": "Deutschland",
+    "city": "Harburg",
+    "postcode": "",
+    "source": "https://fyndling.de/e/61d27ae8463ad638",
+    "website": "https://www.turbaevents.de/termine/harburg/",
+    "websites": [
+      "https://www.turbaevents.de/termine/harburg/"
+    ],
+    "lat": 53.4562216,
+    "lng": 9.9872112
+  },
+  {
+    "id": "eu-source-466f3bbaab3eee77",
+    "name": "Mittelaltermarkt Tüssling",
+    "type": "Markt",
+    "date": "2027-05-14 bis 2027-05-17",
+    "start": "2027-05-14",
+    "end": "2027-05-17",
+    "country": "Deutschland",
+    "city": "Tüssling",
+    "postcode": "",
+    "source": "https://fyndling.de/e/199f780158dbcdcd",
+    "website": "https://www.turbaevents.de/termine/tuessling/",
+    "websites": [
+      "https://www.turbaevents.de/termine/tuessling/"
+    ],
+    "lat": 48.2123873,
+    "lng": 12.6004248
+  },
+  {
+    "id": "eu-source-ed286212a8529087",
+    "name": "Mittelaltermarkt Dinkelsbühl Stadtpark",
+    "type": "Markt",
+    "date": "2027-06-04 bis 2027-06-06",
+    "start": "2027-06-04",
+    "end": "2027-06-06",
+    "country": "Deutschland",
+    "city": "Dinkelsbühl Stadtpark",
+    "postcode": "",
+    "source": "https://fyndling.de/e/6b813b1b5063ea76",
+    "website": "https://www.turbaevents.de/termine/dinkelsbuehl/",
+    "websites": [
+      "https://www.turbaevents.de/termine/dinkelsbuehl/"
+    ],
+    "lat": 49.0707192,
+    "lng": 10.3145653
+  },
+  {
+    "id": "eu-source-6eb208a319ac16ef",
+    "name": "Mittelaltermark",
+    "type": "Markt",
+    "date": "2027-07-10 bis 2027-07-12",
+    "start": "2027-07-10",
+    "end": "2027-07-12",
+    "country": "Deutschland",
+    "city": "Ommersheim",
+    "postcode": "66399",
+    "source": "https://fyndling.de/e/780a5018a092fabb",
+    "venue": "Ommersheimer Weiher",
+    "lat": 49.2196499,
+    "lng": 7.1585036
+  },
+  {
+    "id": "eu-source-9530ed572fd226d6",
+    "name": "Mittelaltermarkt Pfullendorf",
+    "type": "Markt",
+    "date": "2027-07-30 bis 2027-08-01",
+    "start": "2027-07-30",
+    "end": "2027-08-01",
+    "country": "Deutschland",
+    "city": "Pfullendorf",
+    "postcode": "",
+    "source": "https://fyndling.de/e/f8a771a40feef3c1",
+    "website": "https://www.turbaevents.de/termine/pfullendorf/",
+    "websites": [
+      "https://www.turbaevents.de/termine/pfullendorf/"
+    ],
+    "lat": 47.924349,
+    "lng": 9.2559822
+  },
+  {
+    "id": "eu-source-f92d8944971abdbf",
+    "name": "Mittelaltermarkt Fürstenfeldbruck",
+    "type": "Markt",
+    "date": "2027-08-21 bis 2027-08-22",
+    "start": "2027-08-21",
+    "end": "2027-08-22",
+    "country": "Deutschland",
+    "city": "Fürstenfeldbruck",
+    "postcode": "",
+    "source": "https://fyndling.de/e/18b9a821199b03cd",
+    "website": "https://www.turbaevents.de/termine/fuerstenfeldbruck/",
+    "websites": [
+      "https://www.turbaevents.de/termine/fuerstenfeldbruck/"
+    ],
+    "lat": 48.1794705,
+    "lng": 11.2547202
+  },
+  {
+    "id": "eu-source-d9af41d81b95e36d",
+    "name": "Mittelaltermarkt Heidenheim",
+    "type": "Markt",
+    "date": "2027-09-03 bis 2027-09-05",
+    "start": "2027-09-03",
+    "end": "2027-09-05",
+    "country": "Deutschland",
+    "city": "Heidenheim",
+    "postcode": "",
+    "source": "https://fyndling.de/e/3ed0dc1fd7732f82",
+    "website": "https://www.turbaevents.de/termine/heidenheim/",
+    "websites": [
+      "https://www.turbaevents.de/termine/heidenheim/"
+    ],
+    "lat": 48.6767637,
+    "lng": 10.152923
+  },
+  {
+    "id": "eu-source-657c50042d4e17b5",
+    "name": "Mittelaltermarkt Sigmaringen",
+    "type": "Markt",
+    "date": "2027-09-10 bis 2027-09-12",
+    "start": "2027-09-10",
+    "end": "2027-09-12",
+    "country": "Deutschland",
+    "city": "Sigmaringen",
+    "postcode": "",
+    "source": "https://fyndling.de/e/c7e7194d555a4ec5",
+    "website": "https://www.turbaevents.de/termine/sigmaringen/",
+    "websites": [
+      "https://www.turbaevents.de/termine/sigmaringen/"
+    ],
+    "lat": 48.0869139,
+    "lng": 9.2165039
+  },
+  {
+    "id": "eu-source-29087ddc748f3e8f",
+    "name": "Mittelaltermarkt Feuchtwangen",
+    "type": "Markt",
+    "date": "2027-10-15 bis 2027-10-17",
+    "start": "2027-10-15",
+    "end": "2027-10-17",
+    "country": "Deutschland",
+    "city": "Feuchtwangen",
+    "postcode": "",
+    "source": "https://fyndling.de/e/b30a81c66bf303fc",
+    "website": "https://www.turbaevents.de/termine/feuchtwangen/",
+    "websites": [
+      "https://www.turbaevents.de/termine/feuchtwangen/"
+    ],
+    "lat": 49.1678603,
+    "lng": 10.3313268
+  },
+  {
+    "id": "eu-source-60145bcebdc36841",
+    "name": "Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-09-10 bis 2027-09-12",
+    "start": "2027-09-10",
+    "end": "2027-09-12",
+    "country": "Deutschland",
+    "city": "Neukloster (bei Wismar)",
+    "postcode": "23992",
+    "source": "https://fyndling.de/e/0cc458136b6d4270",
+    "website": "http://www.das-nordische-marktvolk.de/",
+    "websites": [
+      "http://www.das-nordische-marktvolk.de/"
+    ]
+  },
+  {
+    "id": "eu-source-82bc23d43162f8c1",
+    "name": "IMBOLC 7. keltisches Lichterfest",
+    "type": "Markt",
+    "date": "2027-02-26 bis 2027-02-28",
+    "start": "2027-02-26",
+    "end": "2027-02-28",
+    "country": "Deutschland",
+    "city": "Massenheim (OT Hochheim am Main)",
+    "postcode": "65239",
+    "source": "https://fyndling.de/e/9b3e2b95e1234ac1",
+    "venue": "an der Sport- und Kulturhalle"
+  },
+  {
+    "id": "eu-source-ef8b5a0c5b1389f7",
+    "name": "Mittelaltermarkt Feldkirch in Österreich",
+    "type": "Markt",
+    "date": "2027-05-27 bis 2027-05-30",
+    "start": "2027-05-27",
+    "end": "2027-05-30",
+    "country": "Deutschland",
+    "city": "Feldkirch in Österreich",
+    "postcode": "",
+    "source": "https://fyndling.de/e/c2bca6d05345b0d5",
+    "website": "https://www.turbaevents.de/termine/feldkirch/",
+    "websites": [
+      "https://www.turbaevents.de/termine/feldkirch/"
+    ]
+  },
+  {
+    "id": "eu-source-1cc54c004ef71e30",
+    "name": "Mittelaltermarkt im Park Seleger Moor Geplant!",
+    "type": "Markt",
+    "date": "2027-09-18 bis 2027-09-19",
+    "start": "2027-09-18",
+    "end": "2027-09-19",
+    "country": "Schweiz",
+    "city": "im Park Seleger Moor Geplant!",
+    "postcode": "",
+    "source": "https://fyndling.de/e/dbe143b2e00f3a09",
+    "website": "http://www.selegermoor.ch",
+    "websites": [
+      "http://www.selegermoor.ch"
+    ]
+  },
+  {
     "id": "mittelalterkalender-cb7acb679e7fde9e",
     "name": "Annotopia 2027",
     "type": "Markt",
