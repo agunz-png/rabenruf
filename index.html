@@ -4979,6 +4979,8 @@ async function ladeFreigegebeneEvents(){
         eventIndexNachId.set(id, events.length - 1);
       }
     }
+    // Do not delete underlying records: keep IDs stable for favorites and Herold decisions.
+    // Deduplicate only the public views through getCurrentEvents().
     applyFilters();
     renderCalendar();
     checkCalendarEventUpdates();
@@ -5595,7 +5597,7 @@ function eventIsCurrent(event){
 }
 
 function getCurrentEvents(){
-  return events.filter(eventIsCurrent);
+  return heroldDeduplicate(events.filter(eventIsCurrent));
 }
 
 function flaggeFuerLand(land){
@@ -6842,7 +6844,12 @@ let heroldFunde = [];
 
 function heroldNorm(value){
   return String(value||"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").toLowerCase()
-    .replace(/\b(?:an|der|a)\b/g," ").replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
+    .replace(/\b(?:im|in|am|an|der|die|das|dem|den|a)\b/g," ")
+    .replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
+}
+function heroldNameTokens(value){
+  const normalized=heroldNorm(value).replace(/\bmittelalter markt\b/g,"mittelaltermarkt");
+  return normalized.split(" ").filter(Boolean);
 }
 function heroldDateRange(event){
   const dateText=[event?.start,event?.end,event?.date].filter(Boolean).join(" ");
@@ -6853,21 +6860,30 @@ function heroldDateRange(event){
   return {start,end};
 }
 function heroldSameEvent(a,b){
-  const nameA=heroldNorm(a?.name), nameB=heroldNorm(b?.name);
-  const cityA=heroldNorm(a?.city), cityB=heroldNorm(b?.city);
-  if(!nameA||!nameB) return false;
-  const exactName=nameA===nameB;
-  const similarName=exactName || nameA.includes(nameB) || nameB.includes(nameA);
-  if(!similarName) return false;
+  if(!a || !b) return false;
   const datesA=heroldDateRange(a), datesB=heroldDateRange(b);
-  if(!datesA||!datesB) return false;
-  const datesOverlap=datesA.start<=datesB.end && datesB.start<=datesA.end;
-  if(!datesOverlap) return false;
-  // Exact title + overlapping dates is stronger evidence than a source's
-  // unreliable city field (some imports put the event title in city).
-  if(exactName) return true;
-  const cityEqual=cityA&&cityB&&(cityA===cityB || cityA.includes(cityB) || cityB.includes(cityA));
-  return Boolean(cityEqual);
+  if(!datesA || !datesB || datesA.start>datesB.end || datesB.start>datesA.end) return false;
+  const countryA=heroldNorm(a.country), countryB=heroldNorm(b.country);
+  if(countryA && countryB && countryA!==countryB) return false;
+  const cityA=heroldNorm(a.city), cityB=heroldNorm(b.city);
+  if(cityA && cityB && cityA!==cityB) return false;
+  const tokensA=heroldNameTokens(a.name),tokensB=heroldNameTokens(b.name);
+  const nameA=tokensA.join(" "),nameB=tokensB.join(" ");
+  if(!nameA || !nameB) return false;
+  // Names alone are insufficient: missing locations require manual review.
+  if(!cityA || !cityB || !countryA || !countryB) return false;
+  if(nameA===nameB) return true;
+  const common=tokensA.filter(token=>tokensB.includes(token));
+  return common.length>=2 && common.length/Math.max(tokensA.length,tokensB.length)>=0.8;
+}
+function heroldDeduplicate(list,existing=[]){
+  const kept=[];
+  for(const event of list){
+    if(existing.some(other=>heroldSameEvent(event,other))) continue;
+    if(kept.some(other=>heroldSameEvent(event,other))) continue;
+    kept.push(event);
+  }
+  return kept;
 }
 
 async function ladeHeroldFunde(){
@@ -6902,10 +6918,9 @@ async function ladeHeroldFunde(){
       }
     }
 
-    heroldFunde = funde.filter(fund =>
-      !entschiedeneIds.has(String(fund.id || "")) &&
-      !bereitsBestaetigt.some(event=>heroldSameEvent(fund,event))
-    );
+    heroldFunde = heroldDeduplicate(funde.filter(fund =>
+      !entschiedeneIds.has(String(fund.id || ""))
+    ), bereitsBestaetigt);
     renderHerold();
   }catch(fehler){
     console.error("Herold-Funde konnten nicht geladen werden:", fehler);
