@@ -7282,6 +7282,19 @@ async function starteHeroldAktion(index, aktion){
   if(knopf) knopf.disabled=true;
   try{
     await heroldSessionErneuern();
+    if(aktion==="approve"){
+      const overrides=heroldKorrekturen(index);
+      const candidate={...fund,...overrides};
+      // Check again immediately before approval, not only when the Herold list loads.
+      const decisions=await ladeHeroldEntscheide();
+      const approved=decisions.filter(d=>d.status==="approved"&&d.event).map(d=>d.event);
+      const duplicate=[...events,...approved].find(other=>
+        String(other.id||"")!=="herold-"+eventId && heroldSameEvent(candidate,other)
+      );
+      if(duplicate){
+        throw new Error("Bereits vorhanden: "+duplicate.name+" ("+duplicate.city+", "+duplicate.start+"). Dieser Fund wird nicht nochmals freigegeben.");
+      }
+    }
     const data=await heroldApi("functions/v1/herold-decision",{
       method:"POST",
       token:heroldSession.access_token,
