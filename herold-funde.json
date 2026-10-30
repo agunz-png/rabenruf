@@ -1397,40 +1397,6 @@
     "lng": 9.2165039
   },
   {
-    "id": "eu-source-29087ddc748f3e8f",
-    "name": "Mittelaltermarkt Feuchtwangen",
-    "type": "Markt",
-    "date": "2027-10-15 bis 2027-10-17",
-    "start": "2027-10-15",
-    "end": "2027-10-17",
-    "country": "Deutschland",
-    "city": "Feuchtwangen",
-    "postcode": "",
-    "source": "https://fyndling.de/e/b30a81c66bf303fc",
-    "website": "https://www.turbaevents.de/termine/feuchtwangen/",
-    "websites": [
-      "https://www.turbaevents.de/termine/feuchtwangen/"
-    ],
-    "lat": 49.1678603,
-    "lng": 10.3313268
-  },
-  {
-    "id": "eu-source-60145bcebdc36841",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-09-10 bis 2027-09-12",
-    "start": "2027-09-10",
-    "end": "2027-09-12",
-    "country": "Deutschland",
-    "city": "Neukloster (bei Wismar)",
-    "postcode": "23992",
-    "source": "https://fyndling.de/e/0cc458136b6d4270",
-    "website": "http://www.das-nordische-marktvolk.de/",
-    "websites": [
-      "http://www.das-nordische-marktvolk.de/"
-    ]
-  },
-  {
     "id": "eu-source-82bc23d43162f8c1",
     "name": "IMBOLC 7. keltisches Lichterfest",
     "type": "Markt",
