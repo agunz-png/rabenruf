@@ -171,7 +171,8 @@ def jsonld_events(soup, source):
             if country in {"Frankreich", "Italien", "Schweiz"}:
                 item = event_record(name, city, country, start, end,
                                     obj.get("url") or source,
-                                    address.get("postalCode", ""))
+                                    address.get("postalCode", ""),
+                                    event_hours(obj))
                 if item:
                     found.append(item)
         for key in ("@graph", "itemListElement", "mainEntity", "events"):
