@@ -93,12 +93,28 @@ def parse_iso(value):
         return str(value)[:10] if re.match(r"^20\d{2}-\d{2}-\d{2}$", str(value)) else ""
 
 
-def event_record(name, city, country, start, end, source, postcode=""):
+def event_hours(event):
+    """Preserve opening times when a source/API provides them."""
+    if not isinstance(event, dict):
+        return ""
+    for key in ("hours", "opening_hours", "openingHours", "opening_time",
+                "openingTime", "uhrzeit", "zeiten", "time"):
+        value = plain(event.get(key))
+        if value:
+            return value[:300]
+    start = plain(event.get("time_from") or event.get("start_time") or event.get("startTime"))
+    end = plain(event.get("time_to") or event.get("end_time") or event.get("endTime"))
+    if start and end:
+        return f"{start}–{end}"[:300]
+    return start[:300]
+
+
+def event_record(name, city, country, start, end, source, postcode="", hours=""):
     name, city = plain(name), plain(city)
     if not name or not city or not start:
         return None
     raw_id = f"{country}|{name}|{city}|{start}|{source}".encode("utf-8")
-    return {
+    event = {
         "id": "eu-source-" + hashlib.sha1(raw_id).hexdigest()[:16],
         "name": name[:180],
         "type": "Markt",
@@ -110,6 +126,9 @@ def event_record(name, city, country, start, end, source, postcode=""):
         "postcode": plain(postcode),
         "source": source,
     }
+    if plain(hours):
+        event["hours"] = plain(hours)[:300]
+    return event
 
 
 def domain(value):
@@ -384,7 +403,10 @@ def scrape_fyndling_mcp():
                 continue
             source_url = plain(event.get("source_url", ""))
             detail_url = plain(event.get("fyndling_url", "")) or source_url or FINDLING_URL
-            item = event_record(name, city, country, start, end, detail_url, event.get("plz", ""))
+            item = event_record(
+                name, city, country, start, end, detail_url, event.get("plz", ""),
+                event_hours(event),
+            )
             if not item:
                 continue
             if event.get("venue"):
