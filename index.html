@@ -5505,6 +5505,8 @@ function eventCard(event){
 
       ${escapeHTML(event.country)}
 
+      ${event.hours ? `<br>🕰️ ${escapeHTML(event.hours || "Noch nicht bekannt")}` : ""}
+
     </div>
 
     <div class="badges">
