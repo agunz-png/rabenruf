@@ -7432,12 +7432,12 @@ async function heroldDuplikatZuordnen(index){
   );
   if(!candidates.length) return alert("Keine bestätigte Veranstaltung mit identischem Namen, Land und Datum gefunden. Bitte zuerst die Daten prüfen.");
   const choices=candidates.map((item,i)=>(i+1)+": "+item.event.name+" – "+item.event.city+" ("+item.id+")").join("\n");
-  const selected=prompt("Welcher Kalendereintrag ist identisch? Nummer eingeben:\n"+choices);
-  if(selected===null) return;
+  const selected=prompt("Nur bei sicherer Übereinstimmung verknüpfen. Name, Ort und Datum vergleichen.\n0 = Keiner davon / abbrechen\n"+choices+"\nNummer eingeben:");
+  if(selected===null || String(selected).trim()==="0") return;
   const indexSelected=Number(selected)-1;
   if(!Number.isInteger(indexSelected)||!candidates[indexSelected]) return alert("Ungültige Auswahl.");
   const target=candidates[indexSelected];
-  if(!confirm("Diesen Herold-Fund dauerhaft mit "+target.event.name+" ("+target.event.city+") verknüpfen?")) return;
+  if(!confirm("HEROLD: "+fund.name+" | "+fund.city+" | "+fund.start+" bis "+(fund.end||fund.start)+"\nKALENDER: "+target.event.name+" | "+target.event.city+" | "+target.event.start+" bis "+(target.event.end||target.event.start)+"\n\nSind dies wirklich dieselben Veranstaltungen? Nur dann dauerhaft verknüpfen.")) return;
   try{
     await heroldSessionErneuern();
     const response=await heroldApi("functions/v1/herold-decision",{
