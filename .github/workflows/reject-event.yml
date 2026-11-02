@@ -8,6 +8,10 @@ on:
         required: true
         type: string
 
+concurrency:
+  group: rabenruf-herold-data-write
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
