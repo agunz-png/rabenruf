@@ -832,6 +832,26 @@ textarea.contactField{min-height:150px;resize:vertical;}
 .mapPin{width:34px;height:34px;border:2px solid #fff3e0;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:18px;box-shadow:0 2px 9px #0009}
 .mapCluster{width:44px;height:44px;border:3px solid #f5e4c5;border-radius:50%;display:grid;place-items:center;background:#55402c;color:#fff;font-weight:800;box-shadow:0 2px 12px #000a}
 /* Herold: dunkle, kompakte Bedienelemente statt heller Standardknöpfe */
+#heroldList button,
+#heroldList button:not(.btn),
+#heroldList .card button {
+  background-color:#2b241c !important;
+  color:#f0d18c !important;
+  border:1px solid #705739 !important;
+  box-shadow:none !important;
+  -webkit-text-fill-color:#f0d18c;
+}
+#heroldList .buttonRow button:first-child {
+  background-color:#34432d !important;
+  color:#e7f2df !important;
+  -webkit-text-fill-color:#e7f2df;
+}
+#heroldList .buttonRow button:last-child {
+  background-color:#44231f !important;
+  color:#f7d6ce !important;
+  -webkit-text-fill-color:#f7d6ce;
+}
+
 #heroldList button {
   appearance:none;
   -webkit-appearance:none;
