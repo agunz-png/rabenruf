@@ -831,6 +831,51 @@ textarea.contactField{min-height:150px;resize:vertical;}
 .mapCount{font-size:12px;color:var(--gold);margin:0 0 9px}
 .mapPin{width:34px;height:34px;border:2px solid #fff3e0;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:18px;box-shadow:0 2px 9px #0009}
 .mapCluster{width:44px;height:44px;border:3px solid #f5e4c5;border-radius:50%;display:grid;place-items:center;background:#55402c;color:#fff;font-weight:800;box-shadow:0 2px 12px #000a}
+/* Herold: dunkle, kompakte Bedienelemente statt heller Standardknöpfe */
+#heroldList button {
+  appearance:none;
+  -webkit-appearance:none;
+  background:#2b241c;
+  color:#f0d18c;
+  border:1px solid #705739;
+  border-radius:11px;
+  padding:10px 12px;
+  font-size:14px;
+  font-weight:600;
+  line-height:1.3;
+  text-align:center;
+  cursor:pointer;
+}
+#heroldList button:active { background:#443321; }
+#heroldList .buttonRow {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-top:12px;
+}
+#heroldList .buttonRow button {
+  width:100%;
+  min-width:0;
+  white-space:normal;
+}
+#heroldList .buttonRow button:first-child {
+  background:#34432d;
+  border-color:#617b50;
+  color:#e7f2df;
+}
+#heroldList .buttonRow button:last-child {
+  background:#44231f;
+  border-color:#895146;
+  color:#f7d6ce;
+}
+#heroldList button:focus-visible {
+  outline:2px solid #f0d18c;
+  outline-offset:2px;
+}
+@media (max-width:360px){
+  #heroldList .buttonRow {grid-template-columns:1fr;}
+}
+
 </style>
 
 
