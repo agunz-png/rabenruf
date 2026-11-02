@@ -301,6 +301,19 @@ jobs:
           with open(path, "w", encoding="utf-8") as handle:
               json.dump(kept, handle, ensure_ascii=False, indent=2)
 
+          # Keep an append-only record of approved-event filtering.
+          import os
+          from datetime import datetime, timezone
+          audit = {
+              "timestamp": datetime.now(timezone.utc).isoformat(),
+              "run_id": os.environ.get("GITHUB_RUN_ID", ""),
+              "input_count": len(candidates),
+              "removed_count": removed,
+              "removed_events": [event for event in candidates if matches_approved(event)],
+          }
+          with open("herold-filter-protokoll.jsonl", "a", encoding="utf-8") as log:
+              log.write(json.dumps(audit, ensure_ascii=False) + chr(10))
+
           print("Bereits bestätigte Kandidaten entfernt:", removed)
           print("Bestätigte Entscheidungen geladen:", len(approved))
           PY
@@ -400,7 +413,7 @@ jobs:
 
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add herold-funde.json
+          git add herold-funde.json herold-filter-protokoll.jsonl
 
           if git diff --cached --quiet; then
 
