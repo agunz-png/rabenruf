@@ -6878,8 +6878,12 @@ function heroldSameEvent(a,b){
     };
     const sameTitle=heroldNorm(a.name)===heroldNorm(b.name);
     const distinctive=heroldNameTokens(a.name).length>=3;
-    const knownCityAlias = sameTitle && heroldNorm(a.name)==="mittelaltermarkt zu basselstorff" &&
-      [cityA,cityB].sort().join("|")==="basselstorff|bassersdorf";
+    const knownCityAlias = sameTitle && (
+      (heroldNorm(a.name)==="mittelaltermarkt zu basselstorff" &&
+       [cityA,cityB].sort().join("|")==="basselstorff|bassersdorf") ||
+      (heroldNorm(a.name)==="mittelaltermarkt herrendingen" &&
+       [cityA,cityB].sort().join("|")==="eschenbach|eschenbach lu")
+    );
     if(!(countryA && countryA===countryB && (knownCityAlias || (sameTitle && distinctive && (malformed(a)||malformed(b)))))) return false;
   }
   const tokensA=heroldNameTokens(a.name),tokensB=heroldNameTokens(b.name);
