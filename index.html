@@ -7425,7 +7425,7 @@ async function heroldDuplikatZuordnen(index){
   const fund=heroldFunde[index];
   if(!fund || !heroldSession) return alert("Bitte zuerst im Herold anmelden.");
   const norm=heroldNorm(fund.name);
-  const normalizedTitle=value=>heroldNorm(value).replace(/\\b(?:geplant|mps|mittelalterliches|mittelalterlich)\\b/g,"").trim();
+  const normalizedTitle=value=>heroldNorm(value).replace(/\b(?:geplant|mps|mittelalterliches|mittelalterlich)\b/g,"").trim();
   const candidates=heroldApprovedDuplicateTargets.filter(item=>{
     const event=item.event;
     const sameCountry=heroldNorm(event.country)===heroldNorm(fund.country);
