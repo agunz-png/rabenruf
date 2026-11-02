@@ -6849,6 +6849,9 @@ function heroldNorm(value){
     .replace(/\b(?:im|in|am|an|der|die|das|dem|den|a)\b/g," ")
     .replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
 }
+function heroldCityNorm(value){
+  return heroldNorm(value).replace(/\b(?:ag|ai|ar|be|bl|bs|fr|ge|gl|gr|ju|lu|ne|nw|ow|sg|sh|so|sz|tg|ti|ur|vd|vs|zg|zh)\b$/,"").trim();
+}
 function heroldNameTokens(value){
   const normalized=heroldNorm(value).replace(/\bmittelalter markt\b/g,"mittelaltermarkt");
   return normalized.split(" ").filter(Boolean);
@@ -6868,7 +6871,7 @@ function heroldSameEvent(a,b){
   if(!datesA || !datesB || datesA.start!==datesB.start || datesA.end!==datesB.end) return false;
   const countryA=heroldNorm(a.country), countryB=heroldNorm(b.country);
   if(countryA && countryB && countryA!==countryB) return false;
-  const cityA=heroldNorm(a.city), cityB=heroldNorm(b.city);
+  const cityA=heroldCityNorm(a.city), cityB=heroldCityNorm(b.city);
   // Some sources accidentally put an organizer or the event title into the city field.
   // Only bypass that malformed location when the distinctive title, country and full dates match.
   if(cityA && cityB && cityA!==cityB){
@@ -6877,7 +6880,7 @@ function heroldSameEvent(a,b){
       return city===name || city==="neues ok";
     };
     const sameTitle=heroldNorm(a.name)===heroldNorm(b.name);
-    const distinctive=heroldNameTokens(a.name).length>=3;
+    const distinctive=heroldNameTokens(a.name).length>=2;
     const knownCityAlias = sameTitle && (
       (heroldNorm(a.name)==="mittelaltermarkt zu basselstorff" &&
        [cityA,cityB].sort().join("|")==="basselstorff|bassersdorf") ||
@@ -6892,8 +6895,8 @@ function heroldSameEvent(a,b){
   // Names alone are insufficient: missing locations require manual review.
   if(!cityA || !cityB || !countryA || !countryB) return false;
   if(nameA===nameB) return true;
-  const common=tokensA.filter(token=>tokensB.includes(token));
-  return common.length>=2 && common.length/Math.max(tokensA.length,tokensB.length)>=0.8;
+  // Similar titles can be separate events: never hide automatically.
+  return false;
 }
 function heroldDeduplicate(list,existing=[]){
   const kept=[];
