@@ -253,6 +253,11 @@ jobs:
               value = re.sub(r"[^a-z0-9]+", " ", value)
               return re.sub(r"\s+", " ", value).strip()
 
+          def normalized_city(value):
+              city = normalized(value)
+              # Strip Swiss canton abbreviations only when used as a trailing token.
+              return re.sub(r"\\b(?:ag|ai|ar|be|bl|bs|fr|ge|gl|gr|ju|lu|ne|nw|ow|sg|sh|so|sz|tg|ti|ur|vd|vs|zg|zh)$", "", city).strip()
+
           def date_range(event):
               start = str(event.get("start") or "")
               end = str(event.get("end") or start)
@@ -272,13 +277,13 @@ jobs:
               if candidate_id in approved_ids:
                   return True
               candidate_name = normalized(candidate.get("name"))
-              candidate_city = normalized(candidate.get("city"))
+              candidate_city = normalized_city(candidate.get("city"))
               candidate_dates = date_range(candidate)
               if not candidate_name or not candidate_city or not candidate_dates:
                   return False
               for event in approved_events:
                   name = normalized(event.get("name"))
-                  city = normalized(event.get("city"))
+                  city = normalized_city(event.get("city"))
                   dates = date_range(event)
                   if not name or not city or not dates:
                       continue
@@ -292,8 +297,7 @@ jobs:
                   known_alias = (
                       (candidate_name == "mittelaltermarkt zu basselstorff"
                        and {candidate_city, city} == {"basselstorff", "bassersdorf"})
-                      or (candidate_name == "mittelaltermarkt herrendingen"
-                          and {candidate_city, city} == {"eschenbach lu", "eschenbach"})
+
                   )
                   if candidate_city == city or malformed_city or known_alias:
                       return True
