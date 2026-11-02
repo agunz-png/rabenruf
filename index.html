@@ -6942,8 +6942,16 @@ async function ladeHeroldFunde(){
       }
     }
 
+    let verknuepfteIds = new Set();
+    try{
+      const links = await heroldApi("rest/v1/herold_duplicate_links?select=candidate_id");
+      verknuepfteIds = new Set((Array.isArray(links)?links:[]).map(link=>String(link.candidate_id||"")));
+    }catch(error){
+      console.warn("Dauerhafte Duplikat-Zuordnungen konnten nicht geladen werden:",error);
+    }
     heroldFunde = heroldDeduplicate(funde.filter(fund =>
-      !entschiedeneIds.has(String(fund.id || ""))
+      !entschiedeneIds.has(String(fund.id || "")) &&
+      !verknuepfteIds.has(String(fund.id || ""))
     ), bereitsBestaetigt);
     renderHerold();
   }catch(fehler){
