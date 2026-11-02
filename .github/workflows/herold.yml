@@ -282,14 +282,18 @@ jobs:
                   dates = date_range(event)
                   if not name or not city or not dates:
                       continue
-                  similarity = SequenceMatcher(None, candidate_name, name).ratio()
-                  same_city = candidate_city and city and (
-                      candidate_city == city or candidate_city in city or city in candidate_city
+                  if candidate_name != name or candidate_dates != dates:
+                      continue
+                  if normalized(candidate.get("country")) != normalized(event.get("country")):
+                      continue
+                  # Fyndling sometimes supplies an organizer as the city.
+                  # The alias is narrowly scoped to an identical event title and exact dates.
+                  malformed_city = candidate_city in ("neues ok", candidate_name)
+                  known_alias = (
+                      candidate_name == "mittelaltermarkt zu basselstorff"
+                      and {candidate_city, city} == {"basselstorff", "bassersdorf"}
                   )
-                  overlaps = candidate_dates[0] <= dates[1] and dates[0] <= candidate_dates[1]
-                  # Exact or near-exact titles with overlapping dates still match
-                  # when a source has put the event title into its city field.
-                  if overlaps and candidate_name == name and candidate_city == city and normalized(candidate.get("country")) == normalized(event.get("country")) and candidate_dates == dates:
+                  if candidate_city == city or malformed_city or known_alias:
                       return True
               return False
 
