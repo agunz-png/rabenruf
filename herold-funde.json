@@ -988,50 +988,6 @@
     "lng": 8.5752465
   },
   {
-    "id": "eu-source-72e21e288537319e",
-    "name": "Mittelalterspektakel Burgdorf",
-    "type": "Markt",
-    "date": "2027-07-23 bis 2027-07-25",
-    "start": "2027-07-23",
-    "end": "2027-07-25",
-    "country": "Schweiz",
-    "city": "Neues OK",
-    "postcode": "",
-    "source": "https://fyndling.de/e/a6bf008e1c4058e4",
-    "lat": 47.5436323,
-    "lng": 8.5752465
-  },
-  {
-    "id": "eu-source-072bf3f612f4b5b6",
-    "name": "Mittelaltermarkt zu Basselstorff",
-    "type": "Markt",
-    "date": "2027-08-27 bis 2027-08-29",
-    "start": "2027-08-27",
-    "end": "2027-08-29",
-    "country": "Schweiz",
-    "city": "Basselstorff",
-    "postcode": "",
-    "source": "https://fyndling.de/e/229df9f16d51b253",
-    "website": "http://www.mittelaltergilde.ch",
-    "websites": [
-      "http://www.mittelaltergilde.ch"
-    ]
-  },
-  {
-    "id": "eu-source-d596d9df47c6dc22",
-    "name": "Mittelalterspektakel Biel/Nidau",
-    "type": "Markt",
-    "date": "2027-09-17 bis 2027-09-19",
-    "start": "2027-09-17",
-    "end": "2027-09-19",
-    "country": "Schweiz",
-    "city": "Neues OK",
-    "postcode": "",
-    "source": "https://fyndling.de/e/d9e8d168ffe531a3",
-    "lat": 47.5436323,
-    "lng": 8.5752465
-  },
-  {
     "id": "eu-source-1cc54c004ef71e30",
     "name": "Mittelaltermarkt im Park Seleger Moor Geplant!",
     "type": "Markt",
@@ -1045,22 +1001,6 @@
     "website": "http://www.selegermoor.ch",
     "websites": [
       "http://www.selegermoor.ch"
-    ]
-  },
-  {
-    "id": "eu-source-a290b66685c44f19",
-    "name": "Historischer Herbstmarkt Wangen a. Aare",
-    "type": "Markt",
-    "date": "2027-10-09 bis 2027-10-10",
-    "start": "2027-10-09",
-    "end": "2027-10-10",
-    "country": "Schweiz",
-    "city": "Historischer Herbstmarkt Wangen a. Aare",
-    "postcode": "",
-    "source": "https://fyndling.de/e/66c938e086022fed",
-    "website": "http://www.marktzunft.ch",
-    "websites": [
-      "http://www.marktzunft.ch"
     ]
   },
   {
