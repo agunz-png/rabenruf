@@ -290,8 +290,10 @@ jobs:
                   # The alias is narrowly scoped to an identical event title and exact dates.
                   malformed_city = candidate_city in ("neues ok", candidate_name)
                   known_alias = (
-                      candidate_name == "mittelaltermarkt zu basselstorff"
-                      and {candidate_city, city} == {"basselstorff", "bassersdorf"}
+                      (candidate_name == "mittelaltermarkt zu basselstorff"
+                       and {candidate_city, city} == {"basselstorff", "bassersdorf"})
+                      or (candidate_name == "mittelaltermarkt herrendingen"
+                          and {candidate_city, city} == {"eschenbach lu", "eschenbach"})
                   )
                   if candidate_city == city or malformed_city or known_alias:
                       return True
