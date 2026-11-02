@@ -289,7 +289,7 @@ jobs:
                   overlaps = candidate_dates[0] <= dates[1] and dates[0] <= candidate_dates[1]
                   # Exact or near-exact titles with overlapping dates still match
                   # when a source has put the event title into its city field.
-                  if overlaps and (similarity >= 0.98 or (similarity >= 0.75 and same_city)):
+                  if overlaps and candidate_name == name and candidate_city == city and normalized(candidate.get("country")) == normalized(event.get("country")) and candidate_dates == dates:
                       return True
               return False
 
