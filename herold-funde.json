@@ -956,24 +956,6 @@
     "lng": 8.1852444
   },
   {
-    "id": "eu-source-e8a5aa4e0620e5bb",
-    "name": "Mittelaltermarkt Herrendingen",
-    "type": "Markt",
-    "date": "2027-09-25 bis 2027-09-26",
-    "start": "2027-09-25",
-    "end": "2027-09-26",
-    "country": "Schweiz",
-    "city": "Eschenbach LU",
-    "postcode": "",
-    "source": "https://fyndling.de/e/4ac7e397391362bc",
-    "website": "http://www.arbor-noctuarum.ch",
-    "websites": [
-      "http://www.arbor-noctuarum.ch"
-    ],
-    "lat": 47.1330227,
-    "lng": 8.317969
-  },
-  {
     "id": "eu-source-7bbaeb7706fd17df",
     "name": "Viking Rock Festival mit Mittelaltermarkt",
     "type": "Markt",
