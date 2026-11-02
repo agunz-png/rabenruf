@@ -241,6 +241,14 @@ jobs:
           with urllib.request.urlopen(request, timeout=30) as response:
               approved = json.loads(response.read().decode("utf-8"))
 
+          duplicate_request = urllib.request.Request(
+              supabase_url + "/rest/v1/herold_duplicate_links?select=candidate_id",
+              headers={"apikey": publishable_key, "Authorization": "Bearer " + publishable_key},
+          )
+          with urllib.request.urlopen(duplicate_request, timeout=30) as response:
+              duplicate_links = json.load(response)
+          linked_ids = {str(row["candidate_id"]) for row in duplicate_links if row.get("candidate_id")}
+
           approved_ids = {
               str(row.get("event_id") or "")
               for row in approved
@@ -274,7 +282,7 @@ jobs:
 
           def matches_approved(candidate):
               candidate_id = str(candidate.get("id") or "")
-              if candidate_id in approved_ids:
+              if candidate_id in approved_ids or candidate_id in linked_ids:
                   return True
               candidate_name = normalized(candidate.get("name"))
               candidate_city = normalized_city(candidate.get("city"))
