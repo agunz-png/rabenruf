@@ -7425,11 +7425,17 @@ async function heroldDuplikatZuordnen(index){
   const fund=heroldFunde[index];
   if(!fund || !heroldSession) return alert("Bitte zuerst im Herold anmelden.");
   const norm=heroldNorm(fund.name);
-  const candidates=heroldApprovedDuplicateTargets.filter(item=>
-    heroldNorm(item.event.name).replace(/ geplant$/,"")===norm.replace(/ geplant$/,"") &&
-    heroldNorm(item.event.country)===heroldNorm(fund.country) &&
-    String(item.event.start||"").slice(0,4)===String(fund.start||"").slice(0,4)
-  );
+  const normalizedTitle=value=>heroldNorm(value).replace(/\\b(?:geplant|mps|mittelalterliches|mittelalterlich)\\b/g,"").trim();
+  const candidates=heroldApprovedDuplicateTargets.filter(item=>{
+    const event=item.event;
+    const sameCountry=heroldNorm(event.country)===heroldNorm(fund.country);
+    const sameStart=String(event.start||"")===String(fund.start||"");
+    const cityA=heroldCityNorm(event.city),cityB=heroldCityNorm(fund.city);
+    const sameCity=Boolean(cityA&&cityB&&(cityA===cityB||cityA.includes(cityB)||cityB.includes(cityA)));
+    const sameName=normalizedTitle(event.name)===normalizedTitle(fund.name);
+    // An identical date and location are mandatory; a shared series name is not enough.
+    return sameCountry && sameStart && sameCity && sameName;
+  });
   if(!candidates.length) return alert("Keine bestätigte Veranstaltung mit identischem Namen, Land und Datum gefunden. Bitte zuerst die Daten prüfen.");
   const choices=candidates.map((item,i)=>(i+1)+": "+item.event.name+" – "+item.event.city+" ("+item.id+")").join("\n");
   const selected=prompt("Nur bei sicherer Übereinstimmung verknüpfen. Name, Ort und Datum vergleichen.\n0 = Keiner davon / abbrechen\n"+choices+"\nNummer eingeben:");
