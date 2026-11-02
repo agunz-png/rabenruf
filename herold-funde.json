@@ -558,25 +558,6 @@
     "lng": 11.1406526
   },
   {
-    "id": "eu-source-8b38acc3e49904bc",
-    "name": "Mittelalterlich Phantasie Spectaculum",
-    "type": "Markt",
-    "date": "2027-08-21 bis 2027-08-22",
-    "start": "2027-08-21",
-    "end": "2027-08-22",
-    "country": "Deutschland",
-    "city": "Speyer",
-    "postcode": "67346",
-    "source": "https://fyndling.de/e/af2048f25f40700a",
-    "venue": "Unterer Domgarten",
-    "website": "https://www.spectaculum.de/termine/rastede/",
-    "websites": [
-      "https://www.spectaculum.de/termine/rastede/"
-    ],
-    "lat": 49.3290791,
-    "lng": 8.4343415
-  },
-  {
     "id": "eu-source-5ef421b0be54f0b2",
     "name": "Mittelaltermarkt",
     "type": "Markt",
@@ -938,38 +919,6 @@
     ]
   },
   {
-    "id": "eu-source-bf2b21c793bf03d5",
-    "name": "Mittelaltermarkt Schloss Lenzburg Geplant!",
-    "type": "Markt",
-    "date": "2027-09-10 bis 2027-09-12",
-    "start": "2027-09-10",
-    "end": "2027-09-12",
-    "country": "Schweiz",
-    "city": "Schloss Lenzburg Lenzburg AG",
-    "postcode": "",
-    "source": "https://fyndling.de/e/421319c3d725a967",
-    "website": "http://www.museumaargau.ch/schloss-lenzburg",
-    "websites": [
-      "http://www.museumaargau.ch/schloss-lenzburg"
-    ],
-    "lat": 47.3872674,
-    "lng": 8.1852444
-  },
-  {
-    "id": "eu-source-7bbaeb7706fd17df",
-    "name": "Viking Rock Festival mit Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-05-21 bis 2027-05-23",
-    "start": "2027-05-21",
-    "end": "2027-05-23",
-    "country": "Schweiz",
-    "city": "Neues OK",
-    "postcode": "",
-    "source": "https://fyndling.de/e/bd4d0e5aca09a15c",
-    "lat": 47.5436323,
-    "lng": 8.5752465
-  },
-  {
     "id": "eu-source-1cc54c004ef71e30",
     "name": "Mittelaltermarkt im Park Seleger Moor Geplant!",
     "type": "Markt",
@@ -1139,18 +1088,6 @@
     "country": "Deutschland",
     "city": "Untergruppenbach",
     "postcode": "74199",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-91bc525beca7b974",
-    "name": "Mittelaltermarkt am Osnabrücker Ringwall 2027 (die 7. Runde)",
-    "type": "Markt",
-    "date": "2027-08-13 bis 2027-08-15",
-    "start": "2027-08-13",
-    "end": "2027-08-15",
-    "country": "Deutschland",
-    "city": "Osnabrück",
-    "postcode": "49082",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
