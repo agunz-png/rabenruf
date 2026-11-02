@@ -6864,11 +6864,22 @@ function heroldDateRange(event){
 function heroldSameEvent(a,b){
   if(!a || !b) return false;
   const datesA=heroldDateRange(a), datesB=heroldDateRange(b);
-  if(!datesA || !datesB || datesA.start>datesB.end || datesB.start>datesA.end) return false;
+  // Different date ranges are not automatically merged: an overlap alone is insufficient.
+  if(!datesA || !datesB || datesA.start!==datesB.start || datesA.end!==datesB.end) return false;
   const countryA=heroldNorm(a.country), countryB=heroldNorm(b.country);
   if(countryA && countryB && countryA!==countryB) return false;
   const cityA=heroldNorm(a.city), cityB=heroldNorm(b.city);
-  if(cityA && cityB && cityA!==cityB) return false;
+  // Some sources accidentally put an organizer or the event title into the city field.
+  // Only bypass that malformed location when the distinctive title, country and full dates match.
+  if(cityA && cityB && cityA!==cityB){
+    const malformed = event => {
+      const city=heroldNorm(event.city), name=heroldNorm(event.name);
+      return city===name || city==="neues ok";
+    };
+    const sameTitle=heroldNorm(a.name)===heroldNorm(b.name);
+    const distinctive=heroldNameTokens(a.name).length>=3;
+    if(!(sameTitle && distinctive && countryA && countryA===countryB && (malformed(a)||malformed(b)))) return false;
+  }
   const tokensA=heroldNameTokens(a.name),tokensB=heroldNameTokens(b.name);
   const nameA=tokensA.join(" "),nameB=tokensB.join(" ");
   if(!nameA || !nameB) return false;
