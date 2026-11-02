@@ -16,6 +16,10 @@ on:
 
     - cron: "15 4 * * *"
 
+concurrency:
+  group: rabenruf-herold-data-write
+  cancel-in-progress: false
+
 permissions:
 
   contents: write
