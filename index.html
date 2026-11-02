@@ -7406,10 +7406,9 @@ async function heroldDuplikatZuordnen(index){
   if(!fund || !heroldSession) return alert("Bitte zuerst im Herold anmelden.");
   const norm=heroldNorm(fund.name);
   const candidates=heroldApprovedDuplicateTargets.filter(item=>
-    heroldNorm(item.event.name)===norm &&
+    heroldNorm(item.event.name).replace(/ geplant$/,"")===norm.replace(/ geplant$/,"") &&
     heroldNorm(item.event.country)===heroldNorm(fund.country) &&
-    String(item.event.start||"")===String(fund.start||"") &&
-    String(item.event.end||item.event.start||"")===String(fund.end||fund.start||"")
+    String(item.event.start||"").slice(0,4)===String(fund.start||"").slice(0,4)
   );
   if(!candidates.length) return alert("Keine bestätigte Veranstaltung mit identischem Namen, Land und Datum gefunden. Bitte zuerst die Daten prüfen.");
   const choices=candidates.map((item,i)=>(i+1)+": "+item.event.name+" – "+item.event.city+" ("+item.id+")").join("\n");
