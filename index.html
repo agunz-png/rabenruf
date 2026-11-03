@@ -6950,7 +6950,10 @@ function heroldSameEvent(a,b){
       (heroldNorm(a.name)==="mittelaltermarkt zu basselstorff" &&
        [cityA,cityB].sort().join("|")==="basselstorff|bassersdorf") ||
       (heroldNorm(a.name)==="mittelaltermarkt herrendingen" &&
-       [cityA,cityB].sort().join("|")==="eschenbach|eschenbach lu")
+       [cityA,cityB].sort().join("|")==="eschenbach|eschenbach lu") ||
+      (heroldNorm(a.name)==="keltisches erntefest" &&
+       datesA.start==="2027-07-31" && datesA.end==="2027-08-01" &&
+       cityA.includes("kelbra") && cityB.includes("kelbra"))
     );
     if(!(countryA && countryA===countryB && (knownCityAlias || (sameTitle && distinctive && (malformed(a)||malformed(b)))))) return false;
   }
@@ -6967,8 +6970,13 @@ function heroldDeduplicate(list,existing=[]){
   const kept=[];
   for(const event of list){
     if(existing.some(other=>heroldSameEvent(event,other))) continue;
-    if(kept.some(other=>heroldSameEvent(event,other))) continue;
-    kept.push(event);
+    const match=kept.find(other=>heroldSameEvent(event,other));
+    if(match){
+      // Keep the original event ID (including existing favourites) and preserve all categories.
+      match.tags=[...new Set([...(Array.isArray(match.tags)?match.tags:[]),...(Array.isArray(event.tags)?event.tags:[])])];
+      continue;
+    }
+    kept.push({...event,tags:Array.isArray(event.tags)?[...event.tags]:[]});
   }
   return kept;
 }
