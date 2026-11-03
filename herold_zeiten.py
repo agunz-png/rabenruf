@@ -38,10 +38,14 @@ def nodes(obj):
         yield obj
 
 def extract(event, html, url):
+    """Accept only explicit per-day Event time ranges, never inferred weekend hours."""
     parser = JsonScripts()
     parser.feed(html)
     start, end = str(event.get("start", "")), str(event.get("end") or event.get("start") or "")
+    if not DATE.fullmatch(start) or not DATE.fullmatch(end) or start > end:
+        return []
     found = {}
+    conflicts = set()
     for script in parser.scripts:
         try:
             data = json.loads(script)
@@ -55,28 +59,30 @@ def extract(event, html, url):
                 continue
             title = str(item.get("name", "")).lower()
             event_title = str(event.get("name", "")).lower()
-            words = [w for w in re.findall(r"[a-zäöü]{4,}", event_title) if w not in ("mittelalter", "markt", "fest", "mittelaltermarkt")]
+            words = [w for w in re.findall(r"[a-zäöü]{4,}", event_title)
+                     if w not in ("mittelalter", "markt", "fest", "mittelaltermarkt")]
             if not words or not any(w in title for w in words):
                 continue
             starts = str(item.get("startDate", ""))
             ends = str(item.get("endDate", ""))
-            if not (starts[:10] == start and ends[:10] == end):
+            # A multi-day parent Event gives only boundary timestamps.
+            # Individual Event nodes with a same-day start/end are trustworthy day slots.
+            if starts[:10] != ends[:10] or not (start <= starts[:10] <= end):
                 continue
-            for date_str, stamp in ((start, starts), (end, ends)):
-                if not DATE.fullmatch(date_str) or "T" not in stamp:
-                    continue
-                match = re.search(r"T(\d{2}:\d{2})", stamp)
-                if not match or not TIME.fullmatch(match.group(1)):
-                    continue
-                # A startDate/endDate pair describes event boundaries, not daily opening hours.
-                # Only accept single-day events; multi-day boundaries are not daily hours.
-                if start != end:
-                    continue
-                opening = re.search(r"T(\d{2}:\d{2})", starts)
-                closing = re.search(r"T(\d{2}:\d{2})", ends)
-                if opening and closing and opening.group(1) < closing.group(1):
-                    found[start] = {"date": start, "open": opening.group(1), "close": closing.group(1)}
-    return [{"date": k, **v} for k, v in sorted(found.items())]
+            opening = re.search(r"T(\d{2}:\d{2})", starts)
+            closing = re.search(r"T(\d{2}:\d{2})", ends)
+            if not opening or not closing:
+                continue
+            open_time, close_time = opening.group(1), closing.group(1)
+            if not TIME.fullmatch(open_time) or not TIME.fullmatch(close_time) or open_time >= close_time:
+                continue
+            day = starts[:10]
+            slot = {"date": day, "open": open_time, "close": close_time}
+            if day in found and found[day] != slot:
+                conflicts.add(day)
+            else:
+                found[day] = slot
+    return [found[day] for day in sorted(found) if day not in conflicts]
 
 def main():
     with open(PATH, encoding="utf-8") as f:
