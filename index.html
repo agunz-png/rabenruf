@@ -5470,6 +5470,34 @@ function distanceKm(
 
    ========================================= */
 
+// Strukturierte Tageszeiten: [{date:"YYYY-MM-DD",open:"10:00",close:"18:00",source:"https://..."}].
+// Bestehendes Freitextfeld `hours` bleibt unverändert erhalten.
+function eventDailyHours(event){
+  if(!Array.isArray(event?.dailyHours)) return [];
+  const start=String(event.start||""),end=String(event.end||start);
+  const validDate=d=>/^20\d{2}-\d{2}-\d{2}$/.test(d)&&!Number.isNaN(Date.parse(d+"T12:00:00Z"));
+  const validTime=t=>/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(t);
+  const byDate=new Map();
+  for(const item of event.dailyHours){
+    if(!item||typeof item!=="object") continue;
+    const date=String(item.date||""),open=String(item.open||""),close=String(item.close||"");
+    if(!validDate(date)||!validTime(open)||!validTime(close)||close<=open) continue;
+    if(!validDate(start)||!validDate(end)||date<start||date>end) continue;
+    if(!byDate.has(date)) byDate.set(date,{date,open,close});
+  }
+  return [...byDate.values()].sort((a,b)=>a.date.localeCompare(b.date));
+}
+function eventHoursHTML(event){
+  const days=eventDailyHours(event);
+  if(days.length){
+    const format=date=>new Intl.DateTimeFormat("de-CH",{weekday:"long",day:"numeric",month:"long",timeZone:"UTC"}).format(new Date(date+"T12:00:00Z"));
+    return '<div class="card"><h3>🕰️ Öffnungszeiten</h3>'+
+      days.map(day=>'<p>'+escapeHTML(format(day.date))+': <strong>'+escapeHTML(day.open)+'–'+escapeHTML(day.close)+'</strong></p>').join("")+
+      '<p class="muted">Nur veröffentlichte und geprüfte Tageszeiten.</p></div>';
+  }
+  return event.hours ? '<div class="card"><h3>🕰️ Öffnungszeiten</h3><p>'+escapeHTML(event.hours)+'</p></div>' : '';
+}
+
 function eventCard(event){
 
   let distanceHTML = "";
@@ -5570,7 +5598,7 @@ function eventCard(event){
 
       ${escapeHTML(event.country)}
 
-      ${event.hours ? `<br>🕰️ ${escapeHTML(event.hours || "Noch nicht bekannt")}` : ""}
+      ${eventDailyHours(event).length ? `<br>🕰️ ${eventDailyHours(event).map(day=>escapeHTML(day.date.slice(5)+" "+day.open+"–"+day.close)).join(" · ")}` : (event.hours ? `<br>🕰️ ${escapeHTML(event.hours)}` : "")}
 
     </div>
 
@@ -6067,7 +6095,7 @@ function openEvent(id){
 
     </div>
 
-    <section id="eventWeather" class="card weatherPanel" data-event-id="${escapeHTML(String(event.id))}" aria-live="polite">
+    ${eventHoursHTML(event)}\n\n    <section id="eventWeather" class="card weatherPanel" data-event-id="${escapeHTML(String(event.id))}" aria-live="polite">
       <h3>🌦️ Wetter am Veranstaltungsort</h3>
       <p class="weatherLoading">Wetterprognose wird geladen …</p>
     </section>
