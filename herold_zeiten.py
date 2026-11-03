@@ -11,8 +11,8 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit
 
 PATH = "herold-funde.json"
-TIME = re.compile(r"^(?:[01]\\d|2[0-3]):[0-5]\\d$")
-DATE = re.compile(r"^20\\d{2}-\\d{2}-\\d{2}$")
+TIME = re.compile(r"^(?:[01]\d|2[0-3]):[0-5]\d$")
+DATE = re.compile(r"^20\d{2}-\d{2}-\d{2}$")
 
 class JsonScripts(HTMLParser):
     def __init__(self):
@@ -65,15 +65,15 @@ def extract(event, html, url):
             for date_str, stamp in ((start, starts), (end, ends)):
                 if not DATE.fullmatch(date_str) or "T" not in stamp:
                     continue
-                match = re.search(r"T(\\d{2}:\\d{2})", stamp)
+                match = re.search(r"T(\d{2}:\d{2})", stamp)
                 if not match or not TIME.fullmatch(match.group(1)):
                     continue
                 # A startDate/endDate pair describes event boundaries, not daily opening hours.
                 # Only accept single-day events; multi-day boundaries are not daily hours.
                 if start != end:
                     continue
-                opening = re.search(r"T(\\d{2}:\\d{2})", starts)
-                closing = re.search(r"T(\\d{2}:\\d{2})", ends)
+                opening = re.search(r"T(\d{2}:\d{2})", starts)
+                closing = re.search(r"T(\d{2}:\d{2})", ends)
                 if opening and closing and opening.group(1) < closing.group(1):
                     found[start] = {"date": start, "open": opening.group(1), "close": closing.group(1)}
     return [{"date": k, **v} for k, v in sorted(found.items())]
