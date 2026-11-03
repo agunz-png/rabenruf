@@ -7050,7 +7050,7 @@ async function heroldZeitFreigeben(index){
  for(let i=0;i<fund.hoursReview.dailyHours.length;i++){
   const day=fund.hoursReview.dailyHours[i];
   const value=byId("hour-review-"+index+"-"+i)?.value.trim()||"";
-  const match=value.match(/^([01]\\d|2[0-3]):([0-5]\\d)\\s*[–-]\\s*([01]\\d|2[0-3]):([0-5]\\d)$/);
+  const match=value.match(/^([01]\d|2[0-3]):([0-5]\d)\s*[–-]\s*([01]\d|2[0-3]):([0-5]\d)$/);
   if(!match)return alert("Ungültige Zeit: "+value);
   dailyHours.push({date:day.date,open:match[1]+":"+match[2],close:match[3]+":"+match[4]});
  }
