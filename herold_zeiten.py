@@ -184,7 +184,13 @@ def main():
                 if "text/html" not in response.headers.get("Content-Type", ""):
                     continue
                 html = response.read(350000).decode("utf-8", "replace")
-            days = extract(event, html, url)\n            text_days = extract_text_hours(event, html)\n            if days and text_days and days != text_days:\n                # Conflicting source representations require manual investigation.\n                continue\n            if not days:\n                days = text_days
+            days = extract(event, html, url)
+            text_days = extract_text_hours(event, html)
+            if days and text_days and days != text_days:
+                # Conflicting source representations require manual investigation.
+                continue
+            if not days:
+                days = text_days
         except Exception:
             continue
         if days:
