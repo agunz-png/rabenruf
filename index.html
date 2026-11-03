@@ -7459,7 +7459,7 @@ function heroldKorrekturen(index){
   const dailyHours=[];
   if(reviewed){
     for(const input of document.querySelectorAll(".herold-hours-"+index)){
-      const match=input.value.trim().match(/^([01]\\d|2[0-3]):([0-5]\\d)\\s*[–-]\\s*([01]\\d|2[0-3]):([0-5]\\d)$/);
+      const match=input.value.trim().match(/^([01]\d|2[0-3]):([0-5]\d)\s*[–-]\s*([01]\d|2[0-3]):([0-5]\d)$/);
       if(!match) throw new Error("Ungültige Tageszeit: "+input.value+" (HH:MM–HH:MM)");
       const open=match[1]+":"+match[2],close=match[3]+":"+match[4];
       if(open>=close) throw new Error("Endzeit muss nach Beginn liegen.");
