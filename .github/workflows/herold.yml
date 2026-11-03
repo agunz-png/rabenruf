@@ -336,6 +336,10 @@ jobs:
           print("Bestätigte Entscheidungen geladen:", len(approved))
           PY
 
+      - name: Veranstaltungszeiten als Prüfvorschläge erfassen
+        run: |
+          python3 herold_zeiten.py
+
       - name: Funddatei prüfen
 
         run: |
