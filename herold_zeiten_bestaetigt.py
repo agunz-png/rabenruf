@@ -61,12 +61,6 @@ def scan(rows, previous, today=None, fetch=get_html):
             # Explicitly dated JSON-LD is acceptable. Text must explicitly contain
             # the event year; otherwise weekend hours may be from an earlier edition.
             days = extract(event, html, url)
-            if not days and str(start[:4]) in html:
-                text_days = extract_text_hours(event, html)
-                # Only allow text proposals with an explicit full year next to the date.
-                # Generic weekday hours are not evidence for a future year.
-                days = [d for d in text_days if d["date"] in html or
-                        any(f"{int(d['date'][8:])}.{int(d['date'][5:7])}.{d['date'][:4]}" in html for _ in [0])]
             if not days:
                 continue
             result[event_id] = {
