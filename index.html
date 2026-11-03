@@ -1256,6 +1256,7 @@ textarea.contactField{min-height:150px;resize:vertical;}
 
     <div id="heroldAccount"></div>
     <div id="heroldList"></div>
+    <div id="heroldHoursReview"></div>
     <div id="heroldUpdateList"></div>
   </div>
 </main>
@@ -7011,6 +7012,60 @@ function heroldDeduplicate(list,existing=[]){
   return kept;
 }
 
+
+// Zeitvorschläge bleiben sichtbar, auch wenn ein Fund bereits bestätigt ist.
+let heroldZeitFunde=[];
+async function ladeHeroldZeitFunde(){
+ const box=byId("heroldHoursReview");
+ if(!box || !heroldIsAdmin()) return;
+ try{
+  const response=await fetch("herold-funde.json?zeit="+Date.now());
+  if(!response.ok) throw new Error("Funddatei nicht erreichbar");
+  const all=await response.json();
+  heroldZeitFunde=(Array.isArray(all)?all:[]).filter(e=>e.hoursReview?.status==="pending" && Array.isArray(e.hoursReview.dailyHours));
+  renderHeroldZeitFunde();
+ }catch(error){box.textContent="Zeitvorschläge konnten nicht geladen werden: "+error.message;}
+}
+function renderHeroldZeitFunde(){
+ const box=byId("heroldHoursReview");if(!box)return;
+ box.innerHTML='<h2>🕰️ Öffnungszeiten prüfen</h2>'+
+ (heroldZeitFunde.length?heroldZeitFunde.map((fund,index)=>{
+  const review=fund.hoursReview;
+  const candidates=heroldApprovedDuplicateTargets.filter(item=>heroldSameEvent(fund,item.event));
+  const unique=candidates.length===1?candidates[0]:null;
+  const link=/^https:\/\//i.test(review.source||"")?'<a target="_blank" rel="noopener noreferrer" href="'+escapeHTML(review.source)+'">Originalquelle</a>':"";
+  return '<div class="card"><h3>'+escapeHTML(fund.name||"")+'</h3><p>'+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+' · '+escapeHTML(fund.city||"")+'</p>'+
+   review.dailyHours.map((d,i)=>'<label>'+escapeHTML(d.date)+' <input id="hour-review-'+index+'-'+i+'" value="'+escapeHTML(d.open+"–"+d.close)+'"></label>').join("")+
+   '<p>'+link+'</p><p class="muted">Nur nach Prüfung des richtigen Veranstaltungsjahres freigeben.</p>'+
+   (unique?'<p>Kalendereintrag: '+escapeHTML(unique.event.name||"")+'</p><button onclick="heroldZeitFreigeben('+index+')">✅ Geprüfte Zeiten übernehmen</button>':
+   '<p class="muted">Keine eindeutige Zuordnung zu einem bestätigten Datenbankeintrag. Keine automatische Übernahme, um Duplikate zu vermeiden.</p>')+
+   '</div>';
+ }).join(""):'<p>Keine offenen Zeitvorschläge.</p>');
+}
+async function heroldZeitFreigeben(index){
+ const fund=heroldZeitFunde[index];if(!fund || !heroldSession)return;
+ const matches=heroldApprovedDuplicateTargets.filter(item=>heroldSameEvent(fund,item.event));
+ if(matches.length!==1)return alert("Keine eindeutige Zuordnung.");
+ const dailyHours=[];
+ for(let i=0;i<fund.hoursReview.dailyHours.length;i++){
+  const day=fund.hoursReview.dailyHours[i];
+  const value=byId("hour-review-"+index+"-"+i)?.value.trim()||"";
+  const match=value.match(/^([01]\\d|2[0-3]):([0-5]\\d)\\s*[–-]\\s*([01]\\d|2[0-3]):([0-5]\\d)$/);
+  if(!match)return alert("Ungültige Zeit: "+value);
+  dailyHours.push({date:day.date,open:match[1]+":"+match[2],close:match[3]+":"+match[4]});
+ }
+ if(!confirm("Hast du Quelle, Veranstaltungsjahr und alle Tageszeiten überprüft?"))return;
+ try{
+  await heroldSessionErneuern();
+  const data=await heroldApi("functions/v1/herold-hours-review",{method:"POST",token:heroldSession.access_token,body:{event_id:matches[0].id,dailyHours}});
+  if(!data?.ok)throw new Error(data?.error||"Speichern fehlgeschlagen");
+  heroldZeitFunde.splice(index,1);
+  await ladeFreigegebeneEvents();
+  renderHeroldZeitFunde();
+  alert("Öffnungszeiten gespeichert.");
+ }catch(error){alert(error.message||"Speichern fehlgeschlagen");}
+}
+
 let heroldApprovedDuplicateTargets = [];
 async function ladeHeroldFunde(){
   try{
@@ -7057,6 +7112,7 @@ async function ladeHeroldFunde(){
       !verknuepfteIds.has(String(fund.id || ""))
     ), bereitsBestaetigt);
     renderHerold();
+    await ladeHeroldZeitFunde();
   }catch(fehler){
     console.error("Herold-Funde konnten nicht geladen werden:", fehler);
     const box = document.getElementById("heroldList");
