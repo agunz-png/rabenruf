@@ -91,13 +91,13 @@ WEEKDAYS = {
     "mo": 0, "di": 1, "mi": 2, "do": 3, "fr": 4, "sa": 5, "so": 6,
 }
 DAY_LABEL = re.compile(
-    r"(?<![\\w])(?P<day>montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|mo|di|mi|do|fr|sa|so)\\.?\\s*"
-    r"(?:[,\\-:]\\s*)?(?P<date>\\d{1,2}\\.\\s*\\d{1,2}\\.(?:\\s*20\\d{2})?)?",
+    r"(?<![\w])(?P<day>montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|mo|di|mi|do|fr|sa|so)\.?\s*"
+    r"(?:[,\-:]\s*)?(?P<date>\d{1,2}\.\s*\d{1,2}\.(?:\s*20\d{2})?)?",
     re.IGNORECASE,
 )
 RANGE = re.compile(
-    r"(?<!\\d)(?P<open>(?:[01]?\\d|2[0-3])(?:[:.]\\d{2})?)\\s*(?:uhr)?\\s*"
-    r"(?:-|–|—|bis)\\s*(?P<close>(?:[01]?\\d|2[0-3])(?:[:.]\\d{2})?)\\s*(?:uhr)?",
+    r"(?<!\d)(?P<open>(?:[01]?\d|2[0-3])(?:[:.]\d{2})?)\s*(?:uhr)?\s*"
+    r"(?:-|–|—|bis)\s*(?P<close>(?:[01]?\d|2[0-3])(?:[:.]\d{2})?)\s*(?:uhr)?",
     re.IGNORECASE,
 )
 
@@ -128,7 +128,7 @@ def extract_text_hours(event, html):
         if 8 <= len(line) <= 170:
             lines.append(line)
     if not lines:
-        lines = [line.strip() for line in soup.get_text("\\n", strip=True).splitlines() if 8 <= len(line.strip()) <= 170]
+        lines = [line.strip() for line in soup.get_text("\n", strip=True).splitlines() if 8 <= len(line.strip()) <= 170]
     matches = {}
     conflict = set()
     for line in lines:
