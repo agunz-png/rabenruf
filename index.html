@@ -7357,6 +7357,15 @@ async function entscheideTerminAenderung(requestId,action){
 }
 
 let heroldFilter = "alle";
+function heroldZeitVorschlag(index,fund){
+ const review=fund.hoursReview;
+ if(!review || review.status!=="pending" || !Array.isArray(review.dailyHours) || !review.dailyHours.length) return "";
+ const rows=review.dailyHours.map(day=>'<label>'+escapeHTML(day.date||"Tag")+' <input class="eventEditField herold-hours-'+index+'" data-date="'+escapeHTML(day.date||"")+'" value="'+escapeHTML((day.open||"")+"–"+(day.close||""))+'"></label>').join("");
+ const url=/^https:\/\//i.test(review.source||"")?review.source:"";
+ return '<div class="card"><h4>🕰️ Öffnungszeiten zur Prüfung</h4><p class="muted">Achtung: Prüfe besonders, ob die Quelle das richtige Veranstaltungsjahr nennt.</p>'+rows+
+ (url?'<a href="'+escapeHTML(url)+'" target="_blank" rel="noopener noreferrer">Originalquelle prüfen</a>':"")+
+ '<label><input type="checkbox" id="herold-hours-accept-'+index+'"> Zeiten und Veranstaltungsjahr geprüft – übernehmen</label></div>';
+}
 function renderHerold(){
   const box=byId("heroldList");
   if(!box) return;
@@ -7393,7 +7402,7 @@ function renderHerold(){
       field(index,"organizer","Veranstalter",fund.organizer)+field(index,"website","Veranstalter-Webseite",fund.website||fund.organizer_url)+
       field(index,"flyer","Flyer-Adresse",fund.flyer)+
       '<label>Beschreibung<textarea class="eventEditField" id="herold-edit-'+index+'-info">'+escapeHTML(fund.info||"")+'</textarea></label>'+
-      field(index,"hours","Zeiten",fund.hours)+
+      field(index,"hours","Zeiten",fund.hours)+\n      heroldZeitVorschlag(index,fund)+
       '<p class="muted">Quelle: '+escapeHTML(fund.source||"keine Quelle angegeben")+'</p></div></details>'+
       '<div class="buttonRow"><button onclick="heroldUebernehmen('+index+')">✅ Übernehmen</button>'+
       '<button onclick="heroldDuplikatZuordnen('+index+')">🔗 Bereits im Kalender</button>'+
@@ -7445,7 +7454,18 @@ async function starteHeroldAktion(index, aktion){
 
 function heroldKorrekturen(index){
   const read=key=>document.getElementById("herold-edit-"+index+"-"+key)?.value?.trim() || "";
-  const tags=[...document.querySelectorAll(".herold-edit-"+index+"-tag:checked")].map(input=>input.value);
+  const tags=[...document.querySelectorAll(".herold-edit-"+index+"-tag:checked")].map(input=>input.value);\n  const reviewed=!!document.getElementById("herold-hours-accept-"+index)?.checked;
+  const dailyHours=[];
+  if(reviewed){
+    for(const input of document.querySelectorAll(".herold-hours-"+index)){
+      const match=input.value.trim().match(/^([01]\\d|2[0-3]):([0-5]\\d)\\s*[–-]\\s*([01]\\d|2[0-3]):([0-5]\\d)$/);
+      if(!match) throw new Error("Ungültige Tageszeit: "+input.value+" (HH:MM–HH:MM)");
+      const open=match[1]+":"+match[2],close=match[3]+":"+match[4];
+      if(open>=close) throw new Error("Endzeit muss nach Beginn liegen.");
+      dailyHours.push({date:input.dataset.date,open,close});
+    }
+  }
+
   return {
     name:read("name"),type:tags[0]||"Markt",tags,
     start:read("start"),end:read("end"),city:read("city"),country:read("country"),
