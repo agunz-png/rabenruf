@@ -6,7 +6,8 @@ accepted. Results are proposals for admin review, never automatic approvals.
 import json
 import re
 import urllib.request
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
+from bs4 import BeautifulSoup
 from html.parser import HTMLParser
 from urllib.parse import urlsplit
 
@@ -84,6 +85,86 @@ def extract(event, html, url):
                 found[day] = slot
     return [found[day] for day in sorted(found) if day not in conflicts]
 
+WEEKDAYS = {
+    "montag": 0, "dienstag": 1, "mittwoch": 2, "donnerstag": 3,
+    "freitag": 4, "samstag": 5, "sonntag": 6,
+    "mo": 0, "di": 1, "mi": 2, "do": 3, "fr": 4, "sa": 5, "so": 6,
+}
+DAY_LABEL = re.compile(
+    r"(?<![\\w])(?P<day>montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|mo|di|mi|do|fr|sa|so)\\.?\\s*"
+    r"(?:[,\\-:]\\s*)?(?P<date>\\d{1,2}\\.\\s*\\d{1,2}\\.(?:\\s*20\\d{2})?)?",
+    re.IGNORECASE,
+)
+RANGE = re.compile(
+    r"(?<!\\d)(?P<open>(?:[01]?\\d|2[0-3])(?:[:.]\\d{2})?)\\s*(?:uhr)?\\s*"
+    r"(?:-|–|—|bis)\\s*(?P<close>(?:[01]?\\d|2[0-3])(?:[:.]\\d{2})?)\\s*(?:uhr)?",
+    re.IGNORECASE,
+)
+
+def clock(raw):
+    parts = re.split(r"[:.]", raw)
+    hour = int(parts[0])
+    minute = int(parts[1]) if len(parts) > 1 else 0
+    if hour > 23 or minute > 59:
+        return None
+    return f"{hour:02d}:{minute:02d}"
+
+def extract_text_hours(event, html):
+    """Find labelled day/time rows in a small event page, not inferred hours."""
+    try:
+        start = date.fromisoformat(str(event.get("start", "")))
+        end = date.fromisoformat(str(event.get("end") or event.get("start") or ""))
+    except ValueError:
+        return []
+    if end < start or (end - start).days > 7:
+        return []
+    soup = BeautifulSoup(html, "html.parser")
+    for tag in soup(["script", "style", "nav", "footer", "header", "form"]):
+        tag.decompose()
+    # Prefer compact rows/paragraphs; do not match a weekday in an unrelated paragraph.
+    lines = []
+    for tag in soup.find_all(["li", "tr", "p", "dd"]):
+        line = tag.get_text(" ", strip=True)
+        if 8 <= len(line) <= 170:
+            lines.append(line)
+    if not lines:
+        lines = [line.strip() for line in soup.get_text("\\n", strip=True).splitlines() if 8 <= len(line.strip()) <= 170]
+    matches = {}
+    conflict = set()
+    for line in lines:
+        for day_match in DAY_LABEL.finditer(line):
+            after = line[day_match.end():]
+            time_match = RANGE.search(after[:65])
+            if not time_match or time_match.start() > 24:
+                continue
+            opening, closing = clock(time_match.group("open")), clock(time_match.group("close"))
+            if not opening or not closing or opening >= closing:
+                continue
+            explicit = day_match.group("date")
+            day = None
+            if explicit:
+                parts = [p.strip() for p in explicit.split(".") if p.strip()]
+                try:
+                    day = date(int(parts[2]) if len(parts) > 2 else start.year, int(parts[1]), int(parts[0]))
+                except (ValueError, IndexError):
+                    continue
+                if day.weekday() != WEEKDAYS[day_match.group("day").lower()]:
+                    continue
+            else:
+                possible = [start + timedelta(days=n) for n in range((end - start).days + 1)
+                            if (start + timedelta(days=n)).weekday() == WEEKDAYS[day_match.group("day").lower()]]
+                if len(possible) != 1:
+                    continue
+                day = possible[0]
+            if not start <= day <= end:
+                continue
+            slot = {"date": day.isoformat(), "open": opening, "close": closing}
+            if day.isoformat() in matches and matches[day.isoformat()] != slot:
+                conflict.add(day.isoformat())
+            else:
+                matches[day.isoformat()] = slot
+    return [matches[key] for key in sorted(matches) if key not in conflict]
+
 def main():
     with open(PATH, encoding="utf-8") as f:
         events = json.load(f)
@@ -103,11 +184,11 @@ def main():
                 if "text/html" not in response.headers.get("Content-Type", ""):
                     continue
                 html = response.read(350000).decode("utf-8", "replace")
-            days = extract(event, html, url)
+            days = extract(event, html, url)\n            text_days = extract_text_hours(event, html)\n            if days and text_days and days != text_days:\n                # Conflicting source representations require manual investigation.\n                continue\n            if not days:\n                days = text_days
         except Exception:
             continue
         if days:
-            event["hoursReview"] = {"status": "pending", "dailyHours": days, "source": url, "method": "event-jsonld"}
+            event["hoursReview"] = {"status": "pending", "dailyHours": days, "source": url, "method": "event-jsonld-or-labelled-day-text"}
             count += 1
     with open(PATH, "w", encoding="utf-8") as f:
         json.dump(events, f, ensure_ascii=False, indent=2)
