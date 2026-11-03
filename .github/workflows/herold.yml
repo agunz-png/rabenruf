@@ -12,6 +12,7 @@ on:
       - herold_weitere_quellen.py
       - herold_zeiten.py
       - herold_zeiten_bestaetigt.py
+      - test_herold_zeiten_bestaetigt.py
       - .github/workflows/herold.yml
 
   schedule:
@@ -344,7 +345,8 @@ jobs:
 
       - name: Bestätigte Veranstaltungen auf neue Öffnungszeiten prüfen
         run: |
-          python3 -m py_compile herold_zeiten.py herold_zeiten_bestaetigt.py
+          python3 -m py_compile herold_zeiten.py herold_zeiten_bestaetigt.py test_herold_zeiten_bestaetigt.py
+          python3 -m unittest -v test_herold_zeiten_bestaetigt.py
           python3 herold_zeiten_bestaetigt.py
 
       - name: Funddatei prüfen
