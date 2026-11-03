@@ -7402,7 +7402,8 @@ function renderHerold(){
       field(index,"organizer","Veranstalter",fund.organizer)+field(index,"website","Veranstalter-Webseite",fund.website||fund.organizer_url)+
       field(index,"flyer","Flyer-Adresse",fund.flyer)+
       '<label>Beschreibung<textarea class="eventEditField" id="herold-edit-'+index+'-info">'+escapeHTML(fund.info||"")+'</textarea></label>'+
-      field(index,"hours","Zeiten",fund.hours)+\n      heroldZeitVorschlag(index,fund)+
+      field(index,"hours","Zeiten",fund.hours)+
+      heroldZeitVorschlag(index,fund)+
       '<p class="muted">Quelle: '+escapeHTML(fund.source||"keine Quelle angegeben")+'</p></div></details>'+
       '<div class="buttonRow"><button onclick="heroldUebernehmen('+index+')">✅ Übernehmen</button>'+
       '<button onclick="heroldDuplikatZuordnen('+index+')">🔗 Bereits im Kalender</button>'+
