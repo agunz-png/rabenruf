@@ -11,6 +11,7 @@ on:
       - herold_europa.py
       - herold_weitere_quellen.py
       - herold_zeiten.py
+      - herold_zeiten_bestaetigt.py
       - .github/workflows/herold.yml
 
   schedule:
@@ -341,6 +342,11 @@ jobs:
         run: |
           python3 herold_zeiten.py
 
+      - name: Bestätigte Veranstaltungen auf neue Öffnungszeiten prüfen
+        run: |
+          python3 -m py_compile herold_zeiten.py herold_zeiten_bestaetigt.py
+          python3 herold_zeiten_bestaetigt.py
+
       - name: Funddatei prüfen
 
         run: |
@@ -436,7 +442,7 @@ jobs:
 
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add herold-funde.json herold-filter-protokoll.jsonl
+          git add herold-funde.json herold-filter-protokoll.jsonl herold-zeiten-pruefung.json
 
           if git diff --cached --quiet; then
 
