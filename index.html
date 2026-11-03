@@ -6095,7 +6095,9 @@ function openEvent(id){
 
     </div>
 
-    ${eventHoursHTML(event)}\n\n    <section id="eventWeather" class="card weatherPanel" data-event-id="${escapeHTML(String(event.id))}" aria-live="polite">
+    ${eventHoursHTML(event)}
+
+    <section id="eventWeather" class="card weatherPanel" data-event-id="${escapeHTML(String(event.id))}" aria-live="polite">
       <h3>🌦️ Wetter am Veranstaltungsort</h3>
       <p class="weatherLoading">Wetterprognose wird geladen …</p>
     </section>
@@ -7455,7 +7457,8 @@ async function starteHeroldAktion(index, aktion){
 
 function heroldKorrekturen(index){
   const read=key=>document.getElementById("herold-edit-"+index+"-"+key)?.value?.trim() || "";
-  const tags=[...document.querySelectorAll(".herold-edit-"+index+"-tag:checked")].map(input=>input.value);\n  const reviewed=!!document.getElementById("herold-hours-accept-"+index)?.checked;
+  const tags=[...document.querySelectorAll(".herold-edit-"+index+"-tag:checked")].map(input=>input.value);
+  const reviewed=!!document.getElementById("herold-hours-accept-"+index)?.checked;
   const dailyHours=[];
   if(reviewed){
     for(const input of document.querySelectorAll(".herold-hours-"+index)){
