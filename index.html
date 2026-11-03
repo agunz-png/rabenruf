@@ -7022,7 +7022,20 @@ async function ladeHeroldZeitFunde(){
   const response=await fetch("herold-funde.json?zeit="+Date.now());
   if(!response.ok) throw new Error("Funddatei nicht erreichbar");
   const all=await response.json();
-  heroldZeitFunde=(Array.isArray(all)?all:[]).filter(e=>e.hoursReview?.status==="pending" && Array.isArray(e.hoursReview.dailyHours));
+  const candidateHours=(Array.isArray(all)?all:[]).filter(e=>e.hoursReview?.status==="pending" && Array.isArray(e.hoursReview.dailyHours));
+  let approvedHours=[];
+  try{
+   const approvedResponse=await fetch("herold-zeiten-pruefung.json?zeit="+Date.now());
+   if(approvedResponse.ok){
+    const proposals=await approvedResponse.json();
+    approvedHours=(Array.isArray(proposals)?proposals:[]).filter(p=>p.status==="pending" && Array.isArray(p.dailyHours)).map(p=>({
+     ...p,id:p.event_id,website:p.source,hoursReview:{status:"pending",dailyHours:p.dailyHours,source:p.source}
+    }));
+   }
+  }catch(error){console.warn("Bestätigte Zeitvorschläge nicht geladen:",error);}
+  heroldZeitFunde=[...approvedHours,...candidateHours.filter(candidate=>
+   !approvedHours.some(p=>heroldSameEvent(p,candidate))
+  )];
   renderHeroldZeitFunde();
  }catch(error){box.textContent="Zeitvorschläge konnten nicht geladen werden: "+error.message;}
 }
@@ -7031,7 +7044,7 @@ function renderHeroldZeitFunde(){
  box.innerHTML='<h2>🕰️ Öffnungszeiten prüfen</h2>'+
  (heroldZeitFunde.length?heroldZeitFunde.map((fund,index)=>{
   const review=fund.hoursReview;
-  const candidates=heroldApprovedDuplicateTargets.filter(item=>heroldSameEvent(fund,item.event));
+  const candidates=heroldApprovedDuplicateTargets.filter(item=>item.id===fund.event_id || heroldSameEvent(fund,item.event));
   const unique=candidates.length===1?candidates[0]:null;
   const link=/^https:\/\//i.test(review.source||"")?'<a target="_blank" rel="noopener noreferrer" href="'+escapeHTML(review.source)+'">Originalquelle</a>':"";
   return '<div class="card"><h3>'+escapeHTML(fund.name||"")+'</h3><p>'+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+' · '+escapeHTML(fund.city||"")+'</p>'+
@@ -7044,7 +7057,7 @@ function renderHeroldZeitFunde(){
 }
 async function heroldZeitFreigeben(index){
  const fund=heroldZeitFunde[index];if(!fund || !heroldSession)return;
- const matches=heroldApprovedDuplicateTargets.filter(item=>heroldSameEvent(fund,item.event));
+ const matches=heroldApprovedDuplicateTargets.filter(item=>item.id===fund.event_id || heroldSameEvent(fund,item.event));
  if(matches.length!==1)return alert("Keine eindeutige Zuordnung.");
  const dailyHours=[];
  for(let i=0;i<fund.hoursReview.dailyHours.length;i++){
