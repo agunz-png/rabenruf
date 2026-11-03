@@ -7044,7 +7044,7 @@ function renderHeroldZeitFunde(){
  box.innerHTML='<h2>🕰️ Öffnungszeiten prüfen</h2>'+
  (heroldZeitFunde.length?heroldZeitFunde.map((fund,index)=>{
   const review=fund.hoursReview;
-  const candidates=heroldApprovedDuplicateTargets.filter(item=>item.id===fund.event_id || heroldSameEvent(fund,item.event));
+  const candidates=heroldApprovedDuplicateTargets.filter(item=>fund.event_id ? item.id===fund.event_id : heroldSameEvent(fund,item.event));
   const unique=candidates.length===1?candidates[0]:null;
   const link=/^https:\/\//i.test(review.source||"")?'<a target="_blank" rel="noopener noreferrer" href="'+escapeHTML(review.source)+'">Originalquelle</a>':"";
   return '<div class="card"><h3>'+escapeHTML(fund.name||"")+'</h3><p>'+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+' · '+escapeHTML(fund.city||"")+'</p>'+
@@ -7057,7 +7057,7 @@ function renderHeroldZeitFunde(){
 }
 async function heroldZeitFreigeben(index){
  const fund=heroldZeitFunde[index];if(!fund || !heroldSession)return;
- const matches=heroldApprovedDuplicateTargets.filter(item=>item.id===fund.event_id || heroldSameEvent(fund,item.event));
+ const matches=heroldApprovedDuplicateTargets.filter(item=>fund.event_id ? item.id===fund.event_id : heroldSameEvent(fund,item.event));
  if(matches.length!==1)return alert("Keine eindeutige Zuordnung.");
  const dailyHours=[];
  for(let i=0;i<fund.hoursReview.dailyHours.length;i++){
