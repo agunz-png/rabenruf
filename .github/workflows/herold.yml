@@ -10,6 +10,7 @@ on:
     paths:
       - herold_europa.py
       - herold_weitere_quellen.py
+      - herold_zeiten.py
       - .github/workflows/herold.yml
 
   schedule:
