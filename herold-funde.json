@@ -31,7 +31,19 @@
       "https://mittelalter-bremgarten.ch"
     ],
     "website": "https://mittelalter-bremgarten.ch",
-    "source_provider": "Mirimor"
+    "source_provider": "Mirimor",
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2027-10-24",
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "source": "https://mittelalter-bremgarten.ch",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
   },
   {
     "id": "eu-source-7ba4adadd8695d11",
@@ -218,7 +230,19 @@
       "https://mittelalter-bremgarten.ch"
     ],
     "website": "https://mittelalter-bremgarten.ch",
-    "source_provider": "Mirimor"
+    "source_provider": "Mirimor",
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2028-10-29",
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "source": "https://mittelalter-bremgarten.ch",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
   },
   {
     "id": "eu-source-40adf2804443b2d2",
@@ -235,7 +259,24 @@
       "https://historisches-handwerk.ch"
     ],
     "website": "https://historisches-handwerk.ch",
-    "source_provider": "Mirimor"
+    "source_provider": "Mirimor",
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2028-10-28",
+          "open": "10:00",
+          "close": "18:00"
+        },
+        {
+          "date": "2028-10-29",
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "source": "https://historisches-handwerk.ch",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
   },
   {
     "id": "eu-source-dc38b0e8ceb2c192",
