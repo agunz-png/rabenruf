@@ -7570,13 +7570,21 @@ async function heroldDuplikatZuordnen(index){
     const sameStart=String(event.start||"")===String(fund.start||"");
     const cityA=heroldCityNorm(event.city),cityB=heroldCityNorm(fund.city);
     const sameCity=Boolean(cityA&&cityB&&(cityA===cityB||cityA.includes(cityB)||cityB.includes(cityA)));
-    const sameName=normalizedTitle(event.name)===normalizedTitle(fund.name);
+    const eventTitle=normalizedTitle(event.name);
+    const fundTitle=normalizedTitle(fund.name);
+    // Some source feeds use only the generic title "Mittelaltermarkt",
+    // while the approved calendar entry adds the city (e.g. Sigmaringen).
+    // This alias is allowed only with identical country, city AND start/end dates.
+    const sameEnd=String(event.end||event.start||"")===String(fund.end||fund.start||"");
+    const genericMarketAlias=fundTitle==="mittelaltermarkt" &&
+      eventTitle==="mittelaltermarkt "+cityB && sameEnd;
+    const sameName=eventTitle===fundTitle || genericMarketAlias;
     // An identical date and location are mandatory; a shared series name is not enough.
     return sameCountry && sameStart && sameCity && sameName;
   });
   if(!candidates.length) return alert("Keine bestätigte Veranstaltung mit identischem Namen, Land und Datum gefunden. Bitte zuerst die Daten prüfen.");
   const choices=candidates.map((item,i)=>(i+1)+": "+item.event.name+" – "+item.event.city+" ("+item.id+")").join("\n");
-  const selected=prompt("Nur bei sicherer Übereinstimmung verknüpfen. Name, Ort und Datum vergleichen.\n0 = Keiner davon / abbrechen\n"+choices+"\nNummer eingeben:");
+  const selected=candidates.length===1?"1":prompt("Nur bei sicherer Übereinstimmung verknüpfen. Name, Ort und Datum vergleichen.\n0 = Keiner davon / abbrechen\n"+choices+"\nNummer eingeben:");
   if(selected===null || String(selected).trim()==="0") return;
   const indexSelected=Number(selected)-1;
   if(!Number.isInteger(indexSelected)||!candidates[indexSelected]) return alert("Ungültige Auswahl.");
