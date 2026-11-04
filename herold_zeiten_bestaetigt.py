@@ -72,7 +72,7 @@ def scan(rows, previous, today=None, fetch=get_html):
             }
         except Exception as error:
             print("Source skipped:", event_id, str(error)[:100])
-    return sorted(result.values(), key=lambda p: (p["start"], p["name"], p["event_id"]))
+    return sorted(result.values(), key=lambda p: (p.get("start", ""), p.get("name", ""), p.get("event_id", "")))
 
 def main():
     previous = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else []
