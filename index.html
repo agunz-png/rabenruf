@@ -7456,9 +7456,17 @@ function renderHerold(){
   const field=(index,key,label,value,type="text")=>
     '<label>'+label+'<input class="eventEditField" id="herold-edit-'+index+'-'+key+'" type="'+type+'" value="'+escapeHTML(value||"")+'"></label>';
   box.innerHTML=filters+visible.map(({fund,index})=>{
-    const tags=Array.isArray(fund.tags)?fund.tags:[fund.type||"Markt"];
     const categories=["Markt","MPS","Lager","Reenactment","Buhurt","Spezialevent"];
-    const choices=categories.map(type=>'<label><input type="checkbox" class="herold-edit-'+index+'-tag" value="'+type+'" '+(tags.includes(type)?"checked":"")+'> '+type+'</label>').join("");
+    // Some importers provide tags: [] even though type is populated.
+    // Prefer nonempty tags, then fall back to the source type; never show an empty selection.
+    const rawTags=Array.isArray(fund.tags)&&fund.tags.length?fund.tags:[fund.type||"Markt"];
+    const normalizedTags=rawTags.flatMap(value=>String(value||"").split(/[,;/]/)).map(value=>value.trim().toLowerCase());
+    const selected=categories.filter(category=>normalizedTags.includes(category.toLowerCase()));
+    if(!selected.length){
+      const source=String(fund.type||"").toLowerCase();
+      selected.push(source.includes("buhurt")?"Buhurt":source.includes("lager")?"Lager":source.includes("reenact")?"Reenactment":source.includes("mps")?"MPS":"Markt");
+    }
+    const choices=categories.map(type=>'<label><input type="checkbox" class="herold-edit-'+index+'-tag" value="'+type+'" '+(selected.includes(type)?"checked":"")+'> '+type+'</label>').join("");
     return '<div class="card"><h3>'+escapeHTML(fund.name||"Veranstaltung")+'</h3>'+
       '<p>📅 '+escapeHTML(fund.date||"")+'<br>📍 '+escapeHTML((fund.city?fund.city+", ":"")+(fund.country||""))+'</p>'+
       '<button type="button" onclick="document.getElementById(\'herold-details-'+index+'\').open=true;document.getElementById(\'herold-details-'+index+'\').scrollIntoView({behavior:\'smooth\',block:\'start\'})">🔎 Details ansehen / korrigieren</button>'+
@@ -7527,6 +7535,7 @@ async function starteHeroldAktion(index, aktion){
 function heroldKorrekturen(index){
   const read=key=>document.getElementById("herold-edit-"+index+"-"+key)?.value?.trim() || "";
   const tags=[...document.querySelectorAll(".herold-edit-"+index+"-tag:checked")].map(input=>input.value);
+  if(!tags.length) throw new Error("Bitte mindestens eine Kategorie auswählen.");
   const reviewed=!!document.getElementById("herold-hours-accept-"+index)?.checked;
   const dailyHours=[];
   if(reviewed){
