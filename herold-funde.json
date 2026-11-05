@@ -411,44 +411,6 @@
     "lng": 8.7364118
   },
   {
-    "id": "eu-source-9844d2d3243e36d3",
-    "name": "Auenland Con",
-    "type": "Markt",
-    "date": "2027-06-12 bis 2027-06-13",
-    "start": "2027-06-12",
-    "end": "2027-06-13",
-    "country": "Deutschland",
-    "city": "Lebach",
-    "postcode": "66822",
-    "source": "https://fyndling.de/e/4bda1ff7fee5dd65",
-    "venue": "Burgplatz Illingen",
-    "website": "https://kiehn-adventure-projects.com/2026/09/11/auenland-con-2027/",
-    "websites": [
-      "https://kiehn-adventure-projects.com/2026/09/11/auenland-con-2027/"
-    ],
-    "lat": 49.4272476,
-    "lng": 6.902084
-  },
-  {
-    "id": "eu-source-90a4371bc4309971",
-    "name": "Großer Mittelaltermarkt zu Saarbrücken",
-    "type": "Markt",
-    "date": "2027-08-14 bis 2027-08-15",
-    "start": "2027-08-14",
-    "end": "2027-08-15",
-    "country": "Deutschland",
-    "city": "Saarbrücken",
-    "postcode": "66117",
-    "source": "https://fyndling.de/e/33575842e9a80b3b",
-    "venue": "Deutsch-Französischer Garten",
-    "website": "https://kiehn-adventure-projects.com/2026/09/11/grosser-mittelaltermarkt-zu-saarbruecken/",
-    "websites": [
-      "https://kiehn-adventure-projects.com/2026/09/11/grosser-mittelaltermarkt-zu-saarbruecken/"
-    ],
-    "lat": 49.2200047,
-    "lng": 6.9604126
-  },
-  {
     "id": "eu-source-9040bc7c8294b29d",
     "name": "Mittelalterspektakel",
     "type": "Markt",
@@ -466,25 +428,6 @@
     ],
     "lat": 48.6667147,
     "lng": 10.1828004
-  },
-  {
-    "id": "eu-source-49f1bab3f4c1d0b4",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-10-15 bis 2027-10-17",
-    "start": "2027-10-15",
-    "end": "2027-10-17",
-    "country": "Deutschland",
-    "city": "Feuchtwangen",
-    "postcode": "91555",
-    "source": "https://fyndling.de/e/3abc073a9b12ba19",
-    "venue": "Sulzachpark",
-    "website": "http://www.turbaevents.de/",
-    "websites": [
-      "http://www.turbaevents.de/"
-    ],
-    "lat": 49.1726337,
-    "lng": 10.3340151
   },
   {
     "id": "eu-source-b91a1c65f353e50a",
@@ -579,42 +522,6 @@
     "lng": 11.259
   },
   {
-    "id": "eu-source-e505d64d50798399",
-    "name": "Burgfrühling auf der Runneburg",
-    "type": "Markt",
-    "date": "2027-04-03 bis 2027-04-04",
-    "start": "2027-04-03",
-    "end": "2027-04-04",
-    "country": "Deutschland",
-    "city": "Weißensee*",
-    "postcode": "99885",
-    "source": "https://fyndling.de/e/63f49f445f69072d",
-    "website": "https://www.suendenfrei.tv/terminuebersicht",
-    "websites": [
-      "https://www.suendenfrei.tv/terminuebersicht"
-    ],
-    "lat": 51.2003022,
-    "lng": 11.0667507
-  },
-  {
-    "id": "eu-source-8e817d76bc400c2c",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-04-30 bis 2027-05-02",
-    "start": "2027-04-30",
-    "end": "2027-05-02",
-    "country": "Deutschland",
-    "city": "Schloss Guteneck",
-    "postcode": "92543",
-    "source": "https://fyndling.de/e/5d3174e07bf4a69d",
-    "website": "http://www.turbaevents.de/",
-    "websites": [
-      "http://www.turbaevents.de/"
-    ],
-    "lat": 49.4446402,
-    "lng": 12.2779163
-  },
-  {
     "id": "eu-source-31e136471f2be73d",
     "name": "Frühlingsmarkt Sandizell",
     "type": "Markt",
@@ -631,24 +538,6 @@
     ],
     "lat": 48.409,
     "lng": 11.323
-  },
-  {
-    "id": "eu-source-fb8c744607bb47fb",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-05-06 bis 2027-05-09",
-    "start": "2027-05-06",
-    "end": "2027-05-09",
-    "country": "Deutschland",
-    "city": "Harburg",
-    "postcode": "86655",
-    "source": "https://fyndling.de/e/2449d7f0cf068245",
-    "website": "http://www.turbaevents.de/",
-    "websites": [
-      "http://www.turbaevents.de/"
-    ],
-    "lat": 48.7784387,
-    "lng": 10.6782253
   },
   {
     "id": "eu-source-4cce2f60dc8d875f",
@@ -795,24 +684,6 @@
     "lng": 7.1539488
   },
   {
-    "id": "eu-source-7433be65fee52dad",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-08-21 bis 2027-08-22",
-    "start": "2027-08-21",
-    "end": "2027-08-22",
-    "country": "Deutschland",
-    "city": "Fürstenfeldbruck",
-    "postcode": "82256",
-    "source": "https://fyndling.de/e/069e355c619dc911",
-    "website": "http://www.turbaevents.de/",
-    "websites": [
-      "http://www.turbaevents.de/"
-    ],
-    "lat": 48.1794132,
-    "lng": 11.2200636
-  },
-  {
     "id": "eu-source-d56d24bdfc3e7d22",
     "name": "Ritterturnier & Spektakel",
     "type": "Markt",
@@ -829,24 +700,6 @@
     ],
     "lat": 50.8544423,
     "lng": 11.20315
-  },
-  {
-    "id": "eu-source-beeb99ba998ce90e",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-09-10 bis 2027-09-12",
-    "start": "2027-09-10",
-    "end": "2027-09-12",
-    "country": "Deutschland",
-    "city": "Sigmaringen",
-    "postcode": "72488",
-    "source": "https://fyndling.de/e/ba70f1ab2d73d7ec",
-    "website": "http://www.turbaevents.de/",
-    "websites": [
-      "http://www.turbaevents.de/"
-    ],
-    "lat": 48.09104,
-    "lng": 9.1828359
   },
   {
     "id": "eu-source-59e1f6187b98cc0e",
