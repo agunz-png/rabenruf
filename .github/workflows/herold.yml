@@ -507,6 +507,23 @@ jobs:
 
             git commit -m "🐦‍⬛ Herold: neue Funde"
 
-            git push
+            # Another commit may have reached main during this long scan.
+            # Rebase only our data commit; never force-push or discard changes.
+            for attempt in 1 2 3; do
+              git fetch origin main
+              if ! git rebase origin/main; then
+                echo "::error::Konflikt mit neueren Daten. Kein Überschreiben; Rebase wird abgebrochen."
+                git rebase --abort || true
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                echo "Herold-Daten erfolgreich gespeichert."
+                exit 0
+              fi
+              echo "Main wurde während des Speicherns aktualisiert (Versuch $attempt)."
+              sleep 3
+            done
+            echo "::error::Main wurde wiederholt gleichzeitig geändert. Keine Daten überschrieben."
+            exit 1
 
           fi
