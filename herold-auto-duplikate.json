@@ -1,1 +1,121 @@
-[]
+[
+  {
+    "candidate_id": "eu-source-0bfd7d8f530a1c9e",
+    "approved_event_id": "eu-source-ee25e9e843dba2c2",
+    "name": "Mittelalterfest",
+    "start": "2027-09-11",
+    "end": "2027-09-12"
+  },
+  {
+    "candidate_id": "eu-source-1d3b27cd4c2ab7c2",
+    "approved_event_id": "mittelalterkalender-f9629bbfc6784deb",
+    "name": "Josef Markt",
+    "start": "2027-09-11",
+    "end": "2027-09-12"
+  },
+  {
+    "candidate_id": "eu-source-2992d9243e4e7222",
+    "approved_event_id": "mittelalterkalender-bd7d56082cdcc0d8",
+    "name": "Mittelalterlicher Weihnachtsmarkt",
+    "start": "2026-12-18",
+    "end": "2026-12-20"
+  },
+  {
+    "candidate_id": "eu-source-2f68bf7f90f3ea3b",
+    "approved_event_id": "mittelalterkalender-b4b44c2d279aa516",
+    "name": "ANNO 1292",
+    "start": "2026-11-06",
+    "end": "2026-11-08"
+  },
+  {
+    "candidate_id": "eu-source-469fbace0b1469af",
+    "approved_event_id": "mittelalterkalender-4a67ea0964acc6ce",
+    "name": "mittelalterlicher Weihnachtsmarkt",
+    "start": "2026-11-28",
+    "end": "2026-11-29"
+  },
+  {
+    "candidate_id": "eu-source-58d79b20af095009",
+    "approved_event_id": "mittelalterkalender-8995b95ac1e9df16",
+    "name": "Mittelalterlicher Weihnachtsmarkt",
+    "start": "2026-12-12",
+    "end": "2026-12-13"
+  },
+  {
+    "candidate_id": "eu-source-6e07033aab60011f",
+    "approved_event_id": "mittelalterkalender-f98ac26617c71bd7",
+    "name": "Mittelalterlicher Weihnachtsmarkt",
+    "start": "2026-12-04",
+    "end": "2026-12-06"
+  },
+  {
+    "candidate_id": "eu-source-6fe28f10d8d98446",
+    "approved_event_id": "mittelalterkalender-c7dc04016d61bc87",
+    "name": "Mittelalterlicher Weihnachtsmarkt",
+    "start": "2026-12-04",
+    "end": "2026-12-04"
+  },
+  {
+    "candidate_id": "eu-source-7f4e10146380db27",
+    "approved_event_id": "mittelalterkalender-822f761cca9f60c3",
+    "name": "Mittelalter im Advent",
+    "start": "2026-12-04",
+    "end": "2026-12-06"
+  },
+  {
+    "candidate_id": "eu-source-884198d0aec20093",
+    "approved_event_id": "mittelalterkalender-1fac8e0bada79893",
+    "name": "Historischer Weihnachtsmarkt auf dem Naschmarkt",
+    "start": "2026-11-24",
+    "end": "2026-12-22"
+  },
+  {
+    "candidate_id": "eu-source-b2bb695b0c643234",
+    "approved_event_id": "mittelalterkalender-e1300f9113172d29",
+    "name": "Adventszauber",
+    "start": "2026-11-21",
+    "end": "2026-11-21"
+  },
+  {
+    "candidate_id": "eu-source-cd49ac1fb49e0916",
+    "approved_event_id": "mittelalterkalender-a42368f49f5aa8ac",
+    "name": "Colosseum Hasalaha",
+    "start": "2027-09-04",
+    "end": "2027-09-05"
+  },
+  {
+    "candidate_id": "eu-source-d0f7fe26b4841ef5",
+    "approved_event_id": "mittelalterkalender-dc743a1d1221da2c",
+    "name": "Vierthälermarkt",
+    "start": "2027-05-22",
+    "end": "2027-05-23"
+  },
+  {
+    "candidate_id": "eu-source-d4e7d222ca574052",
+    "approved_event_id": "mittelalterkalender-0f6af538f8ce943b",
+    "name": "Mittelalterliches Spektakel",
+    "start": "2027-06-12",
+    "end": "2027-06-13"
+  },
+  {
+    "candidate_id": "eu-source-d7207b230d54ca0b",
+    "approved_event_id": "mittelalterkalender-1aaa0c8ba8fe4585",
+    "name": "Winterspectaculum zu den Rauhnächten",
+    "start": "2026-12-27",
+    "end": "2027-01-05"
+  },
+  {
+    "candidate_id": "eu-source-e132e22ba57ef512",
+    "approved_event_id": "mittelalterkalender-62ed7fadddff0d9b",
+    "name": "2. Mittelaltermarkt zu Hosena",
+    "start": "2026-12-19",
+    "end": "2026-12-20"
+  },
+  {
+    "candidate_id": "eu-source-fe7901e4bc1821ed",
+    "approved_event_id": "mittelalterkalender-601487a10b97511e",
+    "name": "Historischer Handwerkermarkt",
+    "start": "2027-05-15",
+    "end": "2027-05-16"
+  }
+]
