@@ -7454,6 +7454,22 @@ function heroldZeitVorschlag(index,fund){
  (url?'<a href="'+escapeHTML(url)+'" target="_blank" rel="noopener noreferrer">Originalquelle prüfen</a>':"")+
  '<label><input type="checkbox" id="herold-hours-accept-'+index+'"> Zeiten und Veranstaltungsjahr geprüft – übernehmen</label></div>';
 }
+function heroldMoeglicheDuplikate(fund){
+  const range=heroldDateRange(fund);
+  if(!range) return [];
+  return heroldApprovedDuplicateTargets.filter(({event})=>{
+    const other=heroldDateRange(event);
+    if(!other || range.start!==other.start || range.end!==other.end) return false;
+    const city=heroldCityNorm(fund.city), otherCity=heroldCityNorm(event.city);
+    const country=heroldNorm(fund.country), otherCountry=heroldNorm(event.country);
+    if(!city || !otherCity || city!==otherCity || !country || country!==otherCountry) return false;
+    const name=heroldNorm(fund.name), otherName=heroldNorm(event.name);
+    return name===otherName || name==="mittelaltermarkt" ||
+      otherName==="mittelaltermarkt" || (name.length>6 && otherName.length>6 &&
+      (name.includes(otherName) || otherName.includes(name)));
+  });
+}
+
 function renderHerold(){
   const box=byId("heroldList");
   if(!box) return;
@@ -7484,7 +7500,14 @@ function renderHerold(){
       selected.push(source.includes("buhurt")?"Buhurt":source.includes("lager")?"Lager":source.includes("reenact")?"Reenactment":source.includes("mps")?"MPS":"Markt");
     }
     const choices=categories.map(type=>'<label><input type="checkbox" class="herold-edit-'+index+'-tag" value="'+type+'" '+(selected.includes(type)?"checked":"")+'> '+type+'</label>').join("");
-    return '<div class="card"><h3>'+escapeHTML(fund.name||"Veranstaltung")+'</h3>'+
+    const possible=heroldMoeglicheDuplikate(fund);
+    const duplicateNotice=possible.length
+      ? '<div style="border:1px solid #96764b;border-radius:10px;padding:12px;margin:12px 0"><strong>🔎 Möglicher Doppeleintrag – bitte prüfen</strong>'+
+        possible.map(({event})=>'<p>Im Kalender: <b>'+escapeHTML(event.name||"")+'</b> · '+escapeHTML(event.city||"")+
+        ' · '+escapeHTML(event.start||"")+' bis '+escapeHTML(event.end||event.start||"")+'</p>').join("")+
+        '<p class="muted">Nur bei gleicher Veranstaltung verknüpfen. Sonst separat prüfen; keine automatische Löschung.</p></div>'
+      : '';
+    return '<div class="card"><h3>'+escapeHTML(fund.name||"Veranstaltung")+'</h3>'+duplicateNotice+
       '<p>📅 '+escapeHTML(fund.date||"")+'<br>📍 '+escapeHTML((fund.city?fund.city+", ":"")+(fund.country||""))+'</p>'+
       '<button type="button" onclick="document.getElementById(\'herold-details-'+index+'\').open=true;document.getElementById(\'herold-details-'+index+'\').scrollIntoView({behavior:\'smooth\',block:\'start\'})">🔎 Details ansehen / korrigieren</button>'+
       '<details id="herold-details-'+index+'" style="margin-top:12px"><summary>Alle Angaben prüfen und korrigieren</summary>'+
@@ -7502,7 +7525,7 @@ function renderHerold(){
       heroldZeitVorschlag(index,fund)+
       '<p class="muted">Quelle: '+escapeHTML(fund.source||"keine Quelle angegeben")+'</p></div></details>'+
       '<div class="buttonRow"><button onclick="heroldUebernehmen('+index+')">✅ Übernehmen</button>'+
-      '<button onclick="heroldDuplikatZuordnen('+index+')">🔗 Bereits im Kalender</button>'+
+      '<button onclick="heroldDuplikatZuordnen('+index+')">'+(possible.length?'🔗 Doppelten Fund zuordnen':'🔗 Bereits im Kalender')+'</button>'+
       '<button onclick="heroldVerwerfen('+index+')">❌ Verwerfen</button></div></div>';
   }).join("");
 }
