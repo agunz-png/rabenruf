@@ -411,25 +411,6 @@
     "lng": 8.7364118
   },
   {
-    "id": "eu-source-9040bc7c8294b29d",
-    "name": "Mittelalterspektakel",
-    "type": "Markt",
-    "date": "2027-09-03 bis 2027-09-05",
-    "start": "2027-09-03",
-    "end": "2027-09-05",
-    "country": "Deutschland",
-    "city": "Heidenheim / Brenz",
-    "postcode": "89522",
-    "source": "https://fyndling.de/e/21a6c16ee904ec85",
-    "venue": "Schloss Hellenstein",
-    "website": "http://www.turbaevents.de/",
-    "websites": [
-      "http://www.turbaevents.de/"
-    ],
-    "lat": 48.6667147,
-    "lng": 10.1828004
-  },
-  {
     "id": "eu-source-b91a1c65f353e50a",
     "name": "FaRK",
     "type": "Markt",
@@ -540,24 +521,6 @@
     "lng": 11.323
   },
   {
-    "id": "eu-source-4cce2f60dc8d875f",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-05-14 bis 2027-05-17",
-    "start": "2027-05-14",
-    "end": "2027-05-17",
-    "country": "Deutschland",
-    "city": "Tüßling",
-    "postcode": "84577",
-    "source": "https://fyndling.de/e/3c7a39a69a9ad29b",
-    "website": "http://www.turbaevents.de/",
-    "websites": [
-      "http://www.turbaevents.de/"
-    ],
-    "lat": 48.2040796,
-    "lng": 12.6203566
-  },
-  {
     "id": "eu-source-f94ab254e3baf7b4",
     "name": "Sagenmarkt",
     "type": "Markt",
@@ -612,24 +575,6 @@
     "lng": 8.8916242
   },
   {
-    "id": "eu-source-b922e13e14165af3",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-06-04 bis 2027-06-06",
-    "start": "2027-06-04",
-    "end": "2027-06-06",
-    "country": "Deutschland",
-    "city": "Dinkelsbühl",
-    "postcode": "91550",
-    "source": "https://fyndling.de/e/faa2bbf0e8d46797",
-    "website": "http://www.turbaevents.de/",
-    "websites": [
-      "http://www.turbaevents.de/"
-    ],
-    "lat": 49.0792982,
-    "lng": 10.3129094
-  },
-  {
     "id": "eu-source-d0897d29876c31b0",
     "name": "Annamarkt und Stadtfest",
     "type": "Markt",
@@ -682,24 +627,6 @@
     ],
     "lat": 47.3646034,
     "lng": 7.1539488
-  },
-  {
-    "id": "eu-source-d56d24bdfc3e7d22",
-    "name": "Ritterturnier & Spektakel",
-    "type": "Markt",
-    "date": "2027-08-28 bis 2027-08-29",
-    "start": "2027-08-28",
-    "end": "2027-08-29",
-    "country": "Deutschland",
-    "city": "Kranichfeld",
-    "postcode": "99448",
-    "source": "https://fyndling.de/e/462218a52580e6f3",
-    "website": "https://www.suendenfrei.tv/terminuebersicht",
-    "websites": [
-      "https://www.suendenfrei.tv/terminuebersicht"
-    ],
-    "lat": 50.8544423,
-    "lng": 11.20315
   },
   {
     "id": "eu-source-59e1f6187b98cc0e",
@@ -938,6 +865,30 @@
     "country": "Deutschland",
     "city": "Untergruppenbach",
     "postcode": "74199",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-a70393a43b2afd90",
+    "name": "Mittelaltermarkt am Osnabrücker Ringwall",
+    "type": "Markt",
+    "date": "2027-08-13 bis 2027-08-15",
+    "start": "2027-08-13",
+    "end": "2027-08-15",
+    "country": "Deutschland",
+    "city": "Osnabrück",
+    "postcode": "49082",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-1fd287be9f16cdbe",
+    "name": "Dresdner Rauhnächte",
+    "type": "Markt",
+    "date": "2027-01-02 bis 2027-01-06",
+    "start": "2027-01-02",
+    "end": "2027-01-06",
+    "country": "Deutschland",
+    "city": "Dresden",
+    "postcode": "01067",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
