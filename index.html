@@ -7137,6 +7137,17 @@ async function ladeHeroldFunde(){
     }catch(error){
       console.warn("Dauerhafte Duplikat-Zuordnungen konnten nicht geladen werden:",error);
     }
+    // Also honor exact duplicate links persisted by the scheduled Herold scan.
+    try{
+      const autoResponse=await fetch("herold-auto-duplikate.json?zeit="+Date.now());
+      if(autoResponse.ok){
+        const autoLinks=await autoResponse.json();
+        if(Array.isArray(autoLinks)) for(const link of autoLinks){
+          if(link?.candidate_id && link?.approved_event_id)
+            verknuepfteIds.add(String(link.candidate_id));
+        }
+      }
+    }catch(error){console.warn("Automatische Duplikat-Zuordnungen nicht geladen:",error);}
     heroldFunde = heroldDeduplicate(funde.filter(fund =>
       !entschiedeneIds.has(String(fund.id || "")) &&
       !verknuepfteIds.has(String(fund.id || ""))
