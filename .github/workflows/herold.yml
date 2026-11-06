@@ -317,6 +317,59 @@ jobs:
           path = "herold-funde.json"
           with open(path, encoding="utf-8") as handle:
               candidates = json.load(handle)
+          # Persist only unambiguous exact matches. Generic or alias matches
+          # remain governed by the existing filter, never auto-linked.
+          ledger_path = "herold-auto-duplikate.json"
+          try:
+              with open(ledger_path, encoding="utf-8") as handle:
+                  ledger = json.load(handle)
+              if not isinstance(ledger, list):
+                  ledger = []
+          except (FileNotFoundError, json.JSONDecodeError):
+              ledger = []
+          ledger_by_id = {
+              str(item["candidate_id"]): item for item in ledger
+              if isinstance(item, dict) and item.get("candidate_id") and item.get("approved_event_id")
+          }
+          approved_targets = [
+              (str(row.get("event_id") or ""), row["event"])
+              for row in approved if isinstance(row.get("event"), dict) and row.get("event_id")
+          ]
+          newly_linked = 0
+          for candidate in candidates:
+              candidate_id = str(candidate.get("id") or "")
+              if not re.fullmatch(r"[A-Za-z0-9_-]{1,120}", candidate_id):
+                  continue
+              if candidate_id in approved_ids or candidate_id in linked_ids or candidate_id in ledger_by_id:
+                  continue
+              name = normalized(candidate.get("name"))
+              city = normalized_city(candidate.get("city"))
+              country = normalized(candidate.get("country"))
+              dates = date_range(candidate)
+              if not all((name, city, country, dates)):
+                  continue
+              matches = [
+                  target_id for target_id, event in approved_targets
+                  if normalized(event.get("name")) == name
+                  and normalized_city(event.get("city")) == city
+                  and normalized(event.get("country")) == country
+                  and date_range(event) == dates
+              ]
+              if len(matches) == 1 and matches[0] != candidate_id:
+                  ledger_by_id[candidate_id] = {
+                      "candidate_id": candidate_id,
+                      "approved_event_id": matches[0],
+                      "name": candidate.get("name", ""),
+                      "start": dates[0], "end": dates[1]
+                  }
+                  newly_linked += 1
+          with open(ledger_path, "w", encoding="utf-8") as handle:
+              json.dump(sorted(ledger_by_id.values(), key=lambda row: row["candidate_id"]),
+                        handle, ensure_ascii=False, indent=2)
+              handle.write(chr(10))
+          linked_ids.update(ledger_by_id)
+          print("Neue eindeutige dauerhafte Verknüpfungen:", newly_linked)
+
           kept = [event for event in candidates if not matches_approved(event)]
           removed = len(candidates) - len(kept)
           with open(path, "w", encoding="utf-8") as handle:
@@ -444,7 +497,7 @@ jobs:
 
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add herold-funde.json herold-filter-protokoll.jsonl herold-zeiten-pruefung.json
+          git add herold-funde.json herold-filter-protokoll.jsonl herold-zeiten-pruefung.json herold-auto-duplikate.json
 
           if git diff --cached --quiet; then
 
