@@ -7127,10 +7127,11 @@ function heroldZeitZielWaehlen(index){
  const fund=heroldZeitFunde[index];if(!fund)return;
  const options=heroldZeitZiele(fund);
  if(!options.length){
-  const pending=heroldFunde.find(f=>heroldSameEvent(fund,f));
+  const pending=heroldFunde.find(f=>String(f.id||"")===String(fund.id||"") || heroldSameEvent(fund,f));
   if(pending){
    heroldDashboardTab=heroldDashboardIsDuplicate(pending)?"corrections":"new";
    heroldDashboardSearch="";
+   heroldFilter="alle";
    renderHeroldDashboard();
    const index=heroldFunde.indexOf(pending);
    const card=byId("herold-card-"+index);
