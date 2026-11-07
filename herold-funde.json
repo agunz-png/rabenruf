@@ -259,7 +259,24 @@
       "https://historisches-handwerk.ch"
     ],
     "website": "https://historisches-handwerk.ch",
-    "source_provider": "Mirimor"
+    "source_provider": "Mirimor",
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2028-10-28",
+          "open": "10:00",
+          "close": "18:00"
+        },
+        {
+          "date": "2028-10-29",
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "source": "https://historisches-handwerk.ch",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
   },
   {
     "id": "eu-source-dc38b0e8ceb2c192",
@@ -851,52 +868,16 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-a70393a43b2afd90",
-    "name": "Mittelaltermarkt am Osnabrücker Ringwall",
+    "id": "eu-source-d23363e2a21e77da",
+    "name": "Marché médiéval d'Enter",
     "type": "Markt",
-    "date": "2027-08-13 bis 2027-08-15",
-    "start": "2027-08-13",
-    "end": "2027-08-15",
-    "country": "Deutschland",
-    "city": "Osnabrück",
-    "postcode": "49082",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-1fd287be9f16cdbe",
-    "name": "Dresdner Rauhnächte",
-    "type": "Markt",
-    "date": "2027-01-02 bis 2027-01-06",
-    "start": "2027-01-02",
-    "end": "2027-01-06",
-    "country": "Deutschland",
-    "city": "Dresden",
-    "postcode": "01067",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-42e96479ffc3d56d",
-    "name": "AVELIVIA",
-    "type": "Markt",
-    "date": "2027-05-27 bis 2027-05-30",
-    "start": "2027-05-27",
-    "end": "2027-05-30",
-    "country": "Deutschland",
-    "city": "Germersheim",
-    "postcode": "76726",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-e6e64d79ab0bacaa",
-    "name": "Mittelaltermarkt Adebar und Axt",
-    "type": "Markt",
-    "date": "2027-07-17 bis 2027-07-18",
-    "start": "2027-07-17",
-    "end": "2027-07-18",
-    "country": "Deutschland",
-    "city": "Bergenhusen-Blumental",
-    "postcode": "24861",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+    "date": "2027-06-19 bis 2027-06-20",
+    "start": "2027-06-19",
+    "end": "2027-06-20",
+    "country": "Schweiz",
+    "city": "Derendingen",
+    "postcode": "",
+    "source": "https://vehi-mercatus.fr/calendrier-des-marches/mittelaltermarkt-enter-2026/"
   },
   {
     "id": "eu-source-80d77336404b0224",
