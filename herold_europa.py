@@ -135,12 +135,14 @@ def veranstalter_details(detail_url):
         organizer = re.sub(r"\s+", " ", match.group(1)).strip(" :-")
         if 3 <= len(organizer) <= 100:
             details["organizer"] = organizer
+    external_links = []
     for anchor in page.find_all("a", href=True):
         url = urljoin(detail_url, anchor["href"]).split("#", 1)[0]
         parsed = urlsplit(url)
         domain = parsed.netloc.lower().removeprefix("www.")
         if parsed.scheme not in ("http", "https") or not domain or domain == "mittelalterkalender.info":
             continue
+        external_links.append(url)
         label = anchor.get_text(" ", strip=True).lower()
         parent_text = anchor.parent.get_text(" ", strip=True).lower() if anchor.parent else ""
         # Only accept links explicitly identified as the event/organizer site.
@@ -149,6 +151,12 @@ def veranstalter_details(detail_url):
                 or "veranstalterseite" in label):
             details["website"] = url
             break
+    # Some calendar templates show the URL in a separate box after the
+    # explanatory text. Only use a unique external candidate in that case.
+    if not details.get("website") and "veranstaltungsseite" in text.casefold():
+        unique = list(dict.fromkeys(external_links))
+        if len(unique) == 1:
+            details["website"] = unique[0]
     return details
 
 
