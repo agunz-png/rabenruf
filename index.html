@@ -7632,7 +7632,7 @@ async function heroldDuplikatZuordnen(index){
     // Calendar titles may append the edition, e.g. "2027 (die 7. Runde)".
     // This is only a candidate for explicit confirmation, never an automatic merge.
     const editionAlias=eventTitle.startsWith(fundTitle+" ") &&
-      /^20\\d{2}(?:\\s|$)/.test(eventTitle.slice(fundTitle.length).trim()) &&
+      /^20\d{2}(?:\s|$)/.test(eventTitle.slice(fundTitle.length).trim()) &&
       fundTitle.length>=16 && sameEnd;
     const sameName=eventTitle===fundTitle || genericMarketAlias || editionAlias;
     // An identical date and location are mandatory; a shared series name is not enough.
