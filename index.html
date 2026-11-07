@@ -930,6 +930,14 @@ h2{font-size:clamp(21px,5.5vw,25px);line-height:1.3;overflow-wrap:break-word;}
 .herold-compact-card .herold-compact-meta{font-size:14px;line-height:1.55;color:#bfb0a1;margin:0}
 .herold-compact-card .herold-compact-body{padding-top:15px}
 .herold-compact-card .herold-compact-body .buttonRow{margin-top:14px}
+
+/* Consistent dark Rabenruf controls in Herold reviews (iOS Safari included) */
+#heroldHoursReview input,#heroldUpdateList input,#heroldHoursReview select,#heroldUpdateList select,#heroldHoursReview textarea,#heroldUpdateList textarea{appearance:none;-webkit-appearance:none;box-sizing:border-box;max-width:100%;min-height:44px;background:#30271f!important;color:#f5e6cd!important;-webkit-text-fill-color:#f5e6cd!important;border:1px solid #876c4c!important;border-radius:10px!important;padding:10px 12px!important;font:inherit;color-scheme:dark}
+#heroldHoursReview button,#heroldUpdateList button{appearance:none;-webkit-appearance:none;min-height:44px;background:#32261c!important;color:#f0d18c!important;-webkit-text-fill-color:#f0d18c!important;border:1px solid #947249!important;border-radius:12px!important;padding:10px 15px!important;font:inherit;font-weight:600;white-space:normal;text-align:center}
+#heroldHoursReview button:active,#heroldUpdateList button:active{background:#4b3827!important}
+#heroldHoursReview a,#heroldUpdateList a{color:#dcb66c!important}
+#heroldHoursReview label{display:block;margin:10px 0}
+#heroldHoursReview label input{display:block;width:100%;margin-top:7px}
 </style>
 
 
@@ -7106,25 +7114,41 @@ async function ladeHeroldZeitFunde(){
   renderHeroldDashboard();
  }catch(error){box.textContent="Zeitvorschläge konnten nicht geladen werden: "+error.message;}
 }
+function heroldZeitZiele(fund){
+ const start=String(fund.start||""),end=String(fund.end||start);
+ const city=heroldNorm(fund.city||"");
+ return heroldApprovedDuplicateTargets.filter(item=>{
+  const event=item.event||{};
+  return heroldNorm(event.city||"")===city &&
+   String(event.start||"")===start && String(event.end||event.start||"")===end;
+ });
+}
+function heroldZeitZielWaehlen(index){
+ const fund=heroldZeitFunde[index];if(!fund)return;
+ const options=heroldZeitZiele(fund);
+ if(!options.length)return alert("Für diesen Zeitraum gibt es noch keinen eindeutig passenden, bestätigten Herold-Datenbankeintrag. Bitte zuerst die Veranstaltung im Herold prüfen und bestätigen. Danach die Öffnungszeiten erneut öffnen.");
+ if(options.length===1){fund.event_id=options[0].id;renderHeroldZeitFunde();return;}
+ alert("Mehrere bestätigte Termine passen auf Ort und Zeitraum. Bitte erst die Doppeleinträge bereinigen.");
+}
 function renderHeroldZeitFunde(){
  const box=byId("heroldHoursReview");if(!box)return;
  box.innerHTML='<h2>🕰️ Öffnungszeiten prüfen</h2>'+
  (heroldZeitFunde.length?heroldZeitFunde.map((fund,index)=>{
   const review=fund.hoursReview;
-  const candidates=heroldApprovedDuplicateTargets.filter(item=>fund.event_id ? item.id===fund.event_id : heroldSameEvent(fund,item.event));
+  const candidates=heroldApprovedDuplicateTargets.filter(item=>fund.event_id ? item.id===fund.event_id && String(item.event.start)===String(fund.start) && String(item.event.end||item.event.start)===String(fund.end||fund.start) : heroldSameEvent(fund,item.event));
   const unique=candidates.length===1?candidates[0]:null;
   const link=/^https:\/\//i.test(review.source||"")?'<a target="_blank" rel="noopener noreferrer" href="'+escapeHTML(review.source)+'">Originalquelle</a>':"";
   return '<details class="card herold-compact-card"><summary><h3 class="herold-compact-title">'+escapeHTML(fund.name||"")+'</h3><p class="herold-compact-meta">📅 '+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+'<br>📍 '+escapeHTML(fund.city||"")+'</p></summary><div class="herold-compact-body">'+
    review.dailyHours.map((d,i)=>'<label>'+escapeHTML(d.date)+' <input id="hour-review-'+index+'-'+i+'" value="'+escapeHTML(d.open+"–"+d.close)+'"></label>').join("")+
    '<p>'+link+'</p><p class="muted">Nur nach Prüfung des richtigen Veranstaltungsjahres freigeben.</p>'+
    (unique?'<p>Kalendereintrag: '+escapeHTML(unique.event.name||"")+'</p><button onclick="heroldZeitFreigeben('+index+')">✅ Geprüfte Zeiten übernehmen</button>':
-   '<p class="muted">Keine eindeutige Zuordnung zu einem bestätigten Datenbankeintrag. Keine automatische Übernahme, um Duplikate zu vermeiden.</p>')+
+   '<p class="muted">Noch keine eindeutige Zuordnung zu einem bestätigten Datenbankeintrag.</p><button type="button" onclick="heroldZeitZielWaehlen('+index+')">🔗 Zuordnen & Bestätigung ermöglichen</button>')+
    '<div class="buttonRow"><button type="button" onclick="heroldZeitVerwerfen('+index+')">❌ Vorschlag verwerfen</button></div></div></details>';
  }).join(""):'<p>Keine offenen Zeitvorschläge.</p>');
 }
 async function heroldZeitFreigeben(index){
  const fund=heroldZeitFunde[index];if(!fund || !heroldSession)return;
- const matches=heroldApprovedDuplicateTargets.filter(item=>fund.event_id ? item.id===fund.event_id : heroldSameEvent(fund,item.event));
+ const matches=heroldApprovedDuplicateTargets.filter(item=>fund.event_id ? item.id===fund.event_id && String(item.event.start)===String(fund.start) && String(item.event.end||item.event.start)===String(fund.end||fund.start) : heroldSameEvent(fund,item.event));
  if(matches.length!==1)return alert("Keine eindeutige Zuordnung.");
  const dailyHours=[];
  for(let i=0;i<fund.hoursReview.dailyHours.length;i++){
