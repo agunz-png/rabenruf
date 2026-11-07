@@ -130,9 +130,9 @@ def veranstalter_details(detail_url):
     details = {}
     text = page.get_text(" ", strip=True)
     # Read a named organizer when the detail page explicitly labels it.
-    match = re.search(r"(?:Veranstalter|Organisator)\\s*:?\\s*(.{3,100}?)(?=\\s+(?:Start der Veranstaltung|Adresse der Veranstaltung|PLZ|Ort|Bundesland|Land|Ende der Veranstaltung)\\b|$)", text, re.I)
+    match = re.search(r"(?:Veranstalter|Organisator)\s*:?\s*(.{3,100}?)(?=\s+(?:Start der Veranstaltung|Adresse der Veranstaltung|PLZ|Ort|Bundesland|Land|Ende der Veranstaltung)\b|$)", text, re.I)
     if match:
-        organizer = re.sub(r"\\s+", " ", match.group(1)).strip(" :-")
+        organizer = re.sub(r"\s+", " ", match.group(1)).strip(" :-")
         if 3 <= len(organizer) <= 100:
             details["organizer"] = organizer
     for anchor in page.find_all("a", href=True):
