@@ -7120,7 +7120,7 @@ function heroldZeitZiele(fund){
  const days=fund.hoursReview?.dailyHours||[];
  return heroldApprovedDuplicateTargets.filter(item=>{
   const event=item.event||{};
-  const targetCity=heroldCityNorm(event.city||"");
+  const targetCity=heroldCityNorm(event.city||"").replace(/ aargau$/,"");
   const targetCountry=heroldNorm(event.country||"");
   const start=String(event.start||""),end=String(event.end||start);
   return targetCity===city && (!country||!targetCountry||country===targetCountry) &&
