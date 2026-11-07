@@ -7389,6 +7389,7 @@ function renderHeroldUpdates(){
     return '<details class="card herold-compact-card"><summary><h3 class="herold-compact-title">'+escapeHTML(event.name||"Terminänderung")+(isNew?' <span class="muted">· Neuer Termin</span>':'')+'</h3>'+
       '<p class="herold-compact-meta">📅 '+escapeHTML(event.date||"")+'<br>📍 '+escapeHTML((event.city||"")+", "+(event.country||""))+'</p></summary>'+
       '<div class="herold-compact-body">'+changes+
+      '<button class="btn" onclick="korrigiereTerminVorschlag(\\''+id+'\\')">✏️ Korrigieren</button>'+ 
       '<button class="btn green" onclick="entscheideTerminAenderung(\''+id+'\',\'approve\')">'+(isNew?'✅ Termin freigeben':'✅ Änderung freigeben')+'</button>'+
       '<button class="btn" onclick="entscheideTerminAenderung(\''+id+'\',\'reject\')">❌ Vorschlag verwerfen</button></div></details>';
   }).join("");
@@ -7464,6 +7465,25 @@ async function sendeManuellenTermin(event){
   }
 }
 
+async function korrigiereTerminVorschlag(requestId){
+ const request=heroldUpdates.find(item=>String(item.id)===String(requestId));
+ if(!request)return alert("Vorschlag nicht gefunden.");
+ const fields={name:"Veranstaltungsname",venue:"Veranstaltungsort",organizer:"Veranstalter",website:"Veranstalter-Webseite",hours:"Öffnungszeiten",info:"Beschreibung",source:"Quellenlink"};
+ const choice=prompt("Welches Feld korrigieren?\n"+Object.entries(fields).map(([key,label])=>key+" = "+label).join("\n"),"hours");
+ if(choice===null)return;
+ const key=choice.trim().toLowerCase();
+ if(!fields[key])return alert("Bitte einen angezeigten Feldnamen eingeben.");
+ const value=prompt(fields[key]+" korrigieren:",String(request.proposed_event?.[key]||""));
+ if(value===null)return;
+ try{
+  await heroldSessionErneuern();
+  const result=await heroldApi("functions/v1/herold-event-update",{
+   method:"POST",token:heroldSession.access_token,body:{action:"revise",request_id:requestId,patch:{[key]:value}}
+  });
+  if(!result?.ok)throw new Error(result?.error||"Korrektur fehlgeschlagen.");
+  await ladeHeroldUpdates();
+ }catch(error){alert(error.message||"Korrektur fehlgeschlagen.");}
+}
 async function entscheideTerminAenderung(requestId,action){
   if(!heroldIsAdmin() || !heroldSession?.access_token){
     showHerold();
