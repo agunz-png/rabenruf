@@ -490,87 +490,38 @@ jobs:
           print("Verbleibende Funde:", len(kept))
           PY
       - name: Änderungen speichern
-
         run: |
-
           git config user.name "Rabenruf Herold"
-
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git add herold-funde.json herold-filter-protokoll.jsonl herold-zeiten-pruefung.json herold-auto-duplikate.json
-
           if git diff --cached --quiet; then
-
             echo "Keine neuen Funde."
-
-          else
-
-            git commit -m "🐦‍⬛ Herold: neue Funde"
-
-            # Another commit may have reached main during this long scan.
-            # Rebase only our data commit; never force-push or discard changes.
-            for attempt in 1 2 3; do
-              git fetch origin main
-              if ! git rebase origin/main; then
-                # The audit log is append-only. During a rebase, stage 2 is
-                # the latest main and stage 3 is this scan's data commit.
-                # Combine distinct JSONL records, never overwrite either side.
-                if git ls-files -u | awk '{print $4}' | sort -u | grep -v '^herold-filter-protokoll.jsonl
-              if git push origin HEAD:main; then
-                echo "Herold-Daten erfolgreich gespeichert."
-                exit 0
-              fi
-              echo "Main wurde während des Speicherns aktualisiert (Versuch $attempt)."
-              sleep 3
-            done
-            echo "::error::Main wurde wiederholt gleichzeitig geändert. Keine Daten überschrieben."
-            exit 1
-
+            exit 0
           fi
- | grep -q .; then
-                  echo "::error::Conflict in structured event data; refusing automatic resolution."
-                  git rebase --abort || true
-                  exit 1
-                fi
-                if git ls-files -u | awk '{print $4}' | grep -qx 'herold-filter-protokoll.jsonl'; then
-                  git show :2:herold-filter-protokoll.jsonl > /tmp/herold-main-log
-                  git show :3:herold-filter-protokoll.jsonl > /tmp/herold-scan-log
-                  python3 - <<'PYMERGE'
-          import json
-          from pathlib import Path
-          lines = []
-          seen = set()
-          for filename in ("/tmp/herold-main-log", "/tmp/herold-scan-log"):
-              for line in Path(filename).read_text(encoding="utf-8").splitlines():
-                  if not line.strip():
-                      continue
-                  obj = json.loads(line)
-                  key = (obj.get("run_id"), obj.get("timestamp")) if isinstance(obj, dict) else line
-                  if key not in seen:
-                      seen.add(key)
-                      lines.append(line)
-          Path("herold-filter-protokoll.jsonl").write_text(
-              "\\n".join(lines) + ("\\n" if lines else ""), encoding="utf-8")
-          PYMERGE
-                  git add herold-filter-protokoll.jsonl
-                  GIT_EDITOR=true git -c core.editor=true rebase --continue || {
-                    git rebase --abort || true
-                    exit 1
-                  }
-                else
-                  echo "::error::Unexpected rebase failure."
-                  git rebase --abort || true
-                  exit 1
-                fi
+          git commit -m "🐦‍⬛ Herold: neue Funde"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              conflicts=$(git diff --name-only --diff-filter=U)
+              if [ "$conflicts" != "herold-filter-protokoll.jsonl" ]; then
+                echo "::error::Konflikt in Veranstaltungsdaten; kein automatisches Überschreiben."
+                git rebase --abort || true
+                exit 1
               fi
-              if git push origin HEAD:main; then
-                echo "Herold-Daten erfolgreich gespeichert."
-                exit 0
-              fi
-              echo "Main wurde während des Speicherns aktualisiert (Versuch $attempt)."
-              sleep 3
-            done
-            echo "::error::Main wurde wiederholt gleichzeitig geändert. Keine Daten überschrieben."
-            exit 1
-
-          fi
+              git show :2:herold-filter-protokoll.jsonl > /tmp/herold-main-log
+              git show :3:herold-filter-protokoll.jsonl > /tmp/herold-scan-log
+              python3 -c 'import json,pathlib; a=[json.loads(x) for f in ("/tmp/herold-main-log","/tmp/herold-scan-log") for x in pathlib.Path(f).read_text().splitlines() if x.strip()]; d={str(x.get("run_id",""))+"|"+str(x.get("timestamp","")):x for x in a}; pathlib.Path("herold-filter-protokoll.jsonl").write_text("".join(json.dumps(v,ensure_ascii=False)+"\\n" for v in d.values()))'
+              git add herold-filter-protokoll.jsonl
+              GIT_EDITOR=true git rebase --continue || {
+                git rebase --abort || true
+                exit 1
+              }
+            fi
+            if git push origin HEAD:main; then
+              echo "Herold-Daten erfolgreich gespeichert."
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::error::Main wurde gleichzeitig geändert; keine Daten überschrieben."
+          exit 1
