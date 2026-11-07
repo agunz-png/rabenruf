@@ -7126,7 +7126,20 @@ function heroldZeitZiele(fund){
 function heroldZeitZielWaehlen(index){
  const fund=heroldZeitFunde[index];if(!fund)return;
  const options=heroldZeitZiele(fund);
- if(!options.length)return alert("Für diesen Zeitraum gibt es noch keinen eindeutig passenden, bestätigten Herold-Datenbankeintrag. Bitte zuerst die Veranstaltung im Herold prüfen und bestätigen. Danach die Öffnungszeiten erneut öffnen.");
+ if(!options.length){
+  const pending=heroldFunde.find(f=>heroldSameEvent(fund,f));
+  if(pending){
+   heroldDashboardTab=heroldDashboardIsDuplicate(pending)?"corrections":"new";
+   heroldDashboardSearch="";
+   renderHeroldDashboard();
+   const index=heroldFunde.indexOf(pending);
+   const card=byId("herold-card-"+index);
+   if(card){card.open=true;card.scrollIntoView({behavior:"smooth",block:"center"});}
+   else alert("Passender Fund gefunden. Bitte unter «Neue Funde» prüfen und bestätigen.");
+   return;
+  }
+  return alert("Für diesen Zeitraum ist noch kein bestätigter Datenbankeintrag vorhanden. Bitte die Veranstaltung zuerst als neuen Fund prüfen und übernehmen. Es wird kein Duplikat erstellt.");
+ }
  if(options.length===1){fund.event_id=options[0].id;renderHeroldZeitFunde();return;}
  alert("Mehrere bestätigte Termine passen auf Ort und Zeitraum. Bitte erst die Doppeleinträge bereinigen.");
 }
