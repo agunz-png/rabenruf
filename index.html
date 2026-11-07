@@ -913,6 +913,7 @@ h2{font-size:clamp(21px,5.5vw,25px);line-height:1.3;overflow-wrap:break-word;}
 .cardTitle{line-height:1.4;overflow-wrap:anywhere;}
 @media(max-width:380px){.logo{font-size:24px;}h1{font-size:25px;}h2{font-size:21px;}}
 
+.herold-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}.herold-tabs button{font-size:14px;padding:12px 6px;white-space:normal}.herold-tabs button.herold-active{border:2px solid var(--gold2);background:#3a2b1d}#heroldDashboardSearch{width:100%}
 </style>
 
 
@@ -1272,6 +1273,12 @@ h2{font-size:clamp(21px,5.5vw,25px);line-height:1.3;overflow-wrap:break-word;}
     </div>
 
     <div id="heroldAccount"></div>
+    <div id="heroldDashboard" class="card">
+      <h2>🐦‍⬛ Herold-Verwaltung</h2>
+      <div id="heroldDashboardTabs" class="herold-tabs"></div>
+      <label for="heroldDashboardSearch">Suche nach Name oder Ort</label>
+      <input id="heroldDashboardSearch" type="search" placeholder="Veranstaltung suchen" oninput="heroldDashboardSearch=this.value;renderHerold()">
+    </div>
     <div id="heroldList"></div>
     <div id="heroldHoursReview"></div>
     <div id="heroldUpdateList"></div>
@@ -7054,6 +7061,7 @@ async function ladeHeroldZeitFunde(){
    !approvedHours.some(p=>heroldSameEvent(p,candidate))
   )];
   renderHeroldZeitFunde();
+  renderHeroldDashboard();
  }catch(error){box.textContent="Zeitvorschläge konnten nicht geladen werden: "+error.message;}
 }
 function renderHeroldZeitFunde(){
@@ -7154,6 +7162,7 @@ async function ladeHeroldFunde(){
     ), bereitsBestaetigt);
     renderHerold();
     await ladeHeroldZeitFunde();
+    renderHeroldDashboard();
   }catch(fehler){
     console.error("Herold-Funde konnten nicht geladen werden:", fehler);
     const box = document.getElementById("heroldList");
@@ -7292,6 +7301,7 @@ async function initialisiereHeroldAnmeldung(){
 function showHerold(){
   show("herold");
   if(heroldIsAdmin()){
+    renderHeroldDashboard();
     ladeHeroldFunde();
     ladeHeroldUpdates();
   }else{
@@ -7301,6 +7311,7 @@ function showHerold(){
 
 function nachHeroldAnmeldung(){
   if(!heroldIsAdmin()) return;
+  renderHeroldDashboard();
   ladeHeroldFunde();
   ladeHeroldUpdates();
   if(requestedEditEventId){
@@ -7325,6 +7336,7 @@ async function ladeHeroldUpdates(){
     });
     heroldUpdates=Array.isArray(data?.updates) ? data.updates : [];
     renderHeroldUpdates();
+    renderHeroldDashboard();
   }catch(error){
     box.innerHTML='<div class="card">Änderungsvorschläge konnten nicht geladen werden: ' +
       escapeHTML(error.message || "Bitte später erneut versuchen.") + '</div>';
@@ -7456,6 +7468,26 @@ async function entscheideTerminAenderung(requestId,action){
 }
 
 let heroldFilter = "alle";
+let heroldDashboardTab="new";
+let heroldDashboardSearch="";
+function heroldDashboardIsDuplicate(fund){return heroldMoeglicheDuplikate(fund).length>0;}
+function renderHeroldDashboard(){
+ const dashboard=byId("heroldDashboard");if(!dashboard)return;
+ dashboard.style.display=heroldIsAdmin()?"":"none";
+ if(!heroldIsAdmin())return;
+ const counts={new:heroldFunde.filter(f=>!heroldDashboardIsDuplicate(f)).length,
+ changes:heroldUpdates.length,corrections:heroldFunde.filter(heroldDashboardIsDuplicate).length,
+ hours:heroldZeitFunde.length};
+ const labels={new:"🔎 Neue Funde",changes:"🔄 Änderungen",corrections:"✏️ Korrekturen",hours:"🕰️ Zeiten"};
+ byId("heroldDashboardTabs").innerHTML=Object.keys(labels).map(key=>
+ '<button type="button" class="'+(heroldDashboardTab===key?'herold-active':'')+
+ '" onclick="heroldDashboardTab=\''+key+'\';renderHeroldDashboard()">'+labels[key]+' ('+counts[key]+')</button>').join("");
+ const active=heroldDashboardTab==="hours"?"heroldHoursReview":heroldDashboardTab==="changes"?"heroldUpdateList":"heroldList";
+ ["heroldList","heroldUpdateList","heroldHoursReview"].forEach(id=>{const el=byId(id);if(el)el.style.display=id===active?"":"none";});
+ const search=byId("heroldDashboardSearch");if(search)search.style.display=active==="heroldList"?"":"none";
+ if(active==="heroldList")renderHerold();
+}
+
 function heroldZeitVorschlag(index,fund){
  const review=fund.hoursReview;
  if(!review || review.status!=="pending" || !Array.isArray(review.dailyHours) || !review.dailyHours.length) return "";
@@ -7488,7 +7520,8 @@ function renderHerold(){
     heroldFilter==="alle" ||
     (heroldFilter==="maerkte" && fund.type!=="Buhurt") ||
     (heroldFilter==="buhurt" && fund.type==="Buhurt")
-  );
+  ).filter(({fund})=>(heroldDashboardTab==="corrections"?heroldDashboardIsDuplicate(fund):!heroldDashboardIsDuplicate(fund)) &&
+    (!heroldDashboardSearch || heroldNorm([fund.name,fund.city,fund.country].join(" ")).includes(heroldNorm(heroldDashboardSearch))));
   const filters='<div style="display:flex;gap:8px;margin-bottom:16px">'+
     '<button onclick="heroldFilter=\'alle\';renderHerold()">Alle</button>'+
     '<button onclick="heroldFilter=\'maerkte\';renderHerold()">🏰 Märkte</button>'+
@@ -7539,6 +7572,7 @@ function renderHerold(){
       '<button onclick="heroldDuplikatZuordnen('+index+')">'+(possible.length?'🔗 Doppelten Fund zuordnen':'🔗 Bereits im Kalender')+'</button>'+
       '<button onclick="heroldVerwerfen('+index+')">❌ Verwerfen</button></div></div>';
   }).join("");
+  if(!visible.length)box.innerHTML+='<div class="card">Keine passenden Veranstaltungen in diesem Bereich.</div>';
 }
 
 async function starteHeroldAktion(index, aktion){
