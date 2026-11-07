@@ -7055,6 +7055,29 @@ function heroldDeduplicate(list,existing=[]){
 
 // Zeitvorschläge bleiben sichtbar, auch wenn ein Fund bereits bestätigt ist.
 let heroldZeitFunde=[];
+let heroldZeitDecisions=new Set();
+function heroldZeitKey(fund){
+ const review=fund.hoursReview||{};
+ const source=String(review.source||"");
+ const hours=JSON.stringify(review.dailyHours||[]);
+ let hash=2166136261;
+ for(const ch of source+"|"+hours){hash^=ch.charCodeAt(0);hash=Math.imul(hash,16777619);}
+ const id=String(fund.event_id||fund.id||"unknown").replace(/[^A-Za-z0-9_-]/g,"_").slice(0,100);
+ return id+"|"+String(fund.start||"unknown")+"|"+(hash>>>0).toString(16).padStart(8,"0");
+}
+async function heroldZeitVerwerfen(index){
+ const fund=heroldZeitFunde[index];if(!fund)return;
+ if(!confirm("Nur diesen Öffnungszeiten-Vorschlag dauerhaft verwerfen? Die Veranstaltung bleibt erhalten."))return;
+ try{
+  await heroldSessionErneuern();
+  const key=heroldZeitKey(fund);
+  const result=await heroldApi("functions/v1/herold-hours-review",{method:"POST",token:heroldSession.access_token,body:{action:"reject",proposal_key:key}});
+  if(!result?.ok)throw new Error(result?.error||"Verwerfen fehlgeschlagen.");
+  heroldZeitDecisions.add(key);heroldZeitFunde.splice(index,1);
+  renderHeroldZeitFunde();renderHeroldDashboard();
+ }catch(error){alert(error.message||"Verwerfen fehlgeschlagen.");}
+}
+
 async function ladeHeroldZeitFunde(){
  const box=byId("heroldHoursReview");
  if(!box || !heroldIsAdmin()) return;
@@ -7073,9 +7096,12 @@ async function ladeHeroldZeitFunde(){
     }));
    }
   }catch(error){console.warn("Bestätigte Zeitvorschläge nicht geladen:",error);}
+  await heroldSessionErneuern();
+  const saved=await heroldApi("functions/v1/herold-hours-review",{method:"POST",token:heroldSession.access_token,body:{action:"list"}});
+  heroldZeitDecisions=new Set((saved?.decisions||[]).filter(row=>row.status==="rejected").map(row=>row.proposal_key));
   heroldZeitFunde=[...approvedHours,...candidateHours.filter(candidate=>
    !approvedHours.some(p=>heroldSameEvent(p,candidate))
-  )];
+  )].filter(fund=>!heroldZeitDecisions.has(heroldZeitKey(fund)));
   renderHeroldZeitFunde();
   renderHeroldDashboard();
  }catch(error){box.textContent="Zeitvorschläge konnten nicht geladen werden: "+error.message;}
@@ -7093,7 +7119,7 @@ function renderHeroldZeitFunde(){
    '<p>'+link+'</p><p class="muted">Nur nach Prüfung des richtigen Veranstaltungsjahres freigeben.</p>'+
    (unique?'<p>Kalendereintrag: '+escapeHTML(unique.event.name||"")+'</p><button onclick="heroldZeitFreigeben('+index+')">✅ Geprüfte Zeiten übernehmen</button>':
    '<p class="muted">Keine eindeutige Zuordnung zu einem bestätigten Datenbankeintrag. Keine automatische Übernahme, um Duplikate zu vermeiden.</p>')+
-   '</div></details>';
+   '<div class="buttonRow"><button type="button" onclick="heroldZeitVerwerfen('+index+')">❌ Vorschlag verwerfen</button></div></div></details>';
  }).join(""):'<p>Keine offenen Zeitvorschläge.</p>');
 }
 async function heroldZeitFreigeben(index){
