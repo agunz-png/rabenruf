@@ -7634,7 +7634,11 @@ async function heroldDuplikatZuordnen(index){
     const editionAlias=eventTitle.startsWith(fundTitle+" ") &&
       /^20\d{2}(?:\s|$)/.test(eventTitle.slice(fundTitle.length).trim()) &&
       fundTitle.length>=16 && sameEnd;
-    const sameName=eventTitle===fundTitle || genericMarketAlias || editionAlias;
+    // A calendar may use a shortened title, while the source adds a subtitle.
+    // Permit explicit linking only; the backend still requires exact full dates/place.
+    const subtitleAlias=fundTitle.length>=16 && eventTitle.length>=16 &&
+      (fundTitle.startsWith(eventTitle+" ") || eventTitle.startsWith(fundTitle+" "));
+    const sameName=eventTitle===fundTitle || genericMarketAlias || editionAlias || subtitleAlias;
     // An identical date and location are mandatory; a shared series name is not enough.
     return sameCountry && sameStart && sameCity && sameName;
   });
