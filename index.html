@@ -919,6 +919,17 @@ h2{font-size:clamp(21px,5.5vw,25px);line-height:1.3;overflow-wrap:break-word;}
 #heroldDashboard .herold-tabs button:focus-visible{outline:2px solid #f0d18c;outline-offset:3px}
 #heroldDashboardSearch{width:100%;background:#211b16;color:#f5ecdf;border:1px solid #796043;border-radius:12px;padding:12px}
 @media(max-width:360px){#heroldDashboard .herold-tabs button{font-size:13px;min-height:68px;padding:10px 5px}}
+
+/* Herold: compact event cards; review actions only after opening */
+.herold-compact-card{padding:16px!important;margin-bottom:12px}
+.herold-compact-card>summary{display:block;list-style:none;cursor:pointer;position:relative;padding-right:30px;outline-offset:5px}
+.herold-compact-card>summary::-webkit-details-marker{display:none}
+.herold-compact-card>summary::after{content:"⌄";position:absolute;right:3px;top:12px;color:#dfb978;font-size:24px;transition:transform .18s}
+.herold-compact-card[open]>summary::after{transform:rotate(180deg)}
+.herold-compact-card .herold-compact-title{font-size:19px;line-height:1.3;margin:0 0 8px;color:#f3e7d4}
+.herold-compact-card .herold-compact-meta{font-size:14px;line-height:1.55;color:#bfb0a1;margin:0}
+.herold-compact-card .herold-compact-body{padding-top:15px}
+.herold-compact-card .herold-compact-body .buttonRow{margin-top:14px}
 </style>
 
 
@@ -7556,9 +7567,10 @@ function renderHerold(){
         ' · '+escapeHTML(event.start||"")+' bis '+escapeHTML(event.end||event.start||"")+'</p>').join("")+
         '<p class="muted">Nur bei gleicher Veranstaltung verknüpfen. Sonst separat prüfen; keine automatische Löschung.</p></div>'
       : '';
-    return '<div class="card"><h3>'+escapeHTML(fund.name||"Veranstaltung")+'</h3>'+duplicateNotice+
-      '<p>📅 '+escapeHTML(fund.date||"")+'<br>📍 '+escapeHTML((fund.city?fund.city+", ":"")+(fund.country||""))+'</p>'+
-      '<button type="button" onclick="document.getElementById(\'herold-details-'+index+'\').open=true;document.getElementById(\'herold-details-'+index+'\').scrollIntoView({behavior:\'smooth\',block:\'start\'})">🔎 Details ansehen / korrigieren</button>'+
+    return '<details class="card herold-compact-card" id="herold-card-'+index+'"><summary aria-label="Veranstaltung öffnen: '+escapeHTML(fund.name||"Veranstaltung")+'">'+
+      '<h3 class="herold-compact-title">'+escapeHTML(fund.name||"Veranstaltung")+'</h3>'+
+      '<p class="herold-compact-meta">📅 '+escapeHTML(fund.date||[fund.start,fund.end].filter(Boolean).join(" bis "))+'<br>📍 '+escapeHTML((fund.city?fund.city+", ":"")+(fund.country||""))+'</p></summary>'+
+      '<div class="herold-compact-body">'+duplicateNotice+
       '<details id="herold-details-'+index+'" style="margin-top:12px"><summary>Alle Angaben prüfen und korrigieren</summary>'+
       '<div class="eventEditForm" style="margin-top:12px">'+
       field(index,"name","Veranstaltungsname",fund.name)+
@@ -7575,7 +7587,7 @@ function renderHerold(){
       '<p class="muted">Quelle: '+escapeHTML(fund.source||"keine Quelle angegeben")+'</p></div></details>'+
       '<div class="buttonRow"><button onclick="heroldUebernehmen('+index+')">✅ Übernehmen</button>'+
       '<button onclick="heroldDuplikatZuordnen('+index+')">'+(possible.length?'🔗 Doppelten Fund zuordnen':'🔗 Bereits im Kalender')+'</button>'+
-      '<button onclick="heroldVerwerfen('+index+')">❌ Verwerfen</button></div></div>';
+      '<button onclick="heroldVerwerfen('+index+')">❌ Verwerfen</button></div></div></details>';
   }).join("");
   if(!visible.length)box.innerHTML+='<div class="card">Keine passenden Veranstaltungen in diesem Bereich.</div>';
 }
