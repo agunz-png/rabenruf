@@ -7387,7 +7387,7 @@ function renderHeroldUpdates(){
     }).join("");
     const id=String(request.id||"");
     return '<details class="card herold-compact-card"><summary><h3 class="herold-compact-title">'+escapeHTML(event.name||"Terminänderung")+(isNew?' <span class="muted">· Neuer Termin</span>':'')+'</h3>'+
-      '<p class="muted">📅 '+escapeHTML(event.date||"")+'<br>📍 '+escapeHTML((event.city||"")+", "+(event.country||""))+'</p>'+
+      '<p class="herold-compact-meta">📅 '+escapeHTML(event.date||"")+'<br>📍 '+escapeHTML((event.city||"")+", "+(event.country||""))+'</p></summary>'+
       '<div class="herold-compact-body">'+changes+
       '<button class="btn green" onclick="entscheideTerminAenderung(\''+id+'\',\'approve\')">'+(isNew?'✅ Termin freigeben':'✅ Änderung freigeben')+'</button>'+
       '<button class="btn" onclick="entscheideTerminAenderung(\''+id+'\',\'reject\')">❌ Vorschlag verwerfen</button></div></details>';
