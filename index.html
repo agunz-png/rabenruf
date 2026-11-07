@@ -7115,44 +7115,44 @@ async function ladeHeroldZeitFunde(){
  }catch(error){box.textContent="Zeitvorschläge konnten nicht geladen werden: "+error.message;}
 }
 function heroldZeitZiele(fund){
- const start=String(fund.start||""),end=String(fund.end||start);
- const city=heroldNorm(fund.city||"");
+ const city=heroldCityNorm(fund.city||"");
+ const country=heroldNorm(fund.country||"");
+ const days=fund.hoursReview?.dailyHours||[];
  return heroldApprovedDuplicateTargets.filter(item=>{
   const event=item.event||{};
-  return heroldNorm(event.city||"")===city &&
-   String(event.start||"")===start && String(event.end||event.start||"")===end;
+  const targetCity=heroldCityNorm(event.city||"");
+  const targetCountry=heroldNorm(event.country||"");
+  const start=String(event.start||""),end=String(event.end||start);
+  return targetCity===city && (!country||!targetCountry||country===targetCountry) &&
+   days.length>0 && days.every(day=>day.date>=start && day.date<=end);
  });
 }
 function heroldZeitZielWaehlen(index){
  const fund=heroldZeitFunde[index];if(!fund)return;
  const options=heroldZeitZiele(fund);
  if(!options.length){
-  const pending=heroldFunde.find(f=>String(f.id||"")===String(fund.id||"") || heroldSameEvent(fund,f));
-  if(pending){
-   heroldDashboardTab=heroldDashboardIsDuplicate(pending)?"corrections":"new";
-   heroldDashboardSearch="";
-   heroldFilter="alle";
-   renderHeroldDashboard();
-   const index=heroldFunde.indexOf(pending);
-   const card=byId("herold-card-"+index);
-   if(card){card.open=true;card.scrollIntoView({behavior:"smooth",block:"center"});}
-   else alert("Passender Fund gefunden. Bitte unter «Neue Funde» prüfen und bestätigen.");
-   return;
-  }
-  return alert("Für diesen Zeitraum ist noch kein bestätigter Datenbankeintrag vorhanden. Bitte die Veranstaltung zuerst als neuen Fund prüfen und übernehmen. Es wird kein Duplikat erstellt.");
+  return alert("Kein bestätigter Kalendereintrag in diesem Ort deckt die vorgeschlagenen Öffnungstage ab. Bitte zuerst die Daten im Kalender prüfen.");
  }
- if(options.length===1){fund.event_id=options[0].id;renderHeroldZeitFunde();return;}
- alert("Mehrere bestätigte Termine passen auf Ort und Zeitraum. Bitte erst die Doppeleinträge bereinigen.");
+ const labels=options.map((item,i)=>(i+1)+". "+item.event.name+" ("+item.event.start+" bis "+(item.event.end||item.event.start)+")").join("\\n");
+ const answer=prompt("Mit welchem bereits bestätigten Eintrag sollen die Zeiten verknüpft werden?\\nBitte Nummer eingeben:\\n"+labels,options.length===1?"1":"");
+ if(answer===null)return;
+ const chosen=Number(answer);
+ if(!Number.isInteger(chosen)||chosen<1||chosen>options.length)return alert("Bitte eine gültige Nummer auswählen.");
+ const selected=options[chosen-1];
+ if(!confirm("Öffnungszeiten von «"+fund.name+"» dem bestätigten Eintrag «"+selected.event.name+"» zuordnen? Prüfe, ob es wirklich dieselbe Veranstaltung ist."))return;
+ fund.event_id=selected.id;
+ renderHeroldZeitFunde();
+ const card=byId("herold-hour-card-"+index);if(card)card.open=true;
 }
 function renderHeroldZeitFunde(){
  const box=byId("heroldHoursReview");if(!box)return;
  box.innerHTML='<h2>🕰️ Öffnungszeiten prüfen</h2>'+
  (heroldZeitFunde.length?heroldZeitFunde.map((fund,index)=>{
   const review=fund.hoursReview;
-  const candidates=heroldApprovedDuplicateTargets.filter(item=>fund.event_id ? item.id===fund.event_id && String(item.event.start)===String(fund.start) && String(item.event.end||item.event.start)===String(fund.end||fund.start) : heroldSameEvent(fund,item.event));
+  const candidates=fund.event_id ? heroldZeitZiele(fund).filter(item=>item.id===fund.event_id) : [];
   const unique=candidates.length===1?candidates[0]:null;
   const link=/^https:\/\//i.test(review.source||"")?'<a target="_blank" rel="noopener noreferrer" href="'+escapeHTML(review.source)+'">Originalquelle</a>':"";
-  return '<details class="card herold-compact-card"><summary><h3 class="herold-compact-title">'+escapeHTML(fund.name||"")+'</h3><p class="herold-compact-meta">📅 '+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+'<br>📍 '+escapeHTML(fund.city||"")+'</p></summary><div class="herold-compact-body">'+
+  return '<details id="herold-hour-card-'+index+'" class="card herold-compact-card"><summary><h3 class="herold-compact-title">'+escapeHTML(fund.name||"")+'</h3><p class="herold-compact-meta">📅 '+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+'<br>📍 '+escapeHTML(fund.city||"")+'</p></summary><div class="herold-compact-body">'+
    review.dailyHours.map((d,i)=>'<label>'+escapeHTML(d.date)+' <input id="hour-review-'+index+'-'+i+'" value="'+escapeHTML(d.open+"–"+d.close)+'"></label>').join("")+
    '<p>'+link+'</p><p class="muted">Nur nach Prüfung des richtigen Veranstaltungsjahres freigeben.</p>'+
    (unique?'<p>Kalendereintrag: '+escapeHTML(unique.event.name||"")+'</p><button onclick="heroldZeitFreigeben('+index+')">✅ Geprüfte Zeiten übernehmen</button>':
@@ -7162,7 +7162,7 @@ function renderHeroldZeitFunde(){
 }
 async function heroldZeitFreigeben(index){
  const fund=heroldZeitFunde[index];if(!fund || !heroldSession)return;
- const matches=heroldApprovedDuplicateTargets.filter(item=>fund.event_id ? item.id===fund.event_id && String(item.event.start)===String(fund.start) && String(item.event.end||item.event.start)===String(fund.end||fund.start) : heroldSameEvent(fund,item.event));
+ const matches=fund.event_id ? heroldZeitZiele(fund).filter(item=>item.id===fund.event_id) : [];
  if(matches.length!==1)return alert("Keine eindeutige Zuordnung.");
  const dailyHours=[];
  for(let i=0;i<fund.hoursReview.dailyHours.length;i++){
