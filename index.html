@@ -7088,12 +7088,12 @@ function renderHeroldZeitFunde(){
   const candidates=heroldApprovedDuplicateTargets.filter(item=>fund.event_id ? item.id===fund.event_id : heroldSameEvent(fund,item.event));
   const unique=candidates.length===1?candidates[0]:null;
   const link=/^https:\/\//i.test(review.source||"")?'<a target="_blank" rel="noopener noreferrer" href="'+escapeHTML(review.source)+'">Originalquelle</a>':"";
-  return '<div class="card"><h3>'+escapeHTML(fund.name||"")+'</h3><p>'+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+' · '+escapeHTML(fund.city||"")+'</p>'+
+  return '<details class="card herold-compact-card"><summary><h3 class="herold-compact-title">'+escapeHTML(fund.name||"")+'</h3><p class="herold-compact-meta">📅 '+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+'<br>📍 '+escapeHTML(fund.city||"")+'</p></summary><div class="herold-compact-body">'+
    review.dailyHours.map((d,i)=>'<label>'+escapeHTML(d.date)+' <input id="hour-review-'+index+'-'+i+'" value="'+escapeHTML(d.open+"–"+d.close)+'"></label>').join("")+
    '<p>'+link+'</p><p class="muted">Nur nach Prüfung des richtigen Veranstaltungsjahres freigeben.</p>'+
    (unique?'<p>Kalendereintrag: '+escapeHTML(unique.event.name||"")+'</p><button onclick="heroldZeitFreigeben('+index+')">✅ Geprüfte Zeiten übernehmen</button>':
    '<p class="muted">Keine eindeutige Zuordnung zu einem bestätigten Datenbankeintrag. Keine automatische Übernahme, um Duplikate zu vermeiden.</p>')+
-   '</div>';
+   '</div></details>';
  }).join(""):'<p>Keine offenen Zeitvorschläge.</p>');
 }
 async function heroldZeitFreigeben(index){
@@ -7386,11 +7386,11 @@ function renderHeroldUpdates(){
         (isNew?escapeHTML(shown):escapeHTML(oldShown)+' → '+escapeHTML(shown))+'</span></p>';
     }).join("");
     const id=String(request.id||"");
-    return '<div class="card"><h3>'+escapeHTML(event.name||"Terminänderung")+(isNew?' <span class="muted">· Neuer Termin</span>':'')+'</h3>'+
+    return '<details class="card herold-compact-card"><summary><h3 class="herold-compact-title">'+escapeHTML(event.name||"Terminänderung")+(isNew?' <span class="muted">· Neuer Termin</span>':'')+'</h3>'+
       '<p class="muted">📅 '+escapeHTML(event.date||"")+'<br>📍 '+escapeHTML((event.city||"")+", "+(event.country||""))+'</p>'+
-      '<details><summary>'+(isNew?'Termindaten prüfen':'Änderungen prüfen')+'</summary>'+changes+'</details>'+
+      '<div class="herold-compact-body">'+changes+
       '<button class="btn green" onclick="entscheideTerminAenderung(\''+id+'\',\'approve\')">'+(isNew?'✅ Termin freigeben':'✅ Änderung freigeben')+'</button>'+
-      '<button class="btn" onclick="entscheideTerminAenderung(\''+id+'\',\'reject\')">❌ Vorschlag verwerfen</button></div>';
+      '<button class="btn" onclick="entscheideTerminAenderung(\''+id+'\',\'reject\')">❌ Vorschlag verwerfen</button></div></details>';
   }).join("");
 }
 
