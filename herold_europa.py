@@ -349,7 +349,23 @@ for page_url, heading in headings:
             start
         )
 
-        if key in vorhanden or key in app_events:
+        if key in vorhanden:
+            # Enrich an existing pending fund instead of generating a duplicate.
+            existing = next((item for item in funde if schluessel(
+                str(item.get("name", "")), str(item.get("city", "")),
+                vorhandenes_startdatum(item)) == key), None)
+            if existing and (not existing.get("website") or not existing.get("organizer")):
+                link = cells[2].find("a", href=True)
+                detail_url = urljoin(page_url, link["href"]) if link else ""
+                if detail_url and urlsplit(detail_url).netloc.lower().removeprefix("www.") == "mittelalterkalender.info":
+                    details = veranstalter_details(detail_url)
+                    for field in ("website", "organizer"):
+                        if not existing.get(field) and details.get(field):
+                            existing[field] = details[field]
+                    if not existing.get("source"):
+                        existing["source"] = detail_url
+            continue
+        if key in app_events:
             continue
         # Ähnliche bereits vorhandene App-Veranstaltung erkennen
     
