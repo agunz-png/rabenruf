@@ -512,9 +512,56 @@ jobs:
             for attempt in 1 2 3; do
               git fetch origin main
               if ! git rebase origin/main; then
-                echo "::error::Konflikt mit neueren Daten. Kein Überschreiben; Rebase wird abgebrochen."
-                git rebase --abort || true
-                exit 1
+                # The audit log is append-only. During a rebase, stage 2 is
+                # the latest main and stage 3 is this scan's data commit.
+                # Combine distinct JSONL records, never overwrite either side.
+                if git ls-files -u | awk '{print $4}' | sort -u | grep -v '^herold-filter-protokoll.jsonl
+              if git push origin HEAD:main; then
+                echo "Herold-Daten erfolgreich gespeichert."
+                exit 0
+              fi
+              echo "Main wurde während des Speicherns aktualisiert (Versuch $attempt)."
+              sleep 3
+            done
+            echo "::error::Main wurde wiederholt gleichzeitig geändert. Keine Daten überschrieben."
+            exit 1
+
+          fi
+ | grep -q .; then
+                  echo "::error::Conflict in structured event data; refusing automatic resolution."
+                  git rebase --abort || true
+                  exit 1
+                fi
+                if git ls-files -u | awk '{print $4}' | grep -qx 'herold-filter-protokoll.jsonl'; then
+                  git show :2:herold-filter-protokoll.jsonl > /tmp/herold-main-log
+                  git show :3:herold-filter-protokoll.jsonl > /tmp/herold-scan-log
+                  python3 - <<'PYMERGE'
+          import json
+          from pathlib import Path
+          lines = []
+          seen = set()
+          for filename in ("/tmp/herold-main-log", "/tmp/herold-scan-log"):
+              for line in Path(filename).read_text(encoding="utf-8").splitlines():
+                  if not line.strip():
+                      continue
+                  obj = json.loads(line)
+                  key = (obj.get("run_id"), obj.get("timestamp")) if isinstance(obj, dict) else line
+                  if key not in seen:
+                      seen.add(key)
+                      lines.append(line)
+          Path("herold-filter-protokoll.jsonl").write_text(
+              "\\n".join(lines) + ("\\n" if lines else ""), encoding="utf-8")
+          PYMERGE
+                  git add herold-filter-protokoll.jsonl
+                  GIT_EDITOR=true git -c core.editor=true rebase --continue || {
+                    git rebase --abort || true
+                    exit 1
+                  }
+                else
+                  echo "::error::Unexpected rebase failure."
+                  git rebase --abort || true
+                  exit 1
+                fi
               fi
               if git push origin HEAD:main; then
                 echo "Herold-Daten erfolgreich gespeichert."
