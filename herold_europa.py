@@ -5,6 +5,7 @@ import urllib.request
 from difflib import SequenceMatcher
 from datetime import date, datetime
 from urllib.parse import urljoin, urlsplit
+from functools import lru_cache
 
 from bs4 import BeautifulSoup
 
@@ -116,6 +117,39 @@ def seite_laden(url):
     )
     html = urllib.request.urlopen(req, timeout=30).read()
     return BeautifulSoup(html, "html.parser")
+
+
+@lru_cache(maxsize=180)
+def veranstalter_details(detail_url):
+    """Read a calendar detail page; never confuse the listing URL with organizer site."""
+    try:
+        page = seite_laden(detail_url)
+    except Exception as exc:
+        print("Detailseite nicht erreichbar:", detail_url, str(exc)[:100])
+        return {}
+    details = {}
+    text = page.get_text(" ", strip=True)
+    # Read a named organizer when the detail page explicitly labels it.
+    match = re.search(r"(?:Veranstalter|Organisator)\\s*:?\\s*(.{3,100}?)(?=\\s+(?:Start der Veranstaltung|Adresse der Veranstaltung|PLZ|Ort|Bundesland|Land|Ende der Veranstaltung)\\b|$)", text, re.I)
+    if match:
+        organizer = re.sub(r"\\s+", " ", match.group(1)).strip(" :-")
+        if 3 <= len(organizer) <= 100:
+            details["organizer"] = organizer
+    for anchor in page.find_all("a", href=True):
+        url = urljoin(detail_url, anchor["href"]).split("#", 1)[0]
+        parsed = urlsplit(url)
+        domain = parsed.netloc.lower().removeprefix("www.")
+        if parsed.scheme not in ("http", "https") or not domain or domain == "mittelalterkalender.info":
+            continue
+        label = anchor.get_text(" ", strip=True).lower()
+        parent_text = anchor.parent.get_text(" ", strip=True).lower() if anchor.parent else ""
+        # Only accept links explicitly identified as the event/organizer site.
+        if ("veranstaltungsseite" in parent_text or "website des veranstalters" in parent_text
+                or "webseite des veranstalters" in parent_text
+                or "veranstalterseite" in label):
+            details["website"] = url
+            break
+    return details
 
 
 soup = seite_laden(URL)
@@ -350,6 +384,14 @@ for page_url, heading in headings:
             + hashlib.sha1(raw_id).hexdigest()[:16]
         )
 
+        # Extract the actual organizer site from the linked detail page.
+        # Never use the calendar's own detail URL as the organizer website.
+        detail_anchor = cells[2].find("a", href=True)
+        detail_url = urljoin(page_url, detail_anchor["href"]) if detail_anchor else ""
+        detail_data = {}
+        if detail_url and urlsplit(detail_url).netloc.lower().removeprefix("www.") == "mittelalterkalender.info":
+            detail_data = veranstalter_details(detail_url)
+
         neues_event = {
             "id": fund_id,
             "name": name,
@@ -360,7 +402,8 @@ for page_url, heading in headings:
             "country": country,
             "city": city,
             "postcode": postcode,
-            "source": page_url
+            "source": detail_url or page_url,
+            **detail_data
         }
 
         neue_funde.append(neues_event)
