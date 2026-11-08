@@ -17,6 +17,23 @@
     "source_provider": "Mirimor"
   },
   {
+    "id": "eu-source-a52906881f37aa32",
+    "name": "Historischer Herbstmarkt Wangen a. Aare",
+    "type": "Markt",
+    "date": "2027-10-02 bis 2027-10-03",
+    "start": "2027-10-02",
+    "end": "2027-10-03",
+    "country": "Schweiz",
+    "city": "Wangen a.d.Aare",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.marktzunft.ch"
+    ],
+    "website": "http://www.marktzunft.ch",
+    "source_provider": "Mirimor"
+  },
+  {
     "id": "eu-source-3eb044140a7c2a2d",
     "name": "Mittelaltermarkt Bremgarten",
     "type": "Markt",
@@ -868,12 +885,12 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-b862522e41808974",
+    "id": "mittelalterkalender-0041149ea8df4380",
     "name": "Bal Renaissance - Danse Medievale: Historisches Tanzfest mit Okzitanis",
     "type": "Markt",
-    "date": "2027-02-27 bis 2027-02-27",
-    "start": "2027-02-27",
-    "end": "2027-02-27",
+    "date": "2027-04-24 bis 2027-04-24",
+    "start": "2027-04-24",
+    "end": "2027-04-24",
     "country": "Deutschland",
     "city": "München",
     "postcode": "81825",
