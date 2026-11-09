@@ -314,6 +314,63 @@
     "source_provider": "Mirimor"
   },
   {
+    "id": "eu-source-fad34e91b8f4cde7",
+    "name": "Ritterfest & Himmelfahrt auf dem Schlossgut Altlandsberg",
+    "type": "Markt",
+    "date": "2027-05-06 bis 2027-05-09",
+    "start": "2027-05-06",
+    "end": "2027-05-09",
+    "country": "Deutschland",
+    "city": "Altlandsberg",
+    "postcode": "15345",
+    "source": "https://fyndling.de/e/a7f14d59179c8d1a",
+    "venue": "Schlossgut Altlandsberg",
+    "info": "Mittelalterliches Spektakel am Himmelfahrtswochenende für Groß und Klein. Musik von „Tanzwut“, Gaukelei von „Opus Furore“, Stelzentheater „Hochkant“, Geschichtenerzähler und Puppenspieler „Don Oswaldo“ sowie Ritterkämpfe von „Midgards Feuerbund“. Den Abschluss bilden ein Konzert…",
+    "website": "https://www.carnica-spectaculi.de/veranstaltung/ritterfest-oranienburg/",
+    "websites": [
+      "https://www.carnica-spectaculi.de/veranstaltung/ritterfest-oranienburg/"
+    ],
+    "lat": 52.6179732,
+    "lng": 13.887079,
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2027-05-06",
+          "open": "10:00",
+          "close": "19:00"
+        },
+        {
+          "date": "2027-05-09",
+          "open": "10:00",
+          "close": "19:00"
+        }
+      ],
+      "source": "https://www.carnica-spectaculi.de/veranstaltung/ritterfest-oranienburg/",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
+  },
+  {
+    "id": "eu-source-28b0644122c91c28",
+    "name": "Pfingst-Spectaculum im Schlosspark Oranienburg",
+    "type": "Markt",
+    "date": "2027-05-15 bis 2027-05-17",
+    "start": "2027-05-15",
+    "end": "2027-05-17",
+    "country": "Deutschland",
+    "city": "Oranienburg",
+    "postcode": "16515",
+    "source": "https://fyndling.de/e/47d47eed7dd751c1",
+    "venue": "Schlosspark Oranienburg",
+    "info": "Mittelaltermarkt im Schlosspark mit Handwerk, Händlern, Schenken und Tavernen. Ritterkämpfe von „Midgards Feuerbund“, Akrobatik, Jonglage und Feuershow der „Flugträumer“, historische Musik von „The Sandsacks“, Wesen auf Stelzen sowie Axtwerfen und Bogenschießen für…",
+    "website": "https://www.carnica-spectaculi.de/veranstaltung/pfingstspectaculum/",
+    "websites": [
+      "https://www.carnica-spectaculi.de/veranstaltung/pfingstspectaculum/"
+    ],
+    "lat": 52.7711793,
+    "lng": 13.2878028
+  },
+  {
     "id": "eu-source-b85436abe16649a0",
     "name": "Sound of Warburgum Konzert",
     "type": "Markt",
@@ -388,25 +445,6 @@
     ],
     "lat": 49.5422946,
     "lng": 7.2266124
-  },
-  {
-    "id": "eu-source-6e0bf0df2db5fc54",
-    "name": "Pfingst-Spectaculum (Konzertarena) im Schlosspark",
-    "type": "Markt",
-    "date": "2027-05-15 bis 2027-05-17",
-    "start": "2027-05-15",
-    "end": "2027-05-17",
-    "country": "Deutschland",
-    "city": "Oranienburg",
-    "postcode": "16515",
-    "source": "https://fyndling.de/e/47d47eed7dd751c1",
-    "venue": "Schlosspark Oranienburg",
-    "website": "https://www.carnica-spectaculi.de/veranstaltung/pfingstspectaculum/",
-    "websites": [
-      "https://www.carnica-spectaculi.de/veranstaltung/pfingstspectaculum/"
-    ],
-    "lat": 52.7711793,
-    "lng": 13.2878028
   },
   {
     "id": "eu-source-7a48a0d9db0f3692",
@@ -885,8 +923,8 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-0041149ea8df4380",
-    "name": "Bal Renaissance - Danse Medievale: Historisches Tanzfest mit Okzitanis",
+    "id": "mittelalterkalender-ad2aac9c70c57ef4",
+    "name": "Bal Renaissance - Danse Medievale",
     "type": "Markt",
     "date": "2027-04-24 bis 2027-04-24",
     "start": "2027-04-24",
