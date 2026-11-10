@@ -938,7 +938,7 @@ h2{font-size:clamp(21px,5.5vw,25px);line-height:1.3;overflow-wrap:break-word;}
 #heroldHoursReview a,#heroldUpdateList a{color:#dcb66c!important}
 #heroldHoursReview label{display:block;margin:10px 0}
 #heroldHoursReview label input{display:block;width:100%;margin-top:7px}
-</style>
+.detailPlace .event-day-hours{margin:8px 0;line-height:1.5}.detailPlace .event-day-hours strong{color:#f1dfbd}</style>
 
 
 <link rel="icon" type="image/png" sizes="512x512" href="assets/rabenruf-icon.png">
@@ -5540,11 +5540,9 @@ function eventHoursHTML(event){
   const days=eventDailyHours(event);
   if(days.length){
     const format=date=>new Intl.DateTimeFormat("de-CH",{weekday:"long",day:"numeric",month:"long",timeZone:"UTC"}).format(new Date(date+"T12:00:00Z"));
-    return '<div class="card"><h3>🕰️ Öffnungszeiten</h3>'+
-      days.map(day=>'<p>'+escapeHTML(format(day.date))+': <strong>'+escapeHTML(day.open)+'–'+escapeHTML(day.close)+'</strong></p>').join("")+
-      '<p class="muted">Nur veröffentlichte und geprüfte Tageszeiten.</p></div>';
+    return days.map(day=>'<p class="event-day-hours">'+escapeHTML(format(day.date))+': <strong>'+escapeHTML(day.open)+'–'+escapeHTML(day.close)+'</strong></p>').join("");
   }
-  return event.hours ? '<div class="card"><h3>🕰️ Öffnungszeiten</h3><p>'+escapeHTML(event.hours)+'</p></div>' : '';
+  return event.hours ? '<p>'+escapeHTML(event.hours)+'</p>' : '<p class="muted">Noch keine Öffnungszeiten bekannt</p>';
 }
 
 function eventCard(event){
@@ -6144,8 +6142,6 @@ function openEvent(id){
 
     </div>
 
-    ${eventHoursHTML(event)}
-
     <section id="eventWeather" class="card weatherPanel" data-event-id="${escapeHTML(String(event.id))}" aria-live="polite">
       <h3>🌦️ Wetter am Veranstaltungsort</h3>
       <p class="weatherLoading">Wetterprognose wird geladen …</p>
@@ -6177,11 +6173,7 @@ function openEvent(id){
 
         <br>
 
-        <span class="muted">
-
-          ${escapeHTML(event.hours)}
-
-        </span>
+        ${eventHoursHTML(event)}
 
       </div>
 
