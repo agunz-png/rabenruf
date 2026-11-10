@@ -7064,13 +7064,14 @@ function heroldDeduplicate(list,existing=[]){
 // Zeitvorschläge bleiben sichtbar, auch wenn ein Fund bereits bestätigt ist.
 let heroldZeitFunde=[];
 let heroldZeitDecisions=new Set();
+const heroldZeitZuordnungen=new Map();
 function heroldZeitKey(fund){
  const review=fund.hoursReview||{};
  const source=String(review.source||"");
  const hours=JSON.stringify(review.dailyHours||[]);
  let hash=2166136261;
  for(const ch of source+"|"+hours){hash^=ch.charCodeAt(0);hash=Math.imul(hash,16777619);}
- const id=String(fund.event_id||fund.id||"unknown").replace(/[^A-Za-z0-9_-]/g,"_").slice(0,100);
+ const id=String(fund.id||fund.event_id||"unknown").replace(/[^A-Za-z0-9_-]/g,"_").slice(0,100);
  return id+"|"+String(fund.start||"unknown")+"|"+(hash>>>0).toString(16).padStart(8,"0");
 }
 async function heroldZeitVerwerfen(index){
@@ -7110,6 +7111,7 @@ async function ladeHeroldZeitFunde(){
   heroldZeitFunde=[...approvedHours,...candidateHours.filter(candidate=>
    !approvedHours.some(p=>heroldSameEvent(p,candidate))
   )].filter(fund=>!heroldZeitDecisions.has(heroldZeitKey(fund)));
+  heroldZeitFunde.forEach(fund=>{const saved=heroldZeitZuordnungen.get(heroldZeitKey(fund));if(saved)fund.event_id=saved;});
   renderHeroldZeitFunde();
   renderHeroldDashboard();
  }catch(error){box.textContent="Zeitvorschläge konnten nicht geladen werden: "+error.message;}
@@ -7144,6 +7146,7 @@ function heroldZeitZielWaehlen(index){
  const selected=options[chosen-1];
  if(!confirm("Öffnungszeiten von «"+fund.name+"» dem bestätigten Eintrag «"+selected.event.name+"» zuordnen? Prüfe, ob es wirklich dieselbe Veranstaltung ist."))return;
  fund.event_id=selected.id;
+ heroldZeitZuordnungen.set(heroldZeitKey(fund),selected.id);
  renderHeroldZeitFunde();
  const card=byId("herold-hour-card-"+index);if(card)card.open=true;
 }
