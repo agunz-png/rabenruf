@@ -7133,11 +7133,14 @@ function heroldZeitZielWaehlen(index){
  if(!options.length){
   return alert("Kein bestätigter Kalendereintrag in diesem Ort deckt die vorgeschlagenen Öffnungstage ab. Bitte zuerst die Daten im Kalender prüfen.");
  }
- const labels=options.map((item,i)=>(i+1)+". "+item.event.name+" ("+item.event.start+" bis "+(item.event.end||item.event.start)+")").join("\\n");
- const answer=prompt("Mit welchem bereits bestätigten Eintrag sollen die Zeiten verknüpft werden?\\nBitte Nummer eingeben:\\n"+labels,options.length===1?"1":"");
- if(answer===null)return;
- const chosen=Number(answer);
- if(!Number.isInteger(chosen)||chosen<1||chosen>options.length)return alert("Bitte eine gültige Nummer auswählen.");
+ let chosen=1;
+ if(options.length>1){
+  const labels=options.map((item,i)=>(i+1)+". "+String(item.event.name||"").replace(/&#0?38;|&amp;/gi,"&")+" ("+item.event.start+" bis "+(item.event.end||item.event.start)+")").join("\n");
+  const answer=prompt("Passenden bestätigten Eintrag auswählen (Nummer):\n"+labels,"");
+  if(answer===null)return;
+  chosen=Number(answer);
+  if(!Number.isInteger(chosen)||chosen<1||chosen>options.length)return alert("Bitte eine gültige Nummer auswählen.");
+ }
  const selected=options[chosen-1];
  if(!confirm("Öffnungszeiten von «"+fund.name+"» dem bestätigten Eintrag «"+selected.event.name+"» zuordnen? Prüfe, ob es wirklich dieselbe Veranstaltung ist."))return;
  fund.event_id=selected.id;
