@@ -7152,19 +7152,21 @@ function heroldZeitZielWaehlen(index){
 }
 function renderHeroldZeitFunde(){
  const box=byId("heroldHoursReview");if(!box)return;
+ const openKeys=new Set([...box.querySelectorAll("details.herold-compact-card[open]")].map(el=>el.dataset.reviewKey));
  box.innerHTML='<h2>🕰️ Öffnungszeiten prüfen</h2>'+
  (heroldZeitFunde.length?heroldZeitFunde.map((fund,index)=>{
   const review=fund.hoursReview;
   const candidates=fund.event_id ? heroldZeitZiele(fund).filter(item=>item.id===fund.event_id) : [];
   const unique=candidates.length===1?candidates[0]:null;
   const link=/^https:\/\//i.test(review.source||"")?'<a target="_blank" rel="noopener noreferrer" href="'+escapeHTML(review.source)+'">Originalquelle</a>':"";
-  return '<details id="herold-hour-card-'+index+'" class="card herold-compact-card"><summary><h3 class="herold-compact-title">'+escapeHTML(fund.name||"")+'</h3><p class="herold-compact-meta">📅 '+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+'<br>📍 '+escapeHTML(fund.city||"")+'</p></summary><div class="herold-compact-body">'+
+  return '<details id="herold-hour-card-'+index+'" data-review-key="'+escapeHTML(heroldZeitKey(fund))+'" class="card herold-compact-card"><summary><h3 class="herold-compact-title">'+escapeHTML(fund.name||"")+'</h3><p class="herold-compact-meta">📅 '+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+'<br>📍 '+escapeHTML(fund.city||"")+'</p></summary><div class="herold-compact-body">'+
    review.dailyHours.map((d,i)=>'<label>'+escapeHTML(d.date)+' <input id="hour-review-'+index+'-'+i+'" value="'+escapeHTML(d.open+"–"+d.close)+'"></label>').join("")+
    '<p>'+link+'</p><p class="muted">Nur nach Prüfung des richtigen Veranstaltungsjahres freigeben.</p>'+
    (unique?'<p>Kalendereintrag: '+escapeHTML(unique.event.name||"")+'</p><button id="herold-hour-approve-'+index+'" onclick="heroldZeitFreigeben('+index+')">✅ Geprüfte Zeiten übernehmen</button>':
    '<p class="muted">Noch keine eindeutige Zuordnung zu einem bestätigten Datenbankeintrag.</p><button type="button" onclick="heroldZeitZielWaehlen('+index+')">🔗 Zuordnen & Bestätigung ermöglichen</button>')+
    '<div class="buttonRow"><button type="button" onclick="heroldZeitVerwerfen('+index+')">❌ Vorschlag verwerfen</button></div></div></details>';
  }).join(""):'<p>Keine offenen Zeitvorschläge.</p>');
+ [...box.querySelectorAll("details.herold-compact-card")].forEach(el=>{if(openKeys.has(el.dataset.reviewKey))el.open=true;});
 }
 async function heroldZeitFreigeben(index){
  const fund=heroldZeitFunde[index];if(!fund || !heroldSession)return;
