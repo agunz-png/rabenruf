@@ -7774,7 +7774,7 @@ async function heroldDuplikatZuordnen(index){
   const fund=heroldFunde[index];
   if(!fund || !heroldSession) return alert("Bitte zuerst im Herold anmelden.");
   const norm=heroldNorm(fund.name);
-  const normalizedTitle=value=>heroldNorm(value).replace(/\b(?:geplant|mps|mittelalterliches|mittelalterlich)\b/g,"").trim();
+  const normalizedTitle=value=>heroldNorm(String(value||"").replace(/&#(?:0*38|x0*26);|&amp;/gi,"&")).replace(/\b(?:geplant|mps|mittelalterliches|mittelalterlich)\b/g,"").trim();
   const candidates=heroldApprovedDuplicateTargets.filter(item=>{
     const event=item.event;
     const sameCountry=heroldNorm(event.country)===heroldNorm(fund.country);
@@ -7798,7 +7798,7 @@ async function heroldDuplikatZuordnen(index){
     // Permit explicit linking only; the backend still requires exact full dates/place.
     const subtitleAlias=fundTitle.length>=16 && eventTitle.length>=16 &&
       (fundTitle.startsWith(eventTitle+" ") || eventTitle.startsWith(fundTitle+" "));
-    const sameName=eventTitle===fundTitle || genericMarketAlias || editionAlias || subtitleAlias;
+    const sameName=eventTitle===fundTitle || genericMarketAlias || editionAlias || subtitleAlias || (fundTitle.length>=16 && eventTitle.length>=16 && (fundTitle.startsWith(eventTitle+" ") || eventTitle.startsWith(fundTitle+" ")));
     // An identical date and location are mandatory; a shared series name is not enough.
     return sameCountry && sameStart && sameCity && sameName;
   });
