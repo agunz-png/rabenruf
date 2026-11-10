@@ -7087,6 +7087,19 @@ async function heroldZeitVerwerfen(index){
  }catch(error){alert(error.message||"Verwerfen fehlgeschlagen.");}
 }
 
+function heroldZeitSchonGespeichert(fund){
+ const days=fund.hoursReview?.dailyHours||[];
+ if(!days.length)return false;
+ const city=heroldCityNorm(fund.city||"").replace(/ aargau$/,"");
+ return heroldApprovedDuplicateTargets.some(item=>{
+  const event=item.event||{};
+  if(heroldCityNorm(event.city||"").replace(/ aargau$/,"")!==city)return false;
+  const saved=event.dailyHours;
+  return Array.isArray(saved) && days.every(day=>
+   saved.some(entry=>entry.date===day.date && entry.open===day.open && entry.close===day.close)
+  );
+ });
+}
 async function ladeHeroldZeitFunde(){
  const box=byId("heroldHoursReview");
  if(!box || !heroldIsAdmin()) return;
@@ -7110,7 +7123,7 @@ async function ladeHeroldZeitFunde(){
   heroldZeitDecisions=new Set((saved?.decisions||[]).filter(row=>row.status==="rejected"||row.status==="approved").map(row=>row.proposal_key));
   heroldZeitFunde=[...approvedHours,...candidateHours.filter(candidate=>
    !approvedHours.some(p=>heroldSameEvent(p,candidate))
-  )].filter(fund=>!heroldZeitDecisions.has(heroldZeitKey(fund)));
+  )].filter(fund=>!heroldZeitDecisions.has(heroldZeitKey(fund)) && !heroldZeitSchonGespeichert(fund));
   heroldZeitFunde.forEach(fund=>{const saved=heroldZeitZuordnungen.get(heroldZeitKey(fund));if(saved)fund.event_id=saved;});
   renderHeroldZeitFunde();
   renderHeroldDashboard();
