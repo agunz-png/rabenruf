@@ -7106,7 +7106,7 @@ async function ladeHeroldZeitFunde(){
   }catch(error){console.warn("Bestätigte Zeitvorschläge nicht geladen:",error);}
   await heroldSessionErneuern();
   const saved=await heroldApi("functions/v1/herold-hours-review",{method:"POST",token:heroldSession.access_token,body:{action:"list"}});
-  heroldZeitDecisions=new Set((saved?.decisions||[]).filter(row=>row.status==="rejected").map(row=>row.proposal_key));
+  heroldZeitDecisions=new Set((saved?.decisions||[]).filter(row=>row.status==="rejected"||row.status==="approved").map(row=>row.proposal_key));
   heroldZeitFunde=[...approvedHours,...candidateHours.filter(candidate=>
    !approvedHours.some(p=>heroldSameEvent(p,candidate))
   )].filter(fund=>!heroldZeitDecisions.has(heroldZeitKey(fund)));
@@ -7158,7 +7158,7 @@ function renderHeroldZeitFunde(){
   return '<details id="herold-hour-card-'+index+'" class="card herold-compact-card"><summary><h3 class="herold-compact-title">'+escapeHTML(fund.name||"")+'</h3><p class="herold-compact-meta">📅 '+escapeHTML(fund.start||"")+' bis '+escapeHTML(fund.end||fund.start||"")+'<br>📍 '+escapeHTML(fund.city||"")+'</p></summary><div class="herold-compact-body">'+
    review.dailyHours.map((d,i)=>'<label>'+escapeHTML(d.date)+' <input id="hour-review-'+index+'-'+i+'" value="'+escapeHTML(d.open+"–"+d.close)+'"></label>').join("")+
    '<p>'+link+'</p><p class="muted">Nur nach Prüfung des richtigen Veranstaltungsjahres freigeben.</p>'+
-   (unique?'<p>Kalendereintrag: '+escapeHTML(unique.event.name||"")+'</p><button onclick="heroldZeitFreigeben('+index+')">✅ Geprüfte Zeiten übernehmen</button>':
+   (unique?'<p>Kalendereintrag: '+escapeHTML(unique.event.name||"")+'</p><button id="herold-hour-approve-'+index+'" onclick="heroldZeitFreigeben('+index+')">✅ Geprüfte Zeiten übernehmen</button>':
    '<p class="muted">Noch keine eindeutige Zuordnung zu einem bestätigten Datenbankeintrag.</p><button type="button" onclick="heroldZeitZielWaehlen('+index+')">🔗 Zuordnen & Bestätigung ermöglichen</button>')+
    '<div class="buttonRow"><button type="button" onclick="heroldZeitVerwerfen('+index+')">❌ Vorschlag verwerfen</button></div></div></details>';
  }).join(""):'<p>Keine offenen Zeitvorschläge.</p>');
@@ -7176,15 +7176,19 @@ async function heroldZeitFreigeben(index){
   dailyHours.push({date:day.date,open:match[1]+":"+match[2],close:match[3]+":"+match[4]});
  }
  if(!confirm("Hast du Quelle, Veranstaltungsjahr und alle Tageszeiten überprüft?"))return;
+ const button=byId("herold-hour-approve-"+index);
+ if(button){button.disabled=true;button.textContent="⏳ Wird gespeichert …";}
  try{
   await heroldSessionErneuern();
-  const data=await heroldApi("functions/v1/herold-hours-review",{method:"POST",token:heroldSession.access_token,body:{event_id:matches[0].id,dailyHours}});
+  const data=await heroldApi("functions/v1/herold-hours-review",{method:"POST",token:heroldSession.access_token,body:{event_id:matches[0].id,dailyHours,proposal_key:heroldZeitKey(fund)}});
   if(!data?.ok)throw new Error(data?.error||"Speichern fehlgeschlagen");
+  heroldZeitDecisions.add(heroldZeitKey(fund));
   heroldZeitFunde.splice(index,1);
   await ladeFreigegebeneEvents();
   renderHeroldZeitFunde();
   alert("Öffnungszeiten gespeichert.");
  }catch(error){alert(error.message||"Speichern fehlgeschlagen");}
+ finally{if(button && button.isConnected){button.disabled=false;button.textContent="✅ Geprüfte Zeiten übernehmen";}}
 }
 
 let heroldApprovedDuplicateTargets = [];
