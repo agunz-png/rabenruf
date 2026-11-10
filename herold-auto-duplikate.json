@@ -1,5 +1,12 @@
 [
   {
+    "candidate_id": "eu-source-031e3ebc0a1430a0",
+    "approved_event_id": "mittelalterkalender-42e96479ffc3d56d",
+    "name": "AVELIVIA",
+    "start": "2027-05-27",
+    "end": "2027-05-30"
+  },
+  {
     "candidate_id": "eu-source-0bfd7d8f530a1c9e",
     "approved_event_id": "eu-source-ee25e9e843dba2c2",
     "name": "Mittelalterfest",
@@ -75,6 +82,13 @@
     "name": "Adventszauber",
     "start": "2026-11-21",
     "end": "2026-11-21"
+  },
+  {
+    "candidate_id": "eu-source-c0a8454650fd4cf1",
+    "approved_event_id": "mittelalterkalender-e6e64d79ab0bacaa",
+    "name": "Mittelaltermarkt Adebar und Axt",
+    "start": "2027-07-17",
+    "end": "2027-07-18"
   },
   {
     "candidate_id": "eu-source-cd49ac1fb49e0916",

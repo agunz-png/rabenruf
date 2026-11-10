@@ -314,61 +314,24 @@
     "source_provider": "Mirimor"
   },
   {
-    "id": "eu-source-fad34e91b8f4cde7",
-    "name": "Ritterfest & Himmelfahrt auf dem Schlossgut Altlandsberg",
+    "id": "eu-source-1f05b363a3090a38",
+    "name": "Elfia Vorden",
     "type": "Markt",
-    "date": "2027-05-06 bis 2027-05-09",
-    "start": "2027-05-06",
-    "end": "2027-05-09",
-    "country": "Deutschland",
-    "city": "Altlandsberg",
-    "postcode": "15345",
-    "source": "https://fyndling.de/e/a7f14d59179c8d1a",
-    "venue": "Schlossgut Altlandsberg",
-    "info": "Mittelalterliches Spektakel am Himmelfahrtswochenende für Groß und Klein. Musik von „Tanzwut“, Gaukelei von „Opus Furore“, Stelzentheater „Hochkant“, Geschichtenerzähler und Puppenspieler „Don Oswaldo“ sowie Ritterkämpfe von „Midgards Feuerbund“. Den Abschluss bilden ein Konzert…",
-    "website": "https://www.carnica-spectaculi.de/veranstaltung/ritterfest-oranienburg/",
+    "date": "2027-05-01 bis 2027-05-02",
+    "start": "2027-05-01",
+    "end": "2027-05-02",
+    "country": "Niederlande",
+    "city": "Vorden",
+    "postcode": "7251",
+    "source": "https://fyndling.de/e/fdf10d1ba9382adf",
+    "venue": "Kasteel Vorden, De Horsterkamp 8",
+    "info": "Outdoor-Festival rund um Fantasy, Cosplay und Reenactment, veranstaltet von Kingdom of Elfia beim Kasteel Vorden in der Achterhoek. **Wikingerüberfall auf Zutphen:** Die Reenactment-Gruppe Black Shield stellt den Überfall von 882 nach. Damals zog ein Wikingerheer aus seinem…",
+    "website": "https://www.elfia.com",
     "websites": [
-      "https://www.carnica-spectaculi.de/veranstaltung/ritterfest-oranienburg/"
+      "https://www.elfia.com"
     ],
-    "lat": 52.6179732,
-    "lng": 13.887079,
-    "hoursReview": {
-      "status": "pending",
-      "dailyHours": [
-        {
-          "date": "2027-05-06",
-          "open": "10:00",
-          "close": "19:00"
-        },
-        {
-          "date": "2027-05-09",
-          "open": "10:00",
-          "close": "19:00"
-        }
-      ],
-      "source": "https://www.carnica-spectaculi.de/veranstaltung/ritterfest-oranienburg/",
-      "method": "event-jsonld-or-labelled-day-text"
-    }
-  },
-  {
-    "id": "eu-source-28b0644122c91c28",
-    "name": "Pfingst-Spectaculum im Schlosspark Oranienburg",
-    "type": "Markt",
-    "date": "2027-05-15 bis 2027-05-17",
-    "start": "2027-05-15",
-    "end": "2027-05-17",
-    "country": "Deutschland",
-    "city": "Oranienburg",
-    "postcode": "16515",
-    "source": "https://fyndling.de/e/47d47eed7dd751c1",
-    "venue": "Schlosspark Oranienburg",
-    "info": "Mittelaltermarkt im Schlosspark mit Handwerk, Händlern, Schenken und Tavernen. Ritterkämpfe von „Midgards Feuerbund“, Akrobatik, Jonglage und Feuershow der „Flugträumer“, historische Musik von „The Sandsacks“, Wesen auf Stelzen sowie Axtwerfen und Bogenschießen für…",
-    "website": "https://www.carnica-spectaculi.de/veranstaltung/pfingstspectaculum/",
-    "websites": [
-      "https://www.carnica-spectaculi.de/veranstaltung/pfingstspectaculum/"
-    ],
-    "lat": 52.7711793,
-    "lng": 13.2878028
+    "lat": 52.1040836,
+    "lng": 6.3126253
   },
   {
     "id": "eu-source-b85436abe16649a0",
@@ -409,6 +372,25 @@
     "lng": 7.5623579
   },
   {
+    "id": "eu-source-76fca6d972119824",
+    "name": "18. Mittelalterliches Spektakel",
+    "type": "Markt",
+    "date": "2027-04-17 bis 2027-04-18",
+    "start": "2027-04-17",
+    "end": "2027-04-18",
+    "country": "Deutschland",
+    "city": "Babenhausen",
+    "postcode": "64832",
+    "source": "https://fyndling.de/e/bb61e427da7538e0",
+    "venue": "Ostheimer Allee über Südring",
+    "website": "https://www.heimdalls-erben.de/",
+    "websites": [
+      "https://www.heimdalls-erben.de/"
+    ],
+    "lat": 49.9571157,
+    "lng": 8.9498818
+  },
+  {
     "id": "eu-source-9b0212c8bfe5a59d",
     "name": "Mysterland Markt",
     "type": "Markt",
@@ -447,6 +429,44 @@
     "lng": 7.2266124
   },
   {
+    "id": "eu-source-fcebbe5a873c7142",
+    "name": "Mittelalter- LARP- und Reenactment Flohmarkt",
+    "type": "Markt",
+    "date": "2027-05-02 bis 2027-05-02",
+    "start": "2027-05-02",
+    "end": "2027-05-02",
+    "country": "Deutschland",
+    "city": "Büdingen",
+    "postcode": "63654",
+    "source": "https://fyndling.de/e/efd88c3a8f624b26",
+    "venue": "Im Hirschgraben neben dem Jerusalemer Tor",
+    "website": "https://www.mittelalterverein-buedingen.de/termine-2026/",
+    "websites": [
+      "https://www.mittelalterverein-buedingen.de/termine-2026/"
+    ],
+    "lat": 50.2868427,
+    "lng": 9.1073152
+  },
+  {
+    "id": "eu-source-6e0bf0df2db5fc54",
+    "name": "Pfingst-Spectaculum (Konzertarena) im Schlosspark",
+    "type": "Markt",
+    "date": "2027-05-15 bis 2027-05-17",
+    "start": "2027-05-15",
+    "end": "2027-05-17",
+    "country": "Deutschland",
+    "city": "Oranienburg",
+    "postcode": "16515",
+    "source": "https://fyndling.de/e/47d47eed7dd751c1",
+    "venue": "Schlosspark Oranienburg",
+    "website": "https://www.carnica-spectaculi.de/veranstaltung/pfingstspectaculum/",
+    "websites": [
+      "https://www.carnica-spectaculi.de/veranstaltung/pfingstspectaculum/"
+    ],
+    "lat": 52.7711793,
+    "lng": 13.2878028
+  },
+  {
     "id": "eu-source-7a48a0d9db0f3692",
     "name": "Münzenberg",
     "type": "Markt",
@@ -464,6 +484,25 @@
     ],
     "lat": 50.4598574,
     "lng": 8.7364118
+  },
+  {
+    "id": "eu-source-fb0a861df7a215a1",
+    "name": "Mittelalterspektakel",
+    "type": "Markt",
+    "date": "2027-06-19 bis 2027-06-20",
+    "start": "2027-06-19",
+    "end": "2027-06-20",
+    "country": "Deutschland",
+    "city": "Neckarsteinach",
+    "postcode": "69239",
+    "source": "https://fyndling.de/e/cfd8bdbfdd71853b",
+    "venue": "Wiesen am neckar",
+    "website": "https://www.heimdalls-erben.de/",
+    "websites": [
+      "https://www.heimdalls-erben.de/"
+    ],
+    "lat": 49.4220612,
+    "lng": 8.8477537
   },
   {
     "id": "eu-source-b91a1c65f353e50a",
@@ -735,6 +774,68 @@
     "lng": 6.8387055
   },
   {
+    "id": "eu-source-09c3f69011000e43",
+    "name": "Mittelalterdorf Falkensteinsee",
+    "type": "Markt",
+    "date": "2027-05-28 bis 2027-05-30",
+    "start": "2027-05-28",
+    "end": "2027-05-30",
+    "country": "Deutschland",
+    "city": "Ganderkesee",
+    "postcode": "27777",
+    "source": "https://fyndling.de/e/a49250ce2552cf32",
+    "venue": "Campingplatz Falkensteinsee",
+    "lat": 53.0487168,
+    "lng": 8.53521
+  },
+  {
+    "id": "eu-source-c82e6301a7be2912",
+    "name": "Mittelaltermark",
+    "type": "Markt",
+    "date": "2027-07-09 bis 2027-07-11",
+    "start": "2027-07-09",
+    "end": "2027-07-11",
+    "country": "Deutschland",
+    "city": "Ommersheim",
+    "postcode": "66399",
+    "source": "https://fyndling.de/e/78de68ea1005597a",
+    "venue": "Ommersheimer Weiher",
+    "lat": 49.2196499,
+    "lng": 7.1585036
+  },
+  {
+    "id": "eu-source-6a499df750f4b5cb",
+    "name": "4. Mittelalterliches Spektakel",
+    "type": "Markt",
+    "date": "2027-07-17 bis 2027-07-18",
+    "start": "2027-07-17",
+    "end": "2027-07-18",
+    "country": "Deutschland",
+    "city": "Neohofen",
+    "postcode": "67141",
+    "source": "https://fyndling.de/e/fb15c82c025dc89c",
+    "venue": "Fahr- und Reitverein Woog Straße",
+    "website": "https://www.heimdalls-erben.de/",
+    "websites": [
+      "https://www.heimdalls-erben.de/"
+    ]
+  },
+  {
+    "id": "eu-source-c731a351ee81aa51",
+    "name": "Mittelalterspektakel",
+    "type": "Markt",
+    "date": "2027-09-25 bis 2027-09-26",
+    "start": "2027-09-25",
+    "end": "2027-09-26",
+    "country": "Deutschland",
+    "city": "Bad Schussenried",
+    "postcode": "88427",
+    "source": "https://fyndling.de/e/6e9764e81b78f8c2",
+    "venue": "Neues Kloster 1",
+    "lat": 48.0097654,
+    "lng": 9.6544239
+  },
+  {
     "id": "eu-source-1cc54c004ef71e30",
     "name": "Mittelaltermarkt im Park Seleger Moor Geplant!",
     "type": "Markt",
@@ -920,18 +1021,6 @@
     "country": "Deutschland",
     "city": "Untergruppenbach",
     "postcode": "74199",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-ad2aac9c70c57ef4",
-    "name": "Bal Renaissance - Danse Medievale",
-    "type": "Markt",
-    "date": "2027-04-24 bis 2027-04-24",
-    "start": "2027-04-24",
-    "end": "2027-04-24",
-    "country": "Deutschland",
-    "city": "München",
-    "postcode": "81825",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
