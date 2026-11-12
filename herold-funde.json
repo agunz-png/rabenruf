@@ -17,23 +17,6 @@
     "source_provider": "Mirimor"
   },
   {
-    "id": "eu-source-a52906881f37aa32",
-    "name": "Historischer Herbstmarkt Wangen a. Aare",
-    "type": "Markt",
-    "date": "2027-10-02 bis 2027-10-03",
-    "start": "2027-10-02",
-    "end": "2027-10-03",
-    "country": "Schweiz",
-    "city": "Wangen a.d.Aare",
-    "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/",
-    "websites": [
-      "http://www.marktzunft.ch"
-    ],
-    "website": "http://www.marktzunft.ch",
-    "source_provider": "Mirimor"
-  },
-  {
     "id": "eu-source-3eb044140a7c2a2d",
     "name": "Mittelaltermarkt Bremgarten",
     "type": "Markt",
@@ -388,25 +371,6 @@
     ],
     "lat": 49.5422946,
     "lng": 7.2266124
-  },
-  {
-    "id": "eu-source-fcebbe5a873c7142",
-    "name": "Mittelalter- LARP- und Reenactment Flohmarkt",
-    "type": "Markt",
-    "date": "2027-05-02 bis 2027-05-02",
-    "start": "2027-05-02",
-    "end": "2027-05-02",
-    "country": "Deutschland",
-    "city": "Büdingen",
-    "postcode": "63654",
-    "source": "https://fyndling.de/e/efd88c3a8f624b26",
-    "venue": "Im Hirschgraben neben dem Jerusalemer Tor",
-    "website": "https://www.mittelalterverein-buedingen.de/termine-2026/",
-    "websites": [
-      "https://www.mittelalterverein-buedingen.de/termine-2026/"
-    ],
-    "lat": 50.2868427,
-    "lng": 9.1073152
   },
   {
     "id": "eu-source-6e0bf0df2db5fc54",
@@ -901,138 +865,6 @@
     "country": "Deutschland",
     "city": "Untergruppenbach",
     "postcode": "74199",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-6aa5f9514487ab79",
-    "name": "10. Mittelalter-Spektakel zu Bietigheim",
-    "type": "Markt",
-    "date": "2027-02-26 bis 2027-02-28",
-    "start": "2027-02-26",
-    "end": "2027-02-28",
-    "country": "Deutschland",
-    "city": "Bietigheim-Bissingen",
-    "postcode": "74321",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-6a8f8933ff522977",
-    "name": "4. Eisenbacher Rauhnachtsmarkt",
-    "type": "Markt",
-    "date": "2027-01-08 bis 2027-01-10",
-    "start": "2027-01-08",
-    "end": "2027-01-10",
-    "country": "Deutschland",
-    "city": "Obernburg am Main",
-    "postcode": "63785",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-43db3deb31520f1c",
-    "name": "Pilgerlager Burgwindheim",
-    "type": "Markt",
-    "date": "2027-05-29 bis 2027-05-30",
-    "start": "2027-05-29",
-    "end": "2027-05-30",
-    "country": "Deutschland",
-    "city": "Burgwindheim",
-    "postcode": "96154",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-5120143dd04c1d28",
-    "name": "Lenzen 929 - Schlacht um Lenzen",
-    "type": "Markt",
-    "date": "2027-05-28 bis 2027-05-30",
-    "start": "2027-05-28",
-    "end": "2027-05-30",
-    "country": "Deutschland",
-    "city": "Lenzen (Elbe)",
-    "postcode": "19309",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-b7284bd880f05cc8",
-    "name": "Handwerkertag im Natureum",
-    "type": "Markt",
-    "date": "2027-01-24 bis 2027-01-24",
-    "start": "2027-01-24",
-    "end": "2027-01-24",
-    "country": "Deutschland",
-    "city": "Balje-Neuenhof",
-    "postcode": "21730",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-62ed45c0fb2d91ef",
-    "name": "Burgfest",
-    "type": "Markt",
-    "date": "2027-04-10 bis 2027-04-11",
-    "start": "2027-04-10",
-    "end": "2027-04-11",
-    "country": "Deutschland",
-    "city": "Geestland-Bederkesa",
-    "postcode": "27624",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-76c87123db6f8671",
-    "name": "10. Highland Games am Falkensteinsee",
-    "type": "Markt",
-    "date": "2027-05-28 bis 2027-05-30",
-    "start": "2027-05-28",
-    "end": "2027-05-30",
-    "country": "Deutschland",
-    "city": "Ganderkesee",
-    "postcode": "27777",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-dff03e7a52794879",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-06-05 bis 2027-06-06",
-    "start": "2027-06-05",
-    "end": "2027-06-06",
-    "country": "Deutschland",
-    "city": "Balje-Neuenhof",
-    "postcode": "21730",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-a7544dd2e6adef30",
-    "name": "Steam & Sheadows Vintage-Markt",
-    "type": "Markt",
-    "date": "2027-01-31 bis 2027-01-31",
-    "start": "2027-01-31",
-    "end": "2027-01-31",
-    "country": "Deutschland",
-    "city": "Witten",
-    "postcode": "58455",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-a7ab2535320a1973",
-    "name": "Drachen- und Feuerfest",
-    "type": "Markt",
-    "date": "2027-03-20 bis 2027-03-21",
-    "start": "2027-03-20",
-    "end": "2027-03-21",
-    "country": "Deutschland",
-    "city": "Geldern",
-    "postcode": "47608",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-8074f016b27dcab0",
-    "name": "Mittelaltermarkt",
-    "type": "Markt",
-    "date": "2027-06-12 bis 2027-06-13",
-    "start": "2027-06-12",
-    "end": "2027-06-13",
-    "country": "Deutschland",
-    "city": "Grefrath",
-    "postcode": "47929",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
