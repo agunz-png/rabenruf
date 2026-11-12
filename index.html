@@ -7734,7 +7734,7 @@ function renderHerold(){
       heroldZeitVorschlag(index,fund)+
       '<p class="muted">Quelle: '+escapeHTML(fund.source||"keine Quelle angegeben")+'</p></div></details>'+
       (dateChanges.length?'<div class="card"><strong>📅 Mögliche Datumsänderung</strong>'+dateChanges.map(item=>'<p>Kalender: '+escapeHTML(item.event.start)+' bis '+escapeHTML(item.event.end||item.event.start)+'<br>Neuer Fund: '+escapeHTML(fund.start)+' bis '+escapeHTML(fund.end||fund.start)+'</p>').join('')+'<p class="muted">Nur nach Prüfung der Originalquelle übernehmen.</p><button type="button" onclick="heroldDatumsAenderungPruefen('+index+')">📅 Datumsänderung prüfen und übernehmen</button></div>':'')+
-      '<div class="buttonRow"><button onclick="heroldUebernehmen('+index+')">✅ Übernehmen</button>'+
+      '<div class="buttonRow">'+(dateChanges.length?'':'<button onclick="heroldUebernehmen('+index+')">✅ Übernehmen</button>')+
       '<button onclick="heroldDuplikatZuordnen('+index+')">'+(possible.length?'🔗 Doppelten Fund zuordnen':'🔗 Bereits im Kalender')+'</button>'+
       '<button onclick="heroldVerwerfen('+index+')">❌ Verwerfen</button></div></div></details>';
   }).join("");
