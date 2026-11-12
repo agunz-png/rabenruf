@@ -7596,7 +7596,7 @@ async function entscheideTerminAenderung(requestId,action){
 let heroldFilter = "alle";
 let heroldDashboardTab="new";
 let heroldDashboardSearch="";
-function heroldDashboardIsDuplicate(fund){return heroldMoeglicheDuplikate(fund).length>0;}
+function heroldDashboardIsDuplicate(fund){return heroldMoeglicheDuplikate(fund).length>0 || heroldDatumsAenderungen(fund).length>0;}
 function renderHeroldDashboard(){
  const dashboard=byId("heroldDashboard");if(!dashboard)return;
  dashboard.style.display=heroldIsAdmin()?"":"none";
@@ -7622,6 +7622,43 @@ function heroldZeitVorschlag(index,fund){
  return '<div class="card"><h4>🕰️ Öffnungszeiten zur Prüfung</h4><p class="muted">Achtung: Prüfe besonders, ob die Quelle das richtige Veranstaltungsjahr nennt.</p>'+rows+
  (url?'<a href="'+escapeHTML(url)+'" target="_blank" rel="noopener noreferrer">Originalquelle prüfen</a>':"")+
  '<label><input type="checkbox" id="herold-hours-accept-'+index+'"> Zeiten und Veranstaltungsjahr geprüft – übernehmen</label></div>';
+}
+function heroldDatumsAenderungen(fund){
+ const range=heroldDateRange(fund);
+ if(!range)return [];
+ const title=value=>heroldNorm(String(value||"").replace(/&#(?:0*38|x0*26);|&amp;/gi,"&"));
+ const name=title(fund.name),city=heroldCityNorm(fund.city),country=heroldNorm(fund.country);
+ if(name.length<15||!city||!country)return [];
+ return heroldApprovedDuplicateTargets.filter(({event})=>{
+  const other=heroldDateRange(event);
+  if(!other||range.start===other.start&&range.end===other.end)return false;
+  if(range.start.slice(0,4)!==other.start.slice(0,4))return false;
+  if(Math.abs(Date.parse(range.start)-Date.parse(other.start))>31*86400000)return false;
+  const otherName=title(event.name);
+  return name===otherName&&city===heroldCityNorm(event.city)&&country===heroldNorm(event.country);
+ });
+}
+async function heroldDatumsAenderungPruefen(index){
+ const fund=heroldFunde[index];if(!fund)return;
+ const options=heroldDatumsAenderungen(fund);
+ if(options.length!==1)return alert("Die Datumsänderung kann nicht eindeutig zugeordnet werden. Bitte die Veranstaltungen einzeln prüfen.");
+ const target=options[0],old=target.event;
+ const message="MÖGLICHE DATUMSÄNDERUNG\\n\\n"+fund.name+
+ "\\nKalender bisher: "+old.start+" bis "+(old.end||old.start)+
+ "\\nNeuer Fund: "+fund.start+" bis "+(fund.end||fund.start)+
+ "\\n\\nQuelle: "+(fund.source||"nicht angegeben")+
+ "\\n\\nHast du die neue Angabe bei der Originalquelle für das richtige Jahr geprüft? Nur dann den bestehenden Termin ändern.";
+ if(!confirm(message))return;
+ try{
+  await heroldSessionErneuern();
+  const response=await heroldApi("functions/v1/herold-decision",{
+   method:"POST",token:heroldSession.access_token,
+   body:{action:"date_change",event_id:String(fund.id),approved_event_id:target.id}
+  });
+  if(!response?.ok)throw new Error(response?.error||"Datumsänderung fehlgeschlagen.");
+  await ladeFreigegebeneEvents();await ladeHeroldFunde();
+  alert("Datumsänderung übernommen und Fund mit dem bestehenden Kalendereintrag verknüpft.");
+ }catch(error){alert(error.message||"Datumsänderung fehlgeschlagen.");}
 }
 function heroldMoeglicheDuplikate(fund){
   const range=heroldDateRange(fund);
@@ -7659,6 +7696,7 @@ function renderHerold(){
   const field=(index,key,label,value,type="text")=>
     '<label>'+label+'<input class="eventEditField" id="herold-edit-'+index+'-'+key+'" type="'+type+'" value="'+escapeHTML(value||"")+'"></label>';
   box.innerHTML=filters+visible.map(({fund,index})=>{
+    const dateChanges=heroldDatumsAenderungen(fund);
     const categories=["Markt","MPS","Lager","Reenactment","Buhurt","Spezialevent"];
     // Some importers provide tags: [] even though type is populated.
     // Prefer nonempty tags, then fall back to the source type; never show an empty selection.
@@ -7695,6 +7733,7 @@ function renderHerold(){
       field(index,"hours","Zeiten",fund.hours)+
       heroldZeitVorschlag(index,fund)+
       '<p class="muted">Quelle: '+escapeHTML(fund.source||"keine Quelle angegeben")+'</p></div></details>'+
+      (dateChanges.length?'<div class="card"><strong>📅 Mögliche Datumsänderung</strong>'+dateChanges.map(item=>'<p>Kalender: '+escapeHTML(item.event.start)+' bis '+escapeHTML(item.event.end||item.event.start)+'<br>Neuer Fund: '+escapeHTML(fund.start)+' bis '+escapeHTML(fund.end||fund.start)+'</p>').join('')+'<p class="muted">Nur nach Prüfung der Originalquelle übernehmen.</p><button type="button" onclick="heroldDatumsAenderungPruefen('+index+')">📅 Datumsänderung prüfen und übernehmen</button></div>':'')+
       '<div class="buttonRow"><button onclick="heroldUebernehmen('+index+')">✅ Übernehmen</button>'+
       '<button onclick="heroldDuplikatZuordnen('+index+')">'+(possible.length?'🔗 Doppelten Fund zuordnen':'🔗 Bereits im Kalender')+'</button>'+
       '<button onclick="heroldVerwerfen('+index+')">❌ Verwerfen</button></div></div></details>';
