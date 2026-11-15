@@ -297,6 +297,26 @@
     "source_provider": "Mirimor"
   },
   {
+    "id": "eu-source-0deb4a94803424b6",
+    "name": "Wolin Wikinger Festival 2027",
+    "type": "Markt",
+    "date": "2027-07-29 bis 2027-08-01",
+    "start": "2027-07-29",
+    "end": "2027-08-01",
+    "country": "Polen",
+    "city": "Wolin",
+    "postcode": "72510",
+    "source": "https://fyndling.de/e/ae7d0825982099f7",
+    "venue": "Centrum Słowian i Wikingów Wolin-Jomsborg-Vineta, Insel Wolińska Kępa (Dziwna)",
+    "info": "**Hinweis: Der Termin ist noch nicht offiziell bestätigt.** Die Angabe 29. Juli bis 1. August 2027 stammt aus einer Terminübersicht (CarniFest); der Veranstalter hat für 2027 bislang keine Termine veröffentlicht. Für 2026 nennt er den 30. Juli bis 2. August. Vor der Planung…",
+    "website": "https://www.carnifest.com/festival-of-slavs-and-vikings-in-wolin-2027/",
+    "websites": [
+      "https://www.carnifest.com/festival-of-slavs-and-vikings-in-wolin-2027/"
+    ],
+    "lat": 53.843788,
+    "lng": 14.6157008
+  },
+  {
     "id": "eu-source-b85436abe16649a0",
     "name": "Sound of Warburgum Konzert",
     "type": "Markt",
@@ -865,6 +885,66 @@
     "country": "Deutschland",
     "city": "Untergruppenbach",
     "postcode": "74199",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-a1ecfc54f80d24e6",
+    "name": "Mittelalterliche Tafeley",
+    "type": "Markt",
+    "date": "2027-01-16 bis 2027-01-16",
+    "start": "2027-01-16",
+    "end": "2027-01-16",
+    "country": "Deutschland",
+    "city": "Dedeleben-Huy",
+    "postcode": "38836",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-0a00b911902504c0",
+    "name": "Mittelalterliche Tafeley",
+    "type": "Markt",
+    "date": "2027-05-07 bis 2027-04-10",
+    "start": "2027-05-07",
+    "end": "2027-04-10",
+    "country": "Deutschland",
+    "city": "Dedeleben-Huy",
+    "postcode": "38836",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-4b97a132acda5392",
+    "name": "Mittelalterliche Tafeley",
+    "type": "Markt",
+    "date": "2027-09-17 bis 2027-04-10",
+    "start": "2027-09-17",
+    "end": "2027-04-10",
+    "country": "Deutschland",
+    "city": "Dedeleben-Huy",
+    "postcode": "38836",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-157b9ec463b62d4f",
+    "name": "Mittelalterliche Tafeley",
+    "type": "Markt",
+    "date": "2027-10-15 bis 2027-04-10",
+    "start": "2027-10-15",
+    "end": "2027-04-10",
+    "country": "Deutschland",
+    "city": "Dedeleben-Huy",
+    "postcode": "38836",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-860f5855c886074b",
+    "name": "Mittelalterliche Tafeley",
+    "type": "Markt",
+    "date": "2027-11-12 bis 2027-04-10",
+    "start": "2027-11-12",
+    "end": "2027-04-10",
+    "country": "Deutschland",
+    "city": "Dedeleben-Huy",
+    "postcode": "38836",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
