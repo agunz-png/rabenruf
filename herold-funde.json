@@ -1,5 +1,19 @@
 [
   {
+    "id": "bi-buhurt-22ce6d25fdd7a22a",
+    "name": "Swaiut Toringi Cup 2027",
+    "type": "Buhurt",
+    "date": "2027-04-24",
+    "start": "2027-04-24",
+    "end": "2027-04-24",
+    "country": "Deutschland",
+    "city": "Mühlhausen/Thüringen",
+    "postcode": "99974",
+    "lat": 51.1949859,
+    "lng": 10.3964462,
+    "source": "https://www.buhurtinternational.com/tournament/swaiut-toringi-cup-2027"
+  },
+  {
     "id": "eu-source-22c8979909dca943",
     "name": "Mittelaltermarkt Allmendingen",
     "type": "Markt",
@@ -148,6 +162,23 @@
     "source_provider": "Mirimor"
   },
   {
+    "id": "eu-source-85140483fffe18bb",
+    "name": "WUMS - Wikinger und Mittelalter Spektakel",
+    "type": "Markt",
+    "date": "2028-09-01 bis 2028-09-03",
+    "start": "2028-09-01",
+    "end": "2028-09-03",
+    "country": "Schweiz",
+    "city": "Hilfikon/Villmergen",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.wums.ch"
+    ],
+    "website": "http://www.wums.ch",
+    "source_provider": "Mirimor"
+  },
+  {
     "id": "eu-source-83e30e0a9640fec1",
     "name": "Mittelaltermarkt Schloss Lenzburg",
     "type": "Markt",
@@ -196,6 +227,24 @@
       "http://www.turnei.ch"
     ],
     "website": "http://www.turnei.ch",
+    "source_provider": "Mirimor"
+  },
+  {
+    "id": "eu-source-2897d8fb58af248e",
+    "name": "Midgard am Hero Fest",
+    "type": "Markt",
+    "date": "2028-10-06 bis 2028-10-08",
+    "start": "2028-10-06",
+    "end": "2028-10-08",
+    "country": "Schweiz",
+    "city": "Bern",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.corvus-nidum.ch",
+      "http://www.herofest.ch"
+    ],
+    "website": "http://www.corvus-nidum.ch",
     "source_provider": "Mirimor"
   },
   {
@@ -259,24 +308,7 @@
       "https://historisches-handwerk.ch"
     ],
     "website": "https://historisches-handwerk.ch",
-    "source_provider": "Mirimor",
-    "hoursReview": {
-      "status": "pending",
-      "dailyHours": [
-        {
-          "date": "2028-10-28",
-          "open": "10:00",
-          "close": "18:00"
-        },
-        {
-          "date": "2028-10-29",
-          "open": "10:00",
-          "close": "17:00"
-        }
-      ],
-      "source": "https://historisches-handwerk.ch",
-      "method": "event-jsonld-or-labelled-day-text"
-    }
+    "source_provider": "Mirimor"
   },
   {
     "id": "eu-source-dc38b0e8ceb2c192",
@@ -297,24 +329,54 @@
     "source_provider": "Mirimor"
   },
   {
-    "id": "eu-source-0deb4a94803424b6",
-    "name": "Wolin Wikinger Festival 2027",
+    "id": "eu-source-aa75461317f0615e",
+    "name": "Midgard am Hero Fest",
     "type": "Markt",
-    "date": "2027-07-29 bis 2027-08-01",
-    "start": "2027-07-29",
-    "end": "2027-08-01",
-    "country": "Polen",
-    "city": "Wolin",
-    "postcode": "72510",
-    "source": "https://fyndling.de/e/ae7d0825982099f7",
-    "venue": "Centrum Słowian i Wikingów Wolin-Jomsborg-Vineta, Insel Wolińska Kępa (Dziwna)",
-    "info": "**Hinweis: Der Termin ist noch nicht offiziell bestätigt.** Die Angabe 29. Juli bis 1. August 2027 stammt aus einer Terminübersicht (CarniFest); der Veranstalter hat für 2027 bislang keine Termine veröffentlicht. Für 2026 nennt er den 30. Juli bis 2. August. Vor der Planung…",
-    "website": "https://www.carnifest.com/festival-of-slavs-and-vikings-in-wolin-2027/",
+    "date": "2029-10-05 bis 2029-10-07",
+    "start": "2029-10-05",
+    "end": "2029-10-07",
+    "country": "Schweiz",
+    "city": "Bern",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/",
     "websites": [
-      "https://www.carnifest.com/festival-of-slavs-and-vikings-in-wolin-2027/"
+      "http://www.corvus-nidum.ch",
+      "http://www.herofest.ch"
     ],
-    "lat": 53.843788,
-    "lng": 14.6157008
+    "website": "http://www.corvus-nidum.ch",
+    "source_provider": "Mirimor"
+  },
+  {
+    "id": "eu-source-5e2150501ecbce8a",
+    "name": "Mittelalterfest Hainburg",
+    "type": "Markt",
+    "date": "2027-05-16 bis 2027-05-17",
+    "start": "2027-05-16",
+    "end": "2027-05-17",
+    "country": "Österreich",
+    "city": "Hainburg an der Donau",
+    "postcode": "2410",
+    "source": "https://fyndling.de/e/b5de59c6b6c641aa",
+    "venue": "Innenstadt",
+    "info": "Zweitägiges Mittelalterfest in der Hainburger Innenstadt am Pfingstwochenende. **Termin vorläufig:** Das Datum folgt dem jährlichen Pfingsttermin, die Bestätigung der Stadtgemeinde steht noch aus.",
+    "website": "https://www.hainburg-donau.gv.at/",
+    "websites": [
+      "https://www.hainburg-donau.gv.at/"
+    ],
+    "lat": 48.1436175,
+    "lng": 16.9425404,
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2027-05-17",
+          "open": "07:00",
+          "close": "12:00"
+        }
+      ],
+      "source": "https://www.hainburg-donau.gv.at/",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
   },
   {
     "id": "eu-source-b85436abe16649a0",
@@ -941,6 +1003,18 @@
     "type": "Markt",
     "date": "2027-11-12 bis 2027-04-10",
     "start": "2027-11-12",
+    "end": "2027-04-10",
+    "country": "Deutschland",
+    "city": "Dedeleben-Huy",
+    "postcode": "38836",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-f0d8b8954239b32e",
+    "name": "Mittelalterliche Tafeley",
+    "type": "Markt",
+    "date": "2027-12-03 bis 2027-04-10",
+    "start": "2027-12-03",
     "end": "2027-04-10",
     "country": "Deutschland",
     "city": "Dedeleben-Huy",
