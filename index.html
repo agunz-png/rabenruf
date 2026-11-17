@@ -7741,6 +7741,8 @@ function renderHerold(){
   if(!visible.length)box.innerHTML+='<div class="card">Keine passenden Veranstaltungen in diesem Bereich.</div>';
 }
 
+const heroldPendingActionIds = new Set();
+
 async function starteHeroldAktion(index, aktion){
   const fund=heroldFunde[index];
   const eventId=String(fund?.id || "").trim();
@@ -7752,8 +7754,15 @@ async function starteHeroldAktion(index, aktion){
     zeigeHeroldAnmeldung("Bitte zuerst anmelden.");
     return;
   }
-  const knopf=document.activeElement;
-  if(knopf) knopf.disabled=true;
+  if(heroldPendingActionIds.has(eventId)) return;
+  const knopf=document.activeElement instanceof HTMLButtonElement ? document.activeElement : null;
+  const originalText=knopf?.textContent || "";
+  heroldPendingActionIds.add(eventId);
+  if(knopf){
+    knopf.disabled=true;
+    knopf.setAttribute("aria-busy","true");
+    knopf.textContent=aktion==="approve"?"Wird übernommen …":"Wird verworfen …";
+  }
   try{
     await heroldSessionErneuern();
     if(aktion==="approve"){
@@ -7775,11 +7784,20 @@ async function starteHeroldAktion(index, aktion){
       body:{action:aktion,event_id:eventId,...(aktion==="approve"?{overrides:heroldKorrekturen(index)}:{})}
     });
     if(!data?.ok) throw new Error(data?.error || "Die Herold-Aktion ist fehlgeschlagen.");
+    heroldFunde=heroldFunde.filter(item=>String(item?.id||"")!==eventId);
+    renderHerold();
     await ladeHeroldFunde();
     if(aktion==="approve") await ladeFreigegebeneEvents();
+    alert(aktion==="approve"?"Veranstaltung übernommen. Sie erscheint jetzt im Kalender.":"Meldung verworfen.");
   }catch(fehler){
-    if(knopf) knopf.disabled=false;
+    if(knopf?.isConnected){
+      knopf.disabled=false;
+      knopf.removeAttribute("aria-busy");
+      knopf.textContent=originalText;
+    }
     alert(fehler.message || "Die Herold-Aktion ist fehlgeschlagen.");
+  }finally{
+    heroldPendingActionIds.delete(eventId);
   }
 }
 
