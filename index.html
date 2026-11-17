@@ -4973,7 +4973,19 @@ async function heroldSessionErneuern(){
 }
 
 async function ladeHeroldEntscheide(){
-  const daten = await heroldApi("rest/v1/herold_decisions?select=event_id,status,event");
+  let token="";
+  if(heroldSession?.access_token){
+    try{
+      await heroldSessionErneuern();
+      token=heroldSession.access_token;
+    }catch(error){
+      console.warn("Herold-Admin-Sitzung konnte nicht erneuert werden; bestätigte öffentliche Termine werden weiter geladen.",error);
+    }
+  }
+  const daten = await heroldApi(
+    "rest/v1/herold_decisions?select=event_id,status,event",
+    token?{token}:{}
+  );
   return Array.isArray(daten) ? daten : [];
 }
 
@@ -7246,7 +7258,7 @@ async function ladeHeroldFunde(){
 
     let verknuepfteIds = new Set();
     try{
-      const links = await heroldApi("rest/v1/herold_duplicate_links?select=candidate_id");
+      const links = await heroldApi("rest/v1/herold_duplicate_links?select=candidate_id",{token:heroldSession?.access_token});
       verknuepfteIds = new Set((Array.isArray(links)?links:[]).map(link=>String(link.candidate_id||"")));
     }catch(error){
       console.warn("Dauerhafte Duplikat-Zuordnungen konnten nicht geladen werden:",error);
