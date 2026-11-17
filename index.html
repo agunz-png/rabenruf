@@ -7734,16 +7734,16 @@ function renderHerold(){
       heroldZeitVorschlag(index,fund)+
       '<p class="muted">Quelle: '+escapeHTML(fund.source||"keine Quelle angegeben")+'</p></div></details>'+
       (dateChanges.length?'<div class="card"><strong>📅 Mögliche Datumsänderung</strong>'+dateChanges.map(item=>'<p>Kalender: '+escapeHTML(item.event.start)+' bis '+escapeHTML(item.event.end||item.event.start)+'<br>Neuer Fund: '+escapeHTML(fund.start)+' bis '+escapeHTML(fund.end||fund.start)+'</p>').join('')+'<p class="muted">Nur nach Prüfung der Originalquelle übernehmen.</p><button type="button" onclick="heroldDatumsAenderungPruefen('+index+')">📅 Datumsänderung prüfen und übernehmen</button></div>':'')+
-      '<div class="buttonRow">'+(dateChanges.length?'':'<button onclick="heroldUebernehmen('+index+')">✅ Übernehmen</button>')+
+      '<div class="buttonRow">'+(dateChanges.length?'':'<button onclick="heroldUebernehmen('+index+', event)">✅ Übernehmen</button>')+
       (dateChanges.length?'':'<button onclick="heroldDuplikatZuordnen('+index+')">'+(possible.length?'🔗 Doppelten Fund zuordnen':'🔗 Bereits im Kalender')+'</button>')+
-      '<button onclick="heroldVerwerfen('+index+')">❌ Verwerfen</button></div></div></details>';
+      '<button onclick="heroldVerwerfen('+index+', event)">❌ Verwerfen</button></div></div></details>';
   }).join("");
   if(!visible.length)box.innerHTML+='<div class="card">Keine passenden Veranstaltungen in diesem Bereich.</div>';
 }
 
 const heroldPendingActionIds = new Set();
 
-async function starteHeroldAktion(index, aktion){
+async function starteHeroldAktion(index, aktion, sourceButton=null){
   const fund=heroldFunde[index];
   const eventId=String(fund?.id || "").trim();
   if(!fund || !/^[A-Za-z0-9_-]{1,120}$/.test(eventId)){
@@ -7755,7 +7755,7 @@ async function starteHeroldAktion(index, aktion){
     return;
   }
   if(heroldPendingActionIds.has(eventId)) return;
-  const knopf=document.activeElement instanceof HTMLButtonElement ? document.activeElement : null;
+  const knopf=sourceButton instanceof HTMLButtonElement ? sourceButton : (document.activeElement instanceof HTMLButtonElement ? document.activeElement : null);
   const originalText=knopf?.textContent || "";
   heroldPendingActionIds.add(eventId);
   if(knopf){
@@ -7824,8 +7824,8 @@ function heroldKorrekturen(index){
     website:read("website"),flyer:read("flyer"),info:read("info"),hours:read("hours")
   };
 }
-function heroldUebernehmen(index){
-  starteHeroldAktion(index,"approve");
+function heroldUebernehmen(index, event){
+  starteHeroldAktion(index,"approve",event?.currentTarget);
 }
 
 async function heroldDuplikatZuordnen(index){
@@ -7880,8 +7880,8 @@ async function heroldDuplikatZuordnen(index){
   }catch(error){alert(error.message||"Zuordnung fehlgeschlagen.");}
 }
 
-function heroldVerwerfen(index){
-  starteHeroldAktion(index,"reject");
+function heroldVerwerfen(index, event){
+  starteHeroldAktion(index,"reject",event?.currentTarget);
 }
 
 async function sendContactMessage(event){
