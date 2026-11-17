@@ -4982,11 +4982,20 @@ async function ladeHeroldEntscheide(){
       console.warn("Herold-Admin-Sitzung konnte nicht erneuert werden; bestätigte öffentliche Termine werden weiter geladen.",error);
     }
   }
-  const daten = await heroldApi(
-    "rest/v1/herold_decisions?select=event_id,status,event",
-    token?{token}:{}
-  );
-  return Array.isArray(daten) ? daten : [];
+  // PostgREST caps one response at 1,000 rows. Read stable pages so recent
+  // approvals are not silently omitted once the Herold decision table grows.
+  const alle=[];
+  const pageSize=1000;
+  for(let offset=0;;offset+=pageSize){
+    const daten=await heroldApi(
+      "rest/v1/herold_decisions?select=event_id,status,event&order=event_id.asc&limit="+pageSize+"&offset="+offset,
+      token?{token}:{}
+    );
+    if(!Array.isArray(daten)) return [];
+    alle.push(...daten);
+    if(daten.length<pageSize) break;
+  }
+  return alle;
 }
 
 const EVENT_SNAPSHOT_KEY = "rabenrufFavoriteEventSnapshots";
