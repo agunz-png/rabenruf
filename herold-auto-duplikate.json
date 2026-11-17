@@ -7,6 +7,13 @@
     "end": "2027-05-30"
   },
   {
+    "candidate_id": "eu-source-09a7f928bfe6d6c6",
+    "approved_event_id": "mittelalterkalender-43db3deb31520f1c",
+    "name": "Pilgerlager Burgwindheim",
+    "start": "2027-05-29",
+    "end": "2027-05-30"
+  },
+  {
     "candidate_id": "eu-source-0bfd7d8f530a1c9e",
     "approved_event_id": "eu-source-ee25e9e843dba2c2",
     "name": "Mittelalterfest",
@@ -75,6 +82,13 @@
     "name": "Historischer Weihnachtsmarkt auf dem Naschmarkt",
     "start": "2026-11-24",
     "end": "2026-12-22"
+  },
+  {
+    "candidate_id": "eu-source-a52906881f37aa32",
+    "approved_event_id": "eu-source-52b59bc55930de36",
+    "name": "Historischer Herbstmarkt Wangen a. Aare",
+    "start": "2027-10-02",
+    "end": "2027-10-03"
   },
   {
     "candidate_id": "eu-source-b2bb695b0c643234",

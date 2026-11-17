@@ -347,34 +347,54 @@
     "source_provider": "Mirimor"
   },
   {
-    "id": "eu-source-5e2150501ecbce8a",
-    "name": "Mittelalterfest Hainburg",
+    "id": "eu-source-49964629f1dba2e1",
+    "name": "Mittelalterspectaculum Greifenstein",
     "type": "Markt",
-    "date": "2027-05-16 bis 2027-05-17",
-    "start": "2027-05-16",
-    "end": "2027-05-17",
-    "country": "Österreich",
-    "city": "Hainburg an der Donau",
-    "postcode": "2410",
-    "source": "https://fyndling.de/e/b5de59c6b6c641aa",
-    "venue": "Innenstadt",
-    "info": "Zweitägiges Mittelalterfest in der Hainburger Innenstadt am Pfingstwochenende. **Termin vorläufig:** Das Datum folgt dem jährlichen Pfingsttermin, die Bestätigung der Stadtgemeinde steht noch aus.",
-    "website": "https://www.hainburg-donau.gv.at/",
+    "date": "2027-07-16 bis 2027-07-18",
+    "start": "2027-07-16",
+    "end": "2027-07-18",
+    "country": "Deutschland",
+    "city": "Greifenstein",
+    "postcode": "35753",
+    "source": "https://fyndling.de/e/c5a0794866d01020",
+    "venue": "Burg Greifenstein",
+    "info": "Vom Veranstalter eingereicht, noch nicht auf der Veranstalterseite veröffentlicht.",
+    "website": "http://www.vpz-veranstaltungen.de/",
     "websites": [
-      "https://www.hainburg-donau.gv.at/"
+      "http://www.vpz-veranstaltungen.de/"
     ],
-    "lat": 48.1436175,
-    "lng": 16.9425404,
+    "lat": 50.591799,
+    "lng": 8.2370296
+  },
+  {
+    "id": "eu-source-8fce41a913bc2e97",
+    "name": "Ritterfest auf dem Schloss Diedersdorf",
+    "type": "Markt",
+    "date": "2027-09-04 bis 2027-09-05",
+    "start": "2027-09-04",
+    "end": "2027-09-05",
+    "country": "Deutschland",
+    "city": "Großbeeren",
+    "postcode": "14979",
+    "source": "https://fyndling.de/e/753c2407d89682b6",
+    "venue": "Schloss Diedersdorf",
+    "info": "Samstag 10–21 Uhr, Sonntag 10–19 Uhr. - Ritter von Midgards Feuerbund mit Mann-gegen-Mann-Kämpfen - Mitmachdisziplinen für Nachwuchsritter (Axtwerfen, Bogenschießen) - Markt mit historischem Handwerk und Handel - Schänken und Tavernen - Spielleute Corvus Corax - Akrobaten Die…",
+    "website": "https://www.schlossdiedersdorf.de/ticketkalender/04-05-september-ritterfest-auf-schloss-diedersdorf.html",
+    "websites": [
+      "https://www.schlossdiedersdorf.de/ticketkalender/04-05-september-ritterfest-auf-schloss-diedersdorf.html"
+    ],
+    "lat": 52.3642059,
+    "lng": 13.3275918,
     "hoursReview": {
       "status": "pending",
       "dailyHours": [
         {
-          "date": "2027-05-17",
-          "open": "07:00",
-          "close": "12:00"
+          "date": "2027-09-05",
+          "open": "10:00",
+          "close": "19:00"
         }
       ],
-      "source": "https://www.hainburg-donau.gv.at/",
+      "source": "https://www.schlossdiedersdorf.de/ticketkalender/04-05-september-ritterfest-auf-schloss-diedersdorf.html",
       "method": "event-jsonld-or-labelled-day-text"
     }
   },
@@ -396,6 +416,25 @@
     ],
     "lat": 51.5134977,
     "lng": 9.0922768
+  },
+  {
+    "id": "eu-source-c2f53a125ef85d33",
+    "name": "Mittelalter Märchenmarkt",
+    "type": "Markt",
+    "date": "2027-04-03 bis 2027-04-04",
+    "start": "2027-04-03",
+    "end": "2027-04-04",
+    "country": "Deutschland",
+    "city": "Waldeck",
+    "postcode": "34513",
+    "source": "https://fyndling.de/e/58c92d17e4d4f36c",
+    "venue": "Schloss Waldeck",
+    "website": "http://www.mmproduktion.info/",
+    "websites": [
+      "http://www.mmproduktion.info/"
+    ],
+    "lat": 51.2475314,
+    "lng": 9.0345265
   },
   {
     "id": "eu-source-f2621056e7eb91df",
@@ -436,6 +475,37 @@
     "lng": 7.1005455
   },
   {
+    "id": "eu-source-d76eb01ecee6acaf",
+    "name": "Mittelalterlich Phantasie Spectaculum",
+    "type": "Markt",
+    "date": "2027-04-24 bis 2027-04-25",
+    "start": "2027-04-24",
+    "end": "2027-04-25",
+    "country": "Deutschland",
+    "city": "Bad Säckingen",
+    "postcode": "79713",
+    "source": "https://fyndling.de/e/2d5948480ea3c73e",
+    "venue": "Schloßpark",
+    "website": "https://www.spectaculum.de/termine/saeckingen/",
+    "websites": [
+      "https://www.spectaculum.de/termine/saeckingen/"
+    ],
+    "lat": 47.5681286,
+    "lng": 7.956592,
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2027-04-25",
+          "open": "11:00",
+          "close": "19:00"
+        }
+      ],
+      "source": "https://www.spectaculum.de/termine/saeckingen/",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
+  },
+  {
     "id": "eu-source-ad230e06c181242f",
     "name": "Frühlingsmarkt zu Freisen",
     "type": "Markt",
@@ -453,6 +523,37 @@
     ],
     "lat": 49.5422946,
     "lng": 7.2266124
+  },
+  {
+    "id": "eu-source-11a570dab1c3f036",
+    "name": "Mittelalterlich Phantasie Spectaculum",
+    "type": "Markt",
+    "date": "2027-05-06 bis 2027-05-09",
+    "start": "2027-05-06",
+    "end": "2027-05-09",
+    "country": "Deutschland",
+    "city": "Rastede bei Oldenburg",
+    "postcode": "26180",
+    "source": "https://fyndling.de/e/2a1b61c242e1c9e9",
+    "venue": "Schloßpark",
+    "website": "https://www.spectaculum.de/termine/rastede/",
+    "websites": [
+      "https://www.spectaculum.de/termine/rastede/"
+    ],
+    "lat": 53.2159416,
+    "lng": 8.2179551,
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2027-05-09",
+          "open": "11:00",
+          "close": "19:00"
+        }
+      ],
+      "source": "https://www.spectaculum.de/termine/rastede/",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
   },
   {
     "id": "eu-source-6e0bf0df2db5fc54",
@@ -491,6 +592,218 @@
     ],
     "lat": 50.4598574,
     "lng": 8.7364118
+  },
+  {
+    "id": "eu-source-488092049c371bbf",
+    "name": "Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-06-05 bis 2027-06-06",
+    "start": "2027-06-05",
+    "end": "2027-06-06",
+    "country": "Deutschland",
+    "city": "Balje",
+    "postcode": "21730",
+    "source": "https://fyndling.de/e/74a42be585440938",
+    "venue": "Neuenhof 8",
+    "website": "https://www.natureum-niederelbe.de",
+    "websites": [
+      "https://www.natureum-niederelbe.de"
+    ],
+    "lat": 53.8319387,
+    "lng": 9.1092079,
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2027-06-05",
+          "open": "10:00",
+          "close": "17:00"
+        },
+        {
+          "date": "2027-06-06",
+          "open": "10:00",
+          "close": "17:00"
+        }
+      ],
+      "source": "https://www.natureum-niederelbe.de",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
+  },
+  {
+    "id": "eu-source-c1cae03ff99c569d",
+    "name": "Reichstadtfest Heidelsheim",
+    "type": "Markt",
+    "date": "2027-07-17 bis 2027-07-19",
+    "start": "2027-07-17",
+    "end": "2027-07-19",
+    "country": "Deutschland",
+    "city": "Bruchsal",
+    "postcode": "76646",
+    "source": "https://fyndling.de/e/bc4c1377d1bd599b",
+    "venue": "Ortskern",
+    "website": "https://www.reichsstadtfest-heidelsheim.de/",
+    "websites": [
+      "https://www.reichsstadtfest-heidelsheim.de/"
+    ],
+    "lat": 49.1036803,
+    "lng": 8.6002626
+  },
+  {
+    "id": "eu-source-2d3ab76991aff844",
+    "name": "Mittelalterlich Phantasie Spectaculum",
+    "type": "Markt",
+    "date": "2027-07-24 bis 2027-07-25",
+    "start": "2027-07-24",
+    "end": "2027-07-25",
+    "country": "Deutschland",
+    "city": "Bückeburg",
+    "postcode": "31675",
+    "source": "https://fyndling.de/e/80c4121a4951916c",
+    "venue": "Schloßpark",
+    "website": "https://www.spectaculum.de/termine/bueckeburg_1/",
+    "websites": [
+      "https://www.spectaculum.de/termine/bueckeburg_1/"
+    ],
+    "lat": 52.2920256,
+    "lng": 9.039933,
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2027-07-25",
+          "open": "11:00",
+          "close": "19:00"
+        }
+      ],
+      "source": "https://www.spectaculum.de/termine/bueckeburg_1/",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
+  },
+  {
+    "id": "eu-source-3b2a0284e8a897ed",
+    "name": "Keltisches Erntefest",
+    "type": "Markt",
+    "date": "2027-07-31 bis 2027-08-01",
+    "start": "2027-07-31",
+    "end": "2027-08-01",
+    "country": "Deutschland",
+    "city": "Tilleda",
+    "postcode": "06537",
+    "source": "https://fyndling.de/e/12a7407c193190b3",
+    "venue": "Königspfalz",
+    "website": "http://www.corvosdieraben.de/",
+    "websites": [
+      "http://www.corvosdieraben.de/"
+    ],
+    "lat": 51.4207892,
+    "lng": 11.1406526
+  },
+  {
+    "id": "eu-source-8b38acc3e49904bc",
+    "name": "Mittelalterlich Phantasie Spectaculum",
+    "type": "Markt",
+    "date": "2027-08-21 bis 2027-08-22",
+    "start": "2027-08-21",
+    "end": "2027-08-22",
+    "country": "Deutschland",
+    "city": "Speyer",
+    "postcode": "67346",
+    "source": "https://fyndling.de/e/af2048f25f40700a",
+    "venue": "Unterer Domgarten",
+    "website": "https://www.spectaculum.de/termine/rastede/",
+    "websites": [
+      "https://www.spectaculum.de/termine/rastede/"
+    ],
+    "lat": 49.3290791,
+    "lng": 8.4343415,
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2027-08-22",
+          "open": "11:00",
+          "close": "19:00"
+        }
+      ],
+      "source": "https://www.spectaculum.de/termine/rastede/",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
+  },
+  {
+    "id": "eu-source-3df309b021cf4670",
+    "name": "Arnsberger Mittelalter Herbst",
+    "type": "Markt",
+    "date": "2027-09-24 bis 2027-09-26",
+    "start": "2027-09-24",
+    "end": "2027-09-26",
+    "country": "Deutschland",
+    "city": "Arnsberg",
+    "postcode": "59821",
+    "source": "https://fyndling.de/e/c8cf95607314029f",
+    "venue": "Schlossberg und Altstadt",
+    "website": "https://mittelaltermarkt-heroldkunibert.de/",
+    "websites": [
+      "https://mittelaltermarkt-heroldkunibert.de/"
+    ],
+    "lat": 51.3866229,
+    "lng": 8.0514358
+  },
+  {
+    "id": "eu-source-5ef421b0be54f0b2",
+    "name": "Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-09-25 bis 2027-09-26",
+    "start": "2027-09-25",
+    "end": "2027-09-26",
+    "country": "Deutschland",
+    "city": "Heldrungen",
+    "postcode": "06577",
+    "source": "https://fyndling.de/e/e05f22a8a0a3a6b0",
+    "venue": "brWasserburg Heldrungen<>Schlossstr. 13",
+    "website": "https://www.mittelaltermarkt-heldrungen.de",
+    "websites": [
+      "https://www.mittelaltermarkt-heldrungen.de"
+    ],
+    "lat": 51.2934012,
+    "lng": 11.2148517
+  },
+  {
+    "id": "eu-source-49f1bab3f4c1d0b4",
+    "name": "Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-10-15 bis 2027-10-17",
+    "start": "2027-10-15",
+    "end": "2027-10-17",
+    "country": "Deutschland",
+    "city": "Feuchtwangen",
+    "postcode": "91555",
+    "source": "https://fyndling.de/e/3abc073a9b12ba19",
+    "venue": "Sulzachpark",
+    "website": "http://www.turbaevents.de/",
+    "websites": [
+      "http://www.turbaevents.de/"
+    ],
+    "lat": 49.1726337,
+    "lng": 10.3340151
+  },
+  {
+    "id": "eu-source-974a69d205dedf42",
+    "name": "Mittelaltermarkt Freudenberg",
+    "type": "Markt",
+    "date": "2027-10-16 bis 2027-10-17",
+    "start": "2027-10-16",
+    "end": "2027-10-17",
+    "country": "Deutschland",
+    "city": "Freudenberg",
+    "postcode": "57258",
+    "source": "https://fyndling.de/e/91bc822ec7b6010c",
+    "venue": "Kurpark",
+    "website": "http://www.mmproduktion.info/",
+    "websites": [
+      "http://www.mmproduktion.info/"
+    ],
+    "lat": 50.8894272,
+    "lng": 7.8850991
   },
   {
     "id": "eu-source-b91a1c65f353e50a",
@@ -603,6 +916,24 @@
     "lng": 11.323
   },
   {
+    "id": "eu-source-fb8c744607bb47fb",
+    "name": "Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-05-06 bis 2027-05-09",
+    "start": "2027-05-06",
+    "end": "2027-05-09",
+    "country": "Deutschland",
+    "city": "Harburg",
+    "postcode": "86655",
+    "source": "https://fyndling.de/e/2449d7f0cf068245",
+    "website": "http://www.turbaevents.de/",
+    "websites": [
+      "http://www.turbaevents.de/"
+    ],
+    "lat": 48.7784387,
+    "lng": 10.6782253
+  },
+  {
     "id": "eu-source-f94ab254e3baf7b4",
     "name": "Sagenmarkt",
     "type": "Markt",
@@ -711,6 +1042,42 @@
     "lng": 7.1539488
   },
   {
+    "id": "eu-source-7433be65fee52dad",
+    "name": "Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-08-21 bis 2027-08-22",
+    "start": "2027-08-21",
+    "end": "2027-08-22",
+    "country": "Deutschland",
+    "city": "Fürstenfeldbruck",
+    "postcode": "82256",
+    "source": "https://fyndling.de/e/069e355c619dc911",
+    "website": "http://www.turbaevents.de/",
+    "websites": [
+      "http://www.turbaevents.de/"
+    ],
+    "lat": 48.1794132,
+    "lng": 11.2200636
+  },
+  {
+    "id": "eu-source-beeb99ba998ce90e",
+    "name": "Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-09-10 bis 2027-09-12",
+    "start": "2027-09-10",
+    "end": "2027-09-12",
+    "country": "Deutschland",
+    "city": "Sigmaringen",
+    "postcode": "72488",
+    "source": "https://fyndling.de/e/ba70f1ab2d73d7ec",
+    "website": "http://www.turbaevents.de/",
+    "websites": [
+      "http://www.turbaevents.de/"
+    ],
+    "lat": 48.09104,
+    "lng": 9.1828359
+  },
+  {
     "id": "eu-source-59e1f6187b98cc0e",
     "name": "Zwiebelmarkt Apolda",
     "type": "Markt",
@@ -762,6 +1129,72 @@
     "lng": 6.8387055
   },
   {
+    "id": "eu-source-f29ee39afa164a73",
+    "name": "Burgfest",
+    "type": "Markt",
+    "date": "2027-04-10 bis 2027-04-11",
+    "start": "2027-04-10",
+    "end": "2027-04-11",
+    "country": "Deutschland",
+    "city": "Geestland",
+    "postcode": "27624",
+    "source": "https://fyndling.de/e/e70803634b8bbddb",
+    "venue": "Burg Bederkesa - Amtsstraße 17",
+    "lat": 53.5975841,
+    "lng": 8.8403946
+  },
+  {
+    "id": "eu-source-146fbf6c2f75c97c",
+    "name": "Ritterfest",
+    "type": "Markt",
+    "date": "2027-04-17 bis 2027-04-18",
+    "start": "2027-04-17",
+    "end": "2027-04-18",
+    "country": "Österreich",
+    "city": "Maria Enzersdorf",
+    "postcode": "2344",
+    "source": "https://fyndling.de/e/ef531761b6b9549c",
+    "venue": "Burgwiese Burg Liechtenstein",
+    "lat": 48.0964395,
+    "lng": 16.2849904
+  },
+  {
+    "id": "eu-source-bf2b21c793bf03d5",
+    "name": "Mittelaltermarkt Schloss Lenzburg Geplant!",
+    "type": "Markt",
+    "date": "2027-09-10 bis 2027-09-12",
+    "start": "2027-09-10",
+    "end": "2027-09-12",
+    "country": "Schweiz",
+    "city": "Schloss Lenzburg Lenzburg AG",
+    "postcode": "",
+    "source": "https://fyndling.de/e/421319c3d725a967",
+    "website": "http://www.museumaargau.ch/schloss-lenzburg",
+    "websites": [
+      "http://www.museumaargau.ch/schloss-lenzburg"
+    ],
+    "lat": 47.3872674,
+    "lng": 8.1852444
+  },
+  {
+    "id": "eu-source-e8a5aa4e0620e5bb",
+    "name": "Mittelaltermarkt Herrendingen",
+    "type": "Markt",
+    "date": "2027-09-25 bis 2027-09-26",
+    "start": "2027-09-25",
+    "end": "2027-09-26",
+    "country": "Schweiz",
+    "city": "Eschenbach LU",
+    "postcode": "",
+    "source": "https://fyndling.de/e/4ac7e397391362bc",
+    "website": "http://www.arbor-noctuarum.ch",
+    "websites": [
+      "http://www.arbor-noctuarum.ch"
+    ],
+    "lat": 47.1330227,
+    "lng": 8.317969
+  },
+  {
     "id": "eu-source-1cc54c004ef71e30",
     "name": "Mittelaltermarkt im Park Seleger Moor Geplant!",
     "type": "Markt",
@@ -792,6 +1225,35 @@
     "websites": [
       "https://www.suendenfrei.tv/terminuebersicht"
     ]
+  },
+  {
+    "id": "eu-source-a290b66685c44f19",
+    "name": "Historischer Herbstmarkt Wangen a. Aare",
+    "type": "Markt",
+    "date": "2027-10-09 bis 2027-10-10",
+    "start": "2027-10-09",
+    "end": "2027-10-10",
+    "country": "Schweiz",
+    "city": "Historischer Herbstmarkt Wangen a. Aare",
+    "postcode": "",
+    "source": "https://fyndling.de/e/66c938e086022fed",
+    "website": "http://www.marktzunft.ch",
+    "websites": [
+      "http://www.marktzunft.ch"
+    ]
+  },
+  {
+    "id": "eu-source-f3813ce07c0d0537",
+    "name": "Mittelalterfest",
+    "type": "Markt",
+    "date": "2027-04-23 bis 2027-04-24",
+    "start": "2027-04-23",
+    "end": "2027-04-24",
+    "country": "Deutschland",
+    "city": "d-39343 Hohe Börde/ OT Bebertal",
+    "postcode": "",
+    "source": "https://fyndling.de/e/52c9b038151516e9",
+    "venue": "Veltheimsburg - Burgstraße 16"
   },
   {
     "id": "mittelalterkalender-cb7acb679e7fde9e",
@@ -1019,6 +1481,54 @@
     "country": "Deutschland",
     "city": "Dedeleben-Huy",
     "postcode": "38836",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-6aa5f9514487ab79",
+    "name": "10. Mittelalter-Spektakel zu Bietigheim",
+    "type": "Markt",
+    "date": "2027-02-26 bis 2027-02-28",
+    "start": "2027-02-26",
+    "end": "2027-02-28",
+    "country": "Deutschland",
+    "city": "Bietigheim-Bissingen",
+    "postcode": "74321",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-ad2aac9c70c57ef4",
+    "name": "Bal Renaissance - Danse Medievale",
+    "type": "Markt",
+    "date": "2027-04-24 bis 2027-04-24",
+    "start": "2027-04-24",
+    "end": "2027-04-24",
+    "country": "Deutschland",
+    "city": "München",
+    "postcode": "81825",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-a70393a43b2afd90",
+    "name": "Mittelaltermarkt am Osnabrücker Ringwall",
+    "type": "Markt",
+    "date": "2027-08-13 bis 2027-08-15",
+    "start": "2027-08-13",
+    "end": "2027-08-15",
+    "country": "Deutschland",
+    "city": "Osnabrück",
+    "postcode": "49082",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-7033063da529982d",
+    "name": "Wikingersommer - Das Fest 2027",
+    "type": "Markt",
+    "date": "2027-06-19 bis 2027-06-20",
+    "start": "2027-06-19",
+    "end": "2027-06-20",
+    "country": "Deutschland",
+    "city": "Uelvesbüll",
+    "postcode": "25889",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
