@@ -49,6 +49,20 @@
     "end": "2026-11-29"
   },
   {
+    "candidate_id": "eu-source-4f1ed09bbd23ab8b",
+    "approved_event_id": "eu-source-6149af2d10344222",
+    "name": "Thüringer Ritterturnier",
+    "start": "2027-10-02",
+    "end": "2027-10-03"
+  },
+  {
+    "candidate_id": "eu-source-524350630b2111bb",
+    "approved_event_id": "eu-source-e505d64d50798399",
+    "name": "Burgfrühling auf der Runneburg",
+    "start": "2027-04-03",
+    "end": "2027-04-04"
+  },
+  {
     "candidate_id": "eu-source-58d79b20af095009",
     "approved_event_id": "mittelalterkalender-8995b95ac1e9df16",
     "name": "Mittelalterlicher Weihnachtsmarkt",
@@ -145,5 +159,26 @@
     "name": "Historischer Handwerkermarkt",
     "start": "2027-05-15",
     "end": "2027-05-16"
+  },
+  {
+    "candidate_id": "mittelalterkalender-3371335651008783",
+    "approved_event_id": "eu-source-1f05b363a3090a38",
+    "name": "Elfia Vorden",
+    "start": "2027-05-01",
+    "end": "2027-05-02"
+  },
+  {
+    "candidate_id": "mittelalterkalender-7f002956b87a60b1",
+    "approved_event_id": "eu-source-6eca72985f65b533",
+    "name": "Bal Renaissance - Danse Medievale",
+    "start": "2027-02-27",
+    "end": "2027-02-27"
+  },
+  {
+    "candidate_id": "mittelalterkalender-8c263e09f02754e5",
+    "approved_event_id": "eu-source-b50f9abb0bb09e24",
+    "name": "Zeitreise Isen",
+    "start": "2027-05-21",
+    "end": "2027-05-23"
   }
 ]
