@@ -168,6 +168,13 @@
     "end": "2027-05-02"
   },
   {
+    "candidate_id": "mittelalterkalender-4719b0c8b7a3ca7c",
+    "approved_event_id": "eu-source-e505d64d50798399",
+    "name": "Burgfrühling auf der Runneburg",
+    "start": "2027-04-03",
+    "end": "2027-04-04"
+  },
+  {
     "candidate_id": "mittelalterkalender-7f002956b87a60b1",
     "approved_event_id": "eu-source-6eca72985f65b533",
     "name": "Bal Renaissance - Danse Medievale",
@@ -180,5 +187,12 @@
     "name": "Zeitreise Isen",
     "start": "2027-05-21",
     "end": "2027-05-23"
+  },
+  {
+    "candidate_id": "mittelalterkalender-ef51f6339e1ef750",
+    "approved_event_id": "eu-source-d352f4f1dbd8dc45",
+    "name": "6. Mittelalter-Markttage",
+    "start": "2027-10-16",
+    "end": "2027-10-17"
   }
 ]
