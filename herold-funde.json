@@ -1,19 +1,5 @@
 [
   {
-    "id": "bi-buhurt-22ce6d25fdd7a22a",
-    "name": "Swaiut Toringi Cup 2027",
-    "type": "Buhurt",
-    "date": "2027-04-24",
-    "start": "2027-04-24",
-    "end": "2027-04-24",
-    "country": "Deutschland",
-    "city": "Mühlhausen/Thüringen",
-    "postcode": "99974",
-    "lat": 51.1949859,
-    "lng": 10.3964462,
-    "source": "https://www.buhurtinternational.com/tournament/swaiut-toringi-cup-2027"
-  },
-  {
     "id": "eu-source-22c8979909dca943",
     "name": "Mittelaltermarkt Allmendingen",
     "type": "Markt",
@@ -58,23 +44,6 @@
       "source": "https://mittelalter-bremgarten.ch",
       "method": "event-jsonld-or-labelled-day-text"
     }
-  },
-  {
-    "id": "eu-source-7ba4adadd8695d11",
-    "name": "Walpurgis Mittelalter- und Fantasyspektakel",
-    "type": "Markt",
-    "date": "2028-04-29 bis 2028-04-30",
-    "start": "2028-04-29",
-    "end": "2028-04-30",
-    "country": "Schweiz",
-    "city": "Kemptthal",
-    "postcode": "",
-    "source": "https://www.mirimor.ch/kalender/",
-    "websites": [
-      "http://www.turnei.ch"
-    ],
-    "website": "http://www.turnei.ch",
-    "source_provider": "Mirimor"
   },
   {
     "id": "eu-source-f8be6bb4a0779f42",
@@ -1692,18 +1661,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-265e50c06125ad87",
-    "name": "Gaudium Schloss Horst",
-    "type": "Markt",
-    "date": "2027-05-27 bis 2027-05-30",
-    "start": "2027-05-27",
-    "end": "2027-05-30",
-    "country": "Deutschland",
-    "city": "Gelsenkirchen",
-    "postcode": "45899",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-b9add4f243a16e3d",
     "name": "Mittelalter-Advent",
     "type": "Markt",
@@ -1788,30 +1745,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-a6e805baa282040f",
-    "name": "Mittelalter-Weihnacht im Stallhof",
-    "type": "Markt",
-    "date": "2027-11-24 bis 2027-12-23",
-    "start": "2027-11-24",
-    "end": "2027-12-23",
-    "country": "Deutschland",
-    "city": "Dresden",
-    "postcode": "01067",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-1bdcb1850ee80641",
-    "name": "Dresdner Rauhnächte",
-    "type": "Markt",
-    "date": "2027-12-28 bis 2027-12-30",
-    "start": "2027-12-28",
-    "end": "2027-12-30",
-    "country": "Deutschland",
-    "city": "Dresden",
-    "postcode": "01067",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-2361e9c8da0d54b7",
     "name": "Ritterturnier & Walpurgisnacht",
     "type": "Markt",
@@ -1821,30 +1754,6 @@
     "country": "Deutschland",
     "city": "Freyburg (Unstrut)",
     "postcode": "06632",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-d9a7404e77198f84",
-    "name": "Mittelalter-Burgfest",
-    "type": "Markt",
-    "date": "2027-05-06 bis 2027-05-09",
-    "start": "2027-05-06",
-    "end": "2027-05-09",
-    "country": "Deutschland",
-    "city": "Falkenstein/Harz",
-    "postcode": "06543",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-49e3ea13d5d4ece3",
-    "name": "30.  Burgfest",
-    "type": "Markt",
-    "date": "2027-10-02 bis 2027-10-03",
-    "start": "2027-10-02",
-    "end": "2027-10-03",
-    "country": "Deutschland",
-    "city": "Falkenstein/Harz",
-    "postcode": "06543",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
@@ -1905,6 +1814,18 @@
     "country": "Deutschland",
     "city": "Weimar",
     "postcode": "99423",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-265e50c06125ad87",
+    "name": "Gaudium Schloss Horst",
+    "type": "Markt",
+    "date": "2027-05-27 bis 2027-05-30",
+    "start": "2027-05-27",
+    "end": "2027-05-30",
+    "country": "Deutschland",
+    "city": "Gelsenkirchen",
+    "postcode": "45899",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
