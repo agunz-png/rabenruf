@@ -6862,14 +6862,36 @@ function applyCalendarFilters(){
         (flagge ? flagge + " " : "") + escapeHTML(country) + '</option>';
     }).join("");
   countrySelect.value = countries.includes(selectedCountry) ? selectedCountry : "Alle";
-  const months = [...new Set(allEvents.map(event => event.start.slice(0, 7)))].sort();
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const firstVisibleMonth = new Date(today.getFullYear(), today.getMonth(), 1, 12);
+  const months = new Set();
+
+  allEvents.forEach(event => {
+    const eventStart = dateObject(event.start);
+    const eventEnd = dateObject(event.end || event.start);
+    if(Number.isNaN(eventStart.getTime()) || Number.isNaN(eventEnd.getTime()) || eventEnd < today) return;
+
+    const firstEventMonth = new Date(eventStart.getFullYear(), eventStart.getMonth(), 1, 12);
+    const lastEventMonth = new Date(eventEnd.getFullYear(), eventEnd.getMonth(), 1, 12);
+    const monthCursor = firstEventMonth < firstVisibleMonth
+      ? new Date(firstVisibleMonth)
+      : firstEventMonth;
+
+    while(monthCursor <= lastEventMonth){
+      months.add(monthCursor.getFullYear() + "-" + String(monthCursor.getMonth() + 1).padStart(2, "0"));
+      monthCursor.setMonth(monthCursor.getMonth() + 1);
+    }
+  });
+
+  const monthOptions = [...months].sort();
   monthSelect.innerHTML = '<option value="Alle">📅 Alle Monate</option>' +
-    months.map(month =>
+    monthOptions.map(month =>
       '<option value="' + escapeHTML(month) + '">' +
       escapeHTML(monthName(month + "-01")) +
       '</option>'
     ).join("");
-  monthSelect.value = months.includes(selectedMonth) ? selectedMonth : "Alle";
+  monthSelect.value = monthOptions.includes(selectedMonth) ? selectedMonth : "Alle";
 
   if(calendarType !== "Alle"){
     allEvents = allEvents.filter(event =>
@@ -6883,7 +6905,15 @@ function applyCalendarFilters(){
   }
 
   if(monthSelect.value !== "Alle"){
-    allEvents = allEvents.filter(event => event.start.slice(0, 7) === monthSelect.value);
+    const [year, month] = monthSelect.value.split("-").map(Number);
+    const monthStart = monthSelect.value + "-01";
+    const nextMonthStart = month === 12
+      ? (year + 1) + "-01-01"
+      : year + "-" + String(month + 1).padStart(2, "0") + "-01";
+    allEvents = allEvents.filter(event => {
+      const eventEnd = event.end || event.start;
+      return event.start < nextMonthStart && eventEnd >= monthStart;
+    });
   }
 
   if(search){
