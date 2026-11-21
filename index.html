@@ -5579,30 +5579,15 @@ function eventCard(event){
 
   let distanceHTML = "";
 
-  if(userLocation){
+  const eventLat=Number(event.lat), eventLng=Number(event.lng);
+  if(userLocation && Number.isFinite(eventLat) && Number.isFinite(eventLng)){
 
-    const distance =
-
-      distanceKm(
-
-        userLocation.lat,
-
-        userLocation.lng,
-
-        event.lat,
-
-        event.lng
-
-      );
+    const distance = distanceKm(userLocation.lat,userLocation.lng,eventLat,eventLng);
 
     distanceHTML =
-
       `<span class="distance">
-
         📍 ca. ${Math.round(distance)} km von dir
-
       </span>`;
-
   }
 
   const tagHTML =
@@ -5887,35 +5872,15 @@ function applyFilters(){
 
   if(userLocation){
 
-  list.sort((a,b) =>
-
-    distanceKm(
-
-      userLocation.lat,
-
-      userLocation.lng,
-
-      a.lat,
-
-      a.lng
-
-    )
-
-    -
-
-    distanceKm(
-
-      userLocation.lat,
-
-      userLocation.lng,
-
-      b.lat,
-
-      b.lng
-
-    )
-
-  );
+  list.sort((a,b) => {
+    const aLat=Number(a.lat),aLng=Number(a.lng),bLat=Number(b.lat),bLng=Number(b.lng);
+    const aHas=Number.isFinite(aLat)&&Number.isFinite(aLng);
+    const bHas=Number.isFinite(bLat)&&Number.isFinite(bLng);
+    if(aHas!==bHas) return aHas?-1:1;
+    if(!aHas) return dateObject(a.start)-dateObject(b.start);
+    return distanceKm(userLocation.lat,userLocation.lng,aLat,aLng)-
+      distanceKm(userLocation.lat,userLocation.lng,bLat,bLng);
+  });
 
 }else{
 
@@ -7809,7 +7774,7 @@ async function starteHeroldAktion(index, aktion, sourceButton=null){
     renderHerold();
     await ladeHeroldFunde();
     if(aktion==="approve") await ladeFreigegebeneEvents();
-    alert(aktion==="approve"?"Veranstaltung übernommen. Sie erscheint jetzt im Kalender.":"Meldung verworfen.");
+    alert(aktion==="approve"?(data.warning || "Veranstaltung übernommen. Sie erscheint jetzt im Kalender."):"Meldung verworfen.");
   }catch(fehler){
     if(knopf?.isConnected){
       knopf.disabled=false;
