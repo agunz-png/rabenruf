@@ -881,24 +881,6 @@
     "lng": 7.5041514
   },
   {
-    "id": "eu-source-88927d59c6d82b12",
-    "name": "Gaudium Schloss Horst*",
-    "type": "Markt",
-    "date": "2027-05-27 bis 2027-05-30",
-    "start": "2027-05-27",
-    "end": "2027-05-30",
-    "country": "Deutschland",
-    "city": "Gelsenkirchen*",
-    "postcode": "45899",
-    "source": "https://fyndling.de/e/eb04507839810d50",
-    "website": "https://www.suendenfrei.tv/terminuebersicht",
-    "websites": [
-      "https://www.suendenfrei.tv/terminuebersicht"
-    ],
-    "lat": 51.5376805,
-    "lng": 7.0323864
-  },
-  {
     "id": "eu-source-0c893b7b45f84663",
     "name": "Geschichte erleben im Naturpark auf Schloss Wellenberg",
     "type": "Markt",
@@ -1541,18 +1523,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-4fca2ed70bf742f5",
-    "name": "Historisches Quartier zum 56. Heidelberger Herbst",
-    "type": "Markt",
-    "date": "2027-09-25 bis 2027-09-26",
-    "start": "2027-09-25",
-    "end": "2027-09-26",
-    "country": "Deutschland",
-    "city": "Heidelberg",
-    "postcode": "69120",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-f3fb254ae0a43463",
     "name": "Turnierspiele",
     "type": "Markt",
@@ -1622,18 +1592,6 @@
     "country": "Deutschland",
     "city": "Greifenstein",
     "postcode": "35753",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-ac4ceb24d9312f76",
-    "name": "Mittelalterspektakel Insel Poel",
-    "type": "Markt",
-    "date": "2027-07-16 bis 2027-07-18",
-    "start": "2027-07-16",
-    "end": "2027-07-18",
-    "country": "Deutschland",
-    "city": "Insel Poel",
-    "postcode": "23999",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
@@ -1817,15 +1775,15 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-265e50c06125ad87",
-    "name": "Gaudium Schloss Horst",
+    "id": "mittelalterkalender-7ca9f5cf53a7209c",
+    "name": "Mittelalter trifft Endzeit",
     "type": "Markt",
-    "date": "2027-05-27 bis 2027-05-30",
-    "start": "2027-05-27",
-    "end": "2027-05-30",
+    "date": "2027-10-15 bis 2027-10-17",
+    "start": "2027-10-15",
+    "end": "2027-10-17",
     "country": "Deutschland",
-    "city": "Gelsenkirchen",
-    "postcode": "45899",
+    "city": "Burglengenfeld",
+    "postcode": "93133",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
