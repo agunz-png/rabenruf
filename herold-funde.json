@@ -333,24 +333,36 @@
     "source_provider": "Mirimor"
   },
   {
-    "id": "eu-source-b1c1c08c2bb6ee79",
-    "name": "Spectaculum Pfalz Grona zu Goettingen",
+    "id": "eu-source-a42edd502845fd37",
+    "name": "Schlosshof Festival",
     "type": "Markt",
-    "date": "2027-08-28 bis 2027-08-29",
-    "start": "2027-08-28",
-    "end": "2027-08-29",
+    "date": "2027-08-13 bis 2027-08-14",
+    "start": "2027-08-13",
+    "end": "2027-08-14",
     "country": "Deutschland",
-    "city": "Göttingen",
-    "postcode": "37081",
-    "source": "https://fyndling.de/e/b97886de03e12a53",
-    "venue": "Hagenberg",
-    "info": "Das vierte Spectaculum auf dem Hagenberg, ehrenamtlich organisiert.",
-    "website": "https://spectaculum-goettingen.de/",
+    "city": "Höchstadt an der Aisch",
+    "postcode": "91315",
+    "source": "https://fyndling.de/e/1639f911a43aebd0",
+    "venue": "Schlosshof, Schloss Höchstadt",
+    "info": "Folk-, Mittelalter- und Metal-Festival im Schlosshof von Höchstadt an der Aisch, dazu ein kleiner Mittelaltermarkt mit Schmuck, Gewandung, Trinkhörnern, Kartenlegen und historischen Spezialitäten. **Freitag, 13.08.2027** (Einlass ca. 15:30 Uhr) - 16:15 Uhr Vera Lux - 17:20 Uhr…",
+    "website": "https://www.schlosshof-festival.de/programm.html",
     "websites": [
-      "https://spectaculum-goettingen.de/"
+      "https://www.schlosshof-festival.de/programm.html"
     ],
-    "lat": 51.5323825,
-    "lng": 9.9038024
+    "lat": 49.7148482,
+    "lng": 10.8336508,
+    "hoursReview": {
+      "status": "pending",
+      "dailyHours": [
+        {
+          "date": "2027-08-14",
+          "open": "14:30",
+          "close": "15:30"
+        }
+      ],
+      "source": "https://www.schlosshof-festival.de/programm.html",
+      "method": "event-jsonld-or-labelled-day-text"
+    }
   },
   {
     "id": "eu-source-8fce41a913bc2e97",
@@ -490,6 +502,25 @@
     ],
     "lat": 49.5422946,
     "lng": 7.2266124
+  },
+  {
+    "id": "eu-source-fcebbe5a873c7142",
+    "name": "Mittelalter- LARP- und Reenactment Flohmarkt",
+    "type": "Markt",
+    "date": "2027-05-02 bis 2027-05-02",
+    "start": "2027-05-02",
+    "end": "2027-05-02",
+    "country": "Deutschland",
+    "city": "Büdingen",
+    "postcode": "63654",
+    "source": "https://fyndling.de/e/efd88c3a8f624b26",
+    "venue": "Im Hirschgraben neben dem Jerusalemer Tor",
+    "website": "https://www.mittelalterverein-buedingen.de/termine-2026/",
+    "websites": [
+      "https://www.mittelalterverein-buedingen.de/termine-2026/"
+    ],
+    "lat": 50.2868427,
+    "lng": 9.1073152
   },
   {
     "id": "eu-source-11a570dab1c3f036",
@@ -1523,18 +1554,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-f3fb254ae0a43463",
-    "name": "Turnierspiele",
-    "type": "Markt",
-    "date": "2027-04-10 bis 2027-04-11",
-    "start": "2027-04-10",
-    "end": "2027-04-11",
-    "country": "Deutschland",
-    "city": "Pommersfelden",
-    "postcode": "96178",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-8f7fa2593876e1f8",
     "name": "Mittelaltermarkt auf Gut Wolfgangshof",
     "type": "Markt",
@@ -1571,18 +1590,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-348527f8a417d2de",
-    "name": "Burg und Pferd",
-    "type": "Markt",
-    "date": "2027-05-27 bis 2027-05-30",
-    "start": "2027-05-27",
-    "end": "2027-05-30",
-    "country": "Deutschland",
-    "city": "Büdingen",
-    "postcode": "63654",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-91dd5449c29ad899",
     "name": "Mittelalterspectaculum Burg Greifenstein",
     "type": "Markt",
@@ -1592,18 +1599,6 @@
     "country": "Deutschland",
     "city": "Greifenstein",
     "postcode": "35753",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-113c0d5aae3b5c46",
-    "name": "Bal Renaissance - Danse Medievale",
-    "type": "Markt",
-    "date": "2027-03-06 bis 2027-03-06",
-    "start": "2027-03-06",
-    "end": "2027-03-06",
-    "country": "Deutschland",
-    "city": "Bonn",
-    "postcode": "53229",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
@@ -1676,18 +1671,6 @@
     "country": "Deutschland",
     "city": "St. Goarshausen",
     "postcode": "56346",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-7ee98c8db4d96954",
-    "name": "Mittelaltermarkt und Ritterturnier",
-    "type": "Markt",
-    "date": "2027-03-20 bis 2027-03-21",
-    "start": "2027-03-20",
-    "end": "2027-03-21",
-    "country": "Deutschland",
-    "city": "Nossen",
-    "postcode": "01683",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
@@ -1772,18 +1755,6 @@
     "country": "Deutschland",
     "city": "Weimar",
     "postcode": "99423",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-7ca9f5cf53a7209c",
-    "name": "Mittelalter trifft Endzeit",
-    "type": "Markt",
-    "date": "2027-10-15 bis 2027-10-17",
-    "start": "2027-10-15",
-    "end": "2027-10-17",
-    "country": "Deutschland",
-    "city": "Burglengenfeld",
-    "postcode": "93133",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
