@@ -7013,6 +7013,15 @@ function heroldNorm(value){
 function heroldCityNorm(value){
   return heroldNorm(value).replace(/\b(?:ag|ai|ar|be|bl|bs|fr|ge|gl|gr|ju|lu|ne|nw|ow|sg|sh|so|sz|tg|ti|ur|vd|vs|zg|zh)\b$/,"").trim();
 }
+function heroldSameCity(a,b){
+  const cityA=heroldCityNorm(a);
+  const cityB=heroldCityNorm(b);
+  if(cityA===cityB)return true;
+  const baseA=cityA.replace(/\s+bei\s+.+$/,"").trim();
+  const baseB=cityB.replace(/\s+bei\s+.+$/,"").trim();
+  return (baseA===cityB && cityA.startsWith(baseA+" bei ")) ||
+    (baseB===cityA && cityB.startsWith(baseB+" bei "));
+}
 function heroldNameTokens(value){
   const normalized=heroldNorm(value).replace(/\bmittelalter markt\b/g,"mittelaltermarkt");
   return normalized.split(" ").filter(Boolean);
@@ -7147,15 +7156,17 @@ async function ladeHeroldZeitFunde(){
  }catch(error){box.textContent="Zeitvorschläge konnten nicht geladen werden: "+error.message;}
 }
 function heroldZeitZiele(fund){
- const city=heroldCityNorm(fund.city||"");
  const country=heroldNorm(fund.country||"");
  const days=fund.hoursReview?.dailyHours||[];
  return heroldApprovedDuplicateTargets.filter(item=>{
   const event=item.event||{};
-  const targetCity=heroldCityNorm(event.city||"").replace(/ aargau$/,"");
+  const sameCity=heroldSameCity(event.city||"",fund.city||"");
+  const fundPostcode=String(fund.postcode||"").replace(/\D/g,"");
+  const eventPostcode=String(event.postcode||"").replace(/\D/g,"");
+  const samePostcode=fundPostcode.length>=4 && fundPostcode===eventPostcode;
   const targetCountry=heroldNorm(event.country||"");
   const start=String(event.start||""),end=String(event.end||start);
-  return targetCity===city && (!country||!targetCountry||country===targetCountry) &&
+  return (sameCity||samePostcode) && (!country||!targetCountry||country===targetCountry) &&
    days.length>0 && days.every(day=>day.date>=start && day.date<=end);
  });
 }
