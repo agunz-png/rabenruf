@@ -7158,6 +7158,7 @@ async function ladeHeroldZeitFunde(){
 function heroldZeitZiele(fund){
  const country=heroldNorm(fund.country||"");
  const days=fund.hoursReview?.dailyHours||[];
+ const seen=new Set();
  return heroldApprovedDuplicateTargets.filter(item=>{
   const event=item.event||{};
   const sameCity=heroldSameCity(event.city||"",fund.city||"");
@@ -7166,8 +7167,14 @@ function heroldZeitZiele(fund){
   const samePostcode=fundPostcode.length>=4 && fundPostcode===eventPostcode;
   const targetCountry=heroldNorm(event.country||"");
   const start=String(event.start||""),end=String(event.end||start);
-  return (sameCity||samePostcode) && (!country||!targetCountry||country===targetCountry) &&
+  const matches=(sameCity||samePostcode) && (!country||!targetCountry||country===targetCountry) &&
    days.length>0 && days.every(day=>day.date>=start && day.date<=end);
+  if(!matches)return false;
+  const identity=String(item.id||event.id||"").trim();
+  const key=identity || [heroldNorm(event.name||""),heroldCityNorm(event.city||""),start,end].join("|");
+  if(seen.has(key))return false;
+  seen.add(key);
+  return true;
  });
 }
 function heroldZeitZielWaehlen(index){
