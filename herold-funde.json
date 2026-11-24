@@ -1,5 +1,19 @@
 [
   {
+    "id": "bi-buhurt-15b3998f88f51b66",
+    "name": "St. Georgen Cup 2.0 2027",
+    "type": "Buhurt",
+    "date": "2027-09-04",
+    "start": "2027-09-04",
+    "end": "2027-09-04",
+    "country": "Deutschland",
+    "city": "Schneeberg",
+    "postcode": "08289",
+    "lat": 50.58811559999999,
+    "lng": 12.6258948,
+    "source": "https://www.buhurtinternational.com/tournament/st.-georgen-cup-2.0"
+  },
+  {
     "id": "eu-source-22c8979909dca943",
     "name": "Mittelaltermarkt Allmendingen",
     "type": "Markt",
@@ -277,24 +291,7 @@
       "https://historisches-handwerk.ch"
     ],
     "website": "https://historisches-handwerk.ch",
-    "source_provider": "Mirimor",
-    "hoursReview": {
-      "status": "pending",
-      "dailyHours": [
-        {
-          "date": "2028-10-28",
-          "open": "10:00",
-          "close": "18:00"
-        },
-        {
-          "date": "2028-10-29",
-          "open": "10:00",
-          "close": "17:00"
-        }
-      ],
-      "source": "https://historisches-handwerk.ch",
-      "method": "event-jsonld-or-labelled-day-text"
-    }
+    "source_provider": "Mirimor"
   },
   {
     "id": "eu-source-dc38b0e8ceb2c192",
@@ -331,6 +328,46 @@
     ],
     "website": "http://www.corvus-nidum.ch",
     "source_provider": "Mirimor"
+  },
+  {
+    "id": "eu-source-1ae298d0d63c898b",
+    "name": "Frühlingsmarkt zu Freisen",
+    "type": "Markt",
+    "date": "2027-04-30 bis 2027-05-02",
+    "start": "2027-04-30",
+    "end": "2027-05-02",
+    "country": "Deutschland",
+    "city": "Freisen",
+    "postcode": "66629",
+    "source": "https://fyndling.de/e/6692bdda15867995",
+    "venue": "Naturwildpark Freisen",
+    "info": "Großer Mittelaltermarkt auf rund 90.000 m² neben dem Naturwildpark Freisen, ausgerichtet von MB historische Eventplanung (Sommermarkt seit 2000, Frühlingsmarkt seit 2017). - **Hauptmarkt** auf der großen Festwiese (eintrittspflichtig): Handwerker, Markthändler, Haupt- und…",
+    "website": "https://mittelaltermarkt-freisen.de/veranstaltungen/2027",
+    "websites": [
+      "https://mittelaltermarkt-freisen.de/veranstaltungen/2027"
+    ],
+    "lat": 49.56364,
+    "lng": 7.233925
+  },
+  {
+    "id": "eu-source-fde5dcbcd4c9d66b",
+    "name": "Mittelaltermarkt Hockenheim",
+    "type": "Markt",
+    "date": "2027-05-27 bis 2027-05-30",
+    "start": "2027-05-27",
+    "end": "2027-05-30",
+    "country": "Deutschland",
+    "city": "Hockenheim",
+    "postcode": "68766",
+    "source": "https://fyndling.de/e/25e170f4bdea3174",
+    "venue": "Gartenschaupark - Eisenbahnstraße",
+    "info": "Mittelaltermarkt im Gartenschaupark Hockenheim, ausgerichtet von MB historische Eventplanung, dem Team des Mittelaltermarkts Freisen (in Hockenheim seit 2024). **Parken:** Parkplätze des Hockenheimrings (P2). Die Parkplätze direkt am Gartenschaupark sind während des Marktes für…",
+    "website": "https://mittelaltermarkt-freisen.de/veranstaltungen/2027",
+    "websites": [
+      "https://mittelaltermarkt-freisen.de/veranstaltungen/2027"
+    ],
+    "lat": 49.3312783,
+    "lng": 8.5300545
   },
   {
     "id": "eu-source-a42edd502845fd37",
@@ -483,25 +520,6 @@
       "source": "https://www.spectaculum.de/termine/saeckingen/",
       "method": "event-jsonld-or-labelled-day-text"
     }
-  },
-  {
-    "id": "eu-source-ad230e06c181242f",
-    "name": "Frühlingsmarkt zu Freisen",
-    "type": "Markt",
-    "date": "2027-05-01 bis 2027-05-02",
-    "start": "2027-05-01",
-    "end": "2027-05-02",
-    "country": "Deutschland",
-    "city": "Freisen",
-    "postcode": "66629",
-    "source": "https://fyndling.de/e/6692bdda15867995",
-    "venue": "Naturwildpark Freisen",
-    "website": "https://www.mittelaltermarkt-freisen.de/",
-    "websites": [
-      "https://www.mittelaltermarkt-freisen.de/"
-    ],
-    "lat": 49.5422946,
-    "lng": 7.2266124
   },
   {
     "id": "eu-source-fcebbe5a873c7142",
@@ -1755,6 +1773,18 @@
     "country": "Deutschland",
     "city": "Weimar",
     "postcode": "99423",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-a0e4442dfd209fcc",
+    "name": "1. Historisches Markttreiben zu Helmbrechts",
+    "type": "Markt",
+    "date": "2027-02-13 bis 2027-02-14",
+    "start": "2027-02-13",
+    "end": "2027-02-14",
+    "country": "Deutschland",
+    "city": "Helmbrechts",
+    "postcode": "95233",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
