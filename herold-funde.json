@@ -330,24 +330,44 @@
     "source_provider": "Mirimor"
   },
   {
-    "id": "eu-source-1ae298d0d63c898b",
-    "name": "Frühlingsmarkt zu Freisen",
+    "id": "eu-source-7384ddfdca60c607",
+    "name": "ANNO 1425 – Schwanenteich zu Laer",
     "type": "Markt",
-    "date": "2027-04-30 bis 2027-05-02",
-    "start": "2027-04-30",
-    "end": "2027-05-02",
+    "date": "2027-04-16 bis 2027-04-18",
+    "start": "2027-04-16",
+    "end": "2027-04-18",
     "country": "Deutschland",
-    "city": "Freisen",
-    "postcode": "66629",
-    "source": "https://fyndling.de/e/6692bdda15867995",
-    "venue": "Naturwildpark Freisen",
-    "info": "Großer Mittelaltermarkt auf rund 90.000 m² neben dem Naturwildpark Freisen, ausgerichtet von MB historische Eventplanung (Sommermarkt seit 2000, Frühlingsmarkt seit 2017). - **Hauptmarkt** auf der großen Festwiese (eintrittspflichtig): Handwerker, Markthändler, Haupt- und…",
-    "website": "https://mittelaltermarkt-freisen.de/veranstaltungen/2027",
+    "city": "Laer",
+    "postcode": "48366",
+    "source": "https://fyndling.de/e/9c2d09c98de10baa",
+    "venue": "Rathausplatz / Schwanenteich, Am Rathaus 4",
+    "info": "Mittelalterliches Marktgeschehen mit Heerlagern rund um Rathausplatz, Schwanenteich und Alte Mühle.",
+    "website": "https://anno-events.de/",
     "websites": [
-      "https://mittelaltermarkt-freisen.de/veranstaltungen/2027"
+      "https://anno-events.de/"
     ],
-    "lat": 49.56364,
-    "lng": 7.233925
+    "lat": 52.0587392,
+    "lng": 7.3650662
+  },
+  {
+    "id": "eu-source-3422526d002eba0f",
+    "name": "ANNO 1195 – Almeauen zu Büren",
+    "type": "Markt",
+    "date": "2027-05-07 bis 2027-05-09",
+    "start": "2027-05-07",
+    "end": "2027-05-09",
+    "country": "Deutschland",
+    "city": "Büren",
+    "postcode": "33142",
+    "source": "https://fyndling.de/e/90ec7af588df4898",
+    "venue": "Almeauen Park, Neuer Weg 15",
+    "info": "Mittelalterliches Marktgeschehen mit Heerlagern in den Almeauen, zur Gründung Bürens im Jahr 1195.",
+    "website": "https://anno-events.de/",
+    "websites": [
+      "https://anno-events.de/"
+    ],
+    "lat": 51.5601656,
+    "lng": 8.5360507
   },
   {
     "id": "eu-source-fde5dcbcd4c9d66b",
@@ -370,68 +390,124 @@
     "lng": 8.5300545
   },
   {
-    "id": "eu-source-a42edd502845fd37",
-    "name": "Schlosshof Festival",
+    "id": "eu-source-81e3ca6852e1093a",
+    "name": "ANNO 1250 – Archäologiepark Höxter",
     "type": "Markt",
-    "date": "2027-08-13 bis 2027-08-14",
-    "start": "2027-08-13",
-    "end": "2027-08-14",
+    "date": "2027-07-10 bis 2027-07-11",
+    "start": "2027-07-10",
+    "end": "2027-07-11",
     "country": "Deutschland",
-    "city": "Höchstadt an der Aisch",
-    "postcode": "91315",
-    "source": "https://fyndling.de/e/1639f911a43aebd0",
-    "venue": "Schlosshof, Schloss Höchstadt",
-    "info": "Folk-, Mittelalter- und Metal-Festival im Schlosshof von Höchstadt an der Aisch, dazu ein kleiner Mittelaltermarkt mit Schmuck, Gewandung, Trinkhörnern, Kartenlegen und historischen Spezialitäten. **Freitag, 13.08.2027** (Einlass ca. 15:30 Uhr) - 16:15 Uhr Vera Lux - 17:20 Uhr…",
-    "website": "https://www.schlosshof-festival.de/programm.html",
+    "city": "Höxter",
+    "postcode": "37671",
+    "source": "https://fyndling.de/e/7c37c45606c27e96",
+    "venue": "Archäologiepark Corvey, Am Hafen 2A",
+    "info": "Mittelalter-Fest und Markt im Archäologiepark nahe dem UNESCO-Welterbe Corvey, mit Heerlagern und Ritterturnier.",
+    "website": "https://anno-events.de/",
     "websites": [
-      "https://www.schlosshof-festival.de/programm.html"
+      "https://anno-events.de/"
     ],
-    "lat": 49.7148482,
-    "lng": 10.8336508,
-    "hoursReview": {
-      "status": "pending",
-      "dailyHours": [
-        {
-          "date": "2027-08-14",
-          "open": "14:30",
-          "close": "15:30"
-        }
-      ],
-      "source": "https://www.schlosshof-festival.de/programm.html",
-      "method": "event-jsonld-or-labelled-day-text"
-    }
+    "lat": 51.7865686,
+    "lng": 9.3446713
   },
   {
-    "id": "eu-source-8fce41a913bc2e97",
-    "name": "Ritterfest auf dem Schloss Diedersdorf",
+    "id": "eu-source-694a32592ad64f8b",
+    "name": "ANNO 1238 – Planwiesen zu Telgte",
     "type": "Markt",
-    "date": "2027-09-04 bis 2027-09-05",
-    "start": "2027-09-04",
-    "end": "2027-09-05",
+    "date": "2027-08-06 bis 2027-08-08",
+    "start": "2027-08-06",
+    "end": "2027-08-08",
     "country": "Deutschland",
-    "city": "Großbeeren",
-    "postcode": "14979",
-    "source": "https://fyndling.de/e/753c2407d89682b6",
-    "venue": "Schloss Diedersdorf",
-    "info": "Samstag 10–21 Uhr, Sonntag 10–19 Uhr. - Ritter von Midgards Feuerbund mit Mann-gegen-Mann-Kämpfen - Mitmachdisziplinen für Nachwuchsritter (Axtwerfen, Bogenschießen) - Markt mit historischem Handwerk und Handel - Schänken und Tavernen - Spielleute Corvus Corax - Akrobaten Die…",
-    "website": "https://www.schlossdiedersdorf.de/ticketkalender/04-05-september-ritterfest-auf-schloss-diedersdorf.html",
+    "city": "Telgte",
+    "postcode": "48291",
+    "source": "https://fyndling.de/e/13290fe467603f10",
+    "venue": "Planwiese / Dümmert Park",
+    "info": "Mittelaltermarkt auf den Planwiesen mit Händlern, Handwerkern, Heerlagern, Musikanten und Vaganten.",
+    "website": "https://anno-events.de/",
     "websites": [
-      "https://www.schlossdiedersdorf.de/ticketkalender/04-05-september-ritterfest-auf-schloss-diedersdorf.html"
+      "https://anno-events.de/"
     ],
-    "lat": 52.3642059,
-    "lng": 13.3275918,
-    "hoursReview": {
-      "status": "pending",
-      "dailyHours": [
-        {
-          "date": "2027-09-05",
-          "open": "10:00",
-          "close": "19:00"
-        }
-      ],
-      "source": "https://www.schlossdiedersdorf.de/ticketkalender/04-05-september-ritterfest-auf-schloss-diedersdorf.html",
-      "method": "event-jsonld-or-labelled-day-text"
-    }
+    "lat": 51.9972475,
+    "lng": 7.8190016
+  },
+  {
+    "id": "eu-source-647f474bbc1cfc97",
+    "name": "ANNO 1320 zu Rahden",
+    "type": "Markt",
+    "date": "2027-08-27 bis 2027-08-29",
+    "start": "2027-08-27",
+    "end": "2027-08-29",
+    "country": "Deutschland",
+    "city": "Rahden",
+    "postcode": "32369",
+    "source": "https://fyndling.de/e/adebba31525757fa",
+    "venue": "Museumshof Rahden, Museumshof 1",
+    "info": "Mittelalter-Fest mit Markt und Heerlager am Museumshof vor der Burgruine.",
+    "website": "https://anno-events.de/",
+    "websites": [
+      "https://anno-events.de/"
+    ],
+    "lat": 52.4618895,
+    "lng": 8.6339956
+  },
+  {
+    "id": "eu-source-0b7caf21a2e7cb7b",
+    "name": "ANNO 1225 zu Barsinghausen",
+    "type": "Markt",
+    "date": "2027-09-10 bis 2027-09-12",
+    "start": "2027-09-10",
+    "end": "2027-09-12",
+    "country": "Deutschland",
+    "city": "Barsinghausen",
+    "postcode": "30890",
+    "source": "https://fyndling.de/e/d79f5b2645981bfb",
+    "venue": "Rittergut Eckerde I, Alte Dorfstraße 2",
+    "info": "Familienfest am Rittergut Eckerde I mit Markt, Heerlagern und großem Ritterturnier.",
+    "website": "https://anno-events.de/",
+    "websites": [
+      "https://anno-events.de/"
+    ],
+    "lat": 52.3258127,
+    "lng": 9.4804868
+  },
+  {
+    "id": "eu-source-4c2443e73c749608",
+    "name": "ANNO Halloween & Samhain Special",
+    "type": "Markt",
+    "date": "2027-10-29 bis 2027-10-31",
+    "start": "2027-10-29",
+    "end": "2027-10-31",
+    "country": "Deutschland",
+    "city": "Delbrück",
+    "postcode": "33129",
+    "source": "https://fyndling.de/e/ddf404980f3c85a0",
+    "venue": "Tierpark Nadermann, Grafhörster Weg 5",
+    "info": "Halloween- und Samhain-Fest im Tierpark Nadermann mit Markt, Heerlager, Geisterzug und Feuershow.",
+    "website": "https://anno-events.de/",
+    "websites": [
+      "https://anno-events.de/"
+    ],
+    "lat": 51.7654608,
+    "lng": 8.540892
+  },
+  {
+    "id": "eu-source-1c438da4133094bb",
+    "name": "ANNO 1280 Wyhnacht",
+    "type": "Markt",
+    "date": "2027-12-10 bis 2027-12-12",
+    "start": "2027-12-10",
+    "end": "2027-12-12",
+    "country": "Deutschland",
+    "city": "Gütersloh-Isselhorst",
+    "postcode": "33334",
+    "source": "https://fyndling.de/e/c9a147cdc71975d9",
+    "venue": "Rittergut Kruse, Niederröhrmannsweg 1",
+    "info": "Historischer Adventsmarkt auf dem Rittergut Kruse mit mittelalterlichem Markt, Heerlagern und Kulturprogramm.",
+    "website": "https://anno-events.de/",
+    "websites": [
+      "https://anno-events.de/"
+    ],
+    "lat": 51.9444993,
+    "lng": 8.4173254
   },
   {
     "id": "eu-source-b85436abe16649a0",
@@ -470,6 +546,25 @@
     ],
     "lat": 49.2039933,
     "lng": 7.5623579
+  },
+  {
+    "id": "eu-source-830412c87fe0b078",
+    "name": "10. Ritterturnier",
+    "type": "Markt",
+    "date": "2027-04-10 bis 2027-04-11",
+    "start": "2027-04-10",
+    "end": "2027-04-11",
+    "country": "Deutschland",
+    "city": "Diedersdorf",
+    "postcode": "15831",
+    "source": "https://fyndling.de/e/e5b5eec656bc62c5",
+    "venue": "Schloss Diedersdorf",
+    "website": "http://www.carnica-spectaculi.de",
+    "websites": [
+      "http://www.carnica-spectaculi.de"
+    ],
+    "lat": 52.5108903,
+    "lng": 14.3286407
   },
   {
     "id": "eu-source-9b0212c8bfe5a59d",
@@ -644,25 +739,6 @@
       "source": "https://www.natureum-niederelbe.de",
       "method": "event-jsonld-or-labelled-day-text"
     }
-  },
-  {
-    "id": "eu-source-c1cae03ff99c569d",
-    "name": "Reichstadtfest Heidelsheim",
-    "type": "Markt",
-    "date": "2027-07-17 bis 2027-07-19",
-    "start": "2027-07-17",
-    "end": "2027-07-19",
-    "country": "Deutschland",
-    "city": "Bruchsal",
-    "postcode": "76646",
-    "source": "https://fyndling.de/e/bc4c1377d1bd599b",
-    "venue": "Ortskern",
-    "website": "https://www.reichsstadtfest-heidelsheim.de/",
-    "websites": [
-      "https://www.reichsstadtfest-heidelsheim.de/"
-    ],
-    "lat": 49.1036803,
-    "lng": 8.6002626
   },
   {
     "id": "eu-source-2d3ab76991aff844",
@@ -1452,18 +1528,6 @@
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
-    "id": "mittelalterkalender-aeb53f38c4f76dea",
-    "name": "Mittelalterspectaculum Burg Greifenstein",
-    "type": "Markt",
-    "date": "2027-07-16 bis 2027-07-18",
-    "start": "2027-07-16",
-    "end": "2027-07-18",
-    "country": "Deutschland",
-    "city": "eifenstein",
-    "postcode": "35753",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
     "id": "mittelalterkalender-bc4baee81bab544a",
     "name": "Mittelalterliche Tafeley",
     "type": "Markt",
@@ -1533,18 +1597,6 @@
     "country": "Deutschland",
     "city": "Huy-Dedeleben",
     "postcode": "38836",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-d11e3c019cefb2a2",
-    "name": "Slawentage",
-    "type": "Markt",
-    "date": "2027-07-17 bis 2027-07-18",
-    "start": "2027-07-17",
-    "end": "2027-07-18",
-    "country": "Deutschland",
-    "city": "Oldenburg in Holstein",
-    "postcode": "23758",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
@@ -1773,18 +1825,6 @@
     "country": "Deutschland",
     "city": "Weimar",
     "postcode": "99423",
-    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
-  },
-  {
-    "id": "mittelalterkalender-a0e4442dfd209fcc",
-    "name": "1. Historisches Markttreiben zu Helmbrechts",
-    "type": "Markt",
-    "date": "2027-02-13 bis 2027-02-14",
-    "start": "2027-02-13",
-    "end": "2027-02-14",
-    "country": "Deutschland",
-    "city": "Helmbrechts",
-    "postcode": "95233",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
