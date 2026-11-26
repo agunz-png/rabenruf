@@ -14,6 +14,48 @@
     "source": "https://www.buhurtinternational.com/tournament/st.-georgen-cup-2.0"
   },
   {
+    "id": "bi-buhurt-fb9c4c12b207a574",
+    "name": "Grenzwacht-Cup Ehrenberg - Ehrenberger Turniertage 2027",
+    "type": "Buhurt",
+    "date": "2027-01-30",
+    "start": "2027-01-30",
+    "end": "2027-01-30",
+    "country": "Österreich",
+    "city": "Gemeinde Reutte",
+    "postcode": "6600",
+    "lat": 47.46360809999999,
+    "lng": 10.7185448,
+    "source": "https://www.buhurtinternational.com/tournament/grenzwacht-cup-ehrenberg-ehrenberger-turniertage-2027"
+  },
+  {
+    "id": "bi-buhurt-195efa5a3a5b65b2",
+    "name": "Handlhof Fight - Buhurt 2027",
+    "type": "Buhurt",
+    "date": "2027-03-27",
+    "start": "2027-03-27",
+    "end": "2027-03-27",
+    "country": "Österreich",
+    "city": "Gattring-Raking",
+    "postcode": "3143",
+    "lat": 48.1579801,
+    "lng": 15.7470196,
+    "source": "https://www.buhurtinternational.com/tournament/handlhof-fight-buhurt"
+  },
+  {
+    "id": "bi-buhurt-809ed43810bfe6d5",
+    "name": "Handlhof Fight - Duel 2027",
+    "type": "Buhurt",
+    "date": "2027-02-27",
+    "start": "2027-02-27",
+    "end": "2027-02-27",
+    "country": "Österreich",
+    "city": "Racking 4",
+    "postcode": "",
+    "lat": 0.0,
+    "lng": 0.0,
+    "source": "https://www.buhurtinternational.com/tournament/handlhof-fight-i"
+  },
+  {
     "id": "eu-source-22c8979909dca943",
     "name": "Mittelaltermarkt Allmendingen",
     "type": "Markt",
@@ -488,6 +530,26 @@
     ],
     "lat": 51.7654608,
     "lng": 8.540892
+  },
+  {
+    "id": "eu-source-4d4fb686756ccd88",
+    "name": "Pforzheimer Mittelaltermarkt",
+    "type": "Markt",
+    "date": "2027-11-22 bis 2027-12-30",
+    "start": "2027-11-22",
+    "end": "2027-12-30",
+    "country": "Deutschland",
+    "city": "Pforzheim",
+    "postcode": "75175",
+    "source": "https://fyndling.de/e/b57560277ad98595",
+    "venue": "Blumenhof & Barfüßergasse",
+    "info": "Mittelaltermarkt in der Adventszeit am Blumenhof und in der Barfüßergasse, mit Musik, Gaukelei, Feuershow, Badehaus und Taverne.",
+    "website": "https://lebendiges-mittelalter.de/",
+    "websites": [
+      "https://lebendiges-mittelalter.de/"
+    ],
+    "lat": 48.8838651,
+    "lng": 8.7124973
   },
   {
     "id": "eu-source-1c438da4133094bb",
@@ -1825,6 +1887,18 @@
     "country": "Deutschland",
     "city": "Weimar",
     "postcode": "99423",
+    "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
+  },
+  {
+    "id": "mittelalterkalender-b5e9eee4ac62b361",
+    "name": "Historienspektakel Fort Kugelbake",
+    "type": "Markt",
+    "date": "2027-08-12 bis 2027-08-14",
+    "start": "2027-08-12",
+    "end": "2027-08-14",
+    "country": "Deutschland",
+    "city": "Cuxhaven",
+    "postcode": "27454",
     "source": "https://www.mittelalterkalender.info/mittelaltermarkt/mittelalterfeste-2027-nach-bundesland.php"
   },
   {
