@@ -56,6 +56,40 @@
     "source": "https://www.buhurtinternational.com/tournament/handlhof-fight-i"
   },
   {
+    "id": "eu-source-ec817b8cdae63f27",
+    "name": "Weltenzauber - Mittelalter und Fantasyspektakulum",
+    "type": "Markt",
+    "date": "2027-02-19 bis 2027-02-21",
+    "start": "2027-02-19",
+    "end": "2027-02-21",
+    "country": "Schweiz",
+    "city": "Winterthur",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch",
+    "source_provider": "Mirimor"
+  },
+  {
+    "id": "eu-source-fdf426cd743ba3e2",
+    "name": "Mittelalter Lenz Spektakel Wattwil",
+    "type": "Markt",
+    "date": "2027-04-23 bis 2027-04-25",
+    "start": "2027-04-23",
+    "end": "2027-04-25",
+    "country": "Schweiz",
+    "city": "Wattwil",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch",
+    "source_provider": "Mirimor"
+  },
+  {
     "id": "eu-source-22c8979909dca943",
     "name": "Mittelaltermarkt Allmendingen",
     "type": "Markt",
@@ -70,6 +104,23 @@
       "http://www.caligatus-feleus.ch"
     ],
     "website": "http://www.caligatus-feleus.ch",
+    "source_provider": "Mirimor"
+  },
+  {
+    "id": "eu-source-07ba7edf9bb3098e",
+    "name": "Jahrmarkt Fischingen - 340 Jahre Marktrecht",
+    "type": "Markt",
+    "date": "2027-10-10 bis 2027-10-11",
+    "start": "2027-10-10",
+    "end": "2027-10-11",
+    "country": "Schweiz",
+    "city": "Fischingen",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch",
     "source_provider": "Mirimor"
   },
   {
@@ -100,6 +151,23 @@
       "source": "https://mittelalter-bremgarten.ch",
       "method": "event-jsonld-or-labelled-day-text"
     }
+  },
+  {
+    "id": "eu-source-7d55cad473ee380c",
+    "name": "Mittelalter Halloweenspektakel",
+    "type": "Markt",
+    "date": "2027-10-29 bis 2027-10-31",
+    "start": "2027-10-29",
+    "end": "2027-10-31",
+    "country": "Schweiz",
+    "city": "Zürich",
+    "postcode": "",
+    "source": "https://www.mirimor.ch/kalender/",
+    "websites": [
+      "http://www.turnei.ch"
+    ],
+    "website": "http://www.turnei.ch",
+    "source_provider": "Mirimor"
   },
   {
     "id": "eu-source-f8be6bb4a0779f42",
