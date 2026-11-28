@@ -7872,35 +7872,37 @@ function heroldUebernehmen(index, event){
 async function heroldDuplikatZuordnen(index){
   const fund=heroldFunde[index];
   if(!fund || !heroldSession) return alert("Bitte zuerst im Herold anmelden.");
-  const norm=heroldNorm(fund.name);
-  const normalizedTitle=value=>heroldNorm(String(value||"").replace(/&#(?:0*38|x0*26);|&amp;/gi,"&")).replace(/\b(?:geplant|mps|mittelalterliches|mittelalterlich)\b/g,"").trim();
-  const candidates=heroldApprovedDuplicateTargets.filter(item=>{
-    const event=item.event;
+  const normalizedTitle=value=>heroldNorm(String(value||"").replace(/&#(?:0*38|x0*26);|&amp;/gi,"&"))
+    .replace(/\b(?:geplant|mps|mittelalterliches|mittelalterlich)\b/g,"")
+    .replace(/[–—−-]+/g," ")
+    .replace(/[^\p{L}\p{N}]+/gu," ")
+    .replace(/\s+/g," ").trim();
+  const fundTitle=normalizedTitle(fund.name);
+  const candidatesByKey=new Map();
+  heroldApprovedDuplicateTargets.forEach(item=>{
+    const event=item.event||{};
     const sameCountry=heroldNorm(event.country)===heroldNorm(fund.country);
     const sameStart=String(event.start||"")===String(fund.start||"");
-    const cityA=heroldCityNorm(event.city),cityB=heroldCityNorm(fund.city);
-    const sameCity=Boolean(cityA&&cityB&&(cityA===cityB||cityA.includes(cityB)||cityB.includes(cityA)));
-    const eventTitle=normalizedTitle(event.name);
-    const fundTitle=normalizedTitle(fund.name);
-    // Some source feeds use only the generic title "Mittelaltermarkt",
-    // while the approved calendar entry adds the city (e.g. Sigmaringen).
-    // This alias is allowed only with identical country, city AND start/end dates.
     const sameEnd=String(event.end||event.start||"")===String(fund.end||fund.start||"");
-    const genericMarketAlias=fundTitle==="mittelaltermarkt" &&
-      eventTitle==="mittelaltermarkt "+cityB && sameEnd;
-    // Calendar titles may append the edition, e.g. "2027 (die 7. Runde)".
-    // This is only a candidate for explicit confirmation, never an automatic merge.
-    const editionAlias=eventTitle.startsWith(fundTitle+" ") &&
-      /^20\d{2}(?:\s|$)/.test(eventTitle.slice(fundTitle.length).trim()) &&
-      fundTitle.length>=16 && sameEnd;
-    // A calendar may use a shortened title, while the source adds a subtitle.
-    // Permit explicit linking only; the backend still requires exact full dates/place.
-    const subtitleAlias=fundTitle.length>=16 && eventTitle.length>=16 &&
-      (fundTitle.startsWith(eventTitle+" ") || eventTitle.startsWith(fundTitle+" "));
-    const sameName=eventTitle===fundTitle || genericMarketAlias || editionAlias || subtitleAlias || (fundTitle.length>=16 && eventTitle.length>=16 && (fundTitle.startsWith(eventTitle+" ") || eventTitle.startsWith(fundTitle+" ")));
-    // An identical date and location are mandatory; a shared series name is not enough.
-    return sameCountry && sameStart && sameCity && sameName;
+    const sameCity=heroldSameCity(event.city||"",fund.city||"");
+    const fundPostcode=String(fund.postcode||"").replace(/\D/g,"");
+    const eventPostcode=String(event.postcode||"").replace(/\D/g,"");
+    const samePostcode=fundPostcode.length>=4&&fundPostcode===eventPostcode;
+    const eventTitle=normalizedTitle(event.name);
+    const genericMarketAlias=fundTitle==="mittelaltermarkt"&&
+      eventTitle==="mittelaltermarkt "+normalizedTitle(fund.city)&&sameEnd;
+    const editionAlias=eventTitle.startsWith(fundTitle+" ")&&
+      /^20\d{2}(?:\s|$)/.test(eventTitle.slice(fundTitle.length).trim())&&
+      fundTitle.length>=16&&sameEnd;
+    const subtitleAlias=fundTitle.length>=16&&eventTitle.length>=16&&
+      (fundTitle.startsWith(eventTitle+" ")||eventTitle.startsWith(fundTitle+" "));
+    const sameName=eventTitle===fundTitle||genericMarketAlias||editionAlias||subtitleAlias;
+    if(!sameCountry||(!sameCity&&!samePostcode)||!sameStart||!sameEnd||!sameName)return;
+    const key=String(item.id||event.id||"").trim()||
+      [eventTitle,heroldCityNorm(event.city||""),heroldNorm(event.country||""),event.start,event.end||event.start].join("|");
+    if(!candidatesByKey.has(key))candidatesByKey.set(key,item);
   });
+  const candidates=[...candidatesByKey.values()];
   if(!candidates.length) return alert("Keine bestätigte Veranstaltung mit identischem Namen, Land und Datum gefunden. Bitte zuerst die Daten prüfen.");
   const choices=candidates.map((item,i)=>(i+1)+": "+item.event.name+" – "+item.event.city+" ("+item.id+")").join("\n");
   const selected=candidates.length===1?"1":prompt("Nur bei sicherer Übereinstimmung verknüpfen. Name, Ort und Datum vergleichen.\n0 = Keiner davon / abbrechen\n"+choices+"\nNummer eingeben:");
